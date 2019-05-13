@@ -1,0 +1,16 @@
+# some special characters in the name
+
+chr!	3	24
+$a$	12	25
+(c)	3	12
+v~~	9	11
+\O/	8	44
+don't@me	77	244
+&pipefd	45	66
+c*rse	10	20
+see^	33	39
+#self	89	100
+3+3	45	55
+__name__	90	99
+b:b	23	44
+

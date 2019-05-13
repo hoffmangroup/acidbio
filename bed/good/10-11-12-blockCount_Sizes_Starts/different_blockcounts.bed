@@ -1,0 +1,6 @@
+# different reads have different number of blockCounts
+
+chr1	1000	2000	A	800	-	1000	2000	0	2	100,100	0,300
+chr1	2000	3000	B	800	+	2000	3000	0	1	80	100
+chr1	3000	4000	C	800	+	3000	4000	0	4	20,20,20,30	0,40,100,200
+

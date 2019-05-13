@@ -1,0 +1,6 @@
+# the blockCount doesn't equal the number of items in the comma-separated
+# list in blockSizes/blockStarts column
+
+chr1	1000	2000	A	800	-	1000	2000	0	2	35,55	4, 90
+chr1	2000	3000	B	800	+	2000	3000	0	2	30,40,50	300,400,500
+

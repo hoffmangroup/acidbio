@@ -1,0 +1,7 @@
+# Incorrect values for thickStart/thickEnd
+# This case they are not in the range of the start
+# and stop are not in the range of chromStart and chromEnd
+
+chr1	    10	   29  name1	.	.	2	8
+chr2	    1	   9   name2	.	.	2	5
+chr9	    100	   111 name3	.	.	104	111

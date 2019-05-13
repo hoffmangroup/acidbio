@@ -1,0 +1,5 @@
+# negative value for a blockStart
+
+chr1	1000	2000	A	800	-	1000	2000	0	2	40,80	0,200
+chr1	2000	3000	B	800	+	2000	3000	0	2	-40,40
+

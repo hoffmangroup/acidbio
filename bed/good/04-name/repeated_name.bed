@@ -1,0 +1,7 @@
+# a name gets used more than once
+
+chr1	100	140	name1
+chr1	180	220	name2
+chr1	300	340	name1
+chr1	400	450	name4
+

@@ -1,0 +1,5 @@
+# a block extends too far, out of the range of the part of chromosone
+
+chr1	1000	2000	A	800	+	1000	2000	0	1	300	800
+chr1	2000	3000	B	800	-	2000	3000	0	1	80	100
+

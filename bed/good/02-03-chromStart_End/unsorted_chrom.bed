@@ -1,0 +1,8 @@
+# The start and ends for each chromsone aren't in sorted order
+
+chr1	3000	3500
+chr1	2900	3700
+chr1	2800	3400
+chr1	3100	3300
+chr1	4000	4400
+

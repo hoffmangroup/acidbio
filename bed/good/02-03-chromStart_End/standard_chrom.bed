@@ -1,0 +1,9 @@
+# A standard bed file
+
+chr1	2000	2400
+chr1	3000	3100
+chr1	3400	3700
+chr1	4000	4250
+chr2	1300	1450
+chrY	1500	1800
+

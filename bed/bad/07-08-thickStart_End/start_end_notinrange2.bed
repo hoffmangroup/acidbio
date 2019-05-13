@@ -1,0 +1,5 @@
+# start-end not fully within the boundaries
+
+chr1	30	49	name1	200	.	47	50
+chrX	1	29	name2	891	.	2	24
+

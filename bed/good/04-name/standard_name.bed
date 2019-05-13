@@ -1,0 +1,7 @@
+# standard names in latin characters
+
+chr1	30	50	basic
+chr1	59	70	c
+chr2	24	50	repl
+chr2	67	100	unix
+

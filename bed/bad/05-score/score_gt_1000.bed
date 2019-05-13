@@ -1,0 +1,5 @@
+# Score out of range
+track name="Test4" description="score out of range" useScore=1
+chr1	4   10 n1	299
+chr2	9   18 n2	31
+chr3	5   29 n3	1001
