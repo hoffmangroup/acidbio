@@ -1,0 +1,7 @@
+# a space character before a tab delimiter
+
+chr1	100	300
+chr1	 340	400
+chr1	410	444
+chr1	450	490
+

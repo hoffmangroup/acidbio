@@ -1,0 +1,7 @@
+# make use_score set to an invalid value
+
+track name="This track" description="useScore=2" useScore=2
+chr1	1000	2000	A	990
+chr1	2100	2400	B	940
+chr1	2500	2800	C	890
+

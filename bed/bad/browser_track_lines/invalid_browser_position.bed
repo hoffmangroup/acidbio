@@ -1,0 +1,7 @@
+# browser start position invalid
+
+browser position chr7:1004444-1001111
+track name="position_bad" description="start spot > end spot"
+chr7	1002222	1002299
+chr7	1003000	1003300
+

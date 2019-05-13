@@ -1,0 +1,7 @@
+# visibility can be a word
+
+track name="visible" description="testing visibility" visibility="full"
+chr1	100	200
+chr1	200	300
+chr2	240	321
+

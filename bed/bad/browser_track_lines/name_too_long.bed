@@ -1,0 +1,6 @@
+# name in track is <=15 characters
+
+track name="a very long illegal name" description="not going to work"
+chr1	2000	4000	A	890	-
+chr2	1000	1100	B	910	+
+
