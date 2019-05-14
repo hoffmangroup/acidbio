@@ -1,5 +1,6 @@
 # standard score values
 
+track useScore=1
 chr1	200	230	name1	870
 chr1	240	400	name2	709
 chr1	430	440	name3	600

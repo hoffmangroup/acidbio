@@ -1,5 +1,6 @@
 # score 0 and 1000
 
+track useScore=1
 chr1	30	60	name1	1000
 chr2	30	70	name2	1000
 chr2	80	100	name3	0
