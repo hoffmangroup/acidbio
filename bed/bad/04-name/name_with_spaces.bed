@@ -1,0 +1,6 @@
+# Name can't contain spaces.
+
+chr1	13000	13300	bad name	800
+chr1	13340	13400	good_name	780
+chr1	13440	13500	okie_dokie	800
+
