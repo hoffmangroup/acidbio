@@ -1,11 +1,9 @@
 settings:
     hidden: 0
-    
 tools:
-    bedTools:
-        - bedtools intersect -a intersect_file.bed -b ${file}
-        - |
-        sort -k1,1 k-2,2n ${file} > temp.bed
-        bedtools merge -i temp.bed
-        rm -f temp.bed
-        - bedtools coverage -a intersect_file.bed -b ${file}
+    - bedTools:
+        intersect: bedtools intersect -a ./intersect_file.bed -b FILE
+        merge: sort -k1,1 -k2,2n FILE > ./temp.bed; bedtools merge -i ./temp.bed
+        coverage: bedtools coverage -a ./intersect_file.bed -b FILE
+waste:
+    - ./temp.bed
