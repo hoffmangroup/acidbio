@@ -1,0 +1,136 @@
+%===========================%
+./bad/02-03-chromStart_End/start_eq_end.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/04-name/empty_name.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/04-name/name_with_spaces.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/05-score/score_fraction.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/05-score/score_lt_0.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/06-strand/empty_strand.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/06-strand/invalid_strand.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/07-08-thickStart_End/float_end.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/07-08-thickStart_End/float_start.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/07-08-thickStart_End/no_start.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/07-08-thickStart_End/start_end_notinrange2.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/07-08-thickStart_End/start_end_notinrange3.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/07-08-thickStart_End/string_end.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/07-08-thickStart_End/string_start.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/09-itemRgb/invalid_rgb.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/09-itemRgb/no_rgb.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/10-11-12-blockCount_Sizes_Starts/blockcount_negative.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/10-11-12-blockCount_Sizes_Starts/blockcount_string.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/10-11-12-blockCount_Sizes_Starts/block_outofrange.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/10-11-12-blockCount_Sizes_Starts/blocksize_missing_comma.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/10-11-12-blockCount_Sizes_Starts/blocksize_negative.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/10-11-12-blockCount_Sizes_Starts/blocksize_outofrange.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/10-11-12-blockCount_Sizes_Starts/blockstarts_missing_comma.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/10-11-12-blockCount_Sizes_Starts/mismatch_count1.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/10-11-12-blockCount_Sizes_Starts/mismatch_count2.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/10-11-12-blockCount_Sizes_Starts/start_outofrange.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/browser_track_lines/invalid_browser_attribute.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/browser_track_lines/invalid_browser_position.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/browser_track_lines/invalid_track_attribute.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/browser_track_lines/invalid_usescore.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/browser_track_lines/missing_type_attribute.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/browser_track_lines/name_too_long.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/browser_track_lines/narrowPeak.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/whitespacing/duplicate_rows.bed passed incorrectly
+ 
+%===========================%
