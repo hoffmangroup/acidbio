@@ -2,16 +2,13 @@
 
 # The first command line argument is how to execute it
 line=$1
-# The second command lien argument is what the tool is called
+# The second command line argument is what the tool is called
 
-echo ************************** $2 ************************** >> failed_good.txt
+echo "**************************" $2 "**************************" >> failed_good.txt
 echo "" >> failed_good.txt
 
 correct=0
 total=0
-# A log of the failing tests
-rm -f failed_good.txt
-touch failed_good.txt
 for directory in ./good/*; do
     for file in ${directory}/*.bed; do
 	# === Run the tool === #
@@ -41,4 +38,4 @@ echo Tests completed.
 echo $correct correct out of $total.
 
 echo "" >> failed_good.txt
-echo ************************** $2 ************************** >> failed_good.txt
+echo "**************************" $2 "**************************" >> failed_good.txt

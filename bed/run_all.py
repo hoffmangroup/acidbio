@@ -24,7 +24,7 @@ for program in list(tool_list.keys()):
     print('\n\n')
     for command, execution in commands.items():
         print("*"*18 + " " + command + " " + "*"*18)
-        subprocess.call(["./run_good.sh", execution, program + command])
+        subprocess.call(["./run_good.sh", execution, program + " " + command])
         print("*"*60)
         print()
         print()
@@ -37,7 +37,7 @@ for program in list(tool_list.keys()):
     print()
     for command, execution in commands.items():
         print("*"*18 + " " + command + " "+ "*"*18)
-        subprocess.call(["./run_bad.sh", execution, program + command])
+        subprocess.call(["./run_bad.sh", execution, program + " " + command])
         print("*"*60)
         print()
         print()
