@@ -6,13 +6,15 @@ try:
 except ImportError:
     from yaml import Loader, Dumper
 
+# Clear the previous data and reinitalize it
+subprocess.call(["rm", "-f", "failed_good.txt", "passed_bad.txt"])
+subprocess.call(["touch", "failed_good.txt", "passed_bad.txt"])
+
 stream = open('config.yaml', 'r')
 data = load(stream, Loader=Loader)
 
-print(data)
 
 tool_list = data['tools'][0]
-# print(tool_list)
 
 for program in list(tool_list.keys()):
     commands = tool_list[program]
@@ -22,7 +24,7 @@ for program in list(tool_list.keys()):
     print('\n\n')
     for command, execution in commands.items():
         print("*"*18 + " " + command + " " + "*"*18)
-        subprocess.call(["./run_good.sh", execution])
+        subprocess.call(["./run_good.sh", execution, program + command])
         print("*"*60)
         print()
         print()
@@ -35,7 +37,7 @@ for program in list(tool_list.keys()):
     print()
     for command, execution in commands.items():
         print("*"*18 + " " + command + " "+ "*"*18)
-        subprocess.call(["./run_bad.sh", execution])
+        subprocess.call(["./run_bad.sh", execution, program + command])
         print("*"*60)
         print()
         print()

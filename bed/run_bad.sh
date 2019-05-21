@@ -1,7 +1,11 @@
 #!/bin/bash
 
-# The command line arguments are the lines needed to run the tool.
+# The first command line argument is how to execute it
 line=$1
+# The second command lien argument is what the tool is called
+
+echo ************************** $2 ************************** >> passed_bad.txt
+echo "" >> passed_bad.txt
 
 correct=0
 total=0
@@ -24,6 +28,7 @@ for directory in ./bad/*; do
 			echo " " >> passed_bad.txt
 			eval "$execute_line >> passed_bad.txt "
 			echo "%===========================%" >> passed_bad.txt
+			echo "" >> passed_bad.txt
 			echo ${file} passed incorrectly.
 		else # Otherwise at least one error/warning was given, which is good
 			echo ${file} failed correctly.
@@ -37,3 +42,6 @@ rm -f error # Remove the temporary file
 echo $'\n\n'
 echo Tests completed.
 echo $correct correct out of $total.
+
+echo "" >> passed_bad.txt
+echo ************************** $2 ************************** >> passed_bad.txt

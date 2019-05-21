@@ -1,0 +1,52 @@
+%===========================%
+./bad/02-03-chromStart_End/start_eq_end.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/04-name/empty_name.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/04-name/name_with_spaces.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/05-score/score_fraction.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/05-score/score_lt_0.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/06-strand/empty_strand.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/06-strand/invalid_strand.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/07-08-thickStart_End/float_end.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/07-08-thickStart_End/float_start.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/07-08-thickStart_End/no_start.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/07-08-thickStart_End/start_end_notinrange2.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/07-08-thickStart_End/start_end_notinrange3.bed passed incorrectly
+ 
+%===========================%
+%===========================%
+./bad/07-08-thickStart_End/string_end.bed passed incorrectly
+ 
+%===========================%

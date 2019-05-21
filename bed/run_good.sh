@@ -1,7 +1,11 @@
 #!/bin/bash
 
-# The first command line argument is the way of executing the tool
+# The first command line argument is how to execute it
 line=$1
+# The second command lien argument is what the tool is called
+
+echo ************************** $2 ************************** >> failed_good.txt
+echo "" >> failed_good.txt
 
 correct=0
 total=0
@@ -27,7 +31,6 @@ for directory in ./good/*; do
 	    eval "$execute_line >> failed_good.txt 2>&1"
 	    echo "%===========================%" >> failed_good.txt
 	    echo "" >> failed_good.txt
-	    echo "" >> failed_good.txt
 	fi
 	let "total=total+1"
     done
@@ -36,3 +39,6 @@ done
 echo $'\n\n'
 echo Tests completed.
 echo $correct correct out of $total.
+
+echo "" >> failed_good.txt
+echo ************************** $2 ************************** >> failed_good.txt
