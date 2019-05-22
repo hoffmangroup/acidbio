@@ -4,23 +4,7 @@ filename is the file that should be validated.
 """
 
 import sys
-
-def verify_browser_line(line: str) -> bool:
-    """Verifies if a browser line is of proper format
-    """
-    pass
-
-
-def verify_track_line(line: str) -> bool:
-    """Verifies if a track line is of proper format
-    """
-    pass
-
-
-def verify_bed_line(line: str) -> bool:
-    """Verifies if a bed line is of proper format
-    """
-    pass
+from validate_bed_utils import *
 
 
 if len(sys.argv) != 2:
@@ -35,7 +19,8 @@ if filename[-4:] != '.bed':
 bed_file = open(filename, 'r')
 
 for bed_line in bed_file.readlines():
-    bed_line = bed_line.strip()
+    if bed_line[0] == '#':  # The line is a comment 
+        continue
     split_line = bed_line.split()
     if split_line[0] == 'browser':
         verify_browser_line(bed_line)
@@ -45,3 +30,4 @@ for bed_line in bed_file.readlines():
         verify_bed_line(bed_line)
 
 bed_file.close()
+
