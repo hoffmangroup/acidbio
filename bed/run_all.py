@@ -16,33 +16,37 @@ stream = open('config.yaml', 'r')
 data = load(stream, Loader=Loader)
 
 
-tool_list = data['tools'][0]
+tool_list = data['tools']
+for tool in tool_list:
+    for program in list(tool.keys()):
+        commands = tool[program]
+        
+        
+        print("*"*18 + " " + "Cases that are supposed to pass" + " " + "*"*18)
+        print('\n\n')
+        for command, execution in commands.items():
+            if command == 'coverage':
+                continue
+            print("*"*18 + " " + command + " " + "*"*18)
+            # subprocess.call(["./run_good.sh", execution, program + " " + command])
+            run_good(execution)
+            print("*"*60)
+            print()
+            print()
+        print("*"*18 + " " + "Cases that are supposed to pass" + " " + "*"*18 + "\n\n")
 
-for program in list(tool_list.keys()):
-    commands = tool_list[program]
-    # print (commands)
-    
-    print("*"*18 + " " + "Cases that are supposed to pass" + " " + "*"*18)
-    print('\n\n')
-    for command, execution in commands.items():
-        print("*"*18 + " " + command + " " + "*"*18)
-        # subprocess.call(["./run_good.sh", execution, program + " " + command])
-        run_good(execution)
-        print("*"*60)
-        print()
-        print()
-    print("*"*18 + " " + "Cases that are supposed to pass" + " " + "*"*18 + "\n\n")
+        print("*"*18 + " " + "Cases that are supposed to fail" + " " + "*"*18 + "\n\n")
 
-    print("*"*18 + " " + "Cases that are supposed to fail" + " " + "*"*18 + "\n\n")
-
-    for command, execution in commands.items():
-        print("*"*18 + " " + command + " "+ "*"*18)
-        # subprocess.call(["./run_bad.sh", execution, program + " " + command])
-        run_bad(execution)
-        print("*"*60 + "\n\n")
-    print("*"*18 + " " + "Cases that are supposed to fail" + " " + "*"*18)
-    
-for f in data['waste']:
-    subprocess.call(["rm", "-f", f])
-    
+        for command, execution in commands.items():
+            if command == 'coverage':
+                continue
+            print("*"*18 + " " + command + " "+ "*"*18)
+            # subprocess.call(["./run_bad.sh", execution, program + " " + command])
+            run_bad(execution)
+            print("*"*60 + "\n\n")
+        print("*"*18 + " " + "Cases that are supposed to fail" + " " + "*"*18)
+        
+    for f in data['waste']:
+        subprocess.call(["rm", "-f", f])
+        
 stream.close()

@@ -3,6 +3,7 @@ Runs all the tests in the /good/ directory and checks whether
 the tools run without error
 """
 import sys
+import getopt
 import subprocess
 import os
 
@@ -35,18 +36,22 @@ def run_good(tool: str) -> None:
         "\n\n**************************" + tool + "**************************\n")
     out_file.close()
 
+def usage():
+    print("to be written")
+
 if __name__ == "__main__":
-
-    if len(sys.argv) != 2:
-        sys.stderr.write("run_good.py <command line tool>")
-        exit(1)
-
-    if sys.argv[1] == '-h' or sys.argv[1] == '--help':
-        sys.stdout.write("run_good.py <command line tool>")
-        exit(0)
-
-    if sys.argv[1] == '-v' or sys.argv[1] == '--version':
-        sys.stdout.write("0.1")
-        exit(0)
+    optlist, args = getopt.getopt(sys.argv[1:], "hVv", ["help", "verbose="])
     
+    verbose = False
+
+    for o, a in optlist:
+        if o == "-V":
+            print("0.1")
+            exit(0)
+        elif o in ("-h", "--help"):
+            usage()
+            exit(0)
+            
+
+
     run_good(sys.argv[1])

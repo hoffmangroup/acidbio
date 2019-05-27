@@ -18,7 +18,7 @@ def run_bad(tool: str) -> None:
         for file in os.listdir("./bad/" + directory):
             if file.endswith(".bed"):
                 filepath = "./bad/" + directory + "/" + file
-                execute_line = tool.replace("FILE", filepath) + " > /dev/null"
+                execute_line = tool.replace("FILE", filepath) + " 2>&1"
                 process = subprocess.run(execute_line, shell=True, stdout=subprocess.PIPE, stderr = subprocess.PIPE, universal_newlines=True)
                 # print(process.stderr)
                 if process.returncode != 0 or len(process.stderr) > 0:
@@ -26,6 +26,8 @@ def run_bad(tool: str) -> None:
                 else:
                     print(filepath + ' passed incorrectly')
                     out_file.write("%===========================%\n" + filepath + "\n\n")
+                    # print(process.stdout)
+                    # print(process.stderr)
                     out_file.write(process.stdout)
                     out_file.write("%===========================%\n\n")
                 total += 1
