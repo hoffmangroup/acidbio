@@ -127,5 +127,4 @@ def verify_bed_line(line: str) -> bool:
         return False
     for i in range(len(split)):
         # call the i'th checker on split[i]
-
-
+        pass

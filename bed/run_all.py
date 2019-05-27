@@ -1,5 +1,7 @@
 # Runs all the tools in config.yaml
 import subprocess
+from run_bad import run_bad
+from run_good import run_good
 from yaml import load, dump
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
@@ -24,23 +26,20 @@ for program in list(tool_list.keys()):
     print('\n\n')
     for command, execution in commands.items():
         print("*"*18 + " " + command + " " + "*"*18)
-        subprocess.call(["./run_good.sh", execution, program + " " + command])
+        # subprocess.call(["./run_good.sh", execution, program + " " + command])
+        run_good(execution)
         print("*"*60)
         print()
         print()
-    print("*"*18 + " " + "Cases that are supposed to pass" + " " + "*"*18)
-    print()
-    print()
-    
-    print("*"*18 + " " + "Cases that are supposed to fail" + " " + "*"*18)
-    print()
-    print()
+    print("*"*18 + " " + "Cases that are supposed to pass" + " " + "*"*18 + "\n\n")
+
+    print("*"*18 + " " + "Cases that are supposed to fail" + " " + "*"*18 + "\n\n")
+
     for command, execution in commands.items():
         print("*"*18 + " " + command + " "+ "*"*18)
-        subprocess.call(["./run_bad.sh", execution, program + " " + command])
-        print("*"*60)
-        print()
-        print()
+        # subprocess.call(["./run_bad.sh", execution, program + " " + command])
+        run_bad(execution)
+        print("*"*60 + "\n\n")
     print("*"*18 + " " + "Cases that are supposed to fail" + " " + "*"*18)
     
 for f in data['waste']:

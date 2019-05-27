@@ -1,129 +1,146 @@
-************************** bedTools intersect **************************
+**************************bedtools intersect -a ./intersect_file.bed -b FILE**************************
 
 %===========================%
 ./good/01-chrom/non_latin.bed
- 
+
 Error: Unable to determine type for file ./good/01-chrom/non_latin.bed
 %===========================%
 
 %===========================%
 ./good/04-name/non_latin_name.bed
- 
+
 Error: Unable to determine type for file ./good/04-name/non_latin_name.bed
 %===========================%
 
 %===========================%
 ./good/browser_track_lines/example2.bed
- 
+
 Error: unable to open file or unable to determine types for file ./good/browser_track_lines/example2.bed
 %===========================%
 
 %===========================%
 ./good/whitespacing/space_after_tab.bed
- 
+
 ERROR: Received illegal bin number 262143 from getBin call.
 ERROR: Unable to add record to tree.
 %===========================%
 
 %===========================%
 ./good/whitespacing/space_before_tab.bed
- 
+
 ***** ERROR: illegal character ' ' found in integer conversion of string " 340". Exiting...
 %===========================%
 
 
-************************** bedTools intersect **************************
-************************** bedTools merge **************************
+
+Tests completed.
+38 correct out of 43
+
+**************************bedtools intersect -a ./intersect_file.bed -b FILE**************************
+**************************sort -k1,1 -k2,2n FILE > ./temp.bed; bedtools merge -i ./temp.bed**************************
 
 %===========================%
 ./good/01-chrom/non_latin.bed
- 
+
 Error: Unable to determine type for file ./temp.bed
 %===========================%
 
 %===========================%
 ./good/04-name/non_latin_name.bed
- 
+
 Error: Unable to determine type for file ./temp.bed
 %===========================%
 
 %===========================%
 ./good/05-score/edge_score.bed
- 
+
+Segmentation fault (core dumped)
 %===========================%
 
 %===========================%
 ./good/bed_variants/broadPeak.bed
- 
+
+Segmentation fault (core dumped)
 %===========================%
 
 %===========================%
 ./good/bed_variants/gappedPeak.bed
- 
+
 Error: line number 3 of file ./temp.bed has 15 fields, but 0 were expected.
 %===========================%
 
 %===========================%
 ./good/bed_variants/narrowPeak.bed
- 
+
+Segmentation fault (core dumped)
 %===========================%
 
 %===========================%
 ./good/browser_track_lines/example2.bed
- 
+
 Error: unable to open file or unable to determine types for file ./temp.bed
 %===========================%
 
 %===========================%
 ./good/browser_track_lines/example3.bed
- 
+
+Segmentation fault (core dumped)
 %===========================%
 
 %===========================%
 ./good/browser_track_lines/visibility_in_words.bed
- 
+
+Segmentation fault (core dumped)
 %===========================%
 
 %===========================%
 ./good/whitespacing/space_before_tab.bed
- 
+
 ***** ERROR: illegal character ' ' found in integer conversion of string " 340". Exiting...
 %===========================%
 
 
-************************** bedTools merge **************************
-************************** bedTools coverage **************************
+
+Tests completed.
+33 correct out of 43
+
+**************************sort -k1,1 -k2,2n FILE > ./temp.bed; bedtools merge -i ./temp.bed**************************
+**************************bedtools coverage -a ./intersect_file.bed -b FILE**************************
 
 %===========================%
 ./good/01-chrom/non_latin.bed
- 
+
 Error: Unable to determine type for file ./good/01-chrom/non_latin.bed
 %===========================%
 
 %===========================%
 ./good/04-name/non_latin_name.bed
- 
+
 Error: Unable to determine type for file ./good/04-name/non_latin_name.bed
 %===========================%
 
 %===========================%
 ./good/browser_track_lines/example2.bed
- 
+
 Error: unable to open file or unable to determine types for file ./good/browser_track_lines/example2.bed
 %===========================%
 
 %===========================%
 ./good/whitespacing/space_after_tab.bed
- 
+
 ERROR: Received illegal bin number 262143 from getBin call.
 ERROR: Unable to add record to tree.
 %===========================%
 
 %===========================%
 ./good/whitespacing/space_before_tab.bed
- 
+
 ***** ERROR: illegal character ' ' found in integer conversion of string " 340". Exiting...
 %===========================%
 
 
-************************** bedTools coverage **************************
+
+Tests completed.
+38 correct out of 43
+
+**************************bedtools coverage -a ./intersect_file.bed -b FILE**************************
