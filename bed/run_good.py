@@ -7,10 +7,10 @@ import getopt
 import subprocess
 import os
 
-def run_good(tool: str) -> None:
+def run_good(tool: str, verbose=False, output_file="failed_good.txt") -> None:
     correct = 0
     total = 0
-    out_file = open("failed_good.txt", "a")
+    out_file = open(output_file, "a")
 
     out_file.write("**************************" + tool + "**************************\n\n")
 
@@ -19,15 +19,19 @@ def run_good(tool: str) -> None:
             if file.endswith(".bed"):
                 filepath = "./good/" + directory + "/" + file
                 execute_line = tool.replace("FILE", filepath) + " 2>&1"
-                # exit_value = subprocess.call(execute_line, shell=True)
                 process = subprocess.run(execute_line, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
                 if process.returncode == 0:
+                    if verbose:
+                        print(filepath + ' passed correctly')
+                        print(process.stdout)
+                        print()
                     correct += 1
                 else:
                     print(filepath + ' failed incorrectly')
+                    if verbose:
+                        print(process.stdout)
+                        print()
                     out_file.write("%===========================%\n" + filepath + "\n\n")
-                    # reexecute_line = sys.argv[1].replace("FILE", filepath) + " 2>&1"
-                    # process = subprocess.run(reexecute_line, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
                     out_file.write(process.stdout)
                     out_file.write("%===========================%\n\n")
                 total += 1
@@ -36,22 +40,41 @@ def run_good(tool: str) -> None:
         "\n\n**************************" + tool + "**************************\n")
     out_file.close()
 
+
 def usage():
     print("to be written")
 
+
 if __name__ == "__main__":
-    optlist, args = getopt.getopt(sys.argv[1:], "hVv", ["help", "verbose="])
+    try:
+        optlist, args = getopt.getopt(sys.argv[1:], "hVv", ["help", "verbose=", "version", "output-file="])
+    except getopt.GetoptError as err:
+        print(err)
+        usage()
+        exit(2)
     
     verbose = False
+    output_file = "failed_good.txt"
 
     for o, a in optlist:
-        if o == "-V":
+        if o in ("-V", "--version"):
             print("0.1")
             exit(0)
         elif o in ("-h", "--help"):
             usage()
             exit(0)
-            
+        elif o in ("-v", "--verbose"):
+            if a.lower() not in ('true', 'false'):
+                usage()
+                exit(2)
+            verbose = True if a.lower() == 'true' else False
+        elif o == "--output-file":
+            output_file = a
+        else:
+            assert False, "unhandled option"
+    
+    if len(args) != 1:
+        usage()
+        exit(2)
 
-
-    run_good(sys.argv[1])
+    run_good(args[1], verbose, output_file)

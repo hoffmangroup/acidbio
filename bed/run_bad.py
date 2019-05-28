@@ -4,13 +4,14 @@ the tools run raise an error or warning
 """
 import sys
 import subprocess
+import getopt
 import os
 
 
-def run_bad(tool: str) -> None:
+def run_bad(tool: str, verbose=False, output_file="passed_bad.txt") -> None:
     correct = 0
     total = 0
-    out_file = open("passed_bad.txt", 'a')
+    out_file = open(output_file, 'a')
 
     out_file.write("**************************" + tool + "**************************\n\n")
 
@@ -23,11 +24,16 @@ def run_bad(tool: str) -> None:
                 # print(process.stderr)
                 if process.returncode != 0 or len(process.stderr) > 0:
                     correct += 1
+                    if verbose:
+                        print(filepath + ' failed correctly')
+                        print(process.stdout)
+                        print()
                 else:
                     print(filepath + ' passed incorrectly')
+                    if verbose:
+                        print(process.stdout)
+                        print()
                     out_file.write("%===========================%\n" + filepath + "\n\n")
-                    # print(process.stdout)
-                    # print(process.stderr)
                     out_file.write(process.stdout)
                     out_file.write("%===========================%\n\n")
                 total += 1
@@ -36,17 +42,41 @@ def run_bad(tool: str) -> None:
         "\n\n**************************" + tool + "**************************\n")
     out_file.close()
 
+
+def usage():
+    print("To be written")
+
+
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        sys.stdout.write("run_bad.py <command line tool>")
-        exit(1)
+    try:
+        optlist, args = getopt.getopt(sys.argv[1:], "hVv", ["help", "verbose=", "version", "output-file="])
+    except getopt.GetoptError as err:
+        print(err)
+        usage()
+        exit(2)
+    
+    verbose = False
+    output_file = "passed_bad.txt"
 
-    if sys.argv[1] == '-h' or sys.argv[1] == '--help':
-        sys.stdout.write("run_bad.py <command line tool>")
-        exit(0)
+    for o, a in optlist:
+        if o in ("-V", "--version"):
+            print("0.1")
+            exit(0)
+        elif o in ("-h", "--help"):
+            usage()
+            exit(0)
+        elif o in ("-v", "--verbose"):
+            if a.lower() not in ('true', 'false'):
+                usage()
+                exit(2)
+            verbose = True if a.lower() == 'true' else False
+        elif o == "--output-file":
+            output_file = a
+        else:
+            assert False, "unhandled option"
+    
+    if len(args) != 1:
+        usage()
+        exit(2)
 
-    if sys.argv[1] == '-v' or sys.argv[1] == '--version':
-        sys.stdout.write("0.1")
-        exit(0)
-
-    run_bad(sys.argv[1])
+    run_bad(args[1], verbose, output_file)
