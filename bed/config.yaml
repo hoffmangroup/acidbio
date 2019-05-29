@@ -3,9 +3,7 @@ settings:
 tools:  # Require that the command line sequence to be executed be written on one line
     - bedTools:
         intersect: bedtools intersect -a ./intersect_file.bed -b FILE
-        merge: sort -k1,1 -k2,2n FILE > ./temp.bed; bedtools merge -i ./temp.bed
+        merge: sort -k1,1 -k2,2n FILE > TEMP1; bedtools merge -i TEMP1
         coverage: bedtools coverage -a ./intersect_file.bed -b FILE
     - bedParse:
         promoter: bedparse promoter --up 1000 --down 500 --unstranded FILE
-waste:  # Any temporary files that are needed for the tools to work
-    - ./temp.bed

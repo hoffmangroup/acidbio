@@ -6,6 +6,7 @@ import sys
 import subprocess
 import getopt
 import os
+import tempfile
 
 
 def run_bad(tool: str, verbose=False, output_file="passed_bad.txt") -> None:
@@ -15,11 +16,14 @@ def run_bad(tool: str, verbose=False, output_file="passed_bad.txt") -> None:
 
     out_file.write("**************************" + tool + "**************************\n\n")
 
+    temp1 = tempfile.NamedTemporaryFile()
+    temp2 = tempfile.NamedTemporaryFile()
+
     for directory in os.listdir("./bad/"):
         for file in os.listdir("./bad/" + directory):
             if file.endswith(".bed"):
                 filepath = "./bad/" + directory + "/" + file
-                execute_line = tool.replace("FILE", filepath) + " 2>&1"
+                execute_line = tool.replace("FILE", filepath).replace("TEMP1", temp1.name).replace("TEMP2", temp2.name) + " 2>&1"
                 process = subprocess.run(execute_line, shell=True, stdout=subprocess.PIPE, stderr = subprocess.PIPE, universal_newlines=True)
                 # print(process.stderr)
                 if process.returncode != 0 or len(process.stderr) > 0:
@@ -44,7 +48,17 @@ def run_bad(tool: str, verbose=False, output_file="passed_bad.txt") -> None:
 
 
 def usage():
-    print("To be written")
+    print("""Runs all the bad test files against a tool and records the passing cases.
+Usage: run_bad.py tool [-h] [-V] [-v] [--output-file]
+    options:
+      tool  The full command line to call the tool being tested. However, replace the input with "FILE" and if
+        there are any temporary files needed to be created such as a sorted file, use TEMP1 or TEMP2. The
+        command line must be all in one line. If multiple lines are needed, use ; to separate them.
+      -h, --help    Help
+      -v, --verbose=    If True, it prints the results and outputs from all tests. Default is False
+      -V, --version The version number
+      --output-file The output file that logs cases where the tool ran without error or warning. Default is passing_bad.txt
+    """)
 
 
 if __name__ == "__main__":

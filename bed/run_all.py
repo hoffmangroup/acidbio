@@ -26,10 +26,10 @@ def run_all(verbose=False, failed_good_file="failed_good.txt", passed_bad_file="
             commands = tool[program]
             
             
-            print("*"*18 + " " + "Cases that are supposed to pass" + " " + "*"*18)
+            print("*"*18 + " Cases that are supposed to pass " + "*"*18)
             print('\n\n')
             for command, execution in commands.items():
-                if command == 'coverage':
+                if command != 'merge':
                     continue
                 print("*"*18 + " " + command + " " + "*"*18)
                 # subprocess.call(["./run_good.sh", execution, program + " " + command])
@@ -37,32 +37,38 @@ def run_all(verbose=False, failed_good_file="failed_good.txt", passed_bad_file="
                 print("*"*60)
                 print()
                 print()
-            print("*"*18 + " " + "Cases that are supposed to pass" + " " + "*"*18 + "\n\n")
+            print("*"*18 + " Cases that are supposed to pass " + "*"*18 + "\n\n")
 
-            print("*"*18 + " " + "Cases that are supposed to fail" + " " + "*"*18 + "\n\n")
+            print("*"*18 + " Cases that are supposed to fail " + "*"*18 + "\n\n")
 
             for command, execution in commands.items():
-                if command == 'coverage':
+                if command != 'merge':
                     continue
                 print("*"*18 + " " + command + " "+ "*"*18)
                 # subprocess.call(["./run_bad.sh", execution, program + " " + command])
                 run_bad(execution, verbose, passed_bad_file)
                 print("*"*60 + "\n\n")
-            print("*"*18 + " " + "Cases that are supposed to fail" + " " + "*"*18)
-            
-        for f in data['waste']:
-            subprocess.call(["rm", "-f", f])
+            print("*"*18 + " Cases that are supposed to fail " + "*"*18)
             
     stream.close()
 
 
 def usage():
-    print("to be written")
+    print(
+    """Tester for the BED format. Tests the tools in config.yaml to see if they appropriately throw warnings or errors.
+Usage: run_all.py [-h] [-V] [-v] [--failed-good] [--passed-bad]
+    options:
+      -h, --help    Help
+      -v, --verbose=    If True, it prints the results and outputs from all tests
+      -V, --version The version number
+      --failed-good The output file that logs cases where a good file ran with error
+      --passed-bad  The output file that logs cases where bad files ran without error or warning
+    """)
 
 
 if __name__ == '__main__':
     try:
-        optlist, args = getopt.getopt(sys.argv[1:], "hVv", ["help", "version", "verbose=", "failed-good=", "passed-bad="])
+        optlist, args = getopt.getopt(sys.argv[1:], "hVv:", ["help", "version", "verbose=", "failed-good=", "passed-bad="])
     except getopt.GetoptError as err:
         print(err)
         usage()
