@@ -8,12 +8,14 @@ import subprocess
 import os
 import tempfile
 
-def run_good(tool: str, verbose=False, output_file="failed_good.txt") -> None:
+def run_good(tool: str, tool_name=None, verbose=False, output_file="failed_good.txt") -> None:
     correct = 0
     total = 0
     out_file = open(output_file, "a")
 
-    out_file.write("**************************" + tool + "**************************\n\n")
+    title = tool_name if tool_name is not None else tool
+
+    out_file.write("**************************" + title + "**************************\n\n")
 
     temp1 = tempfile.NamedTemporaryFile()
     temp2 = tempfile.NamedTemporaryFile()
@@ -41,7 +43,7 @@ def run_good(tool: str, verbose=False, output_file="failed_good.txt") -> None:
                 total += 1
 
     out_file.write("\n\nTests completed.\n" + str(correct) + " correct out of " + str(total) +
-        "\n\n**************************" + tool + "**************************\n")
+        "\n\n**************************" + title + "**************************\n")
     out_file.close()
 
 
@@ -69,6 +71,7 @@ if __name__ == "__main__":
     
     verbose = False
     output_file = "failed_good.txt"
+    tool_name = None
 
     for o, a in optlist:
         if o in ("-V", "--version"):
@@ -87,8 +90,11 @@ if __name__ == "__main__":
         else:
             assert False, "unhandled option"
     
-    if len(args) != 1:
+    if len(args) == 2:
+        tool_name = args[2]
+    
+    if len(args) > 2 or len(args) == 0:
         usage()
         exit(2)
 
-    run_good(args[1], verbose, output_file)
+    run_good(args[1], tool_name, verbose, output_file)

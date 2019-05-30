@@ -31,9 +31,8 @@ def run_all(verbose=False, failed_good_file="failed_good.txt", passed_bad_file="
             for command, execution in commands.items():
                 if command != 'merge':
                     continue
-                print("*"*18 + " " + command + " " + "*"*18)
-                # subprocess.call(["./run_good.sh", execution, program + " " + command])
-                run_good(execution, verbose, failed_good_file)
+                print("*"*18 + " " + program + " " + command + " " + "*"*18)
+                run_good(execution, program + " " + command, verbose, failed_good_file)
                 print("*"*60)
                 print()
                 print()
@@ -44,9 +43,8 @@ def run_all(verbose=False, failed_good_file="failed_good.txt", passed_bad_file="
             for command, execution in commands.items():
                 if command != 'merge':
                     continue
-                print("*"*18 + " " + command + " "+ "*"*18)
-                # subprocess.call(["./run_bad.sh", execution, program + " " + command])
-                run_bad(execution, verbose, passed_bad_file)
+                print("*"*18 + " " + program + " " + command + " "+ "*"*18)
+                run_bad(execution, program + " " + command, verbose, passed_bad_file)
                 print("*"*60 + "\n\n")
             print("*"*18 + " Cases that are supposed to fail " + "*"*18)
             

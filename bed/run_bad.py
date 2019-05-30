@@ -9,12 +9,14 @@ import os
 import tempfile
 
 
-def run_bad(tool: str, verbose=False, output_file="passed_bad.txt") -> None:
+def run_bad(tool: str, tool_name=None, verbose=False, output_file="passed_bad.txt") -> None:
     correct = 0
     total = 0
     out_file = open(output_file, 'a')
 
-    out_file.write("**************************" + tool + "**************************\n\n")
+    title = tool_name if tool_name is not None else tool
+
+    out_file.write("**************************" + title + "**************************\n\n")
 
     temp1 = tempfile.NamedTemporaryFile()
     temp2 = tempfile.NamedTemporaryFile()
@@ -25,7 +27,6 @@ def run_bad(tool: str, verbose=False, output_file="passed_bad.txt") -> None:
                 filepath = "./bad/" + directory + "/" + file
                 execute_line = tool.replace("FILE", filepath).replace("TEMP1", temp1.name).replace("TEMP2", temp2.name) + " 2>&1"
                 process = subprocess.run(execute_line, shell=True, stdout=subprocess.PIPE, stderr = subprocess.PIPE, universal_newlines=True)
-                # print(process.stderr)
                 if process.returncode != 0 or len(process.stderr) > 0:
                     correct += 1
                     if verbose:
@@ -43,13 +44,13 @@ def run_bad(tool: str, verbose=False, output_file="passed_bad.txt") -> None:
                 total += 1
 
     out_file.write("\n\nTests completed.\n" + str(correct) + " correct out of " + str(total) +
-        "\n\n**************************" + tool + "**************************\n")
+        "\n\n**************************" + title + "**************************\n")
     out_file.close()
 
 
 def usage():
     print("""Runs all the bad test files against a tool and records the passing cases.
-Usage: run_bad.py tool [-h] [-V] [-v] [--output-file]
+Usage: run_bad.py tool [tool name] [-h] [-V] [-v] [--output-file]
     options:
       tool  The full command line to call the tool being tested. However, replace the input with "FILE" and if
         there are any temporary files needed to be created such as a sorted file, use TEMP1 or TEMP2. The
@@ -71,6 +72,7 @@ if __name__ == "__main__":
     
     verbose = False
     output_file = "passed_bad.txt"
+    tool_name = None
 
     for o, a in optlist:
         if o in ("-V", "--version"):
@@ -88,9 +90,12 @@ if __name__ == "__main__":
             output_file = a
         else:
             assert False, "unhandled option"
+        
+    if len(args) == 2:
+        tool_name = args[2]
     
-    if len(args) != 1:
+    if len(args) > 2 or len(args) == 0:
         usage()
         exit(2)
 
-    run_bad(args[1], verbose, output_file)
+    run_bad(args[1], tool_name, verbose, output_file)
