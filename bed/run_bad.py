@@ -18,14 +18,16 @@ def run_bad(tool: str, tool_name=None, verbose=False, output_file="passed_bad.tx
 
     out_file.write("**************************" + title + "**************************\n\n")
 
-    temp1 = tempfile.NamedTemporaryFile()
-    temp2 = tempfile.NamedTemporaryFile()
+    temps = tool.count("TEMP")
+    temp_file_list = [tempfile.NamedTemporaryFile() for _ in range(temps)]
 
     for directory in os.listdir("./bad/"):
         for file in os.listdir("./bad/" + directory):
             if file.endswith(".bed"):
                 filepath = "./bad/" + directory + "/" + file
-                execute_line = tool.replace("FILE", filepath).replace("TEMP1", temp1.name).replace("TEMP2", temp2.name) + " 2>&1"
+                execute_line = tool.replace("FILE", filepath) + " 2>&1"
+                for i in range(temps):
+                    execute_line = execute_line.replace("TEMP" + str(i), temp_file_list[i].name)
                 process = subprocess.run(execute_line, shell=True, stdout=subprocess.PIPE, stderr = subprocess.PIPE, universal_newlines=True)
                 if process.returncode != 0 or len(process.stderr) > 0:
                     correct += 1

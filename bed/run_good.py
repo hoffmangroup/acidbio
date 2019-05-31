@@ -16,15 +16,17 @@ def run_good(tool: str, tool_name=None, verbose=False, output_file="failed_good.
     title = tool_name if tool_name is not None else tool
 
     out_file.write("**************************" + title + "**************************\n\n")
-
-    temp1 = tempfile.NamedTemporaryFile()
-    temp2 = tempfile.NamedTemporaryFile()
+    
+    temps = tool.count("TEMP")
+    temp_file_list = [tempfile.NamedTemporaryFile() for _ in range(temps)]
 
     for directory in os.listdir("./good/"):
         for file in os.listdir("./good/" + directory):
             if file.endswith(".bed"):
                 filepath = "./good/" + directory + "/" + file
-                execute_line = tool.replace("FILE", filepath).replace("TEMP1", temp1.name).replace("TEMP2", temp2.name) + " 2>&1"
+                execute_line = tool.replace("FILE", filepath) + " 2>&1"
+                for i in range(temps):
+                    execute_line = execute_line.replace("TEMP" + str(i), temp_file_list[i].name)
                 process = subprocess.run(execute_line, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
                 if process.returncode == 0:
                     if verbose:
