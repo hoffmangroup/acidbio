@@ -2,4 +2,19 @@ trawler	Motif Discovery Tool	https://trawler.erc.monash.edu.au/help.html
 tobias	ATAC-seq Analysis	https://github.molgen.mpg.de/loosolab/TOBIAS/wiki	Uses bigWig as input alongside BED
 bedops	High-performance genome feature operations	https://bedops.readthedocs.io/en/latest/
 RCAS	Functional analysis of transcriptome-wide regions detected by HTS	https://toolshed.g2.bx.psu.edu/repository?repository_id=0ee336a093ef60f9
-
+ucsc-*	A bunch of tools by UCSC Kent	http://hgdownload.cse.ucsc.edu/admin/exe/
+RAPID	sRNA analysis	https://rapid-doc.readthedocs.io/en/latest/Description.html
+Plastid	Python library for genomic analysis	https://plastid.readthedocs.io/en/latest/scriptlist.html	Only change format function takes BED as input?
+Piranha	CLIP, RIP-seq peak caller	http://smithlabresearch.org/software/piranha/
+Picard	Java tools for NGS in BAM	http://broadinstitute.github.io/picard/command-line-overview.html#Overview	Apparently a bed file tool somewhere in there
+phantompeakqualtools	enrichment and quality measures for seq	https://github.com/kundajelab/phantompeakqualtools	Just tagAlign so might not be feasible
+Pepr	peak calling for chipseq and prioritization	https://github.com/shawnzhangyx/PePr/	INSTALLED ON PIP
+PeakRanger	peak calling NGS	http://ranger.sourceforge.net/manual1.18.html	INSTALLED ON py36
+Peakzilla	peak calling	https://github.com/steinmann/peakzilla
+nucleoatac	calling nucleosomes	https://nucleoatac.readthedocs.io/en/latest/nucleoatac/	might need fasta files too, INSTALLED ON py27
+ngs-bits	tools for ngs	https://github.com/imgag/ngs-bits
+moca	tool for motif conservation analysis	https://github.com/saketkc/moca
+macs2	analysis of chip-seq		https://github.com/taoliu/MACS	INSTALLED ON py27
+gimmemotifs	motif prediction chip-seq	https://github.com/vanheeringen-lab/gimmemotifs	INSTALLED ON py36
+genometools	open source genome analysis	http://genometools.org/	INSTALLED ON py27
+gatk	variant discovery	https://software.broadinstitute.org/gatk/documentation/tooldocs/current/	INSTALLED ON py27
