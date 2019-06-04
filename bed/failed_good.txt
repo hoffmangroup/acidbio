@@ -3,13 +3,13 @@
 %===========================%
 ./good/01-chrom/non_latin.bed
 
-Error: Unable to determine type for file /tmp/tmprd2c04lt
+Error: Unable to determine type for file /tmp/tmpy0bisu74
 %===========================%
 
 %===========================%
 ./good/04-name/non_latin_name.bed
 
-Error: Unable to determine type for file /tmp/tmprd2c04lt
+Error: Unable to determine type for file /tmp/tmpy0bisu74
 %===========================%
 
 %===========================%
@@ -27,7 +27,7 @@ Segmentation fault (core dumped)
 %===========================%
 ./good/bed_variants/gappedPeak.bed
 
-Error: line number 3 of file /tmp/tmprd2c04lt has 15 fields, but 0 were expected.
+Error: line number 3 of file /tmp/tmpy0bisu74 has 15 fields, but 0 were expected.
 %===========================%
 
 %===========================%
@@ -39,7 +39,7 @@ Segmentation fault (core dumped)
 %===========================%
 ./good/browser_track_lines/example2.bed
 
-Error: unable to open file or unable to determine types for file /tmp/tmprd2c04lt
+Error: unable to open file or unable to determine types for file /tmp/tmpy0bisu74
 %===========================%
 
 %===========================%

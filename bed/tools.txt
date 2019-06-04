@@ -1,0 +1,5 @@
+trawler	Motif Discovery Tool	https://trawler.erc.monash.edu.au/help.html
+tobias	ATAC-seq Analysis	https://github.molgen.mpg.de/loosolab/TOBIAS/wiki	Uses bigWig as input alongside BED
+bedops	High-performance genome feature operations	https://bedops.readthedocs.io/en/latest/
+RCAS	Functional analysis of transcriptome-wide regions detected by HTS	https://toolshed.g2.bx.psu.edu/repository?repository_id=0ee336a093ef60f9
+

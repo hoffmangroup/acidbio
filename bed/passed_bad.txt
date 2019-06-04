@@ -3,13 +3,13 @@
 %===========================%
 ./bad/01-chrom/missing_chrom.bed
 
-ERROR: file /tmp/tmpyiajg2yj has non positional records, which are only valid for the groupBy tool.
+ERROR: file /tmp/tmpu6i38xm_ has non positional records, which are only valid for the groupBy tool.
 %===========================%
 
 %===========================%
 ./bad/02-03-chromStart_End/end_negative.bed
 
-ERROR: file /tmp/tmpyiajg2yj has non positional records, which are only valid for the groupBy tool.
+ERROR: file /tmp/tmpu6i38xm_ has non positional records, which are only valid for the groupBy tool.
 %===========================%
 
 %===========================%
@@ -22,19 +22,19 @@ chr2	2	34
 %===========================%
 ./bad/02-03-chromStart_End/start_gt_end.bed
 
-ERROR: file /tmp/tmpyiajg2yj has non positional records, which are only valid for the groupBy tool.
+ERROR: file /tmp/tmpu6i38xm_ has non positional records, which are only valid for the groupBy tool.
 %===========================%
 
 %===========================%
 ./bad/02-03-chromStart_End/string_end.bed
 
-ERROR: file /tmp/tmpyiajg2yj has non positional records, which are only valid for the groupBy tool.
+ERROR: file /tmp/tmpu6i38xm_ has non positional records, which are only valid for the groupBy tool.
 %===========================%
 
 %===========================%
 ./bad/02-03-chromStart_End/string_start.bed
 
-ERROR: file /tmp/tmpyiajg2yj has non positional records, which are only valid for the groupBy tool.
+ERROR: file /tmp/tmpu6i38xm_ has non positional records, which are only valid for the groupBy tool.
 %===========================%
 
 %===========================%
@@ -108,7 +108,7 @@ chr2	1	10
 %===========================%
 ./bad/07-08-thickStart_End/start_gt_end.bed
 
-ERROR: file /tmp/tmpyiajg2yj has non positional records, which are only valid for the groupBy tool.
+ERROR: file /tmp/tmpu6i38xm_ has non positional records, which are only valid for the groupBy tool.
 %===========================%
 
 %===========================%
