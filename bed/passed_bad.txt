@@ -1,51 +1,21 @@
-**************************bedTools merge**************************
+************************** bedTools merge **************************
 
 %===========================%
-./bad/01-chrom/missing_chrom.bed
-
-ERROR: file /tmp/tmpu6i38xm_ has non positional records, which are only valid for the groupBy tool.
-%===========================%
-
-%===========================%
-./bad/02-03-chromStart_End/end_negative.bed
-
-ERROR: file /tmp/tmpu6i38xm_ has non positional records, which are only valid for the groupBy tool.
-%===========================%
-
-%===========================%
-./bad/02-03-chromStart_End/start_eq_end.bed
+ ./bad/02-03-chromStart_End/start_eq_end.bed
 
 chr1	4	4
 chr2	2	34
 %===========================%
 
 %===========================%
-./bad/02-03-chromStart_End/start_gt_end.bed
-
-ERROR: file /tmp/tmpu6i38xm_ has non positional records, which are only valid for the groupBy tool.
-%===========================%
-
-%===========================%
-./bad/02-03-chromStart_End/string_end.bed
-
-ERROR: file /tmp/tmpu6i38xm_ has non positional records, which are only valid for the groupBy tool.
-%===========================%
-
-%===========================%
-./bad/02-03-chromStart_End/string_start.bed
-
-ERROR: file /tmp/tmpu6i38xm_ has non positional records, which are only valid for the groupBy tool.
-%===========================%
-
-%===========================%
-./bad/04-name/empty_name.bed
+ ./bad/04-name/empty_name.bed
 
 chr1	1	10
 chr2	1	21
 %===========================%
 
 %===========================%
-./bad/04-name/name_with_spaces.bed
+ ./bad/04-name/name_with_spaces.bed
 
 chr1	13000	13300
 chr1	13340	13400
@@ -53,146 +23,134 @@ chr1	13440	13500
 %===========================%
 
 %===========================%
-./bad/05-score/score_fraction.bed
+ ./bad/05-score/score_fraction.bed
 
 chr1	1000	4000
 %===========================%
 
 %===========================%
-./bad/06-strand/empty_strand.bed
+ ./bad/06-strand/empty_strand.bed
 
 chr1	1	10
 chr2	1	10
 %===========================%
 
 %===========================%
-./bad/06-strand/invalid_strand.bed
+ ./bad/06-strand/invalid_strand.bed
 
 chr1	1	25
 %===========================%
 
 %===========================%
-./bad/07-08-thickStart_End/float_end.bed
+ ./bad/07-08-thickStart_End/float_end.bed
 
 chr1	1	20
 chr2	2	20
 %===========================%
 
 %===========================%
-./bad/07-08-thickStart_End/float_start.bed
+ ./bad/07-08-thickStart_End/float_start.bed
 
 chr1	1	10
 chr2	1	10
 %===========================%
 
 %===========================%
-./bad/07-08-thickStart_End/no_start.bed
+ ./bad/07-08-thickStart_End/no_start.bed
 
 chr1	20	55
 %===========================%
 
 %===========================%
-./bad/07-08-thickStart_End/start_end_notinrange2.bed
+ ./bad/07-08-thickStart_End/start_end_notinrange2.bed
 
 chr1	30	49
 chrX	1	29
 %===========================%
 
 %===========================%
-./bad/07-08-thickStart_End/start_end_notinrange3.bed
+ ./bad/07-08-thickStart_End/start_end_notinrange3.bed
 
 chr1	30	50
 chr2	1	10
 %===========================%
 
 %===========================%
-./bad/07-08-thickStart_End/start_gt_end.bed
-
-ERROR: file /tmp/tmpu6i38xm_ has non positional records, which are only valid for the groupBy tool.
-%===========================%
-
-%===========================%
-./bad/07-08-thickStart_End/string_end.bed
+ ./bad/07-08-thickStart_End/string_end.bed
 
 chr1	3	16
 %===========================%
 
 %===========================%
-./bad/07-08-thickStart_End/string_start.bed
+ ./bad/07-08-thickStart_End/string_start.bed
 
 chr1	1	10
 %===========================%
 
 %===========================%
-./bad/09-itemRgb/no_rgb.bed
+ ./bad/09-itemRgb/no_rgb.bed
 
 chr1	1	10
 chr2	1	13
 %===========================%
 
 %===========================%
-./bad/10-11-12-blockCount_Sizes_Starts/blockcount_negative.bed
+ ./bad/10-11-12-blockCount_Sizes_Starts/blockcount_negative.bed
 
 chr1	1000	2000
 chr2	1000	2000
 %===========================%
 
 %===========================%
-./bad/10-11-12-blockCount_Sizes_Starts/blockcount_string.bed
+ ./bad/10-11-12-blockCount_Sizes_Starts/blocksize_missing_comma.bed
 
 chr1	1000	3000
 %===========================%
 
 %===========================%
-./bad/10-11-12-blockCount_Sizes_Starts/blocksize_missing_comma.bed
+ ./bad/10-11-12-blockCount_Sizes_Starts/blocksize_negative.bed
 
 chr1	1000	3000
 %===========================%
 
 %===========================%
-./bad/10-11-12-blockCount_Sizes_Starts/blocksize_negative.bed
+ ./bad/10-11-12-blockCount_Sizes_Starts/blocksize_outofrange.bed
 
 chr1	1000	3000
 %===========================%
 
 %===========================%
-./bad/10-11-12-blockCount_Sizes_Starts/blocksize_outofrange.bed
+ ./bad/10-11-12-blockCount_Sizes_Starts/blockstarts_missing_comma.bed
 
 chr1	1000	3000
 %===========================%
 
 %===========================%
-./bad/10-11-12-blockCount_Sizes_Starts/blockstarts_missing_comma.bed
+ ./bad/10-11-12-blockCount_Sizes_Starts/block_outofrange.bed
 
 chr1	1000	3000
 %===========================%
 
 %===========================%
-./bad/10-11-12-blockCount_Sizes_Starts/block_outofrange.bed
+ ./bad/10-11-12-blockCount_Sizes_Starts/mismatch_count1.bed
 
 chr1	1000	3000
 %===========================%
 
 %===========================%
-./bad/10-11-12-blockCount_Sizes_Starts/mismatch_count1.bed
+ ./bad/10-11-12-blockCount_Sizes_Starts/mismatch_count2.bed
 
 chr1	1000	3000
 %===========================%
 
 %===========================%
-./bad/10-11-12-blockCount_Sizes_Starts/mismatch_count2.bed
+ ./bad/10-11-12-blockCount_Sizes_Starts/start_outofrange.bed
 
 chr1	1000	3000
 %===========================%
 
 %===========================%
-./bad/10-11-12-blockCount_Sizes_Starts/start_outofrange.bed
-
-chr1	1000	3000
-%===========================%
-
-%===========================%
-./bad/browser_track_lines/invalid_track_attribute.bed
+ ./bad/browser_track_lines/invalid_track_attribute.bed
 
 chr1	1000	2100
 chr1	2200	2400
@@ -202,6 +160,6 @@ chr1	2450	2900
 
 
 Tests completed.
-20 correct out of 51
+27 correct out of 51
 
-**************************bedTools merge**************************
+************************** bedTools merge **************************

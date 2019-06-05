@@ -16,7 +16,7 @@ def run_bad(tool: str, tool_name=None, verbose=False, output_file="passed_bad.tx
 
     title = tool_name if tool_name is not None else tool
 
-    out_file.write("**************************" + title + "**************************\n\n")
+    out_file.write(f"************************** {title} **************************\n\n")
 
     temps = tool.count("TEMP")
     temp_file_list = [tempfile.NamedTemporaryFile() for _ in range(temps)]
@@ -32,21 +32,21 @@ def run_bad(tool: str, tool_name=None, verbose=False, output_file="passed_bad.tx
                 if process.returncode != 0 or len(process.stderr) > 0:
                     correct += 1
                     if verbose:
-                        print(filepath + ' failed correctly')
+                        print(f'{filepath} failed correctly')
                         print(process.stdout)
                         print()
                 else:
-                    print(filepath + ' passed incorrectly')
+                    print(f'{filepath} passed incorrectly')
                     if verbose:
                         print(process.stdout)
                         print()
-                    out_file.write("%===========================%\n" + filepath + "\n\n")
+                    out_file.write(f"%===========================%\n {filepath}\n\n")
                     out_file.write(process.stdout)
                     out_file.write("%===========================%\n\n")
                 total += 1
 
-    out_file.write("\n\nTests completed.\n" + str(correct) + " correct out of " + str(total) +
-        "\n\n**************************" + title + "**************************\n")
+    out_file.write(f"\n\nTests completed.\n{correct} correct out of {total}" +
+        f"\n\n************************** {title} **************************\n")
     out_file.close()
 
 

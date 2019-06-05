@@ -15,7 +15,7 @@ def run_good(tool: str, tool_name=None, verbose=False, output_file="failed_good.
 
     title = tool_name if tool_name is not None else tool
 
-    out_file.write("**************************" + title + "**************************\n\n")
+    out_file.write(f"************************** {title} **************************\n\n")
     
     temps = tool.count("TEMP")
     temp_file_list = [tempfile.NamedTemporaryFile() for _ in range(temps)]
@@ -30,22 +30,22 @@ def run_good(tool: str, tool_name=None, verbose=False, output_file="failed_good.
                 process = subprocess.run(execute_line, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
                 if process.returncode == 0:
                     if verbose:
-                        print(filepath + ' passed correctly')
+                        print(f'{filepath} passed correctly')
                         print(process.stdout)
                         print()
                     correct += 1
                 else:
-                    print(filepath + ' failed incorrectly')
+                    print(f'{filepath} failed incorrectly')
                     if verbose:
                         print(process.stdout)
                         print()
-                    out_file.write("%===========================%\n" + filepath + "\n\n")
+                    out_file.write(f"%===========================%\n {filepath}\n\n")
                     out_file.write(process.stdout)
                     out_file.write("%===========================%\n\n")
                 total += 1
 
-    out_file.write("\n\nTests completed.\n" + str(correct) + " correct out of " + str(total) +
-        "\n\n**************************" + title + "**************************\n")
+    out_file.write(f"\n\nTests completed.\n{correct} correct out of {str(total)}" +
+        f"\n\n************************** {title} **************************\n")
     out_file.close()
 
 

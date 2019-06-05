@@ -26,27 +26,26 @@ def run_all(verbose=False, failed_good_file="failed_good.txt", passed_bad_file="
             commands = tool[program]
             
             
-            print("*"*18 + " Cases that are supposed to pass " + "*"*18)
-            print('\n\n')
+            print(f'{"*"*18} Cases that are supposed to pass {"*"*18}\n\n')
             for command, execution in commands.items():
                 if command != 'merge':
                     continue
-                print("*"*18 + " " + program + " " + command + " " + "*"*18)
+                print(f'{"*"*18} {program} {command} {"*"*18}')
                 run_good(execution, program + " " + command, verbose, failed_good_file)
                 print("*"*60)
                 print()
                 print()
-            print("*"*18 + " Cases that are supposed to pass " + "*"*18 + "\n\n")
+            print(f'{"*"*18} Cases that are supposed to pass {"*"*18}\n\n')
 
-            print("*"*18 + " Cases that are supposed to fail " + "*"*18 + "\n\n")
+            print(f'{"*"*18} Cases that are supposed to fail {"*"*18}\n\n')
 
             for command, execution in commands.items():
                 if command != 'merge':
                     continue
-                print("*"*18 + " " + program + " " + command + " "+ "*"*18)
+                print(f'{"*"*18} {program} {command} {"*"*18}')
                 run_bad(execution, program + " " + command, verbose, passed_bad_file)
                 print("*"*60 + "\n\n")
-            print("*"*18 + " Cases that are supposed to fail " + "*"*18)
+            print(f'{"*"*18} Cases that are supposed to fail {"*"*18}\n\n')
             
     stream.close()
 

@@ -1,68 +1,74 @@
-**************************bedTools merge**************************
+************************** bedTools merge **************************
 
 %===========================%
-./good/01-chrom/non_latin.bed
+ ./good/01-chrom/non_latin.bed
 
-Error: Unable to determine type for file /tmp/tmpy0bisu74
-%===========================%
-
-%===========================%
-./good/04-name/non_latin_name.bed
-
-Error: Unable to determine type for file /tmp/tmpy0bisu74
+Error: Unable to determine type for file /tmp/tmp52wm86nk
 %===========================%
 
 %===========================%
-./good/05-score/edge_score.bed
+ ./good/04-name/non_latin_name.bed
+
+Error: Unable to determine type for file /tmp/tmp52wm86nk
+%===========================%
+
+%===========================%
+ ./good/05-score/edge_score.bed
 
 Segmentation fault (core dumped)
 %===========================%
 
 %===========================%
-./good/bed_variants/broadPeak.bed
+ ./good/bed_variants/broadPeak.bed
 
 Segmentation fault (core dumped)
 %===========================%
 
 %===========================%
-./good/bed_variants/gappedPeak.bed
+ ./good/bed_variants/gappedPeak.bed
 
-Error: line number 3 of file /tmp/tmpy0bisu74 has 15 fields, but 0 were expected.
+Error: line number 2 of file /tmp/tmp52wm86nk has 15 fields, but 0 were expected.
 %===========================%
 
 %===========================%
-./good/bed_variants/narrowPeak.bed
+ ./good/bed_variants/narrowPeak.bed
 
 Segmentation fault (core dumped)
 %===========================%
 
 %===========================%
-./good/browser_track_lines/example2.bed
+ ./good/browser_track_lines/example2.bed
 
-Error: unable to open file or unable to determine types for file /tmp/tmpy0bisu74
+Error: unable to open file or unable to determine types for file /tmp/tmp52wm86nk
 %===========================%
 
 %===========================%
-./good/browser_track_lines/example3.bed
+ ./good/browser_track_lines/example3.bed
 
 Segmentation fault (core dumped)
 %===========================%
 
 %===========================%
-./good/browser_track_lines/visibility_in_words.bed
+ ./good/browser_track_lines/visibility_in_words.bed
 
 Segmentation fault (core dumped)
 %===========================%
 
 %===========================%
-./good/whitespacing/space_before_tab.bed
+ ./good/whitespacing/space_after_tab.bed
 
-***** ERROR: illegal character ' ' found in integer conversion of string " 340". Exiting...
+Error: unable to open file or unable to determine types for file /tmp/tmp52wm86nk
+%===========================%
+
+%===========================%
+ ./good/whitespacing/space_before_tab.bed
+
+***** ERROR: illegal character ' ' found in integer conversion of string  340. Exiting...
 %===========================%
 
 
 
 Tests completed.
-33 correct out of 43
+32 correct out of 43
 
-**************************bedTools merge**************************
+************************** bedTools merge **************************
