@@ -9,14 +9,14 @@ import os
 import tempfile
 
 
-def run_bad(tool: str, tool_name=None, verbose=False, output_file="passed_bad.txt") -> None:
+def run_bad(tool, tool_name=None, verbose=False, output_file="passed_bad.txt"):
     correct = 0
     total = 0
     out_file = open(output_file, 'a')
 
     title = tool_name if tool_name is not None else tool
 
-    out_file.write(f"************************** {title} **************************\n\n")
+    out_file.write("**************************" + title + "**************************\n\n")
 
     temps = tool.count("TEMP")
     temp_file_list = [tempfile.NamedTemporaryFile() for _ in range(temps)]
@@ -25,28 +25,28 @@ def run_bad(tool: str, tool_name=None, verbose=False, output_file="passed_bad.tx
         for file in os.listdir("./bad/" + directory):
             if file.endswith(".bed"):
                 filepath = "./bad/" + directory + "/" + file
-                execute_line = tool.replace("FILE", filepath) + " 2>&1"
+                execute_line = tool.replace("FILE", filepath)
                 for i in range(temps):
                     execute_line = execute_line.replace("TEMP" + str(i), temp_file_list[i].name)
-                process = subprocess.run(execute_line, shell=True, stdout=subprocess.PIPE, stderr = subprocess.PIPE, universal_newlines=True)
-                if process.returncode != 0 or len(process.stderr) > 0:
+                p = subprocess.Popen(execute_line, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+                out, err = p.communicate()
+                if p.returncode != 0 or len(err.decode('ascii')) > 0:
                     correct += 1
                     if verbose:
-                        print(f'{filepath} failed correctly')
-                        print(process.stdout)
+                        print(filepath + ' failed correctly')
+                        print(err.decode('ascii'))
                         print()
-                else:
-                    print(f'{filepath} passed incorrectly')
-                    if verbose:
-                        print(process.stdout)
-                        print()
-                    out_file.write(f"%===========================%\n {filepath}\n\n")
-                    out_file.write(process.stdout)
-                    out_file.write("%===========================%\n\n")
-                total += 1
+                    else:
+                        print(filepath + ' passed incorrectly')
+                        if verbose:
+                            print(out.decode('ascii'))
+                            print()
+                        out_file.write("%===========================%\n" + filepath + "\n\n")
+                        out_file.write(out.decode('ascii'))
+                        out_file.write("%===========================%\n\n")
 
-    out_file.write(f"\n\nTests completed.\n{correct} correct out of {total}" +
-        f"\n\n************************** {title} **************************\n")
+    out_file.write("\n\nTests completed.\n" + str(correct) + " correct out of " + str(total) +
+        "\n\n**************************" + title + "**************************\n")
     out_file.close()
 
 
@@ -100,4 +100,24 @@ if __name__ == "__main__":
         usage()
         exit(2)
 
-    run_bad(args[1], tool_name, verbose, output_file)
+    run_bad(args[0], tool_name, verbose, output_file)
+
+
+# Old python3 code:
+# 
+# process = subprocess.run(execute_line, shell=True, stdout=subprocess.PIPE, stderr = subprocess.PIPE, universal_newlines=True)
+# if process.returncode != 0 or len(process.stderr) > 0:
+#     correct += 1
+#     if verbose:
+#         print(filepath + ' failed correctly')
+#         print(process.stdout)
+#         print()
+# else:
+#     print(filepath + ' passed incorrectly')
+#     if verbose:
+#         print(process.stdout)
+#         print()
+#     out_file.write("%===========================%\n" + filepath + "\n\n")
+#     out_file.write(process.stdout)
+#     out_file.write("%===========================%\n\n")
+# total += 1

@@ -1,69 +1,82 @@
-************************** bedTools merge **************************
+**************************bedTools merge**************************
 
 %===========================%
- ./good/01-chrom/non_latin.bed
+./good/01-chrom/non_latin.bed
 
-Error: Unable to determine type for file /tmp/tmp52wm86nk
-%===========================%
-
-%===========================%
- ./good/04-name/non_latin_name.bed
-
-Error: Unable to determine type for file /tmp/tmp52wm86nk
+Error: Unable to determine type for file /tmp/tmpULShSu
 %===========================%
 
 %===========================%
- ./good/05-score/edge_score.bed
+./good/04-name/non_latin_name.bed
+
+Error: Unable to determine type for file /tmp/tmpULShSu
+%===========================%
+
+%===========================%
+./good/05-score/edge_score.bed
+
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+Aborted (core dumped)
+%===========================%
+
+%===========================%
+./good/bed_variants/broadPeak.bed
+
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+Aborted (core dumped)
+%===========================%
+
+%===========================%
+./good/bed_variants/gappedPeak.bed
+
+Error: line number 3 of file /tmp/tmpULShSu has 15 fields, but 0 were expected.
+%===========================%
+
+%===========================%
+./good/bed_variants/narrowPeak.bed
+
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+Aborted (core dumped)
+%===========================%
+
+%===========================%
+./good/browser_track_lines/example2.bed
+
+Error: Type checker found wrong number of fields while tokenizing data line.
+Perhaps you have extra TAB at the end of your line? Check with "cat -t"
+%===========================%
+
+%===========================%
+./good/browser_track_lines/example3.bed
+
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+Aborted (core dumped)
+%===========================%
+
+%===========================%
+./good/browser_track_lines/visibility_in_words.bed
 
 Segmentation fault (core dumped)
 %===========================%
 
 %===========================%
- ./good/bed_variants/broadPeak.bed
+./good/whitespacing/space_after_tab.bed
 
-Segmentation fault (core dumped)
+Error: unable to open file or unable to determine types for file /tmp/tmpULShSu
+
+- Please ensure that your file is TAB delimited (e.g., cat -t FILE).
+- Also ensure that your file has integer chromosome coordinates in the 
+  expected columns (e.g., cols 2 and 3 for BED).
 %===========================%
 
 %===========================%
- ./good/bed_variants/gappedPeak.bed
+./good/whitespacing/space_before_tab.bed
 
-Error: line number 2 of file /tmp/tmp52wm86nk has 15 fields, but 0 were expected.
-%===========================%
-
-%===========================%
- ./good/bed_variants/narrowPeak.bed
-
-Segmentation fault (core dumped)
-%===========================%
-
-%===========================%
- ./good/browser_track_lines/example2.bed
-
-Error: unable to open file or unable to determine types for file /tmp/tmp52wm86nk
-%===========================%
-
-%===========================%
- ./good/browser_track_lines/example3.bed
-
-Segmentation fault (core dumped)
-%===========================%
-
-%===========================%
- ./good/browser_track_lines/visibility_in_words.bed
-
-Segmentation fault (core dumped)
-%===========================%
-
-%===========================%
- ./good/whitespacing/space_after_tab.bed
-
-Error: unable to open file or unable to determine types for file /tmp/tmp52wm86nk
-%===========================%
-
-%===========================%
- ./good/whitespacing/space_before_tab.bed
-
-***** ERROR: illegal character ' ' found in integer conversion of string  340. Exiting...
+***** ERROR: illegal character ' ' found in integer conversion of string " 340". Exiting...
 %===========================%
 
 
@@ -71,4 +84,4 @@ Error: unable to open file or unable to determine types for file /tmp/tmp52wm86n
 Tests completed.
 32 correct out of 43
 
-************************** bedTools merge **************************
+**************************bedTools merge**************************

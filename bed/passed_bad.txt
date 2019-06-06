@@ -1,165 +1,138 @@
-************************** bedTools merge **************************
+**************************bedTools merge**************************
 
 %===========================%
- ./bad/02-03-chromStart_End/start_eq_end.bed
+./bad/01-chrom/empty_chrom.bed
 
-chr1	4	4
-chr2	2	34
 %===========================%
 
 %===========================%
- ./bad/04-name/empty_name.bed
+./bad/01-chrom/missing_chrom.bed
 
-chr1	1	10
-chr2	1	21
 %===========================%
 
 %===========================%
- ./bad/04-name/name_with_spaces.bed
+./bad/02-03-chromStart_End/end_negative.bed
 
-chr1	13000	13300
-chr1	13340	13400
-chr1	13440	13500
 %===========================%
 
 %===========================%
- ./bad/05-score/score_fraction.bed
+./bad/02-03-chromStart_End/float_end.bed
 
-chr1	1000	4000
-%===========================%
-
-%===========================%
- ./bad/06-strand/empty_strand.bed
-
-chr1	1	10
-chr2	1	10
 %===========================%
 
 %===========================%
- ./bad/06-strand/invalid_strand.bed
+./bad/02-03-chromStart_End/float_start.bed
 
-chr1	1	25
-%===========================%
-
-%===========================%
- ./bad/07-08-thickStart_End/float_end.bed
-
-chr1	1	20
-chr2	2	20
 %===========================%
 
 %===========================%
- ./bad/07-08-thickStart_End/float_start.bed
+./bad/02-03-chromStart_End/no_end.bed
 
-chr1	1	10
-chr2	1	10
 %===========================%
 
 %===========================%
- ./bad/07-08-thickStart_End/no_start.bed
+./bad/02-03-chromStart_End/no_start.bed
 
-chr1	20	55
-%===========================%
-
-%===========================%
- ./bad/07-08-thickStart_End/start_end_notinrange2.bed
-
-chr1	30	49
-chrX	1	29
 %===========================%
 
 %===========================%
- ./bad/07-08-thickStart_End/start_end_notinrange3.bed
+./bad/02-03-chromStart_End/start_gt_end.bed
 
-chr1	30	50
-chr2	1	10
 %===========================%
 
 %===========================%
- ./bad/07-08-thickStart_End/string_end.bed
+./bad/02-03-chromStart_End/start_negative.bed
 
-chr1	3	16
-%===========================%
-
-%===========================%
- ./bad/07-08-thickStart_End/string_start.bed
-
-chr1	1	10
 %===========================%
 
 %===========================%
- ./bad/09-itemRgb/no_rgb.bed
+./bad/02-03-chromStart_End/string_end.bed
 
-chr1	1	10
-chr2	1	13
 %===========================%
 
 %===========================%
- ./bad/10-11-12-blockCount_Sizes_Starts/blockcount_negative.bed
+./bad/02-03-chromStart_End/string_start.bed
 
-chr1	1000	2000
-chr2	1000	2000
 %===========================%
 
 %===========================%
- ./bad/10-11-12-blockCount_Sizes_Starts/blocksize_missing_comma.bed
+./bad/05-score/score_gt_1000.bed
 
-chr1	1000	3000
-%===========================%
-
-%===========================%
- ./bad/10-11-12-blockCount_Sizes_Starts/blocksize_negative.bed
-
-chr1	1000	3000
 %===========================%
 
 %===========================%
- ./bad/10-11-12-blockCount_Sizes_Starts/blocksize_outofrange.bed
+./bad/05-score/score_lt_0.bed
 
-chr1	1000	3000
-%===========================%
-
-%===========================%
- ./bad/10-11-12-blockCount_Sizes_Starts/blockstarts_missing_comma.bed
-
-chr1	1000	3000
 %===========================%
 
 %===========================%
- ./bad/10-11-12-blockCount_Sizes_Starts/block_outofrange.bed
+./bad/05-score/score_not_number.bed
 
-chr1	1000	3000
-%===========================%
-
-%===========================%
- ./bad/10-11-12-blockCount_Sizes_Starts/mismatch_count1.bed
-
-chr1	1000	3000
 %===========================%
 
 %===========================%
- ./bad/10-11-12-blockCount_Sizes_Starts/mismatch_count2.bed
+./bad/07-08-thickStart_End/start_end_notinrange1.bed
 
-chr1	1000	3000
-%===========================%
-
-%===========================%
- ./bad/10-11-12-blockCount_Sizes_Starts/start_outofrange.bed
-
-chr1	1000	3000
 %===========================%
 
 %===========================%
- ./bad/browser_track_lines/invalid_track_attribute.bed
+./bad/07-08-thickStart_End/start_gt_end.bed
 
-chr1	1000	2100
-chr1	2200	2400
-chr1	2450	2900
+%===========================%
+
+%===========================%
+./bad/09-itemRgb/invalid_rgb.bed
+
+%===========================%
+
+%===========================%
+./bad/10-11-12-blockCount_Sizes_Starts/start_negative.bed
+
+%===========================%
+
+%===========================%
+./bad/browser_track_lines/invalid_browser_attribute.bed
+
+%===========================%
+
+%===========================%
+./bad/browser_track_lines/invalid_browser_position.bed
+
+%===========================%
+
+%===========================%
+./bad/browser_track_lines/invalid_usescore.bed
+
+%===========================%
+
+%===========================%
+./bad/browser_track_lines/missing_type_attribute.bed
+
+%===========================%
+
+%===========================%
+./bad/browser_track_lines/name_too_long.bed
+
+%===========================%
+
+%===========================%
+./bad/browser_track_lines/narrowPeak.bed
+
+%===========================%
+
+%===========================%
+./bad/whitespacing/duplicate_rows.bed
+
+%===========================%
+
+%===========================%
+./bad/whitespacing/not_tab_delimited.bed
+
 %===========================%
 
 
 
 Tests completed.
-27 correct out of 51
+26 correct out of 0
 
-************************** bedTools merge **************************
+**************************bedTools merge**************************
