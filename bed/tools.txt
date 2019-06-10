@@ -22,6 +22,6 @@ deeptools	normalization and visualization of deep-sequencing	https://deeptools.r
 cpat	coding potential assessment tool	http://rna-cpat.sourceforge.net/#command-line-usage	BED or FASTA
 combined-pvalues	combine,analyse,group, and correct p-values	https://github.com/brentp/combined-pvalues	INSTALLED ON py27
 cistrome-beta	integrate chip-seq with differential gene expression data	https://github.com/hanfeisun/BETA	INSTALLED ON py27
-cgat	computational genomics analysis toolkit	https://www.cgat.org/downloads/public/cgat/documentation/	no valid installation here
+cgat	computational genomics analysis toolkit	https://www.cgat.org/downloads/public/cgat/documentation/	INSTALLED ON py36
 biofluff	explatory analysis and visualization of HTS	https://fluff.readthedocs.io/en/latest/usage.html	INSTALLED ON py36
 

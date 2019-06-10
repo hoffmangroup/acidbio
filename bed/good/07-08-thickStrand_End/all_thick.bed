@@ -1,5 +1,2 @@
-# thickStart=chromStart and thickEnd=chromEnd
-
 chr1	1000	2000	name1	800	-	1000	2000
 chr1	2400	2800	name2	800	+	2400	2800
-

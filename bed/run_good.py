@@ -8,7 +8,16 @@ import subprocess
 import os
 import tempfile
 
-def run_good(tool, tool_name=None, verbose=False, output_file="failed_good.txt"):
+
+def create_execute_line(tool, filepath, temp_file_list, insertions):
+    for to_replace, replacement in insertions.items():
+        tool = tool.replace(to_replace, replacement)
+    for i in range(len(temp_file_list)):
+        tool = tool.replace("TEMP" + str(i), temp_file_list[i].name)
+    return tool.replace("FILE", filepath)
+
+
+def run_good(tool, tool_name=None, verbose=False, output_file="failed_good.txt", insertions={}):
     correct = 0
     total = 0
     out_file = open(output_file, "a")
@@ -24,16 +33,14 @@ def run_good(tool, tool_name=None, verbose=False, output_file="failed_good.txt")
         for file in os.listdir("./good/" + directory):
             if file.endswith(".bed"):
                 filepath = "./good/" + directory + "/" + file
-                execute_line = tool.replace("FILE", filepath) + " 2>&1"
-                for i in range(temps):
-                    execute_line = execute_line.replace("TEMP" + str(i), temp_file_list[i].name)
+                execute_line = create_execute_line(tool, filepath, temp_file_list, insertions) + " 2>&1"
                 p = subprocess.Popen(execute_line, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
                 out, err = p.communicate()
                 if p.returncode == 0:
                     correct += 1
                     if verbose:
                         print(filepath + ' passed correctly')
-                        print(out.decode('ascii'))
+                        print(out.decode('utf-8'))
                         print()
                 else:
                     print(filepath + ' failed incorrectly')
@@ -41,7 +48,7 @@ def run_good(tool, tool_name=None, verbose=False, output_file="failed_good.txt")
                         print(out)
                         print()
                     out_file.write("%===========================%\n" + filepath + "\n\n")
-                    out_file.write(out.decode('ascii'))
+                    out_file.write(out.decode('utf-8'))
                     out_file.write("%===========================%\n\n")
                 total += 1
 

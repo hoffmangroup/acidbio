@@ -1,7 +1,4 @@
-# standard use of thickStart/End
-
 chr1	3	20	name1	650	+	5	15
 chr1	24	40	name2	700	-	27	30
 chr1	50	70	name3	800	-	55	65
 chr1	75	100	name4	800	+	80	90
-

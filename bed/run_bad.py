@@ -9,7 +9,15 @@ import os
 import tempfile
 
 
-def run_bad(tool, tool_name=None, verbose=False, output_file="passed_bad.txt"):
+def create_execute_line(tool, filepath, temp_file_list, insertions):
+    for to_replace, replacement in insertions.items():
+        tool = tool.replace(to_replace, replacement)
+    for i in range(len(temp_file_list)):
+        tool = tool.replace("TEMP" + str(i), temp_file_list[i].name)
+    return tool.replace("FILE", filepath)
+
+
+def run_bad(tool, tool_name=None, verbose=False, output_file="passed_bad.txt", insertions={}):
     correct = 0
     total = 0
     out_file = open(output_file, 'a')
@@ -25,25 +33,24 @@ def run_bad(tool, tool_name=None, verbose=False, output_file="passed_bad.txt"):
         for file in os.listdir("./bad/" + directory):
             if file.endswith(".bed"):
                 filepath = "./bad/" + directory + "/" + file
-                execute_line = tool.replace("FILE", filepath)
-                for i in range(temps):
-                    execute_line = execute_line.replace("TEMP" + str(i), temp_file_list[i].name)
+                execute_line = create_execute_line(tool, filepath, temp_file_list, insertions)
                 p = subprocess.Popen(execute_line, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
                 out, err = p.communicate()
-                if p.returncode != 0 or len(err.decode('ascii')) > 0:
+                if p.returncode != 0 or len(err.decode('utf-8')) > 0:
                     correct += 1
                     if verbose:
                         print(filepath + ' failed correctly')
                         print(err.decode('ascii'))
                         print()
-                    else:
-                        print(filepath + ' passed incorrectly')
-                        if verbose:
-                            print(out.decode('ascii'))
-                            print()
-                        out_file.write("%===========================%\n" + filepath + "\n\n")
-                        out_file.write(out.decode('ascii'))
-                        out_file.write("%===========================%\n\n")
+                else:
+                    print(filepath + ' passed incorrectly')
+                    if verbose:
+                        print(out.decode('utf-8'))
+                        print()
+                    out_file.write("%===========================%\n" + filepath + "\n\n")
+                    out_file.write(out.decode('ascii'))
+                    out_file.write("%===========================%\n\n")
+                total += 1
 
     out_file.write("\n\nTests completed.\n" + str(correct) + " correct out of " + str(total) +
         "\n\n**************************" + title + "**************************\n")
