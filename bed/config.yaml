@@ -2,20 +2,22 @@ settings: # some file locations
     file-locations:
         GENOME: /home/haliupenguin/.local/share/genomes/hg38/hg38.fa
         INTERSECT: ./intersect_file.bed
+        DICTIONARY: /home/haliupenguin/.local/share/genomes/hg38/hg38.dict
+        SIZES: /home/haliupenguin/.local/share/genomes/hg38/hg38.chrom.sizes
 tools:  # Require that the command line sequence to be executed be written on one line
     - bedtools:
         intersect: bedtools intersect -a INTERSECT -b FILE
         merge: sort -k1,1 -k2,2n FILE > TEMP1; bedtools merge -i TEMP1
-        coverage: bedtools coverage -a ./intersect_file.bed -b FILE
+        coverage: bedtools coverage -a INTERSECT -b FILE
     - bedops:
-        intersect: bedops --intersect ./intersect_file.bed FILE
-        complement: bedops --complement ./intersect_file.bed FILE
-        element-of: bedops --element-of 10 ./intersect_file.bed FILE
+        intersect: bedops --intersect INTERSECT FILE
+        complement: bedops --complement INTERSECT FILE
+        element-of: bedops --element-of 10 INTERSECT FILE
         error checking: bedops -ec --everything FILE
     - genometools:
         bed_to_gff: gt bed_to_gff3 FILE
     - ngs-bits:
-        BedAdd: BedAdd -in ./intersect_file.bed FILE
+        BedAdd: BedAdd -in INTERSECT FILE
         BedChunk: BedChunk -n 10 -in FILE
         BedExtend: BedExtend -n 100 -in FILE
         BedMerge: BedMerge -in FILE
@@ -27,12 +29,22 @@ tools:  # Require that the command line sequence to be executed be written on on
     - piranha:
         basic: Piranha FILE
     - bioFluff:
-        heatmap: fluff heatmap -f FILE -d ./intersect_file.bed -o scratch/heat
+        heatmap: fluff heatmap -f FILE -d INTERSECT -o scratch/heat
     - combined p-values:
         acf: comb-p FILE
     - cgat:
         merge: cat FILE | cgat bed2bed --method=merge
         shift: chat FILE | cgat bed2bed --method=offset -g GENOME
+        bed2stats: cgat bed2table < FILE
+    - peakzilla:
+        peakzilla: peakzilla.py FILE INTERSECT
+    - picard:
+        BedToIntervalList: picard BedToIntervalList INPUT=FILE SD=DICTIONARY OUTPUT=/dev/stdout
+    - ucsc:
+        bedSort: ./ucsc-apps/bedSort FILE /dev/stdout
+        bedToExons: ./ucsc-apps/bedToExons FILE /dev/stdout
+        bedClip: ./ucsc-apps/bedClip FILE SIZES /dev/stdout
+        bedRemoveOverlap: ./ucsc-apps/bedRemoveOverlap FILE
 python-versions:
     bedTools: 3.7
     bedops:

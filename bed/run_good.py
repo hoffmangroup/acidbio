@@ -40,7 +40,7 @@ def run_good(tool, tool_name=None, verbose=False, output_file="failed_good.txt",
                     correct += 1
                     if verbose:
                         print(filepath + ' passed correctly')
-                        print(out.decode('utf-8'))
+                        print(out.decode('UTF-8'))
                         print()
                 else:
                     print(filepath + ' failed incorrectly')
@@ -48,7 +48,7 @@ def run_good(tool, tool_name=None, verbose=False, output_file="failed_good.txt",
                         print(out)
                         print()
                     out_file.write("%===========================%\n" + filepath + "\n\n")
-                    out_file.write(out.decode('utf-8'))
+                    out_file.write(out.decode('UTF-8'))
                     out_file.write("%===========================%\n\n")
                 total += 1
 

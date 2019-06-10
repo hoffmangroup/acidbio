@@ -36,19 +36,19 @@ def run_bad(tool, tool_name=None, verbose=False, output_file="passed_bad.txt", i
                 execute_line = create_execute_line(tool, filepath, temp_file_list, insertions)
                 p = subprocess.Popen(execute_line, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
                 out, err = p.communicate()
-                if p.returncode != 0 or len(err.decode('utf-8')) > 0:
+                if p.returncode != 0 or len(err.decode('UTF-8')) > 0:
                     correct += 1
                     if verbose:
                         print(filepath + ' failed correctly')
-                        print(err.decode('ascii'))
+                        print(err.decode('UTF-8'))
                         print()
                 else:
                     print(filepath + ' passed incorrectly')
                     if verbose:
-                        print(out.decode('utf-8'))
+                        print(out.decode('UTF-8'))
                         print()
                     out_file.write("%===========================%\n" + filepath + "\n\n")
-                    out_file.write(out.decode('ascii'))
+                    out_file.write(out.decode('UTF-8'))
                     out_file.write("%===========================%\n\n")
                 total += 1
 

@@ -25,7 +25,7 @@ def run_all(verbose=False, failed_good_file="failed_good.txt", passed_bad_file="
     for tool in tool_list:
         for program in list(tool.keys()):
             commands = tool[program]
-            if program != 'bedtools':
+            if program != 'ucsc':
                 continue
             
             

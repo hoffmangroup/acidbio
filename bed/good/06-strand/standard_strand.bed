@@ -1,8 +1,5 @@
-# standard strands
-
 chr1	90	100	name1	700	-
 chr1	110	120	name2	800	-
 chr1	130	140	name3	780	-
 chr1	150	180	name4	900	+
 chr2	20	40	name5	811	+
-
