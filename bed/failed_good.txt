@@ -1,15 +1,83 @@
-**************************bedTools merge**************************
+**************************bedtools intersect**************************
+
+%===========================%
+./good/01-chrom/french_name.bed
+
+Error: Unable to determine type for file ./good/01-chrom/french_name.bed
+%===========================%
 
 %===========================%
 ./good/01-chrom/non_latin.bed
 
-Error: Unable to determine type for file /tmp/tmpULShSu
+Error: Unable to determine type for file ./good/01-chrom/non_latin.bed
+%===========================%
+
+%===========================%
+./good/01-chrom/unsorted_chrom_name.bed
+
+Error: line number 5 of file ./good/01-chrom/unsorted_chrom_name.bed has 2 fields, but 3 were expected.
 %===========================%
 
 %===========================%
 ./good/04-name/non_latin_name.bed
 
-Error: Unable to determine type for file /tmp/tmpULShSu
+Error: Unable to determine type for file ./good/04-name/non_latin_name.bed
+%===========================%
+
+%===========================%
+./good/browser_track_lines/example2.bed
+
+Error: Type checker found wrong number of fields while tokenizing data line.
+Perhaps you have extra TAB at the end of your line? Check with "cat -t"
+%===========================%
+
+%===========================%
+./good/whitespacing/space_after_tab.bed
+
+Error: unable to open file or unable to determine types for file ./good/whitespacing/space_after_tab.bed
+
+- Please ensure that your file is TAB delimited (e.g., cat -t FILE).
+- Also ensure that your file has integer chromosome coordinates in the 
+  expected columns (e.g., cols 2 and 3 for BED).
+%===========================%
+
+%===========================%
+./good/whitespacing/space_before_tab.bed
+
+***** ERROR: illegal character ' ' found in integer conversion of string " 340". Exiting...
+%===========================%
+
+
+
+Tests completed.
+36 correct out of 43
+
+**************************bedtools intersect**************************
+**************************bedtools merge**************************
+
+%===========================%
+./good/01-chrom/french_name.bed
+
+Error: Unable to determine type for file /tmp/tmp98ghr4v7
+%===========================%
+
+%===========================%
+./good/01-chrom/non_latin.bed
+
+Error: Unable to determine type for file /tmp/tmp98ghr4v7
+%===========================%
+
+%===========================%
+./good/01-chrom/unsorted_chrom_name.bed
+
+Error: Type checker found wrong number of fields while tokenizing data line.
+Perhaps you have extra TAB at the end of your line? Check with "cat -t"
+%===========================%
+
+%===========================%
+./good/04-name/non_latin_name.bed
+
+Error: Unable to determine type for file /tmp/tmp98ghr4v7
 %===========================%
 
 %===========================%
@@ -31,7 +99,7 @@ Aborted (core dumped)
 %===========================%
 ./good/bed_variants/gappedPeak.bed
 
-Error: line number 3 of file /tmp/tmpULShSu has 15 fields, but 0 were expected.
+Error: line number 3 of file /tmp/tmp98ghr4v7 has 15 fields, but 0 were expected.
 %===========================%
 
 %===========================%
@@ -66,7 +134,7 @@ Segmentation fault (core dumped)
 %===========================%
 ./good/whitespacing/space_after_tab.bed
 
-Error: unable to open file or unable to determine types for file /tmp/tmpULShSu
+Error: unable to open file or unable to determine types for file /tmp/tmp98ghr4v7
 
 - Please ensure that your file is TAB delimited (e.g., cat -t FILE).
 - Also ensure that your file has integer chromosome coordinates in the 
@@ -82,6 +150,61 @@ Error: unable to open file or unable to determine types for file /tmp/tmpULShSu
 
 
 Tests completed.
-32 correct out of 43
+30 correct out of 43
 
-**************************bedTools merge**************************
+**************************bedtools merge**************************
+**************************bedtools coverage**************************
+
+%===========================%
+./good/01-chrom/french_name.bed
+
+Error: Unable to determine type for file ./good/01-chrom/french_name.bed
+%===========================%
+
+%===========================%
+./good/01-chrom/non_latin.bed
+
+Error: Unable to determine type for file ./good/01-chrom/non_latin.bed
+%===========================%
+
+%===========================%
+./good/01-chrom/unsorted_chrom_name.bed
+
+Error: line number 5 of file ./good/01-chrom/unsorted_chrom_name.bed has 2 fields, but 3 were expected.
+%===========================%
+
+%===========================%
+./good/04-name/non_latin_name.bed
+
+Error: Unable to determine type for file ./good/04-name/non_latin_name.bed
+%===========================%
+
+%===========================%
+./good/browser_track_lines/example2.bed
+
+Error: Type checker found wrong number of fields while tokenizing data line.
+Perhaps you have extra TAB at the end of your line? Check with "cat -t"
+%===========================%
+
+%===========================%
+./good/whitespacing/space_after_tab.bed
+
+Error: unable to open file or unable to determine types for file ./good/whitespacing/space_after_tab.bed
+
+- Please ensure that your file is TAB delimited (e.g., cat -t FILE).
+- Also ensure that your file has integer chromosome coordinates in the 
+  expected columns (e.g., cols 2 and 3 for BED).
+%===========================%
+
+%===========================%
+./good/whitespacing/space_before_tab.bed
+
+***** ERROR: illegal character ' ' found in integer conversion of string " 340". Exiting...
+%===========================%
+
+
+
+Tests completed.
+36 correct out of 43
+
+**************************bedtools coverage**************************
