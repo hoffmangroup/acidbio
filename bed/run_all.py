@@ -19,20 +19,21 @@ def run_all(verbose=False, failed_good_file="failed_good.txt", passed_bad_file="
     stream = open('config.yaml', 'r')
     data = load(stream, Loader=Loader)
 
+    command_insertions = data['settings']['file-locations']
 
     tool_list = data['tools']
     for tool in tool_list:
         for program in list(tool.keys()):
             commands = tool[program]
+            if program != 'bedtools':
+                continue
             
             
             print("*"*18 + " Cases that are supposed to pass " + "*"*18)
             print('\n\n')
             for command, execution in commands.items():
-                if command != 'merge':
-                    continue
                 print("*"*18 + " " + program + " " + command + " " + "*"*18)
-                run_good(execution, program + " " + command, verbose, failed_good_file)
+                run_good(execution, program + " " + command, verbose, failed_good_file, command_insertions)
                 print("*"*60)
                 print()
                 print()
@@ -41,10 +42,8 @@ def run_all(verbose=False, failed_good_file="failed_good.txt", passed_bad_file="
             print("*"*18 + " Cases that are supposed to fail " + "*"*18 + "\n\n")
 
             for command, execution in commands.items():
-                if command != 'merge':
-                    continue
                 print("*"*18 + " " + program + " " + command + " "+ "*"*18)
-                run_bad(execution, program + " " + command, verbose, passed_bad_file)
+                run_bad(execution, program + " " + command, verbose, passed_bad_file, command_insertions)
                 print("*"*60 + "\n\n")
             print("*"*18 + " Cases that are supposed to fail " + "*"*18)
             

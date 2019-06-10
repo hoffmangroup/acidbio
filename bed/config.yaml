@@ -1,9 +1,38 @@
-settings:
-    filler: don't know what to put here yet
+settings: # some file locations
+    file-locations:
+        GENOME: /home/haliupenguin/.local/share/genomes/hg38/hg38.fa
+        INTERSECT: ./intersect_file.bed
 tools:  # Require that the command line sequence to be executed be written on one line
-    - bedTools:
-        intersect: bedtools intersect -a ./intersect_file.bed -b FILE
+    - bedtools:
+        intersect: bedtools intersect -a INTERSECT -b FILE
         merge: sort -k1,1 -k2,2n FILE > TEMP1; bedtools merge -i TEMP1
         coverage: bedtools coverage -a ./intersect_file.bed -b FILE
-    - bedParse:
-        promoter: bedparse promoter --up 1000 --down 500 --unstranded FILE
+    - bedops:
+        intersect: bedops --intersect ./intersect_file.bed FILE
+        complement: bedops --complement ./intersect_file.bed FILE
+        element-of: bedops --element-of 10 ./intersect_file.bed FILE
+        error checking: bedops -ec --everything FILE
+    - genometools:
+        bed_to_gff: gt bed_to_gff3 FILE
+    - ngs-bits:
+        BedAdd: BedAdd -in ./intersect_file.bed FILE
+        BedChunk: BedChunk -n 10 -in FILE
+        BedExtend: BedExtend -n 100 -in FILE
+        BedMerge: BedMerge -in FILE
+    # - macs2:
+    #     callpeak: macs2 callpeak -t FILE -f BAM 
+    - gimmemotifs:
+        motifs: gimme motifs FILE -g hg38 -n scratch/gimme
+        scan: gimme scan FILE -g hg38 -c 0 -n 1 -b
+    - piranha:
+        basic: Piranha FILE
+    - bioFluff:
+        heatmap: fluff heatmap -f FILE -d ./intersect_file.bed -o scratch/heat
+    - combined p-values:
+        acf: comb-p FILE
+    - cgat:
+        merge: cat FILE | cgat bed2bed --method=merge
+        shift: chat FILE | cgat bed2bed --method=offset -g GENOME
+python-versions:
+    bedTools: 3.7
+    bedops:
