@@ -1,4 +1,5 @@
 bedops  High-performance genome feature operations      https://bedops.readthedocs.io/en/latest/
+bioconvert  Converting between file formats https://bioconvert.readthedocs.io/en/master/user_guide.html INSTALLED ON py36
 biofluff        explatory analysis and visualization of HTS     https://fluff.readthedocs.io/en/latest/usage.html       INSTALLED ON py36
 cgat    computational genomics analysis toolkit https://www.cgat.org/downloads/public/cgat/documentation/       INSTALLED ON py36
 cistrome-beta   integrate chip-seq with differential gene expression data       https://github.com/hanfeisun/BETA       INSTALLED ON py27
@@ -6,8 +7,9 @@ cnvkit  copy number variant detection   https://cnvkit.readthedocs.io/en/stable/
 combined-pvalues        combine,analyse,group, and correct p-values     https://github.com/brentp/combined-pvalues      INSTALLED ON py27
 cpat    coding potential assessment tool        http://rna-cpat.sourceforge.net/#command-line-usage     BED or FASTA
 deeptools       normalization and visualization of deep-sequencing      https://deeptools.readthedocs.io/en/develop/content/list_of_tools.html
+dsh-bio tools for various file formats  https://github.com/heuermh/dishevelled-bio
 epic2   ultraperformant reimplementation of SICER   https://github.com/biocore-ntnu/epic2
-gatk    variant discovery       https://software.broadinstitute.org/gatk/documentation/tooldocs/current/        INSTALLED ON py27
+epicseg annotating genome based on state of chromatin   https://cdn.rawgit.com/lamortenera/epicseg/master/inst/manual.html  INSTALLED ON py36
 genometools     open source genome analysis     http://genometools.org/ INSTALLED ON py27
 gimmemotifs     motif prediction chip-seq       https://github.com/vanheeringen-lab/gimmemotifs INSTALLED ON py36
 macs2   analysis of chip-seq            https://github.com/taoliu/MACS  INSTALLED ON py27
@@ -20,7 +22,8 @@ Pepr    peak calling for chipseq and prioritization     https://github.com/shawn
 Picard  Java tools for NGS in BAM       http://broadinstitute.github.io/picard/command-line-overview.html#Overview      Apparently a bed file tool somewhere in there
 Piranha CLIP, RIP-seq peak caller       http://smithlabresearch.org/software/piranha/
 Plastid Python library for genomic analysis     https://plastid.readthedocs.io/en/latest/scriptlist.html        Only change format function takes BED as input?
-RAPID   sRNA analysis   https://rapid-doc.readthedocs.io/en/latest/Description.html
+QUAST   Quality Assesment Tool for genome assemblies    https://quast.bioinf.spbau.ru/manual.html   Needs FASTA/GFF, INSTALLED ON py36
+RAPID   sRNA analysis   https://rapid-doc.readthedocs.io/en/latest/Description.html 
 RCAS    Functional analysis of transcriptome-wide regions detected by HTS       https://toolshed.g2.bx.psu.edu/repository?repository_id=0ee336a093ef60f9
 RseqC   RNA quality control http://rseqc.sourceforge.net/   Needs BAM
 StoatyDive  evaluate predicted peak profiles    https://github.com/heylf/StoatyDive INSTALLED ON py36
@@ -29,4 +32,7 @@ tobias  ATAC-seq Analysis       https://github.molgen.mpg.de/loosolab/TOBIAS/wik
 trawler Motif Discovery Tool    https://trawler.erc.monash.edu.au/help.html
 twobitreader    reading .2bit files https://github.com/benjschiller/twobitreader
 ucsc-*  A bunch of tools by UCSC Kent   http://hgdownload.cse.ucsc.edu/admin/exe/
+vcflib  Parsing and manipulating VCF files  https://github.com/vcflib/vcflib    Needs a VCF
+vcfanno annotating VCF  https://github.com/brentp/vcfanno
 wiggletools basic functions on space of numeric functions   https://github.com/Ensembl/WiggleTools
+xyalign tools to infer ploidy, correct for sex chromosome complement    https://xyalign.readthedocs.io/en/latest/usage.html INSTALLED ON py27
