@@ -45,6 +45,14 @@ tools:  # Require that the command line sequence to be executed be written on on
         bedToExons: ./ucsc-apps/bedToExons FILE /dev/stdout
         bedClip: ./ucsc-apps/bedClip FILE SIZES /dev/stdout
         bedRemoveOverlap: ./ucsc-apps/bedRemoveOverlap FILE
+    - cnvkit:
+        target: cnvkit.py target FILE
+        access: cnvkit.py access GENOME -x FILE
+    - epic2:
+        epic: epic2 --treatment FILE
+    - wiggletools:
+        AUC: wiggletools AUC FILE
+        
 python-versions:
     bedTools: 3.7
     bedops:
