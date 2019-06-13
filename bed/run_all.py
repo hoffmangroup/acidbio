@@ -16,19 +16,24 @@ def run_all(verbose=False, failed_good_file="failed_good.txt", passed_bad_file="
     subprocess.call(["rm", "-f", failed_good_file, passed_bad_file])
     subprocess.call(["touch", failed_good_file, passed_bad_file])
 
+    p = subprocess.Popen(['python', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    out, err = p.communicate()
+    version = float(out.decode()[7:10])
+
     stream = open('config.yaml', 'r')
     data = load(stream, Loader=Loader)
 
     command_insertions = data['settings']['file-locations']
+    python_versions = data['python-versions']
 
     tool_list = data['tools']
     for tool in tool_list:
         for program in list(tool.keys()):
-            commands = tool[program]
-            if program != 'ucsc':
+            if python_versions[program] != version:
                 continue
-            
-            
+
+            commands = tool[program]
+
             print("*"*18 + " Cases that are supposed to pass " + "*"*18)
             print('\n\n')
             for command, execution in commands.items():

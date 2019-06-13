@@ -1,351 +1,157 @@
-**************************ucsc bedSort**************************
-
-%===========================%
-./good/01-chrom/non_latin.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/01-chrom/numeric_names.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/01-chrom/special_characters.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/04-name/non_latin_name.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/04-name/no_name.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/04-name/numeric_name.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/04-name/repeated_name.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/04-name/special_character_name.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/04-name/standard_name.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/05-score/edge_score.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/05-score/no_score.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/05-score/standard_score.bed
-
-Expecting tab in bed line track useScore=1
-%===========================%
-
-%===========================%
-./good/06-strand/mix_strand.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/06-strand/no_strand.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/07-08-thickStrand_End/no_thick_part.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/09-itemRgb/many_colors.bed
-
-Expecting tab in bed line track itemRgb="On"
-%===========================%
-
-%===========================%
-./good/09-itemRgb/no_rgb.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/09-itemRgb/standard_rgb.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/10-11-12-blockCount_Sizes_Starts/blockcount_zero.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/10-11-12-blockCount_Sizes_Starts/different_blockcounts.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/10-11-12-blockCount_Sizes_Starts/standard_block.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/10-11-12-blockCount_Sizes_Starts/unsorted_blocks.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/bed_variants/broadPeak.bed
-
-Expecting tab in bed line track type=broadPeak visibility=3 db=hg19 name="bPk" description="ENCODE broadPeak Example"
-%===========================%
-
-%===========================%
-./good/bed_variants/gappedPeak.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/bed_variants/narrowPeak.bed
-
-Expecting tab in bed line track type=narrowPeak visibility=3 db=hg19 name="nPk" description="ENCODE narrowPeak Example"
-%===========================%
-
-%===========================%
-./good/bed_variants/tagAlign.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/browser_track_lines/example1.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/browser_track_lines/example2.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/browser_track_lines/example3.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/browser_track_lines/visibility_in_words.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/whitespacing/space_after_tab.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/whitespacing/space_before_tab.bed
-
-Expecting tab in bed line 
-%===========================%
-
-%===========================%
-./good/whitespacing/space_between_lines.bed
-
-Expecting tab in bed line 
-%===========================%
-
-
-
-Tests completed.
-10 correct out of 43
-
-**************************ucsc bedSort**************************
-**************************ucsc bedToExons**************************
+**************************bedtools intersect**************************
 
 %===========================%
 ./good/01-chrom/french_name.bed
 
-file ./good/01-chrom/french_name.bed doesn't appear to be in bed format. At least 4 fields required, got 3
+Error: Unable to determine type for file ./good/01-chrom/french_name.bed
+%===========================%
+
+%===========================%
+./good/01-chrom/non_latin.bed
+
+Error: Unable to determine type for file ./good/01-chrom/non_latin.bed
 %===========================%
 
 %===========================%
 ./good/01-chrom/special_characters.bed
 
-file ./good/01-chrom/special_characters.bed doesn't appear to be in bed format. At least 4 fields required, got 3
+ERROR: File ./good/01-chrom/special_characters.bed has inconsistent naming convention for record:
+$a$	12	25
 %===========================%
 
 %===========================%
 ./good/01-chrom/unsorted_chrom_name.bed
 
-file ./good/01-chrom/unsorted_chrom_name.bed doesn't appear to be in bed format. At least 4 fields required, got 3
+Error: line number 5 of file ./good/01-chrom/unsorted_chrom_name.bed has 2 fields, but 3 were expected.
 %===========================%
 
 %===========================%
-./good/02-03-chromStart_End/standard_chrom.bed
+./good/04-name/non_latin_name.bed
 
-file ./good/02-03-chromStart_End/standard_chrom.bed doesn't appear to be in bed format. At least 4 fields required, got 3
-%===========================%
-
-%===========================%
-./good/02-03-chromStart_End/unsorted_chrom.bed
-
-file ./good/02-03-chromStart_End/unsorted_chrom.bed doesn't appear to be in bed format. At least 4 fields required, got 3
-%===========================%
-
-%===========================%
-./good/05-score/edge_score.bed
-
-file ./good/05-score/edge_score.bed doesn't appear to be in bed format. At least 4 fields required, got 2
-%===========================%
-
-%===========================%
-./good/05-score/no_score.bed
-
-invalid signed integer: "."
-%===========================%
-
-%===========================%
-./good/05-score/standard_score.bed
-
-file ./good/05-score/standard_score.bed doesn't appear to be in bed format. At least 4 fields required, got 2
-%===========================%
-
-%===========================%
-./good/09-itemRgb/many_colors.bed
-
-file ./good/09-itemRgb/many_colors.bed doesn't appear to be in bed format. At least 4 fields required, got 2
-%===========================%
-
-%===========================%
-./good/09-itemRgb/no_rgb.bed
-
-invalid unsigned integer: "."
-%===========================%
-
-%===========================%
-./good/09-itemRgb/standard_rgb.bed
-
-file ./good/09-itemRgb/standard_rgb.bed doesn't appear to be in bed format. At least 4 fields required, got 2
-%===========================%
-
-%===========================%
-./good/10-11-12-blockCount_Sizes_Starts/blockcount_zero.bed
-
-invalid signed integer: "."
-%===========================%
-
-%===========================%
-./good/bed_variants/broadPeak.bed
-
-invalid unsigned integer: "type=broadPeak"
-%===========================%
-
-%===========================%
-./good/bed_variants/gappedPeak.bed
-
-file ./good/bed_variants/gappedPeak.bed doesn't appear to be in bed format. At least 4 fields required, got 3
-%===========================%
-
-%===========================%
-./good/bed_variants/narrowPeak.bed
-
-invalid unsigned integer: "type=narrowPeak"
-%===========================%
-
-%===========================%
-./good/browser_track_lines/example1.bed
-
-file ./good/browser_track_lines/example1.bed doesn't appear to be in bed format. At least 4 fields required, got 3
+Error: Unable to determine type for file ./good/04-name/non_latin_name.bed
 %===========================%
 
 %===========================%
 ./good/browser_track_lines/example2.bed
 
-file ./good/browser_track_lines/example2.bed doesn't appear to be in bed format. At least 4 fields required, got 3
-%===========================%
-
-%===========================%
-./good/browser_track_lines/example3.bed
-
-file ./good/browser_track_lines/example3.bed doesn't appear to be in bed format. At least 4 fields required, got 3
-%===========================%
-
-%===========================%
-./good/browser_track_lines/visibility_in_words.bed
-
-invalid unsigned integer: "name="visible""
-%===========================%
-
-%===========================%
-./good/file_sizes/bigFile.bed
-
-file ./good/file_sizes/bigFile.bed doesn't appear to be in bed format. At least 4 fields required, got 3
+Error: unable to open file or unable to determine types for file ./good/browser_track_lines/example2.bed
 %===========================%
 
 %===========================%
 ./good/whitespacing/space_after_tab.bed
 
-file ./good/whitespacing/space_after_tab.bed doesn't appear to be in bed format. At least 4 fields required, got 3
+Error: unable to open file or unable to determine types for file ./good/whitespacing/space_after_tab.bed
 %===========================%
 
 %===========================%
 ./good/whitespacing/space_before_tab.bed
 
-file ./good/whitespacing/space_before_tab.bed doesn't appear to be in bed format. At least 4 fields required, got 3
+***** ERROR: illegal character ' ' found in integer conversion of string  340. Exiting...
 %===========================%
 
 
 
 Tests completed.
-21 correct out of 43
+35 correct out of 43
 
-**************************ucsc bedToExons**************************
-**************************ucsc bedClip**************************
+**************************bedtools intersect**************************
+**************************bedtools merge**************************
 
 %===========================%
 ./good/01-chrom/french_name.bed
+
+Error: Unable to determine type for file /tmp/tmps1yl9um_
+%===========================%
+
+%===========================%
+./good/01-chrom/non_latin.bed
+
+Error: Unable to determine type for file /tmp/tmps1yl9um_
+%===========================%
+
+%===========================%
+./good/01-chrom/unsorted_chrom_name.bed
+
+Error: unable to open file or unable to determine types for file /tmp/tmps1yl9um_
+%===========================%
+
+%===========================%
+./good/04-name/non_latin_name.bed
+
+Error: Unable to determine type for file /tmp/tmps1yl9um_
+%===========================%
+
+%===========================%
+./good/05-score/edge_score.bed
+
+Segmentation fault (core dumped)
+%===========================%
+
+%===========================%
+./good/bed_variants/broadPeak.bed
+
+Segmentation fault (core dumped)
+%===========================%
+
+%===========================%
+./good/bed_variants/gappedPeak.bed
+
+Error: line number 2 of file /tmp/tmps1yl9um_ has 15 fields, but 0 were expected.
+%===========================%
+
+%===========================%
+./good/bed_variants/narrowPeak.bed
+
+Segmentation fault (core dumped)
+%===========================%
+
+%===========================%
+./good/browser_track_lines/example2.bed
+
+Error: unable to open file or unable to determine types for file /tmp/tmps1yl9um_
+%===========================%
+
+%===========================%
+./good/browser_track_lines/example3.bed
+
+Segmentation fault (core dumped)
+%===========================%
+
+%===========================%
+./good/browser_track_lines/visibility_in_words.bed
+
+Segmentation fault (core dumped)
+%===========================%
+
+%===========================%
+./good/whitespacing/space_after_tab.bed
+
+Error: unable to open file or unable to determine types for file /tmp/tmps1yl9um_
+%===========================%
+
+%===========================%
+./good/whitespacing/space_before_tab.bed
+
+***** ERROR: illegal character ' ' found in integer conversion of string  340. Exiting...
+%===========================%
+
+
+
+Tests completed.
+30 correct out of 43
+
+**************************bedtools merge**************************
+**************************bedtools coverage**************************
+
+%===========================%
+./good/01-chrom/unsorted_chrom_name.bed
+
+It looks as though you have less than 3 columns at line: 5.  Are you sure your files are tab-delimited?
+%===========================%
+
+%===========================%
+./good/browser_track_lines/example2.bed
+
+Differing number of BED fields encountered at line: 11.  Exiting...
+%===========================%
 
