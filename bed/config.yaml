@@ -1,7 +1,7 @@
 settings: # some file locations
     file-locations:
         GENOME: /home/haliupenguin/.local/share/genomes/hg38/hg38.fa
-        INTERSECT: ./intersect_file.bed
+        INTERSECT: ./data/intersect_file.bed
         DICTIONARY: /home/haliupenguin/.local/share/genomes/hg38/hg38.dict
         SIZES: /home/haliupenguin/.local/share/genomes/hg38/hg38.chrom.sizes
 tools:  # Require that the command line sequence to be executed be written on one line

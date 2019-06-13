@@ -11,4 +11,3 @@ bed/ucsc-apps/
 *.pyc
 bed/passed_bad.txt
 bed/failed_good.txt
-bed/human-hg18-size.bed
