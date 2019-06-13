@@ -1,6 +1,8 @@
+atactk  atac-seq toolkit    https://atactk.readthedocs.io/en/lastest/intro.html INSTALLED ON py27, needs BAM
 bedops  High-performance genome feature operations      https://bedops.readthedocs.io/en/latest/
 bioconvert  Converting between file formats https://bioconvert.readthedocs.io/en/master/user_guide.html INSTALLED ON py36
 biofluff        explatory analysis and visualization of HTS     https://fluff.readthedocs.io/en/latest/usage.html       INSTALLED ON py36
+biopet  biopipeline execution toolkit   https://biopet-docs.readthedocs.io/projects/snptesttovcf/en/v0.3.0/ Needs BAM
 cgat    computational genomics analysis toolkit https://www.cgat.org/downloads/public/cgat/documentation/       INSTALLED ON py36
 cistrome-beta   integrate chip-seq with differential gene expression data       https://github.com/hanfeisun/BETA       INSTALLED ON py27
 cnvkit  copy number variant detection   https://cnvkit.readthedocs.io/en/stable/    INSTALLED ON py36
@@ -12,9 +14,14 @@ epic2   ultraperformant reimplementation of SICER   https://github.com/biocore-n
 epicseg annotating genome based on state of chromatin   https://cdn.rawgit.com/lamortenera/epicseg/master/inst/manual.html  INSTALLED ON py36
 genometools     open source genome analysis     http://genometools.org/ INSTALLED ON py27
 gimmemotifs     motif prediction chip-seq       https://github.com/vanheeringen-lab/gimmemotifs INSTALLED ON py36
+idr irreproducible discovery rate   https://github.com/nboley/idr   INSTALLED ON py36
 macs2   analysis of chip-seq            https://github.com/taoliu/MACS  INSTALLED ON py27
+MAmotif searching cell type-specific co-factors https://mamotif.readthedocs.io/en/latest/index.html INSTALLED ON py27
+MAnorm  robust model for quantitative comparison of chipseq https://github.com/shao-lab/MAnorm  INSTALLED ON py27
 moca    tool for motif conservation analysis    https://github.com/saketkc/moca INSTALLED ON py27
+motifscan   motif Discovery tool    https://github.com/shao-lab/MotifScan   INSTALLED ON py27
 ngs-bits        tools for ngs   https://github.com/imgag/ngs-bits
+ngsutils    tools for ngs   https//github.com/ngsutils/ngsutils INSTALLED ON py27
 nucleoatac      calling nucleosomes     https://nucleoatac.readthedocs.io/en/latest/nucleoatac/ might need fasta files too, INSTALLED ON py27
 PeakRanger      peak calling NGS        http://ranger.sourceforge.net/manual1.18.html   INSTALLED ON py36
 Peakzilla       peak calling    https://github.com/steinmann/peakzilla
@@ -25,6 +32,7 @@ Plastid Python library for genomic analysis     https://plastid.readthedocs.io/e
 QUAST   Quality Assesment Tool for genome assemblies    https://quast.bioinf.spbau.ru/manual.html   Needs FASTA/GFF, INSTALLED ON py36
 RAPID   sRNA analysis   https://rapid-doc.readthedocs.io/en/latest/Description.html 
 RCAS    Functional analysis of transcriptome-wide regions detected by HTS       https://toolshed.g2.bx.psu.edu/repository?repository_id=0ee336a093ef60f9
+rseg    analyze chip-seq data   https://smithlabresearch.org/software/rseg
 RseqC   RNA quality control http://rseqc.sourceforge.net/   Needs BAM
 StoatyDive  evaluate predicted peak profiles    https://github.com/heylf/StoatyDive INSTALLED ON py36
 streamatac  STREAM processing steps for single cell atac-seq data   https://github.com/pinellolab/STREAM_atac
