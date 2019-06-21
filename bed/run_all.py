@@ -1,9 +1,11 @@
 # Runs all the tools in config.yaml
+import os
 import sys
 import subprocess
 import getopt
 import seaborn as sns; sns.set()
 import matplotlib.pyplot as plt
+import matplotlib.colors as colors
 from run_bad import run_bad
 from run_good import run_good
 from yaml import load, dump
@@ -11,6 +13,32 @@ try:
     from yaml import CLoader as Loader, CDumper as Dumper
 except ImportError:
     from yaml import Loader, Dumper
+
+
+cdict = {'red':  ((0.0, 0.8, 0.8),
+                  (0.5, 1.0, 1.0),
+                  (1.0, 0.0, 0.0)),
+
+        'green': ((0.0, 0.0, 0.0),
+                  (0.5, 1.0, 1.0),
+                  (1.0, 0.8, 0.8)),
+
+        'blue':  ((0.0, 0.0, 0.0),
+                  (0.5, 1.0, 1.0),
+                  (1.0, 0.0, 0.0))
+       }
+
+
+def get_file_names():
+    file_names = []
+    for directory in os.listdir("./good/"):
+        for file in os.listdir("./good/" + directory):
+            if file.endswith(".bed"): file_names.append(file)
+    file_names.append("")
+    for directory in os.listdir("./bad/"):
+        for file in os.listdir("./bad/" + directory):
+            if file.endswith(".bed"): file_names.append(file)
+    return file_names
 
 
 def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_file="out/passed_bad.txt"):
@@ -28,33 +56,43 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
     command_insertions = data['settings']['file-locations']
     python_versions = data['python-versions']
 
-    correct_arrays = []
+    correct_list = []
+    name_list = []
 
     tool_list = data['tools']
     for tool in tool_list:
         for program in list(tool.keys()):
             if python_versions[program] != version:
                 continue
-            if program != 'bedtools': continue
+            if program != 'bedtools' and program != 'ngsutils': continue
             
             commands = tool[program]
             
             for command, execution in commands.items():
                 current_array = []
+                name_list.append(program + " " + command)
                 print("*"*18 + " " + program + " " + command + " " + "*"*18)
                 print("*"*18 + " good test cases " + "*"*18)
                 current_array.extend(run_good(execution, program + " " + command, verbose, failed_good_file, command_insertions))
                 print("*"*60)
                 print()
+                current_array.append(0.5)
                 print("*"*18 + " bad test cases " + "*"*18)
                 current_array.extend(run_bad(execution, program + " " + command, verbose, passed_bad_file, command_insertions))
                 print("*"*60)
                 print()
-                correct_arrays.append(current_array)
+                correct_list.append(current_array)
             
     stream.close()
-    print(correct_arrays)
-    ax = sns.heatmap(correct_arrays)
+
+    file_list = get_file_names()
+
+    GnRd = colors.LinearSegmentedColormap('GnRd', cdict)
+    # print(correct_list)
+    plt.figure(figsize=(24,5))
+    ax = sns.heatmap(correct_list, cmap=GnRd, linewidths=.5, square=True, cbar=False, xticklabels=file_list, yticklabels=name_list)
+    plt.yticks(rotation=0)
+    plt.tight_layout()
     plt.savefig('out/results.png')
 
 
