@@ -2,6 +2,8 @@
 import sys
 import subprocess
 import getopt
+import seaborn as sns; sns.set()
+import matplotlib.pyplot as plt
 from run_bad import run_bad
 from run_good import run_good
 from yaml import load, dump
@@ -11,14 +13,14 @@ except ImportError:
     from yaml import Loader, Dumper
 
 
-def run_all(verbose=False, failed_good_file="failed_good.txt", passed_bad_file="passed_bad.txt"):
+def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_file="out/passed_bad.txt"):
     # Clear the previous data and reinitalize it
     subprocess.call(["rm", "-f", failed_good_file, passed_bad_file])
     subprocess.call(["touch", failed_good_file, passed_bad_file])
 
     p = subprocess.Popen(['python', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p.communicate()
-    version = float(out.decode()[7:10])
+    version = float(out.decode()[7:10]) if err.decode() == '' else float(err.decode()[7:10])
 
     stream = open('config.yaml', 'r')
     data = load(stream, Loader=Loader)
@@ -26,33 +28,34 @@ def run_all(verbose=False, failed_good_file="failed_good.txt", passed_bad_file="
     command_insertions = data['settings']['file-locations']
     python_versions = data['python-versions']
 
+    correct_arrays = []
+
     tool_list = data['tools']
     for tool in tool_list:
         for program in list(tool.keys()):
             if python_versions[program] != version:
                 continue
-
+            if program != 'bedtools': continue
+            
             commands = tool[program]
-
-            print("*"*18 + " Cases that are supposed to pass " + "*"*18)
-            print('\n\n')
+            
             for command, execution in commands.items():
+                current_array = []
                 print("*"*18 + " " + program + " " + command + " " + "*"*18)
-                run_good(execution, program + " " + command, verbose, failed_good_file, command_insertions)
+                print("*"*18 + " good test cases " + "*"*18)
+                current_array.extend(run_good(execution, program + " " + command, verbose, failed_good_file, command_insertions))
                 print("*"*60)
                 print()
+                print("*"*18 + " bad test cases " + "*"*18)
+                current_array.extend(run_bad(execution, program + " " + command, verbose, passed_bad_file, command_insertions))
+                print("*"*60)
                 print()
-            print("*"*18 + " Cases that are supposed to pass " + "*"*18 + "\n\n")
-
-            print("*"*18 + " Cases that are supposed to fail " + "*"*18 + "\n\n")
-
-            for command, execution in commands.items():
-                print("*"*18 + " " + program + " " + command + " "+ "*"*18)
-                run_bad(execution, program + " " + command, verbose, passed_bad_file, command_insertions)
-                print("*"*60 + "\n\n")
-            print("*"*18 + " Cases that are supposed to fail " + "*"*18)
+                correct_arrays.append(current_array)
             
     stream.close()
+    print(correct_arrays)
+    ax = sns.heatmap(correct_arrays)
+    plt.savefig('out/results.png')
 
 
 def usage():
@@ -77,8 +80,8 @@ if __name__ == '__main__':
         exit(2)
     
     verbose = False
-    failed_good_file = "failed_good.txt"
-    passed_bad_file = "passed_bad.txt"
+    failed_good_file = "out/failed_good.txt"
+    passed_bad_file = "out/passed_bad.txt"
 
     for o, a in optlist:
         if o in ("-h", "--help"):

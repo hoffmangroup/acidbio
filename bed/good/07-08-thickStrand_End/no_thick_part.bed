@@ -1,6 +1,3 @@
-# no thick part means thickStart=thickEnd=chromStart
-
 chr1	40	80	name1	500	-	40	40
 chr1	60	100	name2	499	+	60	60
 chr1	120	140	name3	600	-	120	120
-

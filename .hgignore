@@ -3,11 +3,6 @@ syntax: glob
 .vscode/
 bed/__pycache__/
 bed/scratch/
-bed/bedtools
-bed/failed_good.txt
-bed/passed_bad.txt
-bed/userApps/
 bed/ucsc-apps/
 *.pyc
-bed/passed_bad.txt
-bed/failed_good.txt
+bed/out/

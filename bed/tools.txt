@@ -1,13 +1,16 @@
-atactk  atac-seq toolkit    https://atactk.readthedocs.io/en/lastest/intro.html INSTALLED ON py27, needs BAM
+atactk  atac-seq toolkit    https://atactk.readthedocs.io/en/latest/index.html  INSTALLED ON py27, needs BAM
+augur   pipeline components for virus analysis  https://github.com/nextstrain/augur NOT INSTALLED
 bedops  High-performance genome feature operations      https://bedops.readthedocs.io/en/latest/
 bioconvert  Converting between file formats https://bioconvert.readthedocs.io/en/master/user_guide.html INSTALLED ON py36
 biofluff        explatory analysis and visualization of HTS     https://fluff.readthedocs.io/en/latest/usage.html       INSTALLED ON py36
 biopet  biopipeline execution toolkit   https://biopet-docs.readthedocs.io/projects/snptesttovcf/en/v0.3.0/ Needs BAM
 cgat    computational genomics analysis toolkit https://www.cgat.org/downloads/public/cgat/documentation/       INSTALLED ON py36
+chunked-scatter chunk and scatter regions   https://github.com/biowdl/chunked-scatter   INSTALLED ON py36
 cistrome-beta   integrate chip-seq with differential gene expression data       https://github.com/hanfeisun/BETA       INSTALLED ON py27
 cnvkit  copy number variant detection   https://cnvkit.readthedocs.io/en/stable/    INSTALLED ON py36
 combined-pvalues        combine,analyse,group, and correct p-values     https://github.com/brentp/combined-pvalues      INSTALLED ON py27
 cpat    coding potential assessment tool        http://rna-cpat.sourceforge.net/#command-line-usage     BED or FASTA
+crossmap    convert genome coordinates  http://crossmap.sourceforge.net/    INSTALLEDO ON py36
 deeptools       normalization and visualization of deep-sequencing      https://deeptools.readthedocs.io/en/develop/content/list_of_tools.html
 dsh-bio tools for various file formats  https://github.com/heuermh/dishevelled-bio
 epic2   ultraperformant reimplementation of SICER   https://github.com/biocore-ntnu/epic2
@@ -21,7 +24,7 @@ MAnorm  robust model for quantitative comparison of chipseq https://github.com/s
 moca    tool for motif conservation analysis    https://github.com/saketkc/moca INSTALLED ON py27
 motifscan   motif Discovery tool    https://github.com/shao-lab/MotifScan   INSTALLED ON py27
 ngs-bits        tools for ngs   https://github.com/imgag/ngs-bits
-ngsutils    tools for ngs   https//github.com/ngsutils/ngsutils INSTALLED ON py27
+ngsutils    tools for ngs   https://github.com/ngsutils/ngsutils INSTALLED ON py27
 nucleoatac      calling nucleosomes     https://nucleoatac.readthedocs.io/en/latest/nucleoatac/ might need fasta files too, INSTALLED ON py27
 PeakRanger      peak calling NGS        http://ranger.sourceforge.net/manual1.18.html   INSTALLED ON py36
 Peakzilla       peak calling    https://github.com/steinmann/peakzilla
@@ -29,11 +32,13 @@ Pepr    peak calling for chipseq and prioritization     https://github.com/shawn
 Picard  Java tools for NGS in BAM       http://broadinstitute.github.io/picard/command-line-overview.html#Overview      Apparently a bed file tool somewhere in there
 Piranha CLIP, RIP-seq peak caller       http://smithlabresearch.org/software/piranha/
 Plastid Python library for genomic analysis     https://plastid.readthedocs.io/en/latest/scriptlist.html        Only change format function takes BED as input?
+portcullis  splice junction https://portcullis.readthedocs.io/en/latest/junctools.html  INSTALLED ON py36
 QUAST   Quality Assesment Tool for genome assemblies    https://quast.bioinf.spbau.ru/manual.html   Needs FASTA/GFF, INSTALLED ON py36
 RAPID   sRNA analysis   https://rapid-doc.readthedocs.io/en/latest/Description.html 
 RCAS    Functional analysis of transcriptome-wide regions detected by HTS       https://toolshed.g2.bx.psu.edu/repository?repository_id=0ee336a093ef60f9
 rseg    analyze chip-seq data   https://smithlabresearch.org/software/rseg
 RseqC   RNA quality control http://rseqc.sourceforge.net/   Needs BAM
+seq2c   CNV variant caller  https://github.com/AstraZeneca-NGS/Seq2C    Needs BAM
 StoatyDive  evaluate predicted peak profiles    https://github.com/heylf/StoatyDive INSTALLED ON py36
 streamatac  STREAM processing steps for single cell atac-seq data   https://github.com/pinellolab/STREAM_atac
 tobias  ATAC-seq Analysis       https://github.molgen.mpg.de/loosolab/TOBIAS/wiki       Uses bigWig as input alongside BED
@@ -43,4 +48,5 @@ ucsc-*  A bunch of tools by UCSC Kent   http://hgdownload.cse.ucsc.edu/admin/exe
 vcflib  Parsing and manipulating VCF files  https://github.com/vcflib/vcflib    Needs a VCF
 vcfanno annotating VCF  https://github.com/brentp/vcfanno
 wiggletools basic functions on space of numeric functions   https://github.com/Ensembl/WiggleTools
+wisestork   within-sample CNV calling   https://github.com/sndrtj/wisestork
 xyalign tools to infer ploidy, correct for sex chromosome complement    https://xyalign.readthedocs.io/en/latest/usage.html INSTALLED ON py27

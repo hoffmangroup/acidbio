@@ -17,11 +17,9 @@ def create_execute_line(tool, filepath, temp_file_list, insertions):
     return tool.replace("FILE", filepath)
 
 
-def run_good(tool, tool_name=None, verbose=False, output_file="failed_good.txt", insertions={}):
-    correct = 0
-    total = 0
+def run_good(tool, tool_name=None, verbose=False, output_file="out/failed_good.txt", insertions={}):
     out_file = open(output_file, "a")
-    storage_file = tempfile.NamedTemporaryFile()
+    correct_array = []
     title = tool_name if tool_name is not None else tool
 
     out_file.write("**************************" + title + "**************************\n\n")
@@ -37,12 +35,13 @@ def run_good(tool, tool_name=None, verbose=False, output_file="failed_good.txt",
                 p = subprocess.Popen(execute_line, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
                 out, err = p.communicate()
                 if p.returncode == 0:
-                    correct += 1
+                    correct_array.append(1)
                     if verbose:
                         print(filepath + ' passed correctly')
                         print(out.decode('UTF-8'))
                         print()
                 else:
+                    correct_array.append(0)
                     print(filepath + ' failed incorrectly')
                     if verbose:
                         print(out)
@@ -50,12 +49,14 @@ def run_good(tool, tool_name=None, verbose=False, output_file="failed_good.txt",
                     out_file.write("%===========================%\n" + filepath + "\n\n")
                     out_file.write(out.decode('UTF-8'))
                     out_file.write("%===========================%\n\n")
-                total += 1
+    print()
+    print(str(correct_array.count(1)) + " correct out of " + str(len(correct_array)))
 
-    out_file.write("\n\nTests completed.\n" + str(correct) + " correct out of " + str(total) +
+    out_file.write("\n\nTests completed.\n" +  str(correct_array.count(1)) + " correct out of " + str(len(correct_array)) +
         "\n\n**************************" + title + "**************************\n")
     out_file.close()
-    storage_file.close()
+
+    return correct_array
 
 
 def usage():
@@ -81,7 +82,7 @@ if __name__ == "__main__":
         exit(2)
     
     verbose = False
-    output_file = "failed_good.txt"
+    output_file = "out/failed_good.txt"
     tool_name = None
 
     for o, a in optlist:
