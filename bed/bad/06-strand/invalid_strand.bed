@@ -1,6 +1,4 @@
-# Test invalid strand
-
-chr1	1	8	name1	.	-
-chr1	4	9	name2	.	+
-chr1	9	16	name3	1000	.
-chr1	16	25	name4	999	_
+chr19	1110	1198	name1	880	-
+chr19	1204	1259	name2	800	+
+chr20	1279	1336	name3	788	.
+chr20	1655	1725	name4	999	_

@@ -1,5 +1,5 @@
-chr1	30	50	name1	800	-
-chr1	55	100	name2	990	+
-chr1	110	130	name3	920	-
-chr1	140	180	name4	700	.
-chr1	200	220	name5	780	.
+chr19	1030	1090	name1	800	-
+chr19	1055	1100	name2	990	+
+chr20	1110	1170	name3	920	-
+chr20	1140	1190	name4	700	.
+chr20	1200	1290	name5	780	.
