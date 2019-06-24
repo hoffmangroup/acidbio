@@ -64,7 +64,7 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
         for program in list(tool.keys()):
             if python_versions[program] != version:
                 continue
-            if program != 'ucsc' and program != 'bedtools': continue
+            if program != 'ucsc' and program != 'bedtools' and program != 'ngs-bits': continue
             
             commands = tool[program]
             

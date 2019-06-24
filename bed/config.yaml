@@ -4,7 +4,10 @@ settings: # some file locations
         INTERSECT: ./data/intersect_file.bed
         DICTIONARY: /home/haliupenguin/.local/share/genomes/hg38/hg38.dict
         SIZES: /home/haliupenguin/.local/share/genomes/hg38/hg38.chrom.sizes
+        GENE_BED: ./data/hg38_RefSeq.bed.gz
 tools:  # Require that the command line sequence to be executed be written on one line
+    - alfred:
+        annotate: alfred annotate -b GENE_BED FILE
     - bedtools:
         intersect: bedtools intersect -a INTERSECT -b FILE
         merge: sort -k1,1 -k2,2n FILE > TEMP1; bedtools merge -i TEMP1
@@ -63,6 +66,7 @@ tools:  # Require that the command line sequence to be executed be written on on
     - blockbuster:
         blockbuster: blockbuster.x FILE
 python-versions:
+    alfred: 3.7
     bedtools: 3.7
     bedops: 3.7
     genometools: 2.7
