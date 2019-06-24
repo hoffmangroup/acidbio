@@ -89,7 +89,7 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
 
     GnRd = colors.LinearSegmentedColormap('GnRd', cdict)
     # print(correct_list)
-    plt.figure(figsize=(24,5))
+    plt.figure(figsize=(24,8))
     ax = sns.heatmap(correct_list, cmap=GnRd, linewidths=.5, square=True, cbar=False, xticklabels=file_list, yticklabels=name_list)
     plt.yticks(rotation=0)
     plt.tight_layout()
