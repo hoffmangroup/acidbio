@@ -10,6 +10,7 @@ settings: # some file locations
         FASTA: ./data/toy.fa
         CHAIN: ./data/hg38ToHg19.over.chain.gz
         BIGWIG: ./data/toy.bw
+        GTF: ./data/toy.gtf
         CONTACT_MATRIX: ./data/contact_frequency_matrix.gz
         OUTPUT_DIR: ./scratch/trash
 tools:  # Require that the command line sequence to be executed be written on one line
@@ -72,7 +73,17 @@ tools:  # Require that the command line sequence to be executed be written on on
         trmap: trmap INTERSECT FILE
     # - gimmemotifs:
     #     motifs: gimme motifs FILE -g hg38 -n scratch/gimme
-    #     scan: gimme scan FILE -g hg38 -c 0 -n 1 -b
+    #     scan: gimme scan FILE -g hg38 -c 0 -n 1 -b'
+    - homer:
+        findMotifsGenome: findMotifsGenome.pl FILE hg19 OUTPUT_DIR -size 20
+    - iCount:
+        clusters: iCount clusters INTERSECT FILE OUTPUT_DIR/iCount.txt
+        annotate: iCount annotate GTF FILE OUTPUT_DIR/iCount.bed
+    - igvtools:
+        count: igvtools count FILE stdout hg18
+        sort: igvtools sort FILE stdout
+    - intervene:
+        upset: intervene upset -i FILE -o OUTPUT_DIR
     - ngs-bits:
         BedAdd: BedAdd -in INTERSECT FILE
         BedChunk: BedChunk -n 10 -in FILE
@@ -80,7 +91,6 @@ tools:  # Require that the command line sequence to be executed be written on on
         BedMerge: BedMerge -in FILE
     - macs2:
         callpeak: macs2 callpeak -t FILE -f BED 
-
     - Piranha:
         basic: Piranha FILE
     - peakzilla:
@@ -129,6 +139,10 @@ python-versions:
     genometools: 2.7
     gff-compare: 3.7
     gimmemotifs: 3.6
+    homer: 3.6
+    iCount: 3.6
+    idr: 3.6
+    igvtools: 3.7
     ngs-bits: 3.7
     Piranha: 2.7
     peakzilla: 2.7
