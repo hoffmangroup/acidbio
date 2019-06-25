@@ -1,0 +1,21 @@
+track type=wiggle_0 name="variableStep" description="variableStep format"
+variableStep chrom=chr19 span=30
+1000 10.0
+1080 12.5
+1200 15.0
+1300 17.5
+1490 20.0
+1550 17.5
+1660 15.0
+1770 12.5
+1890 10.0
+variableStep chrom=chr20 span=20
+1000 12.5
+1100 15.0
+1200 17.5
+1300 20.0
+1400 17.5
+1500 15.0
+1600 12.5
+1700 10.0
+1800 12.5

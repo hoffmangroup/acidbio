@@ -3,22 +3,76 @@ settings: # some file locations
         GENOME: /home/haliupenguin/.local/share/genomes/hg38/hg38.fa
         INTERSECT: ./data/intersect_file.bed
         DICTIONARY: /home/haliupenguin/.local/share/genomes/hg38/hg38.dict
-        SIZES: /home/haliupenguin/.local/share/genomes/hg38/hg38.chrom.sizes
+        SIZES: ./data/hg38.chrom.sizes
+        BED_SIZE: ./data/human-hg18-size.bed
         GENE_BED: ./data/hg38_RefSeq.bed.gz
+        BAM: ./data/toy.bam
+        FASTA: ./data/toy.fa
+        CHAIN: ./data/hg38ToHg19.over.chain.gz
+        BIGWIG: ./data/toy.bw
+        CONTACT_MATRIX: ./data/contact_frequency_matrix.gz
+        OUTPUT_DIR: ./scratch/trash
 tools:  # Require that the command line sequence to be executed be written on one line
     - alfred:
         annotate: alfred annotate -b GENE_BED FILE
-    - bedtools:
-        intersect: bedtools intersect -a INTERSECT -b FILE
-        merge: sort -k1,1 -k2,2n FILE > TEMP1; bedtools merge -i TEMP1
-        coverage: bedtools coverage -a INTERSECT -b FILE
+    - atactk:
+        make_cut_matrix: make_cut_matrix -a -b '(36-149 150-324 325-400 1)' BAM FILE
+    - ataqv:
+        ataqv: ataqv --peak-file FILE --metrics-file /dev/null human BAM
     - bedops:
         intersect: bedops --intersect INTERSECT FILE
         complement: bedops --complement INTERSECT FILE
         element-of: bedops --element-of 10 INTERSECT FILE
         error checking: bedops -ec --everything FILE
+    - bedtools:
+        intersect: bedtools intersect -a INTERSECT -b FILE
+        merge: sort -k1,1 -k2,2n FILE > TEMP1; bedtools merge -i TEMP1
+        coverage: bedtools coverage -a INTERSECT -b FILE
+    - bioFluff:
+        heatmap: fluff heatmap -f FILE -d INTERSECT -o scratch/heat
+    - biopet:
+        WipeReads: biopet tool WipeReads -I BAM -r FILE -o /dev/stdout 2>/dev/null
+    - blockbuster:
+        blockbuster: blockbuster.x FILE
+    - cgat:
+        merge: cat FILE | cgat bed2bed --method=merge
+        shift: chat FILE | cgat bed2bed --method=offset -g GENOME
+        bed2stats: cgat bed2table < FILE
+    - chunked-scatter:
+        chunked-scatter: chunked-scatter -p OUTPUT_DIR/scatter_ -i FILE -m 10 -c 40
+    - cnvkit:
+        target: cnvkit.py target FILE
+        access: cnvkit.py access GENOME -x FILE
+    - combined p-values:
+        acf: comb-p FILE
+    - concoct:
+        cut_up_fasta: cut_up_fasta.py -c 5 -o 0 -m -b FILE FASTA
+        coverage_table: converage_table.py FILE BAM
+    - crossmap:
+        CrossMap: CrossMap.py bed CHAIN FILE
+    - dammet:
+        DamMet: DamMet -b BAM -r GENOME -c chr19 -e FILE
+    - deeptools:
+        computeMatrix scale-regions: computeMatrix scale-regions -S BIGWIG -R FILE -bs 1 -o OUTPUT_DIR/computeMatrixResult
+    - dsh-bio:
+        filter-bed: dsh-bio filter-bed -i FILE
+    - elprep:
+        bed-to-elsites: elprep bed-to-elsites FILE /dev/stdout 2>/dev/null
+    - epic2:
+        epic: epic2 --treatment FILE
+    - fithic:
+        HiCPro2FitHiC: scratch/fithic/fithic/utils/HiCPro2HitFiC.py -i CONTACT_MATRIX -b FILE
+    - f-seq:
+        f-seq: scratch/F-seq/dist~/fseq/bin/fseq -f 10 -o OUTPUT_DIR -of bed FILE
+    - gat:
+        gat: scratch/gat/scripts/gat-run.py --segment-file=FILE --annotation-file=INTERSECT --workspace-file=BED_SIZE
     - genometools:
         bed_to_gff: gt bed_to_gff3 FILE
+    - gff-compare:
+        trmap: trmap INTERSECT FILE
+    # - gimmemotifs:
+    #     motifs: gimme motifs FILE -g hg38 -n scratch/gimme
+    #     scan: gimme scan FILE -g hg38 -c 0 -n 1 -b
     - ngs-bits:
         BedAdd: BedAdd -in INTERSECT FILE
         BedChunk: BedChunk -n 10 -in FILE
@@ -26,19 +80,9 @@ tools:  # Require that the command line sequence to be executed be written on on
         BedMerge: BedMerge -in FILE
     - macs2:
         callpeak: macs2 callpeak -t FILE -f BED 
-    # - gimmemotifs:
-    #     motifs: gimme motifs FILE -g hg38 -n scratch/gimme
-    #     scan: gimme scan FILE -g hg38 -c 0 -n 1 -b
+
     - Piranha:
         basic: Piranha FILE
-    - bioFluff:
-        heatmap: fluff heatmap -f FILE -d INTERSECT -o scratch/heat
-    - combined p-values:
-        acf: comb-p FILE
-    - cgat:
-        merge: cat FILE | cgat bed2bed --method=merge
-        shift: chat FILE | cgat bed2bed --method=offset -g GENOME
-        bed2stats: cgat bed2table < FILE
     - peakzilla:
         peakzilla: peakzilla.py FILE INTERSECT
     - peakranger:
@@ -50,11 +94,7 @@ tools:  # Require that the command line sequence to be executed be written on on
         bedToExons: ./ucsc-apps/bedToExons FILE /dev/stdout
         bedClip: ./ucsc-apps/bedClip FILE SIZES /dev/stdout
         bedRemoveOverlap: ./ucsc-apps/bedRemoveOverlap FILE /dev/stdout
-    - cnvkit:
-        target: cnvkit.py target FILE
-        access: cnvkit.py access GENOME -x FILE
-    - epic2:
-        epic: epic2 --treatment FILE
+    
     - wiggletools:
         AUC: wiggletools AUC FILE
     - ngsutils:
@@ -63,27 +103,40 @@ tools:  # Require that the command line sequence to be executed be written on on
         extend: bedutils extend -5 10 FILE
     - portcullis:
         compare: junctools compare INTERSECT FILE
-    - blockbuster:
-        blockbuster: blockbuster.x FILE
+   
 python-versions:
     alfred: 3.7
-    bedtools: 3.7
+    atactk: 2.7
+    ataqv: 2.7
     bedops: 3.7
-    genometools: 2.7
-    ngs-bits: 3.7
-    gimmemotifs: 3.6
-    Piranha: 2.7
+    bedtools: 3.7
     bioFluff: 3.6
-    combined p-values: 2.7
+    biopet: 3.7
+    blockbuster: 3.7
     cgat: 3.6
+    cnvkit: 3.6
+    combined p-values: 2.7
+    concoct: 3.6
+    crossmap: 3.6
+    dammet: 3.7
+    deeptools: 3.7
+    dsh-bio: 3.7
+    elprep: 3.7
+    epic2: 3.7
+    fithic: 3.6
+    f-seq: 3.6
+    gat: 2.7
+    genometools: 2.7
+    gff-compare: 3.7
+    gimmemotifs: 3.6
+    ngs-bits: 3.7
+    Piranha: 2.7
     peakzilla: 2.7
     picard: 3.6
     ucsc: 3.7
-    cnvkit: 3.6
-    epic2: 3.7
+    
     wiggletools: 3.7
     ngsutils: 2.7
     peakranger: 3.6
-    blockbuster: 3.7
     macs2: 2.7
     portcullis: 3.6
