@@ -6,3 +6,5 @@ bed/scratch/
 bed/ucsc-apps/
 *.pyc
 bed/out/
+bed/data/annotations/
+bed/data/hg38.refseq
