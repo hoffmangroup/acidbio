@@ -6,7 +6,7 @@ settings: # some file locations
         SIZES: ./data/hg38.chrom.sizes
         BED_SIZE: ./data/human-hg18-size.bed
         GENE_BED: ./data/hg38_RefSeq.bed.gz
-        BAM: ./data/toy.bam
+        EXBAM: ./data/toy.bam
         FASTA: ./data/toy.fa
         CHAIN: ./data/hg38ToHg19.over.chain.gz
         BIGWIG: ./data/toy.bw
@@ -17,9 +17,9 @@ tools:  # Require that the command line sequence to be executed be written on on
     - alfred:
         annotate: alfred annotate -b GENE_BED FILE
     - atactk:
-        make_cut_matrix: make_cut_matrix -a -b '(36-149 150-324 325-400 1)' BAM FILE
+        make_cut_matrix: make_cut_matrix -a -b '(36-149 150-324 325-400 1)' EXBAM FILE
     - ataqv:
-        ataqv: ataqv --peak-file FILE --metrics-file /dev/null human BAM
+        ataqv: ataqv --peak-file FILE --metrics-file /dev/null human EXBAM
     - bedops:
         intersect: bedops --intersect INTERSECT FILE
         complement: bedops --complement INTERSECT FILE
@@ -32,7 +32,7 @@ tools:  # Require that the command line sequence to be executed be written on on
     - bioFluff:
         heatmap: fluff heatmap -f FILE -d INTERSECT -o scratch/heat
     - biopet:
-        WipeReads: biopet tool WipeReads -I BAM -r FILE -o /dev/stdout 2>/dev/null
+        WipeReads: biopet tool WipeReads -I EXBAM -r FILE -o /dev/stdout 2>/dev/null
     - blockbuster:
         blockbuster: blockbuster.x FILE
     - cgat:
@@ -48,11 +48,11 @@ tools:  # Require that the command line sequence to be executed be written on on
         acf: comb-p FILE
     - concoct:
         cut_up_fasta: cut_up_fasta.py -c 5 -o 0 -m -b FILE FASTA
-        coverage_table: converage_table.py FILE BAM
+        coverage_table: converage_table.py FILE EXBAM
     - crossmap:
         CrossMap: CrossMap.py bed CHAIN FILE
     - dammet:
-        DamMet: DamMet -b BAM -r GENOME -c chr19 -e FILE
+        DamMet: DamMet -b EXBAM -r GENOME -c chr19 -e FILE
     - deeptools:
         computeMatrix scale-regions: computeMatrix scale-regions -S BIGWIG -R FILE -bs 1 -o OUTPUT_DIR/computeMatrixResult
     - dsh-bio:
@@ -83,37 +83,55 @@ tools:  # Require that the command line sequence to be executed be written on on
         count: igvtools count FILE stdout hg18
         sort: igvtools sort FILE stdout
     - intervene:
-        upset: intervene upset -i FILE -o OUTPUT_DIR
+        upset: intervene upset -i FILE INTERSECT -o OUTPUT_DIR/
+        venn: intervene venn -i FILE INTERSECT -o OUTPUT_DIR/
+    - macs2:
+        callpeak: macs2 callpeak -t FILE -f BED 
+    - mosdepth:
+        mosdepth: mosdepth -b FILE OUTPUT_DIR/mos EXBAM
     - ngs-bits:
         BedAdd: BedAdd -in INTERSECT FILE
         BedChunk: BedChunk -n 10 -in FILE
         BedExtend: BedExtend -n 100 -in FILE
         BedMerge: BedMerge -in FILE
-    - macs2:
-        callpeak: macs2 callpeak -t FILE -f BED 
+    - ngsutils:
+        reduce: bedutils reduce FILE
+        stats: bedutils stats FILE
+        extend: bedutils extend -5 10 FILE
+    - novasplice:
+        novasplice: novasplice -v VCF -r GENOME -b FILE -c SIZES
+    - peakranger:
+        ccat: peakranger ccat --format bed FILE INTERSECT --output /dev/stdout
     - Piranha:
         basic: Piranha FILE
     - peakzilla:
         peakzilla: peakzilla.py FILE INTERSECT
-    - peakranger:
-        ccat: peakranger ccat --format bed FILE INTERSECT --output /dev/stdout
     - picard:
         BedToIntervalList: picard BedToIntervalList INPUT=FILE SD=DICTIONARY OUTPUT=/dev/stdout
+    - plastid:
+        reformat_transcripts: reformat_transcripts --annotation_files FILE --annotation_format BED /dev/stdout
+        findjuncs: findjuncs OUTPUT_DIR/result --annotation_format BED --annotation_files FILE
+    - portcullis:
+        compare: junctools compare INTERSECT FILE
+    - preseq:
+        c_curve: preseq c_curve FILE
+    - pygtftk:
+        bed_to_gtf: gtftk bed_to_gtf -i FILE
+    - qualimap:
+        comp-counts: qualimap comp-counts -bam EXBAM -gtf FILE
+    - quast:
+        quast: quast FASTA --min-contig 5 -g FILE
+    - rapid:
+        rapidStats: rapidStats.sh -o=OUTPUT_DIR/ -f=EXBAM -ft=BAM -a=FILE
+    - rpkmforgenes:
+        rpkmforgenes: rpkmforgenes.py -o OUTPUT_DIR/rpkm.txt -i INTERSECT -a FILE
     - ucsc:
         bedSort: ./ucsc-apps/bedSort FILE /dev/stdout
         bedToExons: ./ucsc-apps/bedToExons FILE /dev/stdout
         bedClip: ./ucsc-apps/bedClip FILE SIZES /dev/stdout
         bedRemoveOverlap: ./ucsc-apps/bedRemoveOverlap FILE /dev/stdout
-    
     - wiggletools:
         AUC: wiggletools AUC FILE
-    - ngsutils:
-        reduce: bedutils reduce FILE
-        stats: bedutils stats FILE
-        extend: bedutils extend -5 10 FILE
-    - portcullis:
-        compare: junctools compare INTERSECT FILE
-   
 python-versions:
     alfred: 3.7
     atactk: 2.7
@@ -143,14 +161,21 @@ python-versions:
     iCount: 3.6
     idr: 3.6
     igvtools: 3.7
+    macs2: 2.7
+    mosdepth: 3.7
     ngs-bits: 3.7
-    Piranha: 2.7
-    peakzilla: 2.7
-    picard: 3.6
-    ucsc: 3.7
-    
-    wiggletools: 3.7
     ngsutils: 2.7
     peakranger: 3.6
-    macs2: 2.7
+    peakzilla: 2.7
+    picard: 3.6
+    Piranha: 2.7
+    plastid: 2.7
     portcullis: 3.6
+    preseq: -1.0  # Not installed in a Python environment
+    pygtftk: 3.6
+    qualimap: 3.7
+    quast: 3.6
+    rapid: 3.7
+    ucsc: 3.7
+    wiggletools: 3.7
+    
