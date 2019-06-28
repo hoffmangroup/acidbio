@@ -11,6 +11,7 @@ settings: # some file locations
         CHAIN: ./data/hg38ToHg19.over.chain.gz
         BIGWIG: ./data/toy.bw
         GTF: ./data/toy.gtf
+        2BIT: ./data/toy.2bit
         CONTACT_MATRIX: ./data/contact_frequency_matrix.gz
         OUTPUT_DIR: ./scratch/trash
 tools:  # Require that the command line sequence to be executed be written on one line
@@ -129,6 +130,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         rseg: rseg -c BED_SIZE -o /dev/stdout FILE
     - samtools:
         bedcov: samtools bedcov FILE EXBAM
+    - segtools:
+        overlap: segtools-overlap INTERSECT FILE
     - seqkit:
         subseq: seqkit subseq --bed FILE FASTA
         seq: seqkit seq -M FILE FASTA
@@ -137,13 +140,24 @@ tools:  # Require that the command line sequence to be executed be written on on
     - snpSift:
         join: SnpSift join -cols1 bed -cols2 bed INTERSECT FILE -Xmx2g
         intersect: SnpSift intersect INTERSECT FILE -Xmx2g
+    - tobias:
+        ATACorrect: TOBIAS ATACorrect --bam EXBAM --genome FASTA --peaks FILE
+    - twobitreader:
+        twobitreader: python -m twobitreader 2BIT < FILE
     - ucsc:
         bedSort: ./ucsc-apps/bedSort FILE /dev/stdout
         bedToExons: ./ucsc-apps/bedToExons FILE /dev/stdout
         bedClip: ./ucsc-apps/bedClip FILE SIZES /dev/stdout
         bedRemoveOverlap: ./ucsc-apps/bedRemoveOverlap FILE /dev/stdout
+    - variantbam:
+        variant: variant EXBAM -l FILE
+    - vcflib:
+        annotate: vcfannotate -b FILE VCF
+        intersect: vcfintersect -b FILE VCF
     - wiggletools:
         AUC: wiggletools AUC FILE
+    - xyalign:
+        PREPARE_REFERENCE: xyalign --PREPARE_REFERENCE --ref GENOME --reference_mask FILE -o OUTPUT_DIR/ --x_chromosome chrX --y_chromosome chrY
 python-versions:
     alfred: 3.7
     atactk: 2.7
@@ -154,6 +168,7 @@ python-versions:
     biopet: 3.7
     blockbuster: 3.7
     cgat: 3.6
+    chunked-scatter: 3.6
     cnvkit: 3.6
     combined p-values: 2.7
     concoct: 3.6
@@ -173,10 +188,12 @@ python-versions:
     iCount: 3.6
     idr: 3.6
     igvtools: 3.7
+    intervene: 3.7
     macs2: 2.7
     mosdepth: 3.7
     ngs-bits: 3.7
     ngsutils: 2.7
+    novasplice: 3.6
     peakranger: 3.6
     peakzilla: 2.7
     picard: 3.6
@@ -191,8 +208,15 @@ python-versions:
     rpkmforgenes: 2.7
     rseg: 3.7
     samtools: 3.7
+    segtools: 2.7
     seqkit: 3.7
     snpEff: 3.7
+    snpSift: 3.6
+    tobias: 3.7
+    twobitreader: 3.7
     ucsc: 3.7
+    variantbam: 3.7
+    vcflib: 3.7
     wiggletools: 3.7
+    xyalign: 2.7
     

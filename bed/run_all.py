@@ -21,11 +21,11 @@ cdict = {'red':  ((0.0, 0.8, 0.8),
 
         'green': ((0.0, 0.0, 0.0),
                   (0.5, 1.0, 1.0),
-                  (1.0, 0.8, 0.8)),
+                  (1.0, 0.3, 0.3)),
 
-        'blue':  ((0.0, 0.0, 0.0),
+        'blue': ((0.0, 0.0, 0.0),
                   (0.5, 1.0, 1.0),
-                  (1.0, 0.0, 0.0))
+                  (1.0, 1.0, 1.0))
        }
 
 
@@ -65,7 +65,7 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
             if python_versions[program] != version:
                 continue
             if program != 'ucsc' and program != 'bedtools' and program != 'ngs-bits': continue
-            
+
             commands = tool[program]
             
             for command, execution in commands.items():

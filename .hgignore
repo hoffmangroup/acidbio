@@ -8,3 +8,4 @@ bed/ucsc-apps/
 bed/out/
 bed/data/annotations/
 bed/data/hg38.refseq
+bed/data/Buenrostro_2018/
