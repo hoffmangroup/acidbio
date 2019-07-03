@@ -9,3 +9,4 @@ bed/out/
 bed/data/annotations/
 bed/data/hg38.refseq
 bed/data/Buenrostro_2018/
+bed/data/hg38.phyloP20way.bw

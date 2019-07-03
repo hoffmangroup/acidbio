@@ -7,20 +7,32 @@ settings: # some file locations
         BED_SIZE: ./data/human-hg18-size.bed
         GENE_BED: ./data/hg38_RefSeq.bed.gz
         EXBAM: ./data/toy.bam
+        BAZAMBAM: ./data/bazam.bam
         FASTA: ./data/toy.fa
         CHAIN: ./data/hg38ToHg19.over.chain.gz
         BIGWIG: ./data/toy.bw
+        DESIGN: ./data/example.design
         GTF: ./data/toy.gtf
+        SLNCKY_CONFIG: ./data/annotations.config
         2BIT: ./data/toy.2bit
+        LOGIT: ./data/logit.logit.RData
+        HEXAMER: ./data/hexamer_tab.tsv
         CONTACT_MATRIX: ./data/contact_frequency_matrix.gz
+        BGT: ./data/1kg11-1M.bgt
         OUTPUT_DIR: ./scratch/trash
 tools:  # Require that the command line sequence to be executed be written on one line
     - alfred:
         annotate: alfred annotate -b GENE_BED FILE
+    - alignstats:
+        alignstats: alignstats -i EXBAM -o /dev/stdout -t FILE
     - atactk:
         make_cut_matrix: make_cut_matrix -a -b '(36-149 150-324 325-400 1)' EXBAM FILE
     - ataqv:
         ataqv: ataqv --peak-file FILE --metrics-file /dev/null human EXBAM
+    - augur:
+        mask: augur mask -s VCF --mask FILE -o /dev/stdout
+    - bazam:
+        bazam: bazam -bam BAZAMBAM -L FILE
     - bedops:
         intersect: bedops --intersect INTERSECT FILE
         complement: bedops --complement INTERSECT FILE
@@ -30,8 +42,12 @@ tools:  # Require that the command line sequence to be executed be written on on
         intersect: bedtools intersect -a INTERSECT -b FILE
         merge: sort -k1,1 -k2,2n FILE > TEMP1; bedtools merge -i TEMP1
         coverage: bedtools coverage -a INTERSECT -b FILE
+    - bgt:
+        view: bgt view -B FILE BGT
+    - bioconvert:
+        bed2wiggle: bioconvert bed2wiggle FILE /dev/stdout --force
     - bioFluff:
-        heatmap: fluff heatmap -f FILE -d INTERSECT -o scratch/heat
+        heatmap: fluff heatmap -f FILE -d EXBAM -o OUTPUT_DIR/
     - biopet:
         WipeReads: biopet tool WipeReads -I EXBAM -r FILE -o /dev/stdout 2>/dev/null
     - blockbuster:
@@ -42,6 +58,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         bed2stats: cgat bed2table < FILE
     - chunked-scatter:
         chunked-scatter: chunked-scatter -p OUTPUT_DIR/scatter_ -i FILE -m 10 -c 40
+    - cistrome-beta:
+        minus: BETA minus -p FILE -g hg19
     - cnvkit:
         target: cnvkit.py target FILE
         access: cnvkit.py access GENOME -x FILE
@@ -50,6 +68,8 @@ tools:  # Require that the command line sequence to be executed be written on on
     - concoct:
         cut_up_fasta: cut_up_fasta.py -c 5 -o 0 -m -b FILE FASTA
         coverage_table: converage_table.py FILE EXBAM
+    - cpat:
+        cpat: cpat.py -r GENOME -g FILE -d LOGIT -x HEXAMER -o OUTPUT_DIR/cpat
     - crossmap:
         CrossMap: CrossMap.py bed CHAIN FILE
     - dammet:
@@ -75,11 +95,15 @@ tools:  # Require that the command line sequence to be executed be written on on
     # - gimmemotifs:
     #     motifs: gimme motifs FILE -g hg38 -n scratch/gimme
     #     scan: gimme scan FILE -g hg38 -c 0 -n 1 -b'
+    - HipSTR:
+        HipSTR: scratch/HipSTR/HipSTR --bams BAZAMBAM --fasta GENOME --regions FILE --str-vcf OUTPUT_DIR/hipstr.vcf.gz
     - homer:
         findMotifsGenome: findMotifsGenome.pl FILE hg19 OUTPUT_DIR -size 20
     - iCount:
         clusters: iCount clusters INTERSECT FILE OUTPUT_DIR/iCount.txt
         annotate: iCount annotate GTF FILE OUTPUT_DIR/iCount.bed
+    # - idr:
+    #     idr: idr --samples INTERSECT FILE --input-file-type bed --rank score    
     - igvtools:
         count: igvtools count FILE stdout hg18
         sort: igvtools sort FILE stdout
@@ -90,6 +114,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         callpeak: macs2 callpeak -t FILE -f BED 
     - mosdepth:
         mosdepth: mosdepth -b FILE OUTPUT_DIR/mos EXBAM
+    - multigps:
+        multigps: sed 's+REP1+INTERSECT+g' DESIGN | sed 's+REP2+FILE+g' > TEMP1; multigps -Xmx4G --geninfo SIZES --design TEMP1 -r 1 --out OUTPUT_DIR/
     - ngs-bits:
         BedAdd: BedAdd -in INTERSECT FILE
         BedChunk: BedChunk -n 10 -in FILE
@@ -124,10 +150,14 @@ tools:  # Require that the command line sequence to be executed be written on on
         quast: quast FASTA --min-contig 5 -g FILE
     - rapid:
         rapidStats: rapidStats.sh -o=OUTPUT_DIR/ -f=EXBAM -ft=BAM -a=FILE
+    - regtools:
+        junctions annotate: regtools junctions annotate FILE GENOME GTF -S
     - rpkmforgenes:
         rpkmforgenes: rpkmforgenes.py -o OUTPUT_DIR/rpkm.txt -i INTERSECT -a FILE
     - rseg:
         rseg: rseg -c BED_SIZE -o /dev/stdout FILE
+    - rseqc:
+        geneBody_coverage: geneBody_coverage.py -i EXBAM -r FILE -o OUTPUT_DIR/geneBody
     - samtools:
         bedcov: samtools bedcov FILE EXBAM
     - segtools:
@@ -135,6 +165,10 @@ tools:  # Require that the command line sequence to be executed be written on on
     - seqkit:
         subseq: seqkit subseq --bed FILE FASTA
         seq: seqkit seq -M FILE FASTA
+    - slncky:
+        slncky: slncky FILE hg38 OUTPUT_DIR/ -c SLNCKY_CONFIG
+    - smoove:
+        smoove call -x --name tester --exclude FILE --fasta FASTA BAM -o OUTPUT_DIR/
     - snpEff:
         count: snpEff count hg38 INTERSECT FILE -Xmx4g
     - snpSift:
@@ -156,22 +190,31 @@ tools:  # Require that the command line sequence to be executed be written on on
         intersect: vcfintersect -b FILE VCF
     - wiggletools:
         AUC: wiggletools AUC FILE
+    - wisestork:
+        gc-correct: wisestork gc-correct -R GENOME -I FILE
     - xyalign:
         PREPARE_REFERENCE: xyalign --PREPARE_REFERENCE --ref GENOME --reference_mask FILE -o OUTPUT_DIR/ --x_chromosome chrX --y_chromosome chrY
 python-versions:
     alfred: 3.7
+    alignstats: 3.7
     atactk: 2.7
     ataqv: 2.7
+    # augur: -1.0  # Installed on "augur" conda environment
+    bazam: 3.7
+    # bcftools: 3.7
     bedops: 3.7
     bedtools: 3.7
+    bioconvert: 3.6
     bioFluff: 3.6
     biopet: 3.7
     blockbuster: 3.7
     cgat: 3.6
     chunked-scatter: 3.6
+    cistrome-beta: 2.7
     cnvkit: 3.6
     combined p-values: 2.7
     concoct: 3.6
+    cpat: 2.7
     crossmap: 3.6
     dammet: 3.7
     deeptools: 3.7
@@ -184,6 +227,7 @@ python-versions:
     genometools: 2.7
     gff-compare: 3.7
     gimmemotifs: 3.6
+    HipSTR: 3.7 
     homer: 3.6
     iCount: 3.6
     idr: 3.6
@@ -191,6 +235,7 @@ python-versions:
     intervene: 3.7
     macs2: 2.7
     mosdepth: 3.7
+    multigps: 3.6
     ngs-bits: 3.7
     ngsutils: 2.7
     novasplice: 3.6
@@ -200,16 +245,20 @@ python-versions:
     Piranha: 2.7
     plastid: 2.7
     portcullis: 3.6
-    preseq: -1.0  # Not installed in a Python environment
+    # preseq: -1.0
     pygtftk: 3.6
     qualimap: 3.7
     quast: 3.6
     rapid: 3.7
+    regtools: 3.7
     rpkmforgenes: 2.7
     rseg: 3.7
+    rseqc: 3.7
     samtools: 3.7
     segtools: 2.7
     seqkit: 3.7
+    # slncky: 2.7
+    smoove: 2.7
     snpEff: 3.7
     snpSift: 3.6
     tobias: 3.7
@@ -218,5 +267,5 @@ python-versions:
     variantbam: 3.7
     vcflib: 3.7
     wiggletools: 3.7
+    wisestork: 3.7
     xyalign: 2.7
-    
