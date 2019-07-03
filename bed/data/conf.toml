@@ -1,6 +1,5 @@
 [[annotation]]
-file="FILE"
+file="good/06-strand/standard_strand.bed.gz"
 columns = [4, 4]
-names=["fitcons_mean", "lua_sum"]
-# note the 2nd op here is lua that has access to `vals`
-ops=["mean", "lua:function sum(t) local sum = 0; for i=1,#t do sum = sum + t[i] end return sum / #t end"]
+names=["fitcons_mean", "counnntttt"]
+ops=["mean", "count"]
