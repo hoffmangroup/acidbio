@@ -6,6 +6,7 @@ import getopt
 import seaborn as sns; sns.set()
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
+from more_itertools import sort_together
 from run_bad import run_bad
 from run_good import run_good
 from yaml import load, dump
@@ -65,7 +66,7 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
             if python_versions[program] != version:
                 continue
             if program != 'ucsc' and program != 'bedtools' and program != 'ngs-bits': continue
-
+            # if program != 'bedtools': continue
             commands = tool[program]
             
             for command, execution in commands.items():
@@ -85,7 +86,10 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
             
     stream.close()
 
+    num_correct = [l.count(1) for l in correct_list]
     file_list = get_file_names()
+
+    num_correct, correct_list, name_list = sort_together([num_correct, correct_list, name_list], key_list=[0])
 
     GnRd = colors.LinearSegmentedColormap('GnRd', cdict)
     # print(correct_list)

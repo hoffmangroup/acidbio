@@ -205,11 +205,12 @@ python-versions:
     alignstats: 3.7
     atactk: 2.7
     ataqv: 2.7
-    # augur: -1.0  # Installed on "augur" conda environment
+    augur: -1.0  # Installed on "augur" conda environment
     bazam: 3.7
-    # bcftools: 3.7
+    bcftools: 3.7
     bedops: 3.7
     bedtools: 3.7
+    bgt: 3.7
     bioconvert: 3.6
     bioFluff: 3.6
     biopet: 3.7
@@ -252,8 +253,9 @@ python-versions:
     Piranha: 2.7
     plastid: 2.7
     portcullis: 3.6
-    # preseq: -1.0
+    preseq: -1.0
     pygtftk: 3.6
+    octopus: 2.7
     qualimap: 3.7
     quast: 3.6
     rapid: 3.7
@@ -265,7 +267,7 @@ python-versions:
     segtools: 2.7
     seqkit: 3.7
     seqtk: 3.7
-    # slncky: 2.7
+    slncky: 2.7
     smoove: 2.7
     snpEff: 3.7
     snpSift: 3.6
