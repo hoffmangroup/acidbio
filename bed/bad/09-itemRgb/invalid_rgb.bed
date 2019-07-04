@@ -1,6 +1,2 @@
-# invalid rgb color
-
-track name="rgb" description="invalid rgb" itemRgb="On"
-chr1	1	23	name1	776	-	1	1	256,0,0
-chr2	1	24	name2	761	.	1	1	128,128,0
-
+chr19	1044	1123	name1	776	-	1055	1111	256,0,0
+chr20	1511	1554	name2	761	+	1522	1550	128,128,0

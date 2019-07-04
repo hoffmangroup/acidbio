@@ -1,8 +1,5 @@
-# unrecognized browser attribute
-
-browser position chr9:1002211-1004444
+browser position chr19:1200-1800
 browser expand all
 track name="brow_invalid" description="expand isn't an attribute"
-chr9	1002222	1002244
-chr9	1002250	1002270
-
+chr19	1300	1400
+chr19	1500	1600

@@ -1,6 +1,3 @@
-# Name can't contain spaces.
-
-chr1	13000	13300	bad name	800
-chr1	13340	13400	good_name	780
-chr1	13440	13500	okie_dokie	800
-
+chr19	1300	1350	bad name	800
+chr19	1550	1600	good_name	780
+chr20	1010	1200	okie_dokie	800

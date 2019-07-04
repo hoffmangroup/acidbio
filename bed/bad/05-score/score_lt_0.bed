@@ -1,5 +1,2 @@
-# score less than 0
-
-track useScore=1
-chrX	1	10	name1	-1
-chrY	9	23	name2	999
+chr19	1410	1480	name1	-1
+chr20	1729	1823	name2	999

@@ -1,5 +1,2 @@
-# missing rgb though following fields are filled
-
-chr1	1	10	name1	299	+	1	1		5
-chr2	1	13	name2	291	-	1	1	255,0,0	4
-
+chr19	1044	1110	name1	899	+	1045	1100		5
+chr20	1241	1293	name2	891	-	1245	1290	255,0,0	4

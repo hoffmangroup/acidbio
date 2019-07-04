@@ -1,7 +1,0 @@
-# two rows that have the same values in all columns
-
-track useScore=1 itemRgb="On"
-chr1	3500	4500	A	800	-	3500	4500	2	100,100	0,500
-chr1	3500	4500	A	800	-	3500	4500	2	100,100	0,500
-chr1	4500	4670	B	800	-	4500	4500	1	150	0
-

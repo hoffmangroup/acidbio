@@ -1,6 +1,3 @@
-# a file that isn't tab delimited
-
-chr1	800	1300	A
-chr1	1400    2300	B
-chr1	2400    2700	C
-
+chr19	1090	1200	A
+chr19	1400    1500	B
+chr20	1600    1700	C

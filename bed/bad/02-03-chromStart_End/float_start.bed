@@ -1,6 +1,3 @@
-# Non-integer number for chromStart
-
-chr1	1.5	5
-chr1	9	22
-chr1	34.1	39
-
+chr19	1011.5	1095
+chr19	1339	1422
+chr19	1534.1	1589

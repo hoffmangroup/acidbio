@@ -1,5 +1,3 @@
-# chrom is a mandatory field
-
-chr1	4  10
-chr2	1  10
-.	3  12
+chr19	1004	1210
+chr20	1311	1400
+.	1443	1492

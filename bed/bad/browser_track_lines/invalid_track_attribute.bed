@@ -1,8 +1,5 @@
-# using a unrecognized track variable.
-
 track name="This track" description="a track" useScore=1 disable="True"
-chr1	1000	2000	A	890	-
-chr1	1400	2100	B	999	+
-chr1	2200	2400	C	900	-
-chr1	2450	2900	D	791	-
-
+chr19	1000	1100	A	890	-
+chr19	1400	1600	B	999	+
+chr20	1200	1400	C	900	-
+chr20	1450	1500	D	791	-

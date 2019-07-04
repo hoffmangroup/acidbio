@@ -1,5 +1,2 @@
-# a block extends too far, out of the range of the part of chromosone
-
-chr1	1000	2000	A	800	+	1000	2000	0	1	300	800
-chr1	2000	3000	B	800	-	2000	3000	0	1	80	100
-
+chr19	1000	1100	A	800	+	1001	1090	0,0,0	1	110	0
+chr20	1200	1300	B	830	-	1210	1230	0,0,0	1	100	0

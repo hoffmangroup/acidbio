@@ -1,9 +1,8 @@
-# Simple case for failing: If chromStart > chromEnd
-chr1	 2    34
-chr1	 32   40
-chr1	 70   110
-chr1	 109  126
-chr1	 110  109
-chr2	 2    23
-chr2	 24   26
-chr3	 1    10
+chr19	1002	1044
+chr19	1132	1240
+chr19	1370	1410
+chr19	1509	1539
+chr19	1610	1609
+chr20	1223	1523
+chr20	1624	1706
+chr20	1800	1830

@@ -1,5 +1,3 @@
-# chromStart can't be negative
-
-chr1	     -10   20
-chr1	     2	   23
-chrX	     3	   9
+chr19	-1064	1120
+chr19	1422	1453
+chr20	1373	1409
