@@ -67,7 +67,7 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
                 continue
             # if program != 'bedtools': continue
             # if program != 'bedtools': continue
-            if program[0] not in ['a', 'b']: continue
+            if program[0] not in ['a']: continue
             commands = tool[program]
             
             for command, execution in commands.items():

@@ -1,7 +1,4 @@
-# a name gets used more than once
-
-chr1	100	140	name1
-chr1	180	220	name2
-chr1	300	340	name1
-chr1	400	450	name4
-
+chr19	1100	1140	name1
+chr19	1180	1220	name2
+chr20	1300	1340	name1
+chr20	1400	1450	name4

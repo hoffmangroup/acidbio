@@ -1,5 +1,3 @@
-# example 3 from https://genome.ucsc.edu/goldenPath/help/customTrack.html
-
 browser position chr22:1000-10000
 browser hide all
 track name="BED track" description="BED format custom track example" visibility=2 color=0,128,0 useScore=1

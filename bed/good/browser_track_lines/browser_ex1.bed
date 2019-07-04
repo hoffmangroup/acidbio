@@ -1,5 +1,3 @@
-# Example 1 from https://genome.ucsc.edu/goldenPath/help/customTrack.html
-
 browser position chr22:20100000-20100900
 track name=coords description="Chromosome coordinates list" visibility=2
 #chrom chromStart chromEnd

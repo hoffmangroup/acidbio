@@ -22,7 +22,7 @@ settings: # some file locations
         OUTPUT_DIR: ./scratch/trash
 tools:  # Require that the command line sequence to be executed be written on one line
     - alfred:
-        annotate: alfred annotate -b GENE_BED FILE
+        annotate: alfred annotate -b GENE_BED FILE -u OUTPUT_DIR/alfred_gene.bed -o OUTPUT_DIR/alfred_anno.bed
     - alignstats:
         alignstats: alignstats -i EXBAM -o /dev/stdout -t FILE
     - atactk:

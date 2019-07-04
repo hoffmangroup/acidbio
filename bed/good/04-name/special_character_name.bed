@@ -1,8 +1,5 @@
-# special characters in the name
-
-chr1	300	400	__ATCGG__
-chr2	300	410	A>CCCGGG
-chr2	420	440	<CC><GG>
-chr2	450	500	&CA&GTT&
-chr3	100	130	#CA#CA#CA
-
+chr19	1300	1400	__ATCGG__
+chr20	1300	1410	A>CCCGGG
+chr20	1420	1470	<CC><GG>
+chr20	1450	1500	&CA&GTT&
+chr20	1600	1630	#CA#CA#CA

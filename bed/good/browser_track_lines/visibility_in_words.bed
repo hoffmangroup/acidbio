@@ -1,7 +1,4 @@
-# visibility can be a word
-
 track name="visible" description="testing visibility" visibility="full"
-chr1	100	200
-chr1	200	300
-chr2	240	321
-
+chr19	1100	1200
+chr19	1200	1300
+chr20	1240	1321
