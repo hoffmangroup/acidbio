@@ -1,5 +1,5 @@
 track name="This track" description="a track" useScore=1 disable="True"
-chr19	1000	1100	A	890	-
-chr19	1400	1600	B	999	+
-chr20	1200	1400	C	900	-
-chr20	1450	1500	D	791	-
+chr19	251000	251100	A	890	-
+chr19	251400	251600	B	999	+
+chr20	251200	251400	C	900	-
+chr20	251450	251500	D	791	-

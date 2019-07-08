@@ -6,6 +6,7 @@ import getopt
 import seaborn as sns; sns.set()
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
+import pickle
 from more_itertools import sort_together
 from run_bad import run_bad
 from run_good import run_good
@@ -66,8 +67,7 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
             if python_versions[program] != version:
                 continue
             # if program != 'bedtools': continue
-            # if program != 'bedtools': continue
-            if program[0] not in ['a']: continue
+            # if program[0] < 'r': continue
             commands = tool[program]
             
             for command, execution in commands.items():
@@ -91,10 +91,13 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
     file_list = get_file_names()
 
     num_correct, correct_list, name_list = sort_together([num_correct, correct_list, name_list], key_list=[0])
+    
+    with open('saved' + str(version), 'wb') as fp:
+        pickle.dump([num_correct, correct_list, name_list], fp)
 
     GnRd = colors.LinearSegmentedColormap('GnRd', cdict)
     # print(correct_list)
-    plt.figure(figsize=(24,8))
+    plt.figure(figsize=(21,24))
     ax = sns.heatmap(correct_list, cmap=GnRd, linewidths=.5, square=True, cbar=False, xticklabels=file_list, yticklabels=name_list)
     plt.yticks(rotation=0)
     plt.tight_layout()

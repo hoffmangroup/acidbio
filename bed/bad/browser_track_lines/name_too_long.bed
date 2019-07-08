@@ -1,3 +1,3 @@
 track name="a very long illegal name" description="not going to work"
-chr19	1000	1100	A	890	-
-chr20	1000	1100	B	910	+
+chr19	251000	251100	A	890	-
+chr20	251000	251100	B	910	+

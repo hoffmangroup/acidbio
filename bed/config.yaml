@@ -22,7 +22,7 @@ settings: # some file locations
         OUTPUT_DIR: ./scratch/trash
 tools:  # Require that the command line sequence to be executed be written on one line
     - alfred:
-        annotate: alfred annotate -b GENE_BED FILE -u OUTPUT_DIR/alfred_gene.bed -o OUTPUT_DIR/alfred_anno.bed
+        annotate: alfred annotate -b GENE_BED FILE -u /dev/null -o /dev/null
     - alignstats:
         alignstats: alignstats -i EXBAM -o /dev/stdout -t FILE
     - atactk:
@@ -34,22 +34,21 @@ tools:  # Require that the command line sequence to be executed be written on on
     - bazam:
         bazam: bazam -bam BAZAMBAM -L FILE
     - bedops:
-        intersect: bedops --intersect INTERSECT FILE
+        # intersect: bedops --intersect INTERSECT FILE
         complement: bedops --complement INTERSECT FILE
         element-of: bedops --element-of 10 INTERSECT FILE
-        error checking: bedops -ec --everything FILE
     - bedtools:
         intersect: bedtools intersect -a INTERSECT -b FILE
         merge: sort -k1,1 -k2,2n FILE > TEMP1; bedtools merge -i TEMP1
         coverage: bedtools coverage -a INTERSECT -b FILE
-    - bgt:
-        view: bgt view -B FILE BGT
+    # - bgt:
+    #     view: bgt view -B FILE BGT
     - bioconvert:
         bed2wiggle: bioconvert bed2wiggle FILE /dev/stdout --force
-    - bioFluff:
-        heatmap: fluff heatmap -f FILE -d EXBAM -o OUTPUT_DIR/
+    # - bioFluff:
+        # heatmap: fluff heatmap -f FILE -d EXBAM -o OUTPUT_DIR/
     - biopet:
-        WipeReads: biopet tool WipeReads -I EXBAM -r FILE -o /dev/stdout 2>/dev/null
+        WipeReads: biopet tool WipeReads -I EXBAM -r FILE -o OUTPUT_DIR/biopet 2>/dev/null
     - blockbuster:
         blockbuster: blockbuster.x FILE
     - cgat:
@@ -66,14 +65,14 @@ tools:  # Require that the command line sequence to be executed be written on on
     - combined p-values:
         acf: comb-p FILE
     - concoct:
-        cut_up_fasta: cut_up_fasta.py -c 5 -o 0 -m -b FILE FASTA
-        coverage_table: converage_table.py FILE EXBAM
+        cut_up_fasta: cut_up_fasta.py -c 100 -o 0 -m -b FILE FASTA
+        # coverage_table: coverage_table FILE EXBAM
     - cpat:
         cpat: cpat.py -r GENOME -g FILE -d LOGIT -x HEXAMER -o OUTPUT_DIR/cpat
-    - crossmap:
-        CrossMap: CrossMap.py bed CHAIN FILE
+    # - crossmap:
+        # CrossMap: CrossMap.py bed CHAIN FILE
     - dammet:
-        DamMet: DamMet -b EXBAM -r GENOME -c chr19 -e FILE
+        DamMet: DamMet -b EXBAM -r GENOME -c chr19 -B FILE -O OUTPUT_DIR/DamMet
     - deeptools:
         computeMatrix scale-regions: computeMatrix scale-regions -S BIGWIG -R FILE -bs 1 -o OUTPUT_DIR/computeMatrixResult
     - dsh-bio:
@@ -159,9 +158,9 @@ tools:  # Require that the command line sequence to be executed be written on on
     - rpkmforgenes:
         rpkmforgenes: rpkmforgenes.py -o OUTPUT_DIR/rpkm.txt -i INTERSECT -a FILE
     - rseg:
-        rseg: rseg -c BED_SIZE -o /dev/stdout FILE
-    - rseqc:
-        geneBody_coverage: geneBody_coverage.py -i EXBAM -r FILE -o OUTPUT_DIR/geneBody
+        rseg: rseg -c BED_SIZE -o /dev/stdout FILE -i 1 -b 10000 -bin-step 100
+    # - rseqc:
+        # geneBody_coverage: geneBody_coverage.py -i EXBAM -r FILE -o OUTPUT_DIR/geneBody
     - samtools:
         bedcov: samtools bedcov FILE EXBAM
     - segtools:
@@ -176,7 +175,7 @@ tools:  # Require that the command line sequence to be executed be written on on
     - smoove:
         call: smoove call -x --name tester --exclude FILE --fasta FASTA BAM -o OUTPUT_DIR/
     - snpEff:
-        count: snpEff count hg38 INTERSECT FILE -Xmx4g
+        count: snpEff count hg38 INTERSECT FILE -Xmx4g -t
     - snpSift:
         join: SnpSift join -cols1 bed -cols2 bed INTERSECT FILE -Xmx2g
         intersect: SnpSift intersect INTERSECT FILE -Xmx2g
@@ -196,7 +195,7 @@ tools:  # Require that the command line sequence to be executed be written on on
     - wiggletools:
         AUC: wiggletools AUC FILE
     - wisestork:
-        gc-correct: wisestork gc-correct -R GENOME -I FILE
+        gc-correct: wisestork gc-correct -R GENOME -I FILE -O /dev/stdout
     - xyalign:
         PREPARE_REFERENCE: xyalign --PREPARE_REFERENCE --ref GENOME --reference_mask FILE -o OUTPUT_DIR/ --x_chromosome chrX --y_chromosome chrY
 python-versions:

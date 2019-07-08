@@ -1,7 +1,4 @@
-# a space character after a tab delimiter
-
-chr1	100 	200
-chr1	210	230
-chr1	300	340
-chr1	350	410
-
+chr19	251100 	251200
+chr19	251210	251230
+chr20	251300	251340
+chr20	251350	251410
