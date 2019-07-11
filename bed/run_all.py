@@ -66,7 +66,7 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
         for program in list(tool.keys()):
             if python_versions[program] != version:
                 continue
-            # if program != 'bedtools': continue
+            # if program != 'segtools': continue
             # if program[0] < 'r': continue
             commands = tool[program]
             
@@ -101,7 +101,7 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
     ax = sns.heatmap(correct_list, cmap=GnRd, linewidths=.5, square=True, cbar=False, xticklabels=file_list, yticklabels=name_list)
     plt.yticks(rotation=0)
     plt.tight_layout()
-    plt.savefig('out/results.png')
+    plt.savefig('out/results' + str(version) + '.png')
 
 
 def usage():

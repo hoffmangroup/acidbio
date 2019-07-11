@@ -45,7 +45,7 @@ def run_good(tool, tool_name=None, verbose=False, output_file="out/failed_good.t
                 wrong_file_format = "wrong file format" in out
                 skip_line = "Skipping line:" in out
                 error = "Error" in err or "ERROR:" in out or "java.lang.RuntimeException" in err or "WARNING:" in err
-                invalid_bed = "invalid BED" in err
+                invalid_bed = "invalid BED" in err or "FileFormatWarning" in err
 
                 if p.returncode == 0 and not (wrong_file_format or skip_line or error or invalid_bed):
                     print(filepath + ' passed correctly') # CHANGE BACK
@@ -59,9 +59,9 @@ def run_good(tool, tool_name=None, verbose=False, output_file="out/failed_good.t
                     if verbose:
                         print(out)
                         print()
-                    out_file.write("%===========================%\n" + filepath + "\n\n")
-                    out_file.write(out)
-                    out_file.write("%===========================%\n\n")
+                    # out_file.write("%===========================%\n" + filepath + "\n\n")
+                    # out_file.write(out.encode('utf-8'))
+                    # out_file.write("%===========================%\n\n")
     print()
     print(str(correct_array.count(1)) + " correct out of " + str(len(correct_array)))
 

@@ -9,6 +9,7 @@ settings: # some file locations
         EXBAM: ./data/toy.bam
         BAZAMBAM: ./data/bazam.bam
         FASTA: ./data/toy.fa
+        FA_XY_STA: ./data/edited_toy.fa
         CHAIN: ./data/hg38ToHg19.over.chain.gz
         BIGWIG: ./data/toy.bw
         DESIGN: ./data/example.design
@@ -28,7 +29,7 @@ tools:  # Require that the command line sequence to be executed be written on on
     - atactk:
         make_cut_matrix: make_cut_matrix -a -b '(36-149 150-324 325-400 1)' EXBAM FILE
     - ataqv:
-        ataqv: ataqv --peak-file FILE --metrics-file /dev/null human EXBAM
+        ataqv: ataqv --peak-file FILE --metrics-file /dev/null human BAZAMBAM
     - augur:
         mask: augur mask -s VCF --mask FILE -o /dev/stdout
     - bazam:
@@ -53,20 +54,18 @@ tools:  # Require that the command line sequence to be executed be written on on
         blockbuster: blockbuster.x FILE
     - cgat:
         merge: cat FILE | cgat bed2bed --method=merge
-        shift: chat FILE | cgat bed2bed --method=offset -g GENOME
-        bed2stats: cgat bed2table < FILE
+        shift: cat FILE | cgat bed2bed --method=sanitize-genome -g GENOME
     - chunked-scatter:
         chunked-scatter: chunked-scatter -p OUTPUT_DIR/scatter_ -i FILE -m 10 -c 40
-    - cistrome-beta:
-        minus: BETA minus -p FILE -g hg19
+    # - cistrome-beta:
+        # minus: BETA minus -p FILE -g hg19
     - cnvkit:
         target: cnvkit.py target FILE
         access: cnvkit.py access GENOME -x FILE
     - combined p-values:
         acf: comb-p FILE
     - concoct:
-        cut_up_fasta: cut_up_fasta.py -c 100 -o 0 -m -b FILE FASTA
-        # coverage_table: coverage_table FILE EXBAM
+        coverage_table: coverage_table -p FILE -d EXBAM
     - cpat:
         cpat: cpat.py -r GENOME -g FILE -d LOGIT -x HEXAMER -o OUTPUT_DIR/cpat
     # - crossmap:
@@ -85,8 +84,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         HiCPro2FitHiC: scratch/fithic/fithic/utils/HiCPro2HitFiC.py -i CONTACT_MATRIX -b FILE
     - f-seq:
         f-seq: scratch/F-seq/dist~/fseq/bin/fseq -f 10 -o OUTPUT_DIR -of bed FILE
-    - gat:
-        gat: scratch/gat/scripts/gat-run.py --segment-file=FILE --annotation-file=INTERSECT --workspace-file=BED_SIZE
+    # - gat:
+        # gat: scratch/gat/scripts/gat-run.py --segment-file=FILE --annotation-file=INTERSECT --workspace-file=BED_SIZE
     - genometools:
         bed_to_gff: gt bed_to_gff3 FILE
     - gff-compare:
@@ -97,7 +96,7 @@ tools:  # Require that the command line sequence to be executed be written on on
     - HipSTR:
         HipSTR: scratch/HipSTR/HipSTR --bams BAZAMBAM --fasta GENOME --regions FILE --str-vcf OUTPUT_DIR/hipstr.vcf.gz
     - homer:
-        findMotifsGenome: findMotifsGenome.pl FILE hg19 OUTPUT_DIR -size 20
+        findMotifsGenome: findMotifsGenome.pl FILE hg19 OUTPUT_DIR -size 20 -S 1
     - iCount:
         clusters: iCount clusters INTERSECT FILE OUTPUT_DIR/iCount.txt -F 0
         annotate: iCount annotate GTF FILE OUTPUT_DIR/iCount.bed -F 0
@@ -110,7 +109,7 @@ tools:  # Require that the command line sequence to be executed be written on on
         upset: intervene upset -i FILE INTERSECT -o OUTPUT_DIR/
         venn: intervene venn -i FILE INTERSECT -o OUTPUT_DIR/
     - macs2:
-        callpeak: macs2 callpeak -t FILE -f BED 
+        callpeak: macs2 callpeak -t FILE -f BED --nomodel --outdir OUTPUT_DIR/ 
     - mosdepth:
         mosdepth: mosdepth -b FILE OUTPUT_DIR/mos EXBAM
     - multigps:
@@ -134,8 +133,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         ccat: peakranger ccat --format bed FILE INTERSECT --output /dev/stdout
     - Piranha:
         basic: Piranha FILE
-    - peakzilla:
-        peakzilla: peakzilla.py FILE INTERSECT
+    # - peakzilla:
+        # peakzilla: peakzilla.py FILE INTERSECT -l OUTPUT_DIR/
     - picard:
         BedToIntervalList: picard BedToIntervalList INPUT=FILE SD=DICTIONARY OUTPUT=/dev/stdout
     - plastid:
@@ -164,16 +163,16 @@ tools:  # Require that the command line sequence to be executed be written on on
     - samtools:
         bedcov: samtools bedcov FILE EXBAM
     - segtools:
-        overlap: segtools-overlap INTERSECT FILE
+        overlap: segtools-overlap INTERSECT FILE -o OUTPUT_DIR/ --clobber
     - seqkit:
         subseq: seqkit subseq --bed FILE FASTA
-        seq: seqkit seq -M FILE FASTA
+        # seq: seqkit seq -M FILE FASTA
     - seqtk:
         subseq: seqtk subseq FASTA FILE
-    - slncky:
-        slncky: slncky FILE hg38 OUTPUT_DIR/ -c SLNCKY_CONFIG
+    # - slncky:
+        # slncky: slncky FILE hg38 OUTPUT_DIR/ -c SLNCKY_CONFIG
     - smoove:
-        call: smoove call -x --name tester --exclude FILE --fasta FASTA BAM -o OUTPUT_DIR/
+        call: smoove call -x --name tester --exclude FILE --fasta FASTA BAZAMBAM -o OUTPUT_DIR/
     - snpEff:
         count: snpEff count hg38 INTERSECT FILE -Xmx4g -t
     - snpSift:
@@ -197,7 +196,7 @@ tools:  # Require that the command line sequence to be executed be written on on
     - wisestork:
         gc-correct: wisestork gc-correct -R GENOME -I FILE -O /dev/stdout
     - xyalign:
-        PREPARE_REFERENCE: xyalign --PREPARE_REFERENCE --ref GENOME --reference_mask FILE -o OUTPUT_DIR/ --x_chromosome chrX --y_chromosome chrY
+        PREPARE_REFERENCE: xyalign --PREPARE_REFERENCE --ref FA_XY_STA --reference_mask FILE -o OUTPUT_DIR/ --x_chromosome chrX --y_chromosome chrY
 python-versions:
     alfred: 3.7
     alignstats: 3.7
