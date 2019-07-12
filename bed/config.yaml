@@ -31,8 +31,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         make_cut_matrix: make_cut_matrix -a -b '(36-149 150-324 325-400 1)' EXBAM FILE
     - ataqv:
         ataqv: ataqv --peak-file FILE --metrics-file /dev/null human BAZAMBAM
-    - augur:
-        mask: augur mask -s VCF --mask FILE -o /dev/stdout
+    # - augur:
+        # mask: augur mask -s VCF --mask FILE -o /dev/stdout
     - bazam:
         bazam: bazam -bam BAZAMBAM -L FILE
     - bedops:
@@ -82,18 +82,17 @@ tools:  # Require that the command line sequence to be executed be written on on
     - epic2:
         epic: epic2 --treatment FILE
     - fithic:
-        HiCPro2FitHiC: scratch/fithic/fithic/utils/HiCPro2HitFiC.py -i CONTACT_MATRIX -b FILE
+        HiCPro2FitHiC: scratch/fithic/fithic/utils/HiCPro2FitHiC.py -i CONTACT_MATRIX -b FILE
     - f-seq:
         f-seq: scratch/F-seq/dist~/fseq/bin/fseq -f 10 -o OUTPUT_DIR -of bed FILE
     # - gat:
-        # gat: scratch/gat/scripts/gat-run.py --segment-file=FILE --annotation-file=INTERSECT --workspace-file=BED_SIZE
+        # gat: gat-run.py --segment-file=FILE --annotation-file=INTERSECT --workspace-file=BED_SIZE
     - genometools:
         bed_to_gff: gt bed_to_gff3 FILE
     - gff-compare:
         trmap: trmap INTERSECT FILE
     # - gimmemotifs:
-    #     motifs: gimme motifs FILE -g hg38 -n scratch/gimme
-    #     scan: gimme scan FILE -g hg38 -c 0 -n 1 -b'
+        # scan: gimme scan FILE -g hg38 -c 0 -n 1 -b
     - HipSTR:
         HipSTR: scratch/HipSTR/HipSTR --bams BAZAMBAM --fasta GENOME --regions FILE --str-vcf OUTPUT_DIR/hipstr.vcf.gz
     - homer:
@@ -143,8 +142,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         findjuncs: findjuncs OUTPUT_DIR/result --annotation_format BED --annotation_files FILE
     - portcullis:
         compare: junctools compare INTERSECT FILE
-    - preseq:
-        c_curve: preseq c_curve FILE
+    # - preseq:
+        # c_curve: preseq c_curve FILE
     - pygtftk:
         bed_to_gtf: gtftk bed_to_gtf -i FILE
     - qualimap:
@@ -171,7 +170,7 @@ tools:  # Require that the command line sequence to be executed be written on on
     - seqtk:
         subseq: seqtk subseq FASTA FILE
     # - slncky:
-        # slncky: slncky FILE hg38 OUTPUT_DIR/ -c SLNCKY_CONFIG
+        # slncky: slncky FILE hg38 OUTPUT_DIR/ -c SLNCKY_CONFIG --min_coding 0.1 --overwrite --no_self
     - smoove:
         call: smoove call -x --name tester --exclude FILE --fasta FASTA BAZAMBAM -o OUTPUT_DIR/
     - snpEff:
@@ -179,6 +178,8 @@ tools:  # Require that the command line sequence to be executed be written on on
     - snpSift:
         join: SnpSift join -cols1 bed -cols2 bed INTERSECT FILE -Xmx2g
         intersect: SnpSift intersect INTERSECT FILE -Xmx2g
+    # - somaticseq:
+        # single: scratch/somaticseq/somaticseq_parallel.py -out OUTPUT_DIR/ -ref GENOME -include FILE single -bam EXBAM
     - tobias:
         ATACorrect: TOBIAS ATACorrect --bam EXBAM --genome FASTA --peaks FILE --outdir OUTPUT_DIR/
     - twobitreader:
@@ -215,7 +216,7 @@ python-versions:
     blockbuster: 3.7
     cgat: 3.6
     chunked-scatter: 3.6
-    cistrome-beta: 2.7
+    cistrome-beta: -1.0
     cnvkit: 3.6
     combined p-values: 2.7
     concoct: 3.6
@@ -228,10 +229,10 @@ python-versions:
     epic2: 3.7
     fithic: 3.6
     f-seq: 3.6
-    gat: 2.7
+    gat: -1.0  # installed on scipy0 environment
     genometools: 2.7
     gff-compare: 3.7
-    gimmemotifs: 3.6
+    gimmemotifs: -1.0  # installed on scipy0 environment
     HipSTR: 3.7 
     homer: 3.6
     iCount: 3.6
@@ -251,7 +252,7 @@ python-versions:
     Piranha: 2.7
     plastid: 2.7
     portcullis: 3.6
-    preseq: -1.0
+    preseq: -1.0  # installed on special1
     pygtftk: 3.6
     octopus: 2.7
     qualimap: 3.7
@@ -265,10 +266,11 @@ python-versions:
     segtools: 2.7
     seqkit: 3.7
     seqtk: 3.7
-    slncky: 2.7
+    slncky: -1.0  # installed on special1
     smoove: 2.7
     snpEff: 3.7
     snpSift: 3.6
+    somaticseq: -1.0 # scratch folder?
     tobias: 3.7
     twobitreader: 3.7
     ucsc: 3.7

@@ -92,16 +92,16 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
 
     num_correct, correct_list, name_list = sort_together([num_correct, correct_list, name_list], key_list=[0])
     
-    with open('saved' + str(version), 'wb') as fp:
+    with open('saved' + str(version - 1), 'wb') as fp:
         pickle.dump([num_correct, correct_list, name_list], fp)
 
-    GnRd = colors.LinearSegmentedColormap('GnRd', cdict)
-    # print(correct_list)
-    plt.figure(figsize=(21,24))
-    ax = sns.heatmap(correct_list, cmap=GnRd, linewidths=.5, square=True, cbar=False, xticklabels=file_list, yticklabels=name_list)
-    plt.yticks(rotation=0)
-    plt.tight_layout()
-    plt.savefig('out/results' + str(version) + '.png')
+    # GnRd = colors.LinearSegmentedColormap('GnRd', cdict)
+    
+    # plt.figure(figsize=(21,24))
+    # ax = sns.heatmap(correct_list, cmap=GnRd, linewidths=.5, square=True, cbar=False, xticklabels=file_list, yticklabels=name_list)
+    # plt.yticks(rotation=0)
+    # plt.tight_layout()
+    # plt.savefig('out/results' + str(version) + '.png')
 
 
 def usage():
