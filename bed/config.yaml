@@ -20,6 +20,7 @@ settings: # some file locations
         HEXAMER: ./data/hexamer_tab.tsv
         CONTACT_MATRIX: ./data/contact_frequency_matrix.gz
         BGT: ./data/1kg11-1M.bgt
+        VCF: ./data/toy.vcf
         OUTPUT_DIR: ./scratch/trash
 tools:  # Require that the command line sequence to be executed be written on one line
     - alfred:
@@ -98,8 +99,8 @@ tools:  # Require that the command line sequence to be executed be written on on
     - homer:
         findMotifsGenome: findMotifsGenome.pl FILE hg19 OUTPUT_DIR -size 20 -S 1
     - iCount:
-        clusters: iCount clusters INTERSECT FILE OUTPUT_DIR/iCount.txt -F 0
-        annotate: iCount annotate GTF FILE OUTPUT_DIR/iCount.bed -F 0
+        clusters: iCount clusters INTERSECT FILE OUTPUT_DIR/iCount.txt -F 0 -P OUTPUT_DIR/
+        annotate: iCount annotate GTF FILE OUTPUT_DIR/iCount.bed -F 0 -P OUTPUT_DIR/
     # - idr:
     #     idr: idr --samples INTERSECT FILE --input-file-type bed --rank score    
     - igvtools:
@@ -126,7 +127,7 @@ tools:  # Require that the command line sequence to be executed be written on on
         stats: bedutils stats FILE
         extend: bedutils extend -5 10 FILE
     - novasplice:
-        novasplice: novasplice -v VCF -r GENOME -b FILE -c SIZES
+        novasplice: novasplice -v VCF -r GENOME -b FILE -c SIZES -o OUTPUT_DIR/ -i OUTPUT_DIR/
     - octopus:
         octopus: octopus -R FASTA -I EXBAM -t FILE
     - peakranger:
@@ -149,7 +150,7 @@ tools:  # Require that the command line sequence to be executed be written on on
     - qualimap:
         comp-counts: qualimap comp-counts -bam EXBAM -gtf FILE
     - quast:
-        quast: quast FASTA --min-contig 5 -g FILE
+        quast: quast FASTA --min-contig 5 -g FILE -o OUTPUT_DIR/
     - rapid:
         rapidStats: rapidStats.sh -o=OUTPUT_DIR/ -f=EXBAM -ft=BAM -a=FILE
     - regtools:
@@ -174,12 +175,12 @@ tools:  # Require that the command line sequence to be executed be written on on
     - smoove:
         call: smoove call -x --name tester --exclude FILE --fasta FASTA BAZAMBAM -o OUTPUT_DIR/
     - snpEff:
-        count: snpEff count hg38 INTERSECT FILE -Xmx4g -t
+        count: snpEff count hg38 INTERSECT FILE -Xmx4g -t -n OUTPUT_DIR/snpeff
     - snpSift:
         join: SnpSift join -cols1 bed -cols2 bed INTERSECT FILE -Xmx2g
         intersect: SnpSift intersect INTERSECT FILE -Xmx2g
     - tobias:
-        ATACorrect: TOBIAS ATACorrect --bam EXBAM --genome FASTA --peaks FILE
+        ATACorrect: TOBIAS ATACorrect --bam EXBAM --genome FASTA --peaks FILE --outdir OUTPUT_DIR/
     - twobitreader:
         twobitreader: python -m twobitreader 2BIT < FILE
     - ucsc:
