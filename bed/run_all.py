@@ -8,8 +8,7 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 import pickle
 from more_itertools import sort_together
-from run_bad import run_bad
-from run_good import run_good
+from run_utils import *
 from yaml import load, dump
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
@@ -67,7 +66,7 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
             if python_versions[program] != version:
                 continue
             # if program != 'segtools': continue
-            # if program[0] < 'r': continue
+            # if program[0] <= 'c' or program[0] > 'g': continue
             commands = tool[program]
             
             for command, execution in commands.items():
