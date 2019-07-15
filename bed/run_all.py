@@ -36,6 +36,14 @@ def get_file_names():
         for file in os.listdir("./good/" + directory):
             if file.endswith(".bed"): file_names.append(file)
     file_names.append("")
+    for directory in os.listdir("./less_good"):
+        for file in os.listdir("./less_good/" + directory):
+            if file.endswith(".bed"): file_names.append(file)
+    file_names.extend(["", "", ""])
+    for directory in os.listdir("./less_bad"):
+        for file in os.listdir("./less_bad/" + directory):
+            if file.endswith(".bed"): file_names.append(file)
+    file_names.append("")
     for directory in os.listdir("./bad/"):
         for file in os.listdir("./bad/" + directory):
             if file.endswith(".bed"): file_names.append(file)
@@ -65,22 +73,37 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
         for program in list(tool.keys()):
             if python_versions[program] != version:
                 continue
-            # if program != 'segtools': continue
-            # if program[0] <= 'c' or program[0] > 'g': continue
+            # if program != 'pybedtools': continue
+            if program[0] >= 'o' or program[0] <= 'b': continue
             commands = tool[program]
             
             for command, execution in commands.items():
                 current_array = []
-                name_list.append(program + " " + command)
-                print("*"*18 + " " + program + " " + command + " " + "*"*18)
-                print("*"*18 + " good test cases " + "*"*18)
-                current_array.extend(run_good(execution, program + " " + command, verbose, failed_good_file, command_insertions))
-                print("*"*60)
+                title = program + " " + command
+                name_list.append(title)
+
+                print("*"*18 + " " + title + " " + "*"*18)
+                print("*"*18 + " strict good test cases " + "*"*18)
+                current_array.extend(run_good(execution, "./good/", title, verbose, failed_good_file, command_insertions))
+                print("*"*90)
                 print()
                 current_array.append(0.5)
-                print("*"*18 + " bad test cases " + "*"*18)
-                current_array.extend(run_bad(execution, program + " " + command, verbose, passed_bad_file, command_insertions))
-                print("*"*60)
+
+                print("*"*18 + "non-strict good cases" + "*"*18)
+                current_array.extend(run_good(execution, "./less_good/", title, verbose, failed_good_file, command_insertions))
+                print("*"*90)
+                print()
+                current_array.extend([0.5, 0.5, 0.5])
+
+                print("*"*18 + "non-strict bad test cases" + "*"*18)
+                current_array.extend(run_bad(execution, "./less_bad/", title, verbose, failed_good_file, command_insertions))
+                print("*"*90)
+                print()
+                current_array.append(0.5)
+
+                print("*"*18 + " strict bad test cases " + "*"*18)
+                current_array.extend(run_bad(execution, "./bad/", program + " " + command, verbose, passed_bad_file, command_insertions))
+                print("*"*90)
                 print()
                 correct_list.append(current_array)
             
@@ -91,7 +114,7 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
 
     num_correct, correct_list, name_list = sort_together([num_correct, correct_list, name_list], key_list=[0])
     
-    with open('saved' + str(version - 1), 'wb') as fp:
+    with open('modified_saved' + str(version - 1), 'wb') as fp:
         pickle.dump([num_correct, correct_list, name_list], fp)
 
     # GnRd = colors.LinearSegmentedColormap('GnRd', cdict)
