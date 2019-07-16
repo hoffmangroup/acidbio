@@ -73,8 +73,8 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
         for program in list(tool.keys()):
             if python_versions[program] != version:
                 continue
-            # if program != 'ucsc': continue
-            if program[0] >= 'o' or program[0] <= 'b': continue
+            if program != 'ucsc': continue
+            # if program[0] >= 'o' or program[0] <= 'b': continue
             commands = tool[program]
             
             for command, execution in commands.items():
@@ -82,26 +82,26 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
                 title = program + " " + command
                 name_list.append(title)
 
-                print("*"*18 + " " + title + " " + "*"*18)
-                print("*"*18 + " strict good test cases " + "*"*18)
+                print("*"*27 + " " + title + " " + "*"*27)
+                print("*"*27 + " strict good test cases " + "*"*27)
                 current_array.extend(run_good(execution, "./good/", title, verbose, failed_good_file, command_insertions))
                 print("*"*90)
                 print()
                 current_array.append(0.5)
 
-                print("*"*18 + "non-strict good cases" + "*"*18)
+                print("*"*27 + "non-strict good cases" + "*"*27)
                 current_array.extend(run_good(execution, "./less_good/", title, verbose, failed_good_file, command_insertions))
                 print("*"*90)
                 print()
                 current_array.extend([0.5, 0.5, 0.5])
 
-                print("*"*18 + "non-strict bad test cases" + "*"*18)
+                print("*"*27 + "non-strict bad test cases" + "*"*27)
                 current_array.extend(run_bad(execution, "./less_bad/", title, verbose, failed_good_file, command_insertions))
                 print("*"*90)
                 print()
                 current_array.append(0.5)
 
-                print("*"*18 + " strict bad test cases " + "*"*18)
+                print("*"*27 + " strict bad test cases " + "*"*27)
                 current_array.extend(run_bad(execution, "./bad/", program + " " + command, verbose, passed_bad_file, command_insertions))
                 print("*"*90)
                 print()
