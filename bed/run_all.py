@@ -73,8 +73,8 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
         for program in list(tool.keys()):
             if python_versions[program] != version:
                 continue
-            if program != 'ucsc': continue
-            # if program[0] >= 'o' or program[0] <= 'b': continue
+            # if program != 'ucsc': continue
+            if program[0] >= 'o' or program[0] <= 'b': continue
             commands = tool[program]
             
             for command, execution in commands.items():
