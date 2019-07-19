@@ -73,8 +73,7 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
         for program in list(tool.keys()):
             if python_versions[program] != version:
                 continue
-            # if program != 'ucsc': continue
-            if program[0] >= 'o' or program[0] <= 'b': continue
+
             commands = tool[program]
             
             for command, execution in commands.items():
@@ -129,7 +128,7 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
 def usage():
     print(
     """Tester for the BED format. Tests the tools in config.yaml to see if they appropriately throw warnings or errors.
-Usage: run_all.py [-h] [-V] [-v] [--failed-good] [--passed-bad]
+Usage: run_all.py [-h] [-V] [-v] [--failed-good=] [--passed-bad=]
     options:
       -h, --help    Help
       -v, --verbose=    If True, it prints the results and outputs from all tests
@@ -141,7 +140,8 @@ Usage: run_all.py [-h] [-V] [-v] [--failed-good] [--passed-bad]
 
 if __name__ == '__main__':
     try:
-        optlist, args = getopt.getopt(sys.argv[1:], "hVv:", ["help", "version", "verbose=", "failed-good=", "passed-bad="])
+        optlist, args = getopt.getopt(sys.argv[1:], "hVv:",
+            ["help", "version", "verbose=", "failed-good=", "passed-bad="])
     except getopt.GetoptError as err:
         print(err)
         usage()

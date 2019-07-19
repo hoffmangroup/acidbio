@@ -128,13 +128,13 @@ tools:  # Require that the command line sequence to be executed be written on on
     - novasplice:
         novasplice: novasplice -v VCF -r GENOME -b FILE -c SIZES -o OUTPUT_DIR/ -i OUTPUT_DIR/
     - octopus:
-        octopus: octopus -R FASTA -I EXBAM -t FILE
+        octopus: octopus -R FASTA -I EXBAM -t FILE -w OUTPUT_DIR/
     - peakranger:
         ccat: peakranger ccat --format bed FILE INTERSECT --output /dev/stdout
     - Piranha:
         basic: Piranha FILE
-    # - peakzilla:
-        # peakzilla: peakzilla.py FILE INTERSECT -l OUTPUT_DIR/
+    - peakzilla:
+        peakzilla: peakzilla.py FILE INTERSECT -l OUTPUT_DIR/
     - picard:
         BedToIntervalList: picard BedToIntervalList INPUT=FILE SD=DICTIONARY OUTPUT=/dev/stdout
     - plastid:
@@ -187,10 +187,10 @@ tools:  # Require that the command line sequence to be executed be written on on
     - twobitreader:
         twobitreader: python -m twobitreader 2BIT < FILE
     - ucsc:
-        # bedSort: ./scratch/ucsc-apps/bedSort FILE /dev/stdout
-        # bedClip: ./scratch/ucsc-apps/bedClip FILE SIZES /dev/stdout
-        # bedRemoveOverlap: ./scratch/ucsc-apps/bedRemoveOverlap FILE /dev/stdout
-        bedToBigBed: bedToBigBed FILE SIZES OUTPUT_DIR/out.bb
+        bedSort: ./scratch/ucsc-apps/bedSort FILE /dev/stdout
+        bedClip: ./scratch/ucsc-apps/bedClip FILE SIZES /dev/stdout
+        bedRemoveOverlap: ./scratch/ucsc-apps/bedRemoveOverlap FILE /dev/stdout
+        # bedToBigBed: bedToBigBed FILE SIZES OUTPUT_DIR/out.bb
     - variantbam:
         variant: variant EXBAM -l FILE
     - vcflib:
