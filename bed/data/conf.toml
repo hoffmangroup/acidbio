@@ -1,5 +1,0 @@
-[[annotation]]
-file="good/06-strand/standard_strand.bed.gz"
-columns = [4, 4]
-names=["fitcons_mean", "counnntttt"]
-ops=["mean", "count"]

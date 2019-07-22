@@ -1,30 +1,30 @@
 settings: # some file locations
     file-locations:
-        GENOME: /home/haliupenguin/.local/share/genomes/hg38/hg38.fa
-        INTERSECT: ./data/intersect_file.bed
-        DICTIONARY: /home/haliupenguin/.local/share/genomes/hg38/hg38.dict
-        SIZES: ./data/hg38.chrom.sizes
-        BED_SIZE: ./data/human-hg18-size.bed
-        GENE_BED: ./data/hg38_RefSeq.bed.gz
-        EXBAM: ./data/toy.bam
+        2BIT: ./data/toy.2bit
         BAZAMBAM: ./data/bazam.bam
+        BED_SIZE: ./data/hg38.sizes.bed
+        BGT: ./data/1kg11-1M.bgt
+        BIGWIG: ./data/toy.bw
+        CHAIN: ./data/hg38ToHg19.over.chain.gz
+        CONTACT_MATRIX: ./data/contact_frequency_matrix.gz
+        DESIGN: ./data/example.design
+        DICTIONARY: /home/haliupenguin/.local/share/genomes/hg38/hg38.dict
+        EXBAM: ./data/toy.bam
         FASTA: ./data/toy.fa
         FA_XY_STA: ./data/edited_toy.fa
-        CHAIN: ./data/hg38ToHg19.over.chain.gz
-        BIGWIG: ./data/toy.bw
-        DESIGN: ./data/example.design
+        GENOME: /home/haliupenguin/.local/share/genomes/hg38/hg38.fa
         GTF: ./data/toy.gtf
-        SLNCKY_CONFIG: ./data/annotations.config
-        2BIT: ./data/toy.2bit
-        LOGIT: ./data/logit.logit.RData
         HEXAMER: ./data/hexamer_tab.tsv
-        CONTACT_MATRIX: ./data/contact_frequency_matrix.gz
-        BGT: ./data/1kg11-1M.bgt
+        INTERSECT: ./data/intersect_file.bed
+        LOGIT: ./data/logit.logit.RData
+        REFSEQ: ./data/hg38_RefSeq.bed.gz
+        SIZES: ./data/hg38.chrom.sizes
+        SLNCKY_CONFIG: ./data/annotations.config
         VCF: ./data/toy.vcf
         OUTPUT_DIR: ./scratch/trash
 tools:  # Require that the command line sequence to be executed be written on one line
     - alfred:
-        annotate: alfred annotate -b GENE_BED FILE -u /dev/null -o /dev/null
+        annotate: alfred annotate -b REFSEQ FILE -u /dev/null -o /dev/null
     - alignstats:
         alignstats: alignstats -i EXBAM -o /dev/stdout -t FILE
     - atactk:

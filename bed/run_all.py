@@ -16,20 +16,6 @@ except ImportError:
     from yaml import Loader, Dumper
 
 
-cdict = {'red':  ((0.0, 0.8, 0.8),
-                  (0.5, 1.0, 1.0),
-                  (1.0, 0.0, 0.0)),
-
-        'green': ((0.0, 0.0, 0.0),
-                  (0.5, 1.0, 1.0),
-                  (1.0, 0.3, 0.3)),
-
-        'blue': ((0.0, 0.0, 0.0),
-                  (0.5, 1.0, 1.0),
-                  (1.0, 1.0, 1.0))
-       }
-
-
 def get_file_names():
     file_names = []
     for directory in os.listdir("./good/"):
@@ -115,14 +101,6 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
     
     with open('modified_saved' + str(version - 1), 'wb') as fp:
         pickle.dump([num_correct, correct_list, name_list], fp)
-
-    # GnRd = colors.LinearSegmentedColormap('GnRd', cdict)
-    
-    # plt.figure(figsize=(21,24))
-    # ax = sns.heatmap(correct_list, cmap=GnRd, linewidths=.5, square=True, cbar=False, xticklabels=file_list, yticklabels=name_list)
-    # plt.yticks(rotation=0)
-    # plt.tight_layout()
-    # plt.savefig('out/results' + str(version) + '.png')
 
 
 def usage():
