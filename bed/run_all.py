@@ -2,6 +2,8 @@
 Runs the tools in config.yaml and tests whether they can properly
 parse the file format.
 
+This code is meant to be compatible with both Python 2 and 3
+
 Outputs the results to a binary file to be visualized using combine.py
 """
 import os

@@ -117,11 +117,12 @@ def run_good(tool, path, tool_name=None, verbose=False, output_file="out/failed_
     insertions: dictionary of MACROS to their actual locations
     """
     out_file = open(output_file, "ab")
-    correct_array = []
+    correct_array = []  # Array for holding the results of the tests
     title = tool_name if tool_name is not None else tool
 
     out_file.write('************************** {} **************************\n\n'.format(title).encode('utf-8'))
     
+    # Generate any temporary files that a tool needs for intermediate operations
     temp_file_list = [tempfile.NamedTemporaryFile() for _ in range(tool.count("TEMP"))]
 
     for directory in os.listdir(path):
