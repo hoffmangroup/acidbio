@@ -10,6 +10,7 @@ import os
 import sys
 import subprocess
 import getopt
+import argparse
 import seaborn as sns; sns.set()
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
@@ -75,6 +76,7 @@ def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", 
     tool_list = data['tools']
     for tool in tool_list:
         for program in list(tool.keys()):
+            if program != 'genometools': continue
             if python_versions[program] != version:  # Skip the tool if the wrong Python version is present
                 continue
 
@@ -125,59 +127,21 @@ def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", 
     stream.close()
 
 
-def usage():
-    sys.stderr.write(
-    """Tester for the BED format. Tests the tools in config.yaml to see if they appropriately throw warnings or errors.
-Usage: run_all.py -o [-h] [-v] [-V] [--failed-good=] [--passed-bad=]
-
-options:
-    -h, --help    Help
-    -o, --output= The binary output file that contains the results lists
-                  Required argument
-    -v, --verbose    If set, then it prints the results from all test cases
-    -V, --version The version number
-    --failed-good= The output file that logs cases where a good file ran with error
-                  Default: out/failed_good.txt
-    --passed-bad=  The output file that logs cases where bad files ran without error or warning
-                  Default: out/passed_bad.txt
-""")
-
-
 if __name__ == '__main__':
-    try:
-        optlist, args = getopt.getopt(sys.argv[1:], "hVv:o:",
-            ["help", "version", "verbose", "output=", "failed-good=", "passed-bad="])
-    except getopt.GetoptError as err:
-        print(err)
-        usage()
-        exit(2)
-    
-    verbose = False
-    failed_good_file = "out/failed_good.txt"
-    passed_bad_file = "out/passed_bad.txt"
-    output_file = None
+    parser = argparse.ArgumentParser(
+        description="Tests the tools in config.yaml to see if they appropriately throw warnings or errors against " +
+            "a suite of BED files")
+    parser.add_argument("output_file", metavar="output-filename", help="output binary results to file")
+    parser.add_argument("-V", "--version", action='version', version='0.1')
+    parser.add_argument("-v", "--verbose", action='store_true', help="display all results")
+    parser.add_argument("--outdir", metavar="OUTPUT_DIRECTORY",
+        help="location where all output files go", default="./out/")
+    parser.add_argument("--failed-good", metavar="GOOD_TESTS_FILENAME",
+        help="output incorrect good test cases to file", default="failed_good.txt")
+    parser.add_argument("--passed-bad", metavar="BAD_TESTS_FILENAME",
+        help="output incorrect bad test cases to file", default="passed_bad.txt")
 
-    for o, a in optlist:
-        if o in ("-h", "--help"):
-            usage()
-            exit(0)
-        elif o in ("-V", "--version"):
-            print("0.1")
-            exit(0)
-        elif o in ("--failed-good"):
-            failed_good_file = a
-        elif o in ("--passed-bad"):
-            passed_bad_file = a
-        elif o in ("-v", "verbose"):
-            verbose = True
-        elif o in ("-o", "--output"):
-            output_file = a
-        else:
-            assert False, "unhandled option"
-    
-    if output_file is None:
-        sys.stderr.write("Missing required argument -o\n")
-        usage()
-        exit(2)
-    
-    run_all(output_file, verbose, failed_good_file, passed_bad_file)
+    args = parser.parse_args()
+
+    run_all(args.outdir + "/" + args.output_file, args.verbose, args.outdir + "/" + args.failed_good,
+        args.outdir + "/" + args.passed_bad)
