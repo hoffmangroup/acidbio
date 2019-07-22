@@ -7,7 +7,6 @@ import seaborn as sns; sns.set()
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 import pickle
-from more_itertools import sort_together
 from run_utils import *
 from yaml import load, dump
 try:
@@ -36,7 +35,7 @@ def get_file_names():
     return file_names
 
 
-def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_file="out/passed_bad.txt"):
+def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", passed_bad_file="out/passed_bad.txt"):
     # Clear the previous data and reinitalize it
     subprocess.call(["rm", "-f", failed_good_file, passed_bad_file])
     subprocess.call(["touch", failed_good_file, passed_bad_file])
@@ -57,6 +56,7 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
     tool_list = data['tools']
     for tool in tool_list:
         for program in list(tool.keys()):
+            if program != 'ucsc': continue
             if python_versions[program] != version:
                 continue
 
@@ -67,26 +67,29 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
                 title = program + " " + command
                 name_list.append(title)
 
-                print("*"*27 + " " + title + " " + "*"*27)
-                print("*"*27 + " strict good test cases " + "*"*27)
+                m = (88 - len(title)) // 2
+                n = m if len(title) % 2 == 0 else m + 1
+
+                print("*"*m + " " + title + " " + "*"*n)
+                print("*"*33 + " strict good test cases " + "*"*33)
                 current_array.extend(run_good(execution, "./good/", title, verbose, failed_good_file, command_insertions))
                 print("*"*90)
                 print()
                 current_array.append(0.5)
 
-                print("*"*27 + "non-strict good cases" + "*"*27)
+                print("*"*33 + " non-strict good cases " + "*"*34)
                 current_array.extend(run_good(execution, "./less_good/", title, verbose, failed_good_file, command_insertions))
                 print("*"*90)
                 print()
                 current_array.extend([0.5, 0.5, 0.5])
 
-                print("*"*27 + "non-strict bad test cases" + "*"*27)
+                print("*"*31 + " non-strict bad test cases " + "*"*32)
                 current_array.extend(run_bad(execution, "./less_bad/", title, verbose, failed_good_file, command_insertions))
                 print("*"*90)
                 print()
                 current_array.append(0.5)
 
-                print("*"*27 + " strict bad test cases " + "*"*27)
+                print("*"*33 + " strict bad test cases " + "*"*34)
                 current_array.extend(run_bad(execution, "./bad/", program + " " + command, verbose, passed_bad_file, command_insertions))
                 print("*"*90)
                 print()
@@ -95,31 +98,33 @@ def run_all(verbose=False, failed_good_file="out/failed_good.txt", passed_bad_fi
     stream.close()
 
     num_correct = [l.count(1) for l in correct_list]
-    file_list = get_file_names()
-
-    num_correct, correct_list, name_list = sort_together([num_correct, correct_list, name_list], key_list=[0])
     
-    with open('modified_saved' + str(version - 1), 'wb') as fp:
+    with open(output_file, 'wb') as fp:
         pickle.dump([num_correct, correct_list, name_list], fp)
 
 
 def usage():
     print(
     """Tester for the BED format. Tests the tools in config.yaml to see if they appropriately throw warnings or errors.
-Usage: run_all.py [-h] [-V] [-v] [--failed-good=] [--passed-bad=]
-    options:
-      -h, --help    Help
-      -v, --verbose=    If True, it prints the results and outputs from all tests
-      -V, --version The version number
-      --failed-good The output file that logs cases where a good file ran with error
-      --passed-bad  The output file that logs cases where bad files ran without error or warning
-    """)
+Usage: run_all.py -o [-h] [-v] [-V] [--failed-good=] [--passed-bad=]
+
+options:
+    -h, --help    Help
+    -o, --output= The binary output file that contains the results lists
+                  Required argument
+    -v, --verbose    If set, then it prints the results from all test cases
+    -V, --version The version number
+    --failed-good= The output file that logs cases where a good file ran with error
+                  Default: out/failed_good.txt
+    --passed-bad=  The output file that logs cases where bad files ran without error or warning
+                  Default: out/passed_bad.txt
+    """, file=sys.stderr)
 
 
 if __name__ == '__main__':
     try:
-        optlist, args = getopt.getopt(sys.argv[1:], "hVv:",
-            ["help", "version", "verbose=", "failed-good=", "passed-bad="])
+        optlist, args = getopt.getopt(sys.argv[1:], "hVv:o:",
+            ["help", "version", "verbose", "output=", "failed-good=", "passed-bad="])
     except getopt.GetoptError as err:
         print(err)
         usage()
@@ -128,6 +133,7 @@ if __name__ == '__main__':
     verbose = False
     failed_good_file = "out/failed_good.txt"
     passed_bad_file = "out/passed_bad.txt"
+    output_file = None
 
     for o, a in optlist:
         if o in ("-h", "--help"):
@@ -140,12 +146,16 @@ if __name__ == '__main__':
             failed_good_file = a
         elif o in ("--passed-bad"):
             passed_bad_file = a
-        elif o in ("-v", "--verbose"):
-            if a.lower() not in ('true', 'false'):
-                usage()
-                exit(2)
-            verbose = True if a.lower() == 'true' else False
+        elif o in ("-v", "verbose"):
+            verbose = True
+        elif o in ("-o", "--output"):
+            output_file = a
         else:
             assert False, "unhandled option"
     
-    run_all(verbose, failed_good_file, passed_bad_file)
+    if output_file is None:
+        print("Missing required argument -o\n", file=sys.stderr)
+        usage()
+        exit(2)
+    
+    run_all(output_file, verbose, failed_good_file, passed_bad_file)
