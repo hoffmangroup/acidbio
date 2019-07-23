@@ -1,55 +1,50 @@
-import sys
 import os
+import argparse
 import pickle
 import seaborn as sns; sns.set()
 import matplotlib.pyplot as plt
-import matplotlib.colors as colors
-import numpy as np
+from glob import glob
+from numpy import spacing
 from more_itertools import sort_together
-
-
-cdict = {'red':  ((0.0, 0.8, 0.8),
-                  (0.5, 1.0, 1.0),
-                  (1.0, 0.0, 0.0)),
-
-        'green': ((0.0, 0.0, 0.0),
-                  (0.5, 1.0, 1.0),
-                  (1.0, 0.3, 0.3)),
-
-        'blue': ((0.0, 0.0, 0.0),
-                  (0.5, 1.0, 1.0),
-                  (1.0, 1.0, 1.0))
-       }
 
 
 def get_file_names():
     file_names = []
-    for directory in os.listdir("../good/"):
-        for file in os.listdir("../good/" + directory):
+    for directory in os.listdir("./good/"):
+        for file in os.listdir("./good/" + directory):
             if file.endswith(".bed"): file_names.append(file)
     file_names.append("")
-    for directory in os.listdir("../less_good"):
-        for file in os.listdir("../less_good/" + directory):
+    for directory in os.listdir("./less_good"):
+        for file in os.listdir("./less_good/" + directory):
             if file.endswith(".bed"): file_names.append(file)
     file_names.extend(["", "", ""])
-    for directory in os.listdir("../less_bad"):
-        for file in os.listdir("../less_bad/" + directory):
+    for directory in os.listdir("./less_bad"):
+        for file in os.listdir("./less_bad/" + directory):
             if file.endswith(".bed"): file_names.append(file)
     file_names.append("")
-    for directory in os.listdir("../bad/"):
-        for file in os.listdir("../bad/" + directory):
+    for directory in os.listdir("./bad/"):
+        for file in os.listdir("./bad/" + directory):
             if file.endswith(".bed"): file_names.append(file)
     return file_names
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description="Combine the results array from run_all.py into a sorted heatmap")
+    parser.add_argument("-V", "--version", action='version', version='0.1')
+    parser.add_argument("file", help="file(s) that contain results arrays. Can be regular expressions", nargs="+")
+    parser.add_argument("outfile", help="output image file containing the heatmap")
+    args = parser.parse_args()
+
+    files = []
+    for f in args.file:
+        files.extend(glob(f))
+
     file_list = get_file_names()
 
     num_correct = []
     correct_list = []
     name_list = []
 
-    files = sys.argv[1:]
     for file in files:
         with open(file, 'rb') as f:
             l = pickle.load(f)
@@ -57,24 +52,24 @@ if __name__ == '__main__':
             correct_list.extend(list(l[1]))
             name_list.extend(list(l[2]))
 
+    # Sort the tools by number of correctly passed cases
     num_correct, correct_list, name_list = sort_together([num_correct, correct_list, name_list], key_list=[0, 2])
 
+    # Redefine the values from the correct arrays to match with colors of the viridis colormap
     for j in range(len(correct_list)):
         for n, i in enumerate(correct_list[j]):
-            if i == 0.0:
+            if i == 0.0:  # Incorrect case mapped to blue
                 correct_list[j][n] = 0.25
-            elif i == 1.0:
+            elif i == 1.0:  # Correct case mapped to green
                 correct_list[j][n] = 0.72
-            elif i == 0.5:
+            elif i == 0.5:  # Directory separators mapped to white
                 correct_list[j][n] = 0
-
-    GnRd = colors.LinearSegmentedColormap('GnRd', cdict)
 
     new_cmap = plt.get_cmap('viridis')
     new_cmap.set_under('white')
     plt.figure(figsize=(23,21))
 
-    ax = sns.heatmap(correct_list, cmap=new_cmap, vmin=np.spacing(0.0), vmax=1, linewidths=.5, 
+    ax = sns.heatmap(correct_list, cmap=new_cmap, vmin=spacing(0.0), vmax=1, linewidths=.5, 
         square=True, cbar=False, xticklabels=file_list, yticklabels=name_list)
 
     ax.set_ylabel('TOOLS')
@@ -84,4 +79,4 @@ if __name__ == '__main__':
     plt.viridis()
     plt.yticks(rotation=0)
     plt.tight_layout()
-    plt.savefig('results_final.png')
+    plt.savefig(args.outfile)
