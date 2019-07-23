@@ -1,3 +1,7 @@
+"""
+Takes the binary results array outputted from run_all.py and combines them
+into one heatmap sorted by the number of correct cases.
+"""
 import os
 import argparse
 import pickle
@@ -9,6 +13,9 @@ from more_itertools import sort_together
 
 
 def get_file_names():
+    """
+    Returns a list of all the test cases in the order that they were used
+    """
     file_names = []
     for directory in os.listdir("./good/"):
         for file in os.listdir("./good/" + directory):

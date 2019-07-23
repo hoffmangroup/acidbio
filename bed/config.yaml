@@ -190,7 +190,7 @@ tools:  # Require that the command line sequence to be executed be written on on
         bedSort: ./scratch/ucsc-apps/bedSort FILE /dev/stdout
         bedClip: ./scratch/ucsc-apps/bedClip FILE SIZES /dev/stdout
         bedRemoveOverlap: ./scratch/ucsc-apps/bedRemoveOverlap FILE /dev/stdout
-        # bedToBigBed: bedToBigBed FILE SIZES OUTPUT_DIR/out.bb
+        bedToBigBed: bedToBigBed FILE SIZES OUTPUT_DIR/out.bb
     - variantbam:
         variant: variant EXBAM -l FILE
     - vcflib:

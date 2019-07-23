@@ -47,7 +47,7 @@ def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", 
     tool_list = data['tools']
     for tool in tool_list:
         for program in list(tool.keys()):
-            if program != 'genometools': continue
+
             if python_versions[program] != version:  # Skip the tool if the wrong Python version is present
                 continue
 
