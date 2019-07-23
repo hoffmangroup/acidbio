@@ -6,14 +6,8 @@ This code is meant to be compatible with both Python 2 and 3
 
 Outputs the results to a binary file to be visualized using combine.py
 """
-import os
-import sys
 import subprocess
-import getopt
 import argparse
-import seaborn as sns; sns.set()
-import matplotlib.pyplot as plt
-import matplotlib.colors as colors
 import pickle
 from run_utils import *
 from yaml import load, dump
@@ -21,29 +15,6 @@ try:
     from yaml import CLoader as Loader, CDumper as Dumper
 except ImportError:
     from yaml import Loader, Dumper
-
-
-def get_file_names():
-    """
-    Gets a list of the names of the test files that correspond to the list of results
-    """
-    file_names = []
-    for directory in os.listdir("./good/"):
-        for file in os.listdir("./good/" + directory):
-            if file.endswith(".bed"): file_names.append(file)
-    file_names.append("")
-    for directory in os.listdir("./less_good"):
-        for file in os.listdir("./less_good/" + directory):
-            if file.endswith(".bed"): file_names.append(file)
-    file_names.extend(["", "", ""])
-    for directory in os.listdir("./less_bad"):
-        for file in os.listdir("./less_bad/" + directory):
-            if file.endswith(".bed"): file_names.append(file)
-    file_names.append("")
-    for directory in os.listdir("./bad/"):
-        for file in os.listdir("./bad/" + directory):
-            if file.endswith(".bed"): file_names.append(file)
-    return file_names
 
 
 def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", passed_bad_file="out/passed_bad.txt"):
@@ -131,11 +102,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Tests the tools in config.yaml to see if they appropriately throw warnings or errors against " +
             "a suite of BED files")
-    parser.add_argument("output_file", metavar="output-filename", help="output binary results to file")
+    parser.add_argument("outdir", help="location where all output files go")
     parser.add_argument("-V", "--version", action='version', version='0.1')
     parser.add_argument("-v", "--verbose", action='store_true', help="display all results")
-    parser.add_argument("--outdir", metavar="OUTPUT_DIRECTORY",
-        help="location where all output files go", default="./out/")
+    parser.add_argument("--results-file", metavar="RESULTS_FILENAME", help="output binary results to file",
+        default="bed_test_results")
     parser.add_argument("--failed-good", metavar="GOOD_TESTS_FILENAME",
         help="output incorrect good test cases to file", default="failed_good.txt")
     parser.add_argument("--passed-bad", metavar="BAD_TESTS_FILENAME",
@@ -143,5 +114,5 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    run_all(args.outdir + "/" + args.output_file, args.verbose, args.outdir + "/" + args.failed_good,
+    run_all(args.outdir + "/" + args.results_file, args.verbose, args.outdir + "/" + args.failed_good,
         args.outdir + "/" + args.passed_bad)

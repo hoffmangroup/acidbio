@@ -3,7 +3,6 @@ The utilities needed to test each tool against the test suite.
 """
 import sys
 import subprocess
-import getopt
 import os
 import tempfile
 
