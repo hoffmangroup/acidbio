@@ -6,6 +6,7 @@ This code is meant to be compatible with both Python 2 and 3
 
 Outputs the results to a binary file to be visualized using combine.py
 """
+import os
 import subprocess
 import argparse
 import pickle
@@ -31,15 +32,13 @@ def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", 
     subprocess.call(["rm", "-f", failed_good_file, passed_bad_file])
     subprocess.call(["touch", failed_good_file, passed_bad_file])
 
-    p = subprocess.Popen(['python', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    out, err = p.communicate()
-    version = float(out.decode()[7:10]) if err.decode() == '' else float(err.decode()[7:10])
+    this_env = os.environ['CONDA_DEFAULT_ENV']
 
     stream = open('config.yaml', 'r')
     data = load(stream, Loader=Loader)
 
     command_insertions = data['settings']['file-locations']  # Locations of "constant" files
-    python_versions = data['python-versions']  # Each tool with its corresponding Python version
+    conda_envs = data['conda-environment']  # Each tool with its corresponding Python version
 
     correct_list = []
     name_list = []
@@ -48,7 +47,7 @@ def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", 
     for tool in tool_list:
         for program in list(tool.keys()):
 
-            if python_versions[program] != version:  # Skip the tool if the wrong Python version is present
+            if conda_envs[program] != this_env:  # Skip the tool if the wrong Python version is present
                 continue
 
             commands = tool[program]
@@ -84,8 +83,7 @@ def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", 
                 current_array.append(0.5)
 
                 print("*"*33 + " strict bad test cases " + "*"*34)
-                current_array.extend(
-                    run_bad(execution, "./bad/", program + " " + command, verbose, passed_bad_file, command_insertions))
+                current_array.extend(run_bad(execution, "./bad/", title, verbose, passed_bad_file, command_insertions))
                 print("*"*90)
                 print()
                 correct_list.append(current_array)
@@ -99,9 +97,8 @@ def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", 
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(
-        description="Tests the tools in config.yaml to see if they appropriately throw warnings or errors against " +
-            "a suite of BED files")
+    parser = argparse.ArgumentParser(description="Tests the tools in config.yaml to see if they appropriately " + 
+        "throw warnings or errors against a suite of BED files")
     parser.add_argument("outdir", help="location where all output files go")
     parser.add_argument("-V", "--version", action='version', version='0.1')
     parser.add_argument("-v", "--verbose", action='store_true', help="display all results")
