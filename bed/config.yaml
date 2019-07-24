@@ -31,8 +31,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         make_cut_matrix: make_cut_matrix -a -b '(36-149 150-324 325-400 1)' EXBAM FILE
     - ataqv:
         ataqv: ataqv --peak-file FILE --metrics-file /dev/null human BAZAMBAM
-    # - augur:
-        # mask: augur mask -s VCF --mask FILE -o /dev/stdout
+    - augur:
+        mask: augur mask -s VCF --mask FILE -o /dev/stdout
     - bazam:
         bazam: bazam -bam BAZAMBAM -L FILE
     - bedops:
@@ -69,8 +69,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         coverage_table: coverage_table -p FILE -d EXBAM
     - cpat:
         cpat: cpat.py -r GENOME -g FILE -d LOGIT -x HEXAMER -o OUTPUT_DIR/cpat
-    # - crossmap:
-        # CrossMap: CrossMap.py bed CHAIN FILE
+    - crossmap:
+        CrossMap: CrossMap.py bed CHAIN FILE
     - dammet:
         DamMet: DamMet -b EXBAM -r GENOME -c chr19 -B FILE -O OUTPUT_DIR/DamMet
     - deeptools:
@@ -85,14 +85,14 @@ tools:  # Require that the command line sequence to be executed be written on on
         HiCPro2FitHiC: scratch/fithic/fithic/utils/HiCPro2FitHiC.py -i CONTACT_MATRIX -b FILE -o OUTPUT_DIR/
     - f-seq:
         f-seq: scratch/F-seq/dist~/fseq/bin/fseq -f 10 -o OUTPUT_DIR -of bed FILE
-    # - gat:
-        # gat: gat-run.py --segment-file=FILE --annotation-file=INTERSECT --workspace-file=BED_SIZE
+    - gat:
+        gat: gat-run.py --segment-file=FILE --annotation-file=INTERSECT --workspace-file=BED_SIZE
     - genometools:
         bed_to_gff: gt bed_to_gff3 FILE
     - gff-compare:
         trmap: trmap INTERSECT FILE
-    # - gimmemotifs:
-        # scan: gimme scan FILE -g hg38 -c 0 -n 1 -b
+    - gimmemotifs:
+        scan: gimme scan FILE -g hg38 -c 0 -n 1 -b
     - HipSTR:
         HipSTR: scratch/HipSTR/HipSTR --bams BAZAMBAM --fasta GENOME --regions FILE --str-vcf OUTPUT_DIR/hipstr.vcf.gz
     - homer:
@@ -142,8 +142,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         findjuncs: findjuncs OUTPUT_DIR/result --annotation_format BED --annotation_files FILE
     - portcullis:
         compare: junctools compare INTERSECT FILE
-    # - preseq:
-        # c_curve: preseq c_curve FILE
+    - preseq:
+        c_curve: preseq c_curve FILE
     - pybedtools:
         intersection_matrix: intersection_matrix.py FILE INTERSECT
     - pygtftk:
@@ -160,8 +160,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         rpkmforgenes: rpkmforgenes.py -o OUTPUT_DIR/rpkm.txt -i INTERSECT -a FILE
     - rseg:
         rseg: rseg -c BED_SIZE -o /dev/stdout FILE -i 1 -b 10000 -bin-step 100
-    # - rseqc:
-        # geneBody_coverage: geneBody_coverage.py -i EXBAM -r FILE -o OUTPUT_DIR/geneBody
+    - rseqc:
+        geneBody_coverage: geneBody_coverage.py -i EXBAM -r FILE -o OUTPUT_DIR/geneBody
     - samtools:
         bedcov: samtools bedcov FILE EXBAM
     - segtools:
@@ -171,8 +171,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         # seq: seqkit seq -M FILE FASTA
     - seqtk:
         subseq: seqtk subseq FASTA FILE
-    # - slncky:
-        # slncky: slncky FILE hg38 OUTPUT_DIR/ -c SLNCKY_CONFIG --min_coding 0.1 --overwrite --no_self
+    - slncky:
+        slncky: slncky FILE hg38 OUTPUT_DIR/ -c SLNCKY_CONFIG --min_coding 0.1 --overwrite --no_self
     - smoove:
         call: smoove call -x --name tester --exclude FILE --fasta FASTA BAZAMBAM -o OUTPUT_DIR/
     - snpEff:
@@ -274,7 +274,7 @@ conda-environment:
     smoove: py27
     snpEff: base
     snpSift: py36
-    somaticseq: "-1.0"
+    somaticseq: "-1.0" # Installed from source
     tobias: base
     twobitreader: base
     ucsc: base
