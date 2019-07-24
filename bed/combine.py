@@ -3,6 +3,7 @@ Takes the binary results array outputted from run_all.py and combines them
 into one heatmap sorted by the number of correct cases.
 """
 import os
+import sys
 import argparse
 import pickle
 import seaborn as sns; sns.set()
@@ -58,6 +59,10 @@ if __name__ == '__main__':
             num_correct.extend(list(l[0]))
             correct_list.extend(list(l[1]))
             name_list.extend(list(l[2]))
+    
+    if len(num_correct) == 0:
+        sys.stderr.write("No files found matching the file regexps\n")
+        exit(1)
 
     # Sort the tools by number of correctly passed cases
     num_correct, correct_list, name_list = sort_together([num_correct, correct_list, name_list], key_list=[0, 2])
