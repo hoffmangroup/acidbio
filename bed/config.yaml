@@ -36,7 +36,6 @@ tools:  # Require that the command line sequence to be executed be written on on
     - bazam:
         bazam: bazam -bam BAZAMBAM -L FILE
     - bedops:
-        # intersect: bedops --intersect INTERSECT FILE
         complement: bedops --complement INTERSECT FILE
         element-of: bedops --element-of 10 INTERSECT FILE
     - bedtools:
@@ -58,8 +57,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         shift: cat FILE | cgat bed2bed --method=sanitize-genome -g GENOME
     - chunked-scatter:
         chunked-scatter: chunked-scatter -p OUTPUT_DIR/scatter_ -i FILE -m 10 -c 40
-    # - cistrome-beta:
-        # minus: BETA minus -p FILE -g hg19
+    - cistrome-beta:
+        minus: BETA minus -p FILE -g hg19 -o OUTPUT_DIR/
     - cnvkit:
         target: cnvkit.py target FILE
         access: cnvkit.py access GENOME -x FILE
@@ -180,8 +179,8 @@ tools:  # Require that the command line sequence to be executed be written on on
     - snpSift:
         join: SnpSift join -cols1 bed -cols2 bed INTERSECT FILE -Xmx2g
         intersect: SnpSift intersect INTERSECT FILE -Xmx2g
-    # - somaticseq:
-        # single: scratch/somaticseq/somaticseq_parallel.py -out OUTPUT_DIR/ -ref GENOME -include FILE single -bam EXBAM
+    - somaticseq:
+        single: scratch/somaticseq/somaticseq_parallel.py -out OUTPUT_DIR/ -ref GENOME -include FILE single -bam EXBAM
     - tobias:
         ATACorrect: TOBIAS ATACorrect --bam EXBAM --genome FASTA --peaks FILE --outdir OUTPUT_DIR/
     - twobitreader:
@@ -219,7 +218,7 @@ conda-environment:
     blockbuster: base
     cgat: py36
     chunked-scatter: py36
-    cistrome-beta: "-1.0" # special program that has to be done separately
+    cistrome-beta: -1.0 # special program that has to be done separately
     cnvkit: py36
     combined p-values: py27
     concoct: py36
@@ -274,7 +273,7 @@ conda-environment:
     smoove: py27
     snpEff: base
     snpSift: py36
-    somaticseq: "-1.0" # Installed from source
+    somaticseq: py36  # Installed from source
     tobias: base
     twobitreader: base
     ucsc: base

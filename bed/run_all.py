@@ -46,8 +46,8 @@ def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", 
     tool_list = data['tools']
     for tool in tool_list:
         for program in list(tool.keys()):
-
-            if conda_envs[program] != this_env:  # Skip the tool if the wrong Python version is present
+            
+            if conda_envs[program] != -1.0:  # Skip the tool if the wrong Python version is present
                 continue
 
             commands = tool[program]
@@ -102,7 +102,7 @@ if __name__ == '__main__':
     parser.add_argument("outdir", help="location where all output files go")
     parser.add_argument("-V", "--version", action='version', version='0.1')
     parser.add_argument("-v", "--verbose", action='store_true', help="display all results")
-    parser.add_argument("--results-file", metavar="RESULTS_FILENAME", help="output binary results to file",
+    parser.add_argument("--results-array-file", metavar="RESULTS_FILENAME", help="output binary results to file",
         default="bed_test_results")
     parser.add_argument("--failed-good", metavar="GOOD_TESTS_FILENAME",
         help="output incorrect good test cases to file", default="failed_good.txt")
@@ -111,5 +111,5 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    run_all(args.outdir + "/" + args.results_file, args.verbose, args.outdir + "/" + args.failed_good,
+    run_all(args.outdir + "/" + args.results_array_file, args.verbose, args.outdir + "/" + args.failed_good,
         args.outdir + "/" + args.passed_bad)

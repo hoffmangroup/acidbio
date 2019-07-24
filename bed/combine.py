@@ -37,14 +37,18 @@ def get_file_names():
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Combine the results array from run_all.py into a sorted heatmap")
+    parser = argparse.ArgumentParser(description="Takes the results arrays containing the data obtained from" + 
+        "run_all.py and combines them into a sorted heatmap")
     parser.add_argument("-V", "--version", action='version', version='0.1')
-    parser.add_argument("file", help="file(s) that contain results arrays. Can be regular expressions", nargs="+")
-    parser.add_argument("outfile", help="output image file containing the heatmap")
+    parser.add_argument("results_file", metavar="results-array-file",
+        help="result array file(s). Can be regular expressions", nargs="+")
+    parser.add_argument("outfile_filepath", metavar="outfile-filepath",
+        help="full filepath to output image file containing the heatmap." + 
+        "(eps, pdf, png, raw, rgba, svg, jpg, jpeg, tif, tiff)")
     args = parser.parse_args()
 
     files = []
-    for f in args.file:
+    for f in args.results_file:
         files.extend(glob(f))
 
     if len(files) == 0:
@@ -86,9 +90,9 @@ if __name__ == '__main__':
 
     ax.set_ylabel('TOOLS')
     ax.set_xlabel('TEST CASES')
-
+    
     plt.title("Strict good" + " "*65 + "Non-strict good" + " "*61 + "Non-strict bad" + " "*60 + "Strict bad")
     plt.viridis()
     plt.yticks(rotation=0)
     plt.tight_layout()
-    plt.savefig(args.outfile)
+    plt.savefig(args.outfile_filepath)
