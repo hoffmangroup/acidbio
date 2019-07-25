@@ -46,7 +46,7 @@ def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", 
     tool_list = data['tools']
     for tool in tool_list:
         for program in list(tool.keys()):
-            if program != 'validatebed': continue
+            # if program != 'validatebed': continue
             if conda_envs[program] != this_env:  # Skip the tool if the wrong Python version is present
                 continue
 
