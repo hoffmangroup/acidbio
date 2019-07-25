@@ -43,7 +43,7 @@ def detect_problem(out, err):
         err = "Non-unicode characters present in output"
     wrong_file_format = "wrong file format" in out
     skip_line = "Skipping line:" in out
-    error = "Error" in err or "ERROR:" in out or "java.lang.RuntimeException" in err or "WARNING:" in err
+    error = "Error" in err or "ERROR:" in out or "java.lang.RuntimeException" in err or "WARNING:" in err or "WARNING:" in out
     invalid_bed = "invalid BED" in err or "FileFormatWarning" in err
 
     return wrong_file_format or skip_line or error or invalid_bed

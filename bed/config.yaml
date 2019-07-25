@@ -23,6 +23,8 @@ settings: # some file locations
         VCF: ./data/toy.vcf
         OUTPUT_DIR: ./scratch/trash
 tools:  # Require that the command line sequence to be executed be written on one line
+    - validatebed:
+        validate: python validate_bed.py SIZES FILE
     - alfred:
         annotate: alfred annotate -b REFSEQ FILE -u /dev/null -o /dev/null
     - alignstats:
@@ -202,6 +204,7 @@ tools:  # Require that the command line sequence to be executed be written on on
     - xyalign:
         PREPARE_REFERENCE: xyalign --PREPARE_REFERENCE --ref FA_XY_STA --reference_mask FILE -o OUTPUT_DIR/ --x_chromosome chrX --y_chromosome chrY
 conda-environment:
+    validatebed: base
     alfred: base
     alignstats: base
     atactk: py27

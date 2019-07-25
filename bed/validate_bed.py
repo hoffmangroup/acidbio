@@ -47,6 +47,7 @@ if __name__ == '__main__':
 
     i = 1
     correct = True
+    length = None
     for bed_line in args.infile.readlines():
         bed_line = bed_line.strip()
         if bed_line == "" or bed_line[0] == '#': continue  # The line is blank or a comment
@@ -59,6 +60,11 @@ if __name__ == '__main__':
             pass
         else:
             correct = correct and verify_bed_line(bed_line, sizes, i)
+            if len(split_line) != length and length is not None:
+                sys.stdout.write("Line {} ERROR: Inconsistent number of fields\n".format(i))
+                correct = False
+            elif length is None:
+                length = len(split_line)
         i += 1
     
     if correct:
