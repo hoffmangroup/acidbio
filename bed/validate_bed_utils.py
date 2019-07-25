@@ -154,7 +154,7 @@ def check_blocksizes(split_line: List[str], sizes: Dict[str, int], line: int) ->
     start = int(split_line[1])
     end = int(split_line[2])
     if split_line[9].isnumeric():
-        if not re.match("^([0-9]+,){{{}}}[0-9]+,?$".format(int(split_line[9])), split_line[10]):
+        if not re.match("^([0-9]+,){{{}}}[0-9]+,?$".format(int(split_line[9]) - 1), split_line[10]):
             sys.stdout.write("Line {}: WARNING inconsistent number of blocks in list and blockCount\n".format(line))
     sizelist = split_line[10].split(',')
     for s in sizelist:
@@ -170,8 +170,30 @@ def check_blocksizes(split_line: List[str], sizes: Dict[str, int], line: int) ->
             break
     return True
 
-
+# TODO: Still figure out how to do the overlapping blocks part
 def check_blockstarts(split_line: List[str], sizes: Dict[str, int], line: int) -> bool:
+    start = int(split_line[1])
+    end = int(split_line[2])
+    if split_line[9].isnumeric():
+        if not re.match("^([0-9]+,){{{}}}[0-9]+,?$".format(int(split_line[9]) - 1), split_line[11]):
+            sys.stdout.write("Line {}: WARNING inconsistent number of starts in list and blockCount\n".format(line))
+    sizelist = split_line[10].split(',')
+    startlist = split_line[11].split(',')
+    for s in startlist:
+        if s.isnumeric():
+            if int(s) < 0:
+                sys.stdout.write("Line {}: WARNING blockStart less than zero\n".format(line))
+                break
+            elif int(s) > end - start:
+                sys.stdout.write("Line {}: WARNING blockStart greater than length of annotation\n".format(line))
+                break
+        else:
+            sys.stdout.write("Line {}: WARNING blockStart is not a number\n".format(line))
+            break
+    if startlist[0] != '0':
+        sys.stdout.write("Line {}: WARNING first blockStart must be 0\n".format(line))
+    if sizelist[-1].isnumeric() and startlist[-1].isnumeric() and int(sizelist[-1]) + int(startlist[-1]) != end - start:
+        sys.stdout.write("line {}: WARNING last block should end at chromEnd\n".format(line))
     return True
 
 

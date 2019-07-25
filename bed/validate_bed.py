@@ -43,6 +43,7 @@ if __name__ == '__main__':
 
     sizes = parse_sizes(args.chrom_sizes)
     args.chrom_sizes.close()
+    temp.close()
 
     i = 1
     correct = True
