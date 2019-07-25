@@ -60,4 +60,7 @@ if __name__ == '__main__':
             correct = correct and verify_bed_line(bed_line, sizes, i)
         i += 1
     
-    # sys.stdout.write("Your file conforms to non-strict BED, but not strict BED\n")
+    if correct:
+        sys.stdout.write("\nYour file conforms to non-strict BED, but not strict BED\n")
+    else:
+        sys.stdout.write("\nYour file does not conform to non-strict BED\n")

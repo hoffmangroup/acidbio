@@ -89,18 +89,89 @@ def check_score(split_line: List[str], sizes: Dict[str, int], line: int) -> bool
 
 
 def check_strand(split_line: List[str], sizes: Dict[str, int], line: int) -> bool:
-    return split_line[5] in ['+', '-', '.']
+    if split_line[5] in ['+', '-', '.']:
+        return True
+    else:
+        sys.stdout.write("Line {}: ERROR strand should be one of + or - or .\n".format(line))
+        return False
 
 
 def check_thick_start(split_line: List[str], sizes: Dict[str, int], line: int) -> bool:
-    return split_line[6].isnumeric()  and 0 <= int(split_line[6]) <= 4294967295
-
+    start = int(split_line[1])
+    end = int(split_line[2])
+    if split_line[6].isnumeric():
+        if int(split_line[6]) < start:
+            sys.stdout.write("Line {}: WARNING thickStart is less than chromStart\n".format(line))
+        elif int(split_line[6]) > end:
+            sys.stdout.write("Line {}: WARNING thickStart is greater than chromEnd\n".format(line))
+        return True
+    else:
+        sys.stdout.write("Line {}: ERROR thickStart is not a number\n".format(line))
+        return False
+    
 
 def check_thick_end(split_line: List[str], sizes: Dict[str, int], line: int) -> bool:
-    return split_line[7].isnumeric() and 0 <= int(split_line[7]) <= 4294967295
+    start = int(split_line[1])
+    end = int(split_line[2])
+    thickstart = int(split_line[6])
+    if split_line[6].isnumeric():
+        if int(split_line[7]) < thickstart:
+            sys.stdout.write("Line {}: WARNING thickEnd is less than thickStart\n".format(line))
+        elif int(split_line[7]) < start:
+            sys.stdout.write("Line {}: WARNING thickEnd is less than chromStart\n".format(line))
+        elif int(split_line[7]) > end:
+            sys.stdout.write("Line {}: WARNING thickEnd is greater than chromEnd\n".format(line))
+        return True
+    else:
+        sys.stdout.write("Line {}: ERROR thickEnd is not a number\n".format(line))
+        return False
 
 
-def ignored(split_line: List[str], sizes: Dict[str, int], line: int) -> bool:
+def check_itemrgb(split_line: List[str], sizes: Dict[str, int], line: int) -> bool:
+    rgb = split_line[8]
+    if rgb == '0':
+        pass
+    elif re.match(r"^[0-9]+,[0-9]+,[0-9]+$", rgb):
+        r,g,b = map(int, rgb.split(','))
+        if not (0 <= r <= 255 and 0 <= g <= 255 and 0 <= b <= 255):
+            sys.stdout.write("Line {}: WARNING itemRgb values are invalid\n".format(line))
+    else:
+        sys.stdout.write("Line {}: WARNING itemRgb is invalid. Value should be either 0 or three numbers".format(line) +
+            " between 0 and 255 inclusive separated by commas\n")
+    return True
+
+
+def check_blockcount(split_line: List[str], sizes: Dict[str, int], line: int) -> bool:
+    if split_line[9].isnumeric():
+        if int(split_line[9]) <= 0:
+            sys.stdout.write("Line {}: WARNING blockCount should be greater than 0\n".format(line))
+    else:
+        sys.stdout.write("Line {}: WARNING blockCount should be a whole number\n".format(line))
+    return True
+
+
+def check_blocksizes(split_line: List[str], sizes: Dict[str, int], line: int) -> bool:
+    start = int(split_line[1])
+    end = int(split_line[2])
+    if split_line[9].isnumeric():
+        if not re.match("^([0-9]+,){{{}}}[0-9]+,?$".format(int(split_line[9])), split_line[10]):
+            sys.stdout.write("Line {}: WARNING inconsistent number of blocks in list and blockCount\n".format(line))
+    sizelist = split_line[10].split(',')
+    for s in sizelist:
+        if s.isnumeric():
+            if int(s) < 0:
+                sys.stdout.write("Line {}: WARNING blockSize less than zero\n".format(line))
+                break
+            elif int(s) > end - start:
+                sys.stdout.write("Line {}: WARNING blockSize greater than length of annotation\n".format(line))
+                break
+        else:
+            sys.stdout.write("Line {}: WARNING blockSize is not a number\n".format(line))
+            break
+    return True
+
+
+def check_blockstarts(split_line: List[str], sizes: Dict[str, int], line: int) -> bool:
     return True
 
 
@@ -108,8 +179,8 @@ def verify_bed_line(bed_line: str, sizes: Dict[str, int], line: int) -> bool:
     """
     Verifies that a BED line is valid.
     """
-    function_list = [check_chrom, check_chrom_start, check_chrom_end, check_name, check_score,
-        check_score, check_strand, check_thick_start, check_thick_end, ignored, ignored, ignored, ignored]
+    function_list = [check_chrom, check_chrom_start, check_chrom_end, check_name, check_score, check_strand,
+        check_thick_start, check_thick_end, check_itemrgb, check_blockcount, check_blocksizes, check_blockstarts]
     split_line = bed_line.split()
     for i in range(len(split_line)):
         split_line[i] = split_line[i].strip()
