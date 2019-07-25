@@ -53,7 +53,7 @@ if __name__ == '__main__':
         if bed_line == "" or bed_line[0] == '#': continue  # The line is blank or a comment
         split_line = bed_line.split()
         if split_line[0] == 'browser':
-            # verify_browser_line(bed_line)
+            verify_browser_line(bed_line, sizes, i)
             pass
         elif split_line[0] == 'track':
             # verify_track_line(bed_line)

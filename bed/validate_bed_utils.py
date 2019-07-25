@@ -6,8 +6,27 @@ import sys
 from typing import List, Dict
 
 
-def verify_browser_line(browser_line):
-    return False
+def verify_browser_line(browser_line, sizes: Dict[str, int], line):
+    split = browser_line.split()[1: ]
+    if split[0] not in ['hide', 'dense', 'pack', 'squish', 'full', 'position']:
+        sys.stdout.write("Line {} WARNING: invalid browser line option\n".format(line))
+    elif split[0] == 'position':
+        if not re.match(r"^chr\w+:\d+-\d+$", split[1]):
+            sys.stdout.write("Line {} WARNING: browser position not of form chromosome:start-end\n".format(line))
+        else:
+            chrom, interval = split[1].split(':')
+            start, end = interval.split('-')
+            if start < 0:
+                sys.stdout.write("Line {} WARNING: browser start position is negative\n".format(line))
+            elif start > 4294967295:
+                sys.stdout.write("Line {} WARNING: browser start position is larger than integer size\n".format(line))
+            if chrom not in sizes.keys():
+                sys.stdout.write("Line {} WARNING: chrom not found in the chrom sizes file\n".format(line))
+                if end > 4294967295:
+                    sys.stdout.write("Line {} WARNING: browser end position is larger than integer size\n".format(line))
+            elif end > sizes[chrom]:
+                sys.stdout.write("Line {} WARNING: browser end position is larger than chrom size\n".format(line))
+    return True
 
 
 def verify_track_line(track_line):
@@ -15,9 +34,6 @@ def verify_track_line(track_line):
 
 
 def check_chrom(split_line: List[str], sizes: Dict[str, int], line: int) -> bool:
-    """
-    Verifies the chrom field
-    """
     chr_name = split_line[0]
     if re.match(r"\w+", chr_name):
         if chr_name not in sizes.keys():
