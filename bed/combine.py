@@ -91,7 +91,7 @@ if __name__ == '__main__':
     ax.set_ylabel('TOOLS')
     ax.set_xlabel('TEST CASES')
     
-    plt.title("Strict good" + " "*65 + "Non-strict good" + " "*61 + "Non-strict bad" + " "*60 + "Strict bad")
+    plt.title("Strict good" + " "*65 + "Non-strict good" + " "*75 + "Non-strict bad" + " "*70 + "Strict bad")
     plt.viridis()
     plt.yticks(rotation=0)
     plt.tight_layout()
