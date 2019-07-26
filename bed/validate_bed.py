@@ -50,13 +50,15 @@ if __name__ == '__main__':
     length = None
     for bed_line in args.infile.readlines():
         bed_line = bed_line.strip()
-        if bed_line == "" or bed_line[0] == '#': continue  # The line is blank or a comment
+        if bed_line == "" or bed_line[0] == '#':  # The line is blank or a comment
+            i += 1
+            continue
         split_line = bed_line.split()
         if split_line[0] == 'browser':
             verify_browser_line(bed_line, sizes, i)
             pass
         elif split_line[0] == 'track':
-            # verify_track_line(bed_line)
+            verify_track_line(bed_line, sizes, i)
             pass
         else:
             correct = correct and verify_bed_line(bed_line, sizes, i)
