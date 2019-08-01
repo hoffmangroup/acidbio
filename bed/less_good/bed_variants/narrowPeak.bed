@@ -1,4 +1,0 @@
-track type=narrowPeak visibility=3 db=hg19 name="nPk" description="ENCODE narrowPeak Example"
-chr19	251100	251200	.	0	.	182	5.0945	-1	50
-chr19	251300	251400	.	0	.	91	4.6052	-1	40
-chr20	251500	251600	.	0	.	182	9.2103	-1	75

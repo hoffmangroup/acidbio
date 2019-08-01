@@ -2,15 +2,18 @@
 Takes the binary results array outputted from run_all.py and combines them
 into one heatmap sorted by the number of correct cases.
 """
-import os
-import sys
 import argparse
+import os
 import pickle
-import seaborn as sns; sns.set()
-import matplotlib.pyplot as plt
+import sys
 from glob import glob
+
+import matplotlib.pyplot as plt
 from numpy import spacing
+
 from more_itertools import sort_together
+
+import seaborn as sns; sns.set()
 
 
 def get_file_names():

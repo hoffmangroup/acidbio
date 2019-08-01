@@ -1,9 +1,9 @@
 """
 The utilities needed to test each tool against the test suite.
 """
-import sys
-import subprocess
 import os
+import subprocess
+import sys
 import tempfile
 
 

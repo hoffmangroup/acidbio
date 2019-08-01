@@ -40,7 +40,7 @@ def verify_browser_line(browser_line: str, sizes: Dict[str, int], line: int) -> 
     return True
 
 
-def verify_track_line(browser_line: str, sizes: Dict[str, int], line: int) -> bool:
+def verify_track_line(browser_line: str, sizes: Dict[str, int], l: int) -> bool:
     line = browser_line[browser_line.index(' ') + 1:]
     r= re.compile('([^ =]+) *= *("[^"]*"|[^ ]*)')
 
@@ -55,35 +55,35 @@ def verify_track_line(browser_line: str, sizes: Dict[str, int], line: int) -> bo
             d[k]= float(v)
     for k, v in d.items():
         if k == 'name' and len(v) > 15:
-            sys.stdout.write("Line {} WARNING: track name too long\n".format(line))
+            sys.stdout.write("Line {} WARNING: track name too long\n".format(l))
         elif k == 'description' and len(v) > 60:
-            sys.stdout.write("Line {} WARNING: description too long\n".format(line))
+            sys.stdout.write("Line {} WARNING: description too long\n".format(l))
         elif k == 'type' and isinstance(v, str) and v.lower() not in ['bam', 'bed detail', 'bedgraph', 'bigbarchart',
             'bigbed', 'bigchain', 'biggenepred', 'biginteract', 'bignarrowpeak', 'bigmaf', 'bigpsl', 'bigwig',
             'broadpeak', 'cram', 'interact', 'narrowpeak', 'microarray', 'vcf', 'wig', 'bed']:
-            sys.stdout.write("LINE {} WARNING: invalid track type\n".format(line))
+            sys.stdout.write("LINE {} WARNING: invalid track type\n".format(l))
         elif k == 'visibility' and isinstance(v, float) and int(v) not in [0, 1, 2, 3, 4]:
-            sys.stdout.write("Line {} WARNING: invalid track visibility\n".format(line))
+            sys.stdout.write("Line {} WARNING: invalid track visibility\n".format(l))
         elif k == 'visibility' and isinstance(v, str) and v not in ['hide', 'dense', 'full', 'pack', 'squish']:
-            sys.stdout.write("Line {} WARNING: invalid track visibility\n".format(line))
+            sys.stdout.write("Line {} WARNING: invalid track visibility\n".format(l))
         elif k == 'color' and isinstance(v, str) and not verify_rgb(v):
-            sys.stdout.write("Line {} WARNING: track color invalid\n".format(line))
+            sys.stdout.write("Line {} WARNING: track color invalid\n".format(l))
         elif k == 'itemRgb' and isinstance(v, str) and v.lower() != 'on':
-            sys.stdout.write('Line {} WARNING: itemRgb track attribute should be "On" or not set\n'.format(line))
+            sys.stdout.write('Line {} WARNING: itemRgb track attribute should be "On" or not set\n'.format(l))
         elif k == 'colorByStrand' and isinstance(v, str):
             color1, color2 = v.split(' ')
             if not (verify_rgb(color1) and verify_rgb(color2)):
-                sys.stdout.write('Line {} WARNING: colorByStrand has invalid colors\n'.format(line))
+                sys.stdout.write('Line {} WARNING: colorByStrand has invalid colors\n'.format(l))
         elif k == 'useScore' and isinstance(v, float) and int(v) not in [0, 1]:
-            sys.stdout.write("Line {} WARNING: invalid useScore attribute\n".format(line))
+            sys.stdout.write("Line {} WARNING: invalid useScore attribute\n".format(l))
         elif k in ['color', 'itemRgb', 'colorByStrand', 'type', 'group', 'db', 'url', 'htmlUrl',
          'bigDataUrl'] and not isinstance(v, str):
-            sys.stdout.write("Line {} WARNING: Attribute expected to be a string\n".format(line))
+            sys.stdout.write("Line {} WARNING: Attribute expected to be a string\n".format(l))
         elif k in ['maxItems', 'offset', 'priority', 'useScore'] and not isinstance(v, float):
-            sys.stdout.write("Line {} WARNING: Attribute expected to be a number\n".format(line))
+            sys.stdout.write("Line {} WARNING: Attribute expected to be a number\n".format(l))
         elif k not in ['name', 'description', 'type', 'visibility', 'color', 'itemRgb', 'colorByStrand',
             'useScore', 'group', 'priority', 'db', 'offset', 'maxItems', 'url', 'htmlUrl', 'bigDataUrl']:
-            sys.stdout.write("Line {} WARNING: Invalid track attribute\n".format(line))
+            sys.stdout.write("Line {} WARNING: Invalid track attribute\n".format(l))
     return True
 
 

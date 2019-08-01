@@ -6,12 +6,15 @@ This code is meant to be compatible with both Python 2 and 3
 
 Outputs the results to a binary file to be visualized using combine.py
 """
-import os
-import subprocess
 import argparse
+import os
 import pickle
+import subprocess
+
+from yaml import dump, load
+
 from run_utils import *
-from yaml import load, dump
+
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
 except ImportError:

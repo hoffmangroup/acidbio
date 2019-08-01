@@ -1,4 +1,0 @@
-track type=broadPeak visibility=3 db=hg19 name="bPk" description="ENCODE broadPeak Example"
-chr19	251100	251200	.	116	.	4.89716	3.70716	-1
-chr19	251300	251400	.	103	.	2.46426	1.54117	-1
-chr20	251200	251300	.	107	.	3.22803	2.12614	-1
