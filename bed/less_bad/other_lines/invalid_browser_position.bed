@@ -1,4 +1,0 @@
-browser position chr19:1800-1200
-track name="position_bad" description="start spot > end spot"
-chr19	251300	251400
-chr19	251500	251600

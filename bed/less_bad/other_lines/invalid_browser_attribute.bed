@@ -1,5 +1,0 @@
-browser position chr19:1200-1800
-browser expand all
-track name="brow_invalid" description="expand isn't an attribute"
-chr19	251300	251400
-chr19	251500	251600

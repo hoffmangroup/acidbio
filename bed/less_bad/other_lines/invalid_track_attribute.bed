@@ -1,5 +1,0 @@
-track name="This track" description="a track" useScore=1 disable="True"
-chr19	251000	251100	A	890	-
-chr19	251400	251600	B	999	+
-chr20	251200	251400	C	900	-
-chr20	251450	251500	D	791	-
