@@ -21,7 +21,7 @@ except ImportError:
     from yaml import Loader, Dumper
 
 
-def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", passed_bad_file="out/passed_bad.txt"):
+def run_all(bed_type, output_file, verbose=False, failed_good_file="out/failed_good.txt", passed_bad_file="out/passed_bad.txt"):
     """
     Calls run_bad or run_good from run_utils.py to run tools against the test suite.
     Outputs the results to <output_file> as a binary file.
@@ -49,7 +49,7 @@ def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", 
     tool_list = data['tools']
     for tool in tool_list:
         for program in list(tool.keys()):
-            # if program != 'validatebed': continue
+            
             if conda_envs[program] != this_env:  # Skip the tool if the wrong Python version is present
                 continue
 
@@ -64,29 +64,29 @@ def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", 
                 n = m if len(title) % 2 == 0 else m + 1
 
                 print("*"*m + " " + title + " " + "*"*n)
-                print("*"*33 + " strict good test cases " + "*"*33)
+                print("*"*33 + " good test cases " + "*"*33)
                 current_array.extend(
-                    run_good(execution, "./good/", title, verbose, failed_good_file, command_insertions))
+                    run_good(execution, bed_type + "/good/", title, verbose, failed_good_file, command_insertions))
                 print("*"*90)
                 print()
                 current_array.append(0.5)  # 0.5 is a separator for heatmap purposes
 
-                print("*"*33 + " non-strict good cases " + "*"*34)
-                current_array.extend(
-                    run_good(execution, "./less_good/", title, verbose, failed_good_file, command_insertions))
-                print("*"*90)
-                print()
-                current_array.extend([0.5, 0.5, 0.5])
+                # print("*"*33 + " non-strict good cases " + "*"*34)
+                # current_array.extend(
+                #     run_good(execution, "./less_good/", title, verbose, failed_good_file, command_insertions))
+                # print("*"*90)
+                # print()
+                # current_array.extend([0.5, 0.5, 0.5])
 
-                print("*"*31 + " non-strict bad test cases " + "*"*32)
-                current_array.extend(
-                    run_bad(execution, "./less_bad/", title, verbose, passed_bad_file, command_insertions))
-                print("*"*90)
-                print()
-                current_array.append(0.5)
+                # print("*"*31 + " non-strict bad test cases " + "*"*32)
+                # current_array.extend(
+                #     run_bad(execution, "./less_bad/", title, verbose, passed_bad_file, command_insertions))
+                # print("*"*90)
+                # print()
+                # current_array.append(0.5)
 
-                print("*"*33 + " strict bad test cases " + "*"*34)
-                current_array.extend(run_bad(execution, "./bad/", title, verbose, passed_bad_file, command_insertions))
+                print("*"*33 + " bad test cases " + "*"*34)
+                current_array.extend(run_bad(execution, bed_type + "/bad/", title, verbose, passed_bad_file, command_insertions))
                 print("*"*90)
                 print()
                 correct_list.append(current_array)
@@ -102,6 +102,8 @@ def run_all(output_file, verbose=False, failed_good_file="out/failed_good.txt", 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Tests the tools in config.yaml to see if they appropriately " + 
         "throw warnings or errors against a suite of BED files")
+    parser.add_argument("bed_version", metavar="bed-version",
+        help="Which BED type to test. Must be one of BED03, BED04, ..., BED12")
     parser.add_argument("outdir", help="location where all output files go")
     parser.add_argument("-V", "--version", action='version', version='0.1')
     parser.add_argument("-v", "--verbose", action='store_true', help="display all results")
@@ -114,5 +116,5 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    run_all(args.outdir + "/" + args.results_array_file, args.verbose, args.outdir + "/" + args.failed_good,
+    run_all(args.bed_version, args.outdir + "/" + args.results_array_file, args.verbose, args.outdir + "/" + args.failed_good,
         args.outdir + "/" + args.passed_bad)

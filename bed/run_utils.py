@@ -69,32 +69,31 @@ def run_bad(tool, path, tool_name=None, verbose=False, output_file="out/passed_b
 
     temp_file_list = [tempfile.NamedTemporaryFile() for _ in range(tool.count("TEMP"))]
 
-    for directory in os.listdir(path):
-        for file in os.listdir(path + directory):
-            if file.endswith(".bed"):
-                filepath = path + directory + "/" + file
-                execute_line = create_execute_line(tool, filepath, temp_file_list, insertions)
-                p = subprocess.Popen(execute_line, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-                out, err = p.communicate()
+    for file in os.listdir(path):
+        if file.endswith(".bed"):
+            filepath = path + "/" + file
+            execute_line = create_execute_line(tool, filepath, temp_file_list, insertions)
+            p = subprocess.Popen(execute_line, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+            out, err = p.communicate()
 
-                if p.returncode != 0 or detect_problem(out, err):
-                    correct_array.append(1)
-                    if verbose:
-                        print(filepath + ' failed correctly')
-                        print(err)
-                        print()
-                else:
-                    correct_array.append(0)
-                    print(filepath + ' passed incorrectly')
-                    if verbose:
-                        print(out)
-                        print()
-                    out_file.write("%===========================%\n {} \n\n".format(filepath).encode('utf-8'))
-                    out_file.write("stdout:\n".encode('utf-8'))
-                    out_file.write(out)
-                    out_file.write("stderr:\n".encode('utf-8'))
-                    out_file.write(err)
-                    out_file.write("%===========================%\n\n".encode('utf-8'))
+            if p.returncode != 0 or detect_problem(out, err):
+                correct_array.append(1)
+                if verbose:
+                    print(filepath + ' failed correctly')
+                    print(err)
+                    print()
+            else:
+                correct_array.append(0)
+                print(filepath + ' passed incorrectly')
+                if verbose:
+                    print(out)
+                    print()
+                out_file.write("%===========================%\n {} \n\n".format(filepath).encode('utf-8'))
+                out_file.write("stdout:\n".encode('utf-8'))
+                out_file.write(out)
+                out_file.write("stderr:\n".encode('utf-8'))
+                out_file.write(err)
+                out_file.write("%===========================%\n\n".encode('utf-8'))
     print()
     print(str(correct_array.count(1)) + " correct out of " + str(len(correct_array)))
 
@@ -124,32 +123,31 @@ def run_good(tool, path, tool_name=None, verbose=False, output_file="out/failed_
     # Generate any temporary files that a tool needs for intermediate operations
     temp_file_list = [tempfile.NamedTemporaryFile() for _ in range(tool.count("TEMP"))]
 
-    for directory in os.listdir(path):
-        for file in os.listdir(path + directory):
-            if file.endswith(".bed"):
-                filepath = path + directory + "/" + file
-                execute_line = create_execute_line(tool, filepath, temp_file_list, insertions)
-                p = subprocess.Popen(execute_line, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-                out, err = p.communicate()
+    for file in os.listdir(path):
+        if file.endswith(".bed"):
+            filepath = path + "/" + file
+            execute_line = create_execute_line(tool, filepath, temp_file_list, insertions)
+            p = subprocess.Popen(execute_line, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+            out, err = p.communicate()
 
-                if p.returncode == 0 and not detect_problem(out, err):
-                    correct_array.append(1)
-                    if verbose:
-                        print(filepath + ' passed correctly')
-                        print(out)
-                        print()
-                else:
-                    correct_array.append(0)
-                    print(filepath + ' failed incorrectly')
-                    if verbose:
-                        print(out)
-                        print()
-                    out_file.write("%===========================%\n {} \n\n".format(filepath).encode('utf-8'))
-                    out_file.write("stdout:\n".encode('utf-8'))
-                    out_file.write(out)
-                    out_file.write("stderr:\n".encode('utf-8'))
-                    out_file.write(err)
-                    out_file.write("%===========================%\n\n".encode('utf-8'))
+            if p.returncode == 0 and not detect_problem(out, err):
+                correct_array.append(1)
+                if verbose:
+                    print(filepath + ' passed correctly')
+                    print(out)
+                    print()
+            else:
+                correct_array.append(0)
+                print(filepath + ' failed incorrectly')
+                if verbose:
+                    print(out)
+                    print()
+                out_file.write("%===========================%\n {} \n\n".format(filepath).encode('utf-8'))
+                out_file.write("stdout:\n".encode('utf-8'))
+                out_file.write(out)
+                out_file.write("stderr:\n".encode('utf-8'))
+                out_file.write(err)
+                out_file.write("%===========================%\n\n".encode('utf-8'))
 
     print()
     print(str(correct_array.count(1)) + " correct out of " + str(len(correct_array)))
