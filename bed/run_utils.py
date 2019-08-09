@@ -73,6 +73,7 @@ def run_bad(tool, path, tool_name=None, verbose=False, output_file="out/passed_b
         if file.endswith(".bed"):
             filepath = path + "/" + file
             execute_line = create_execute_line(tool, filepath, temp_file_list, insertions)
+            print(execute_line)
             p = subprocess.Popen(execute_line, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
             out, err = p.communicate()
 
@@ -127,6 +128,7 @@ def run_good(tool, path, tool_name=None, verbose=False, output_file="out/failed_
         if file.endswith(".bed"):
             filepath = path + "/" + file
             execute_line = create_execute_line(tool, filepath, temp_file_list, insertions)
+            print(execute_line)
             p = subprocess.Popen(execute_line, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
             out, err = p.communicate()
 

@@ -16,26 +16,16 @@ from more_itertools import sort_together
 import seaborn as sns; sns.set()
 
 
-def get_file_names():
+def get_file_names(version):
     """
     Returns a list of all the test cases in the order that they were used
     """
     file_names = []
-    for directory in os.listdir("./good/"):
-        for file in os.listdir("./good/" + directory):
-            if file.endswith(".bed"): file_names.append(file)
+    for file in os.listdir(version + "/good/"):
+        if file.endswith(".bed"): file_names.append(file)
     file_names.append("")
-    for directory in os.listdir("./less_good"):
-        for file in os.listdir("./less_good/" + directory):
-            if file.endswith(".bed"): file_names.append(file)
-    file_names.extend(["", "", ""])
-    for directory in os.listdir("./less_bad"):
-        for file in os.listdir("./less_bad/" + directory):
-            if file.endswith(".bed"): file_names.append(file)
-    file_names.append("")
-    for directory in os.listdir("./bad/"):
-        for file in os.listdir("./bad/" + directory):
-            if file.endswith(".bed"): file_names.append(file)
+    for file in os.listdir(version + "/bad/"):
+        if file.endswith(".bed"): file_names.append(file)
     return file_names
 
 
@@ -43,6 +33,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Takes the results arrays containing the data obtained from" + 
         "run_all.py and combines them into a sorted heatmap")
     parser.add_argument("-V", "--version", action='version', version='0.1')
+    parser.add_argument("bed_version", metavar="bed-version", help="BED version that the results array belongs to." +
+        "Must be one of BED03, BED04, ..., BED12")
     parser.add_argument("results_file", metavar="results-array-file",
         help="result array file(s). Can be regular expressions", nargs="+")
     parser.add_argument("outfile_filepath", metavar="outfile-filepath",
@@ -58,7 +50,7 @@ if __name__ == '__main__':
         sys.stderr.write("No files found matching the file regexps\n")
         exit(1)
 
-    file_list = get_file_names()
+    file_list = get_file_names(args.bed_version)
 
     num_correct = []
     correct_list = []
@@ -94,7 +86,7 @@ if __name__ == '__main__':
     ax.set_ylabel('TOOLS')
     ax.set_xlabel('TEST CASES')
     
-    plt.title("Strict good" + " "*65 + "Non-strict good" + " "*75 + "Non-strict bad" + " "*70 + "Strict bad")
+    plt.title("Good" + " "*70 + "Bad")
     plt.viridis()
     plt.yticks(rotation=0)
     plt.tight_layout()

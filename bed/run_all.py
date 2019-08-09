@@ -41,6 +41,9 @@ def run_all(bed_type, output_file, verbose=False, failed_good_file="out/failed_g
     data = load(stream, Loader=Loader)
 
     command_insertions = data['settings']['file-locations']  # Locations of "constant" files
+    command_insertions['INTERSECT'] = command_insertions['INTERSECT'].replace('intersect_file',
+        'intersect_file' + bed_type[-2:])  # Replace with the correct intersection file
+    trash_dir = command_insertions['OUTPUT_DIR']
     conda_envs = data['conda-environment']  # Each tool with its corresponding Python version
 
     correct_list = []
@@ -49,12 +52,13 @@ def run_all(bed_type, output_file, verbose=False, failed_good_file="out/failed_g
     tool_list = data['tools']
     for tool in tool_list:
         for program in list(tool.keys()):
-            
+            if program == 'homer':
+                continue
             if conda_envs[program] != this_env:  # Skip the tool if the wrong Python version is present
                 continue
 
             commands = tool[program]
-            
+
             for command, execution in commands.items():
                 current_array = []  # Array of how the program performed on each test case. 0 = incorrect, 1 = correct
                 title = program + " " + command
@@ -71,28 +75,16 @@ def run_all(bed_type, output_file, verbose=False, failed_good_file="out/failed_g
                 print()
                 current_array.append(0.5)  # 0.5 is a separator for heatmap purposes
 
-                # print("*"*33 + " non-strict good cases " + "*"*34)
-                # current_array.extend(
-                #     run_good(execution, "./less_good/", title, verbose, failed_good_file, command_insertions))
-                # print("*"*90)
-                # print()
-                # current_array.extend([0.5, 0.5, 0.5])
-
-                # print("*"*31 + " non-strict bad test cases " + "*"*32)
-                # current_array.extend(
-                #     run_bad(execution, "./less_bad/", title, verbose, passed_bad_file, command_insertions))
-                # print("*"*90)
-                # print()
-                # current_array.append(0.5)
-
                 print("*"*33 + " bad test cases " + "*"*34)
                 current_array.extend(run_bad(execution, bed_type + "/bad/", title, verbose, passed_bad_file, command_insertions))
                 print("*"*90)
                 print()
                 correct_list.append(current_array)
 
+                subprocess.call(["rm", "-rf", trash_dir + "/*"])
+
     num_correct = [l.count(1) for l in correct_list]  # Used for sorting purposes in combine.py
-    
+
     with open(output_file, 'wb') as fp:  # Dump the results of these set of tools into a binary file
         pickle.dump([num_correct, correct_list, name_list], fp)
 
@@ -100,7 +92,7 @@ def run_all(bed_type, output_file, verbose=False, failed_good_file="out/failed_g
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Tests the tools in config.yaml to see if they appropriately " + 
+    parser = argparse.ArgumentParser(description="Tests the tools in config.yaml to see if they appropriately " +
         "throw warnings or errors against a suite of BED files")
     parser.add_argument("bed_version", metavar="bed-version",
         help="Which BED type to test. Must be one of BED03, BED04, ..., BED12")
