@@ -11,19 +11,22 @@ import os
 import pickle
 import subprocess
 
-from yaml import dump, load
+from yaml import load
 
 from run_utils import *
 
 try:
-    from yaml import CLoader as Loader, CDumper as Dumper
+    from yaml import CLoader as Loader
 except ImportError:
-    from yaml import Loader, Dumper
+    from yaml import Loader
 
 
-def run_all(bed_type, output_file, verbose=False, failed_good_file="out/failed_good.txt", passed_bad_file="out/passed_bad.txt"):
+def run_all(bed_type, output_file, verbose=False,
+            failed_good_file="out/failed_good.txt",
+            passed_bad_file="out/passed_bad.txt"):
     """
-    Calls run_bad or run_good from run_utils.py to run tools against the test suite.
+    Calls run_bad or run_good from run_utils.py to run tools against the
+    test suite.
     Outputs the results to <output_file> as a binary file.
 
     output_file: the binary file containing the results
@@ -48,7 +51,8 @@ def run_all(bed_type, output_file, verbose=False, failed_good_file="out/failed_g
     command_insertions['INTERSECT'] = command_insertions['INTERSECT'].replace(
         'intersect_file', 'intersect_file' + bed_type[-2:])
     trash_dir = command_insertions['OUTPUT_DIR']
-    conda_envs = data['conda-environment']  # Each tool with its corresponding Python version
+    # Each tool with its corresponding Python version
+    conda_envs = data['conda-environment']
 
     correct_list = []
     name_list = []
@@ -57,13 +61,16 @@ def run_all(bed_type, output_file, verbose=False, failed_good_file="out/failed_g
     for tool in tool_list:
         for program in list(tool.keys()):
 
-            if conda_envs[program] != this_env:  # Skip the tool if the wrong Python version is present
+            # Skip the tool if the wrong Python version is present
+            if conda_envs[program] != this_env:
                 continue
 
             commands = tool[program]
 
             for command, execution in commands.items():
-                current_array = []  # Array of how the program performed on each test case. 0 = incorrect, 1 = correct
+                # Array of how the program performed on each test case.
+                # 0 = incorrect, 1 = correct
+                current_array = []
                 title = program + " " + command
                 name_list.append(title)
 
@@ -73,43 +80,56 @@ def run_all(bed_type, output_file, verbose=False, failed_good_file="out/failed_g
                 print("*"*m + " " + title + " " + "*"*n)
                 print("*"*33 + " good test cases " + "*"*33)
                 current_array.extend(
-                    run_good(execution, bed_type + "/good/", title, verbose, failed_good_file, command_insertions))
+                    run_good(execution, bed_type + "/good/", title, verbose,
+                             failed_good_file, command_insertions))
                 print("*"*90)
                 print()
-                current_array.append(0.5)  # 0.5 is a separator for heatmap purposes
+                # 0.5 is a separator for heatmap purposes
+                current_array.append(0.5)
 
                 print("*"*33 + " bad test cases " + "*"*34)
-                current_array.extend(run_bad(execution, bed_type + "/bad/", title, verbose, passed_bad_file, command_insertions))
+                current_array.extend(run_bad(execution, bed_type + "/bad/",
+                                             title, verbose, passed_bad_file,
+                                             command_insertions))
                 print("*"*90)
                 print()
                 correct_list.append(current_array)
 
                 subprocess.call(["rm", "-rf", trash_dir + "/*"])
 
-    num_correct = [l.count(1) for l in correct_list]  # Used for sorting purposes in combine.py
+    # Used for sorting purposes in combine.py
+    num_correct = [l.count(1) for l in correct_list]
 
-    with open(output_file, 'wb') as fp:  # Dump the results of these set of tools into a binary file
+    # Dump the results of these set of tools into a binary file
+    with open(output_file, 'wb') as fp:
         pickle.dump([num_correct, correct_list, name_list], fp)
 
     stream.close()
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Tests the tools in config.yaml to see if they appropriately " +
-        "throw warnings or errors against a suite of BED files")
+    parser = argparse.ArgumentParser(
+        description="Tests the tools in config.yaml to see if they " +
+        "appropriately throw warnings or errors against a suite of BED files")
     parser.add_argument("bed_version", metavar="bed-version",
-        help="Which BED type to test. Must be one of BED03, BED04, ..., BED12")
+                        help="Which BED type to test. Must be one of BED03," +
+                        " BED04, ..., BED12")
     parser.add_argument("outdir", help="location where all output files go")
     parser.add_argument("-V", "--version", action='version', version='0.1')
-    parser.add_argument("-v", "--verbose", action='store_true', help="display all results")
-    parser.add_argument("--results-array-file", metavar="RESULTS_FILENAME", help="output binary results to file",
-        default="bed_test_results")
+    parser.add_argument("-v", "--verbose", action='store_true',
+                        help="display all results")
+    parser.add_argument("--results-array-file", metavar="RESULTS_FILENAME",
+                        help="output binary results to file",
+                        default="bed_test_results")
     parser.add_argument("--failed-good", metavar="GOOD_TESTS_FILENAME",
-        help="output incorrect good test cases to file", default="failed_good.txt")
+                        help="output incorrect good test cases to file",
+                        default="failed_good.txt")
     parser.add_argument("--passed-bad", metavar="BAD_TESTS_FILENAME",
-        help="output incorrect bad test cases to file", default="passed_bad.txt")
+                        help="output incorrect bad test cases to file",
+                        default="passed_bad.txt")
 
     args = parser.parse_args()
 
-    run_all(args.bed_version, args.outdir + "/" + args.results_array_file, args.verbose, args.outdir + "/" + args.failed_good,
-        args.outdir + "/" + args.passed_bad)
+    run_all(args.bed_version, args.outdir + "/" + args.results_array_file,
+            args.verbose, args.outdir + "/" + args.failed_good,
+            args.outdir + "/" + args.passed_bad)

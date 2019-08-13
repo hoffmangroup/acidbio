@@ -22,24 +22,30 @@ def get_file_names(version):
     """
     file_names = []
     for file in os.listdir(version + "/good/"):
-        if file.endswith(".bed"): file_names.append(file)
+        if file.endswith(".bed"):
+            file_names.append(file)
     file_names.append("")
     for file in os.listdir(version + "/bad/"):
-        if file.endswith(".bed"): file_names.append(file)
+        if file.endswith(".bed"):
+            file_names.append(file)
     return file_names
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Takes the results arrays containing the data obtained from" +
-        "run_all.py and combines them into a sorted heatmap")
+    parser = argparse.ArgumentParser(
+        description="Takes the results arrays containing the data obtained" +
+        " from run_all.py and combines them into a sorted heatmap")
     parser.add_argument("-V", "--version", action='version', version='0.1')
-    parser.add_argument("bed_version", metavar="bed-version", help="BED version that the results array belongs to." +
-        "Must be one of BED03, BED04, ..., BED12")
+    parser.add_argument("bed_version", metavar="bed-version",
+                        help="BED version that the results array belongs to." +
+                        "Must be one of BED03, BED04, ..., BED12")
     parser.add_argument("results_file", metavar="results-array-file",
-        help="result array file(s). Can be regular expressions", nargs="+")
+                        help="result array file(s). Can be glob patterns",
+                        nargs="+")
     parser.add_argument("outfile_filepath", metavar="outfile-filepath",
-        help="full filepath to output image file containing the heatmap." +
-        "(eps, pdf, png, raw, rgba, svg, jpg, jpeg, tif, tiff)")
+                        help="full filepath to output image file containing" +
+                        " the heatmap. (eps, pdf, png, raw, rgba, svg, jpg," +
+                        " jpeg, tif, tiff)")
     args = parser.parse_args()
 
     files = []
@@ -64,9 +70,11 @@ if __name__ == '__main__':
             name_list.extend(list(l[2]))
 
     # Sort the tools by number of correctly passed cases
-    num_correct, correct_list, name_list = sort_together([num_correct, correct_list, name_list], key_list=[0, 2])
+    num_correct, correct_list, name_list = sort_together(
+        [num_correct, correct_list, name_list], key_list=[0, 2])
 
-    # Redefine the values from the correct arrays to match with colors of the viridis colormap
+    # Redefine the values from the correct arrays to match with colors
+    # of the viridis colormap
     for j in range(len(correct_list)):
         for n, i in enumerate(correct_list[j]):
             if i == 0.0:  # Incorrect case mapped to blue
@@ -78,10 +86,11 @@ if __name__ == '__main__':
 
     new_cmap = plt.get_cmap('viridis')
     new_cmap.set_under('white')
-    plt.figure(figsize=(23,21))
+    plt.figure(figsize=(23, 21))
 
-    ax = sns.heatmap(correct_list, cmap=new_cmap, vmin=spacing(0.0), vmax=1, linewidths=.5,
-        square=True, cbar=False, xticklabels=file_list, yticklabels=name_list)
+    ax = sns.heatmap(correct_list, cmap=new_cmap, vmin=spacing(0.0), vmax=1,
+                     linewidths=.5, square=True, cbar=False,
+                     xticklabels=file_list, yticklabels=name_list)
 
     ax.set_ylabel('TOOLS')
     ax.set_xlabel('TEST CASES')
