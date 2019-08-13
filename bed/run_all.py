@@ -28,8 +28,10 @@ def run_all(bed_type, output_file, verbose=False, failed_good_file="out/failed_g
 
     output_file: the binary file containing the results
     verbose: if verbose is True, more information will be printed to the screen
-    failed_good_file: the output text file containing the outputs from the tools where it failed on a good test case
-    passed_bad_file: the output text file containing the outputs from the tools where it passed on a bad test case
+    failed_good_file: the output text file containing the outputs from the
+                      tools where it failed on a good test case
+    passed_bad_file: the output text file containing the outputs from the tools
+                     where it passed on a bad test case
     """
     # Clear the previous data and reinitalize it
     subprocess.call(["rm", "-f", failed_good_file, passed_bad_file])
@@ -40,9 +42,11 @@ def run_all(bed_type, output_file, verbose=False, failed_good_file="out/failed_g
     stream = open('config.yaml', 'r')
     data = load(stream, Loader=Loader)
 
-    command_insertions = data['settings']['file-locations']  # Locations of "constant" files
-    command_insertions['INTERSECT'] = command_insertions['INTERSECT'].replace('intersect_file',
-        'intersect_file' + bed_type[-2:])  # Replace with the correct intersection file
+    # Locations of "constant" files
+    command_insertions = data['settings']['file-locations']
+    # Replace with the correct intersection file
+    command_insertions['INTERSECT'] = command_insertions['INTERSECT'].replace(
+        'intersect_file', 'intersect_file' + bed_type[-2:])
     trash_dir = command_insertions['OUTPUT_DIR']
     conda_envs = data['conda-environment']  # Each tool with its corresponding Python version
 
