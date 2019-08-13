@@ -60,7 +60,7 @@ def run_all(bed_type, output_file, verbose=False,
     tool_list = data['tools']
     for tool in tool_list:
         for program in list(tool.keys()):
-
+            if program == 'homer': continue
             # Skip the tool if the wrong Python version is present
             if conda_envs[program] != this_env:
                 continue
