@@ -134,8 +134,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         ccat: peakranger ccat --format bed FILE INTERSECT --output /dev/stdout
     - Piranha:
         basic: Piranha FILE
-    - peakzilla:
-        peakzilla: peakzilla.py FILE INTERSECT -l OUTPUT_DIR/
+    # - peakzilla:  Don't know why it's not working
+        # peakzilla: peakzilla.py FILE INTERSECT -l OUTPUT_DIR/out
     - picard:
         BedToIntervalList: picard BedToIntervalList INPUT=FILE SD=DICTIONARY OUTPUT=/dev/stdout
     - plastid:
@@ -169,7 +169,6 @@ tools:  # Require that the command line sequence to be executed be written on on
         overlap: segtools-overlap INTERSECT FILE -o OUTPUT_DIR/ --clobber
     - seqkit:
         subseq: seqkit subseq --bed FILE FASTA
-        seq: seqkit seq -M FILE FASTA
     - seqtk:
         subseq: seqtk subseq FASTA FILE
     - slncky:

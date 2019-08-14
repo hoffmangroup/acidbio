@@ -10,9 +10,9 @@ import matplotlib.pyplot as plt
 
 from more_itertools import sort_together
 
-import seaborn as sns; sns.set()
+import seaborn as sns; sns.set(font_scale=1.4)
 
-BED_NAMES = ['BED3', 'BED4', 'BED5', 'BED6', 'BED7', 'BED8', 'BED9',
+BED_NAMES = ['BED3', 'BED4', 'BED5', 'BED6', 'BED7', 'BED8', 'BED9', 'BED10',
              'BED11', 'BED12']
 
 
@@ -52,16 +52,13 @@ if __name__ == '__main__':
 
     programs = list(bed_correctness.keys())
     lengths = sorted(list(bed_correctness[programs[0]].keys()))
-    print(lengths)
+
     heatmap_array = []
     sorting_temp = []
     for program in programs:
-        # print(program)
-        # print(bed_correctness[program])
         heatmap_array.append(
             [bed_correctness[program][length] for length in lengths])
         sorting_temp.append(sum(heatmap_array[-1]))
-    # print(sorting_temp)
     
     programs, heatmap_array, sorting_temp = sort_together(
         [programs, heatmap_array, sorting_temp], key_list=[2]
@@ -73,9 +70,9 @@ if __name__ == '__main__':
         vmin=0, vmax=1, square=False, linewidths=.5, xticklabels=BED_NAMES,
         yticklabels=programs, annot=True, cbar=False
     )
-
-    ax.set_ylabel('Tools')
-    ax.set_xlabel('Bed types')
+    sizing = {'fontsize': 24}
+    ax.set_ylabel('Tools', **sizing)
+    ax.set_xlabel('Bed types', **sizing)
 
     # plt.title("Percentage of passing test cases for each BED type")
     plt.xticks(rotation='horizontal')
