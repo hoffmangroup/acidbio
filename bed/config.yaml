@@ -35,6 +35,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         ataqv: ataqv --peak-file FILE --metrics-file /dev/null human BAZAMBAM
     - augur:
         mask: augur mask -s VCF --mask FILE -o /dev/stdout
+    - bamscale:
+        scale: BAMscale cov --bed FILE --bam BAZAMBAM --bam EXBAM --out OUTPUT_DIR/
     - bazam:
         bazam: bazam -bam BAZAMBAM -L FILE
     - bedops:
@@ -165,6 +167,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         geneBody_coverage: geneBody_coverage.py -i EXBAM -r FILE -o OUTPUT_DIR/geneBody
     - samtools:
         bedcov: samtools bedcov FILE EXBAM
+    - scalpel:
+        discovery: scalpel-discovery --single --bam EXBAM --bed FILE --ref GENOME --dir OUTPUT_DIR/
     - segtools:
         overlap: segtools-overlap INTERSECT FILE -o OUTPUT_DIR/ --clobber
     - seqkit:
@@ -209,6 +213,7 @@ conda-environment:
     atactk: py27
     ataqv: py27
     augur: augur
+    bamscale: base
     bazam: base
     bcftools: base
     bedops: base
@@ -268,6 +273,7 @@ conda-environment:
     rseg: base
     rseqc: base
     samtools: base
+    scalpel: base
     segtools: py27
     seqkit: base
     seqtk: base

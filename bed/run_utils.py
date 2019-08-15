@@ -46,7 +46,8 @@ def detect_problem(out, err):
     error = "Error" in err or "ERROR:" in out or \
             "java.lang.RuntimeException" in err or "WARNING:" in err or \
             "WARNING:" in out
-    invalid_bed = "invalid BED" in err or "FileFormatWarning" in err
+    invalid_bed = "invalid BED" in err or "FileFormatWarning" in err or \
+            "[W::" in err
 
     return wrong_file_format or skip_line or error or invalid_bed
 
