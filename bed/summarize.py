@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 from more_itertools import sort_together
 
-import seaborn as sns; sns.set(font_scale=2.3)
+import seaborn as sns; sns.set(font_scale=2.1)
 
 BED_NAMES = ['BED3', 'BED4', 'BED5', 'BED6', 'BED7', 'BED8', 'BED9', 'BED10',
              'BED11', 'BED12']
@@ -50,17 +50,24 @@ if __name__ == '__main__':
             for i in range(len(num_correct)):
                 # this version aggregates over the main tool, using
                 # the best performing subtool as the representative
-                name = name_list[i][:name_list[i].find(' ')]
+                # name = name_list[i][:name_list[i].find(' ')]
 
+                # if name not in bed_correctness:
+                #     bed_correctness[name] = {}
+                # if len(correct_list) in bed_correctness[name]:
+                #     bed_correctness[name][len(correct_list[i])] = \
+                #         max(bed_correctness[name][len(correct_list[i])],
+                #             num_correct[i] / (len(correct_list[i]) - 1))
+                # else:
+                #     bed_correctness[name][len(correct_list[i])] = \
+                #         num_correct[i] / (len(correct_list[i]) - 1)
+
+                # This version counts each subtool separatly
+                name = name_list[i]
                 if name not in bed_correctness:
                     bed_correctness[name] = {}
-                if len(correct_list) in bed_correctness[name]:
-                    bed_correctness[name][len(correct_list[i])] = \
-                        max(bed_correctness[name][len(correct_list[i])],
-                            num_correct[i] / (len(correct_list[i]) - 1))
-                else:
-                    bed_correctness[name][len(correct_list[i])] = \
-                        num_correct[i] / (len(correct_list[i]) - 1)
+                bed_correctness[name][len(correct_list[i])] = \
+                    num_correct[i] / (len(correct_list[i]) - 1)
 
     programs = list(bed_correctness.keys())
     lengths = sorted(list(bed_correctness[programs[0]].keys()))
