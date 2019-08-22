@@ -36,14 +36,20 @@ if __name__ == '__main__':
         sys.stderr.write('No files found matching the globs\n')
         exit(1)
 
+    # bed_correctness is a mapping of tool names to a dictionary where
+    # the number of tests is mapped to the proportion of tests passed
+    # Later, the number of tests is sorted to reveal BED3, ..., BED12
+    # since BED3 will have the least tests, BED12 has the most, etc.
     bed_correctness = {}
     for file in files:
-        with open(file, 'rb') as f:
+        with open(file, 'rb') as f:  # open each result array file
             l = pickle.load(f)
             num_correct = l[0]
             correct_list = l[1]
             name_list = l[2]
             for i in range(len(num_correct)):
+                # this version aggregates over the main tool, using
+                # the best performing subtool as the representative
                 name = name_list[i][:name_list[i].find(' ')]
 
                 if name not in bed_correctness:
@@ -59,6 +65,10 @@ if __name__ == '__main__':
     programs = list(bed_correctness.keys())
     lengths = sorted(list(bed_correctness[programs[0]].keys()))
 
+    # heatmap_array is a list of lists where each list is of length 10 with
+    # the proportion of passing tests from BED3 to BED12 in order.
+    # sorting_temp holds the sum of the proportions to rank tools from
+    # overall best parser to worse parser.
     heatmap_array = []
     sorting_temp = []
     for program in programs:
@@ -72,7 +82,7 @@ if __name__ == '__main__':
     
     plt.figure(figsize=(39, 50))
 
-    sizing = {'fontsize': 24}
+    sizing = {'fontsize': 48}
     ax = sns.heatmap(heatmap_array, cmap=plt.get_cmap('bwr'),
         vmin=0, vmax=1, square=False, linewidths=.5, xticklabels=BED_NAMES,
         yticklabels=programs, annot=True, cbar=True,
