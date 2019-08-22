@@ -75,7 +75,8 @@ if __name__ == '__main__':
     sizing = {'fontsize': 24}
     ax = sns.heatmap(heatmap_array, cmap=plt.get_cmap('bwr'),
         vmin=0, vmax=1, square=False, linewidths=.5, xticklabels=BED_NAMES,
-        yticklabels=programs, annot=True, cbar=False,
+        yticklabels=programs, annot=True, cbar=True,
+        cbar_kws={"fraction": 0.03, "pad": 0.01}
     )
     
     ax.set_ylabel('Tools', **sizing)
