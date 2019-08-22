@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 from more_itertools import sort_together
 
-import seaborn as sns; sns.set(font_scale=1.4)
+import seaborn as sns; sns.set(font_scale=2.3)
 
 BED_NAMES = ['BED3', 'BED4', 'BED5', 'BED6', 'BED7', 'BED8', 'BED9', 'BED10',
              'BED11', 'BED12']
@@ -44,11 +44,17 @@ if __name__ == '__main__':
             correct_list = l[1]
             name_list = l[2]
             for i in range(len(num_correct)):
-                name = name_list[i]
+                name = name_list[i][:name_list[i].find(' ')]
+
                 if name not in bed_correctness:
                     bed_correctness[name] = {}
-                bed_correctness[name][len(correct_list[i])] = \
-                    num_correct[i] / (len(correct_list[i]) - 1)
+                if len(correct_list) in bed_correctness[name]:
+                    bed_correctness[name][len(correct_list[i])] = \
+                        max(bed_correctness[name][len(correct_list[i])],
+                            num_correct[i] / (len(correct_list[i]) - 1))
+                else:
+                    bed_correctness[name][len(correct_list[i])] = \
+                        num_correct[i] / (len(correct_list[i]) - 1)
 
     programs = list(bed_correctness.keys())
     lengths = sorted(list(bed_correctness[programs[0]].keys()))
@@ -66,11 +72,12 @@ if __name__ == '__main__':
     
     plt.figure(figsize=(39, 50))
 
+    sizing = {'fontsize': 24}
     ax = sns.heatmap(heatmap_array, cmap=plt.get_cmap('bwr'),
         vmin=0, vmax=1, square=False, linewidths=.5, xticklabels=BED_NAMES,
-        yticklabels=programs, annot=True, cbar=False
+        yticklabels=programs, annot=True, cbar=False,
     )
-    sizing = {'fontsize': 24}
+    
     ax.set_ylabel('Tools', **sizing)
     ax.set_xlabel('Bed types', **sizing)
 

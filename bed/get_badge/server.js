@@ -1,8 +1,13 @@
 var express = require('express');
-var app = express();
 var yaml = require('js-yaml');
 var fs = require('fs');
+
+var app = express();
 var port = process.env.PORT || 8000;
+
+app.get('/', function(req, res) {
+    res.send("Add a query to the URL with tool=&lt;your tool name&gt;");
+});
 
 app.get('/get-badge', function(req, res) {
     var tool = req.query.tool;
@@ -13,10 +18,10 @@ app.get('/get-badge', function(req, res) {
             var url = doc[tool];
             res.redirect(url);
         } else {
-            res.status(404).send('Tool not found');
+            res.redirect("https://img.shields.io/badge/BED Parser-Unknown-informational");
         }
     } catch (e) {
-        res.status(404).send("Something's wrong on our end.");
+        res.status(404).send("Something's wrong on our end");
         console.log(e);
     }
 });
