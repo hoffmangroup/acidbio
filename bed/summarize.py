@@ -4,9 +4,11 @@ Summarize the results arrays into one-page heatmaps
 import argparse
 import sys
 import pickle
+import pdb
 from glob import glob
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 from more_itertools import sort_together
 
@@ -26,6 +28,7 @@ if __name__ == '__main__':
         help="full filepath to output image file containing" +
         " the heatmap. (eps, pdf, png, raw, rgba, svg, jpg," +
         " jpeg, tif, tiff)")
+    parser.add_argument('--flatten', action='store_true', help="Combine subtools together")
     args = parser.parse_args()
 
     files = []
@@ -36,11 +39,13 @@ if __name__ == '__main__':
         sys.stderr.write('No files found matching the globs\n')
         exit(1)
 
-    # bed_correctness is a mapping of tool names to a dictionary where
+    # max_bed_correctness is a mapping of tool names to a dictionary where
     # the number of tests is mapped to the proportion of tests passed
     # Later, the number of tests is sorted to reveal BED3, ..., BED12
     # since BED3 will have the least tests, BED12 has the most, etc.
-    bed_correctness = {}
+    max_bed_correctness = {}
+    min_bed_correctness = {}
+    # pdb.set_trace()
     for file in files:
         with open(file, 'rb') as f:  # open each result array file
             l = pickle.load(f)
@@ -48,29 +53,36 @@ if __name__ == '__main__':
             correct_list = l[1]
             name_list = l[2]
             for i in range(len(num_correct)):
-                # this version aggregates over the main tool, using
-                # the best performing subtool as the representative
-                # name = name_list[i][:name_list[i].find(' ')]
+                if args.flatten:
+                    name = name_list[i]
+                    if name not in max_bed_correctness:
+                        max_bed_correctness[name] = {}
+                    max_bed_correctness[name][len(correct_list[i])] = \
+                        num_correct[i] / (len(correct_list[i]) - 1)
+                else:
+                    name = name_list[i][:name_list[i].find(' ')]
 
-                # if name not in bed_correctness:
-                #     bed_correctness[name] = {}
-                # if len(correct_list) in bed_correctness[name]:
-                #     bed_correctness[name][len(correct_list[i])] = \
-                #         max(bed_correctness[name][len(correct_list[i])],
-                #             num_correct[i] / (len(correct_list[i]) - 1))
-                # else:
-                #     bed_correctness[name][len(correct_list[i])] = \
-                #         num_correct[i] / (len(correct_list[i]) - 1)
+                    if name not in max_bed_correctness:
+                        max_bed_correctness[name] = {}
+                        min_bed_correctness[name] = {}
+                    if len(correct_list[i]) in max_bed_correctness[name]:
+                        max_bed_correctness[name][len(correct_list[i])] = \
+                            max(max_bed_correctness[name][len(correct_list[i])],
+                                num_correct[i] / (len(correct_list[i]) - 1))
+                        min_bed_correctness[name][len(correct_list[i])] = \
+                            min(min_bed_correctness[name][len(correct_list[i])],
+                                num_correct[i] / (len(correct_list[i]) - 1))
+                    else:
+                        max_bed_correctness[name][len(correct_list[i])] = \
+                            num_correct[i] / (len(correct_list[i]) - 1)
+                        min_bed_correctness[name][len(correct_list[i])] = \
+                            num_correct[i] / (len(correct_list[i]) - 1)
 
-                # This version counts each subtool separatly
-                name = name_list[i]
-                if name not in bed_correctness:
-                    bed_correctness[name] = {}
-                bed_correctness[name][len(correct_list[i])] = \
-                    num_correct[i] / (len(correct_list[i]) - 1)
+    if args.flatten:
+        min_bed_correctness = max_bed_correctness
 
-    programs = list(bed_correctness.keys())
-    lengths = sorted(list(bed_correctness[programs[0]].keys()))
+    programs = list(max_bed_correctness.keys())
+    lengths = sorted(list(max_bed_correctness[programs[0]].keys()))
 
     # heatmap_array is a list of lists where each list is of length 10 with
     # the proportion of passing tests from BED3 to BED12 in order.
@@ -78,21 +90,27 @@ if __name__ == '__main__':
     # overall best parser to worse parser.
     heatmap_array = []
     sorting_temp = []
+    display_array = []
     for program in programs:
         heatmap_array.append(
-            [bed_correctness[program][length] for length in lengths])
+            [(max_bed_correctness[program][length] + min_bed_correctness[program][length]) / 2 for length in lengths])
+        display_array.append(
+            [str(round(min_bed_correctness[program][length], 2)) + ' / ' + str(round(max_bed_correctness[program][length], 2)) for length in lengths]
+        )
         sorting_temp.append(sum(heatmap_array[-1]))
     
-    programs, heatmap_array, sorting_temp = sort_together(
-        [programs, heatmap_array, sorting_temp], key_list=[2]
+    programs, heatmap_array, display_array, sorting_temp = sort_together(
+        [programs, heatmap_array, display_array, sorting_temp], key_list=[3]
     )
-    
+
+    annot = True if args.flatten else np.array(display_array, dtype=object)
+    fmt = '.2g' if args.flatten else ''
     plt.figure(figsize=(39, 50))
 
     sizing = {'fontsize': 48}
     ax = sns.heatmap(heatmap_array, cmap=plt.get_cmap('bwr'),
         vmin=0, vmax=1, square=False, linewidths=.5, xticklabels=BED_NAMES,
-        yticklabels=programs, annot=True, cbar=True,
+        yticklabels=programs, annot=annot, cbar=True, fmt=fmt,
         cbar_kws={"fraction": 0.03, "pad": 0.01}
     )
     

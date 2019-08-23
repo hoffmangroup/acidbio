@@ -10,3 +10,4 @@ bed/data/hg38.refseq
 bed/out/
 bed/get_badge/node_modules
 bed/get_badge/.git/
+bed/.idea/
