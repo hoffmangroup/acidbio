@@ -1,11 +1,13 @@
 """
 Takes the binary results array outputted from run_all.py and combines them
-into one heatmap sorted by the number of correct cases.
+into one heatmap sorted by the number of correct cases. Also produces
+a CSV file with the results.
 """
 import argparse
 import os
 import pickle
 import sys
+import csv
 from glob import glob
 
 import matplotlib.pyplot as plt
@@ -46,6 +48,9 @@ if __name__ == '__main__':
                         help="full filepath to output image file containing" +
                         " the heatmap. (eps, pdf, png, raw, rgba, svg, jpg," +
                         " jpeg, tif, tiff)")
+    parser.add_argument('-c', '--csv', metavar="csv-filepath",
+                        help="full filepath to output CSV file. If not" +
+                        "provided, then no CSV will be produced")
     args = parser.parse_args()
 
     files = []
@@ -72,6 +77,21 @@ if __name__ == '__main__':
     # Sort the tools by number of correctly passed cases
     num_correct, correct_list, name_list = sort_together(
         [num_correct, correct_list, name_list], key_list=[0, 2])
+    
+    if args.csv is not None:
+        csv_file = open(args.csv, 'w', newline='')
+        writer = csv.writer(csv_file, delimiter=',')
+        
+        # Write the headers
+        writer.writerow(['Tool name'] + file_list)
+
+        # Write each tool
+        for i in range(len(correct_list)):
+            row = [name_list[i]] + correct_list[i]
+            row[row.index(0.5)] = ''
+            writer.writerow(row)
+        csv_file.close()
+
 
     # Redefine the values from the correct arrays to match with colors
     # of the viridis colormap
