@@ -16,7 +16,10 @@
    width="776pt"
    id="svg2"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="summary_mini.svg">
+   sodipodi:docname="summary_mini.svg"
+   inkscape:export-filename="/users/jniu/Documents/torture-tester/bed/results/summary_mini.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <metadata
      id="metadata22046">
     <rdf:RDF>
@@ -25,7 +28,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -43,8 +46,8 @@
      id="namedview22044"
      showgrid="false"
      inkscape:zoom="1.6136752"
-     inkscape:cx="831.71843"
-     inkscape:cy="632.04566"
+     inkscape:cx="722.34078"
+     inkscape:cy="607.25752"
      inkscape:window-x="0"
      inkscape:window-y="28"
      inkscape:window-maximized="1"
@@ -84866,7 +84869,7 @@
        id="tspan25376"
        style="white-space:pre;stroke-linecap:butt;stroke-linejoin:round"
        x="708.44495"
-       y="234.49577">Perfect</tspan><tspan
+       y="234.49577">Correct</tspan><tspan
        sodipodi:role="line"
        style="white-space:pre;stroke-linecap:butt;stroke-linejoin:round"
        x="708.44495"
@@ -84883,7 +84886,7 @@
        id="tspan25382"
        style="white-space:pre;stroke-linecap:butt;stroke-linejoin:round"
        x="707.45337"
-       y="661.8432">Worst</tspan><tspan
+       y="661.8432">Incorrect</tspan><tspan
        sodipodi:role="line"
        style="white-space:pre;stroke-linecap:butt;stroke-linejoin:round"
        x="707.45337"
