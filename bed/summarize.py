@@ -29,12 +29,17 @@ if __name__ == '__main__':
         " the heatmap. (eps, pdf, png, raw, rgba, svg, jpg," +
         " jpeg, tif, tiff)")
     parser.add_argument('--expand', action='store_true',
-                        help="Do not combine subtools together")
-    parser.add_argument('--mini', action='store_true',
-                        help="Make plot smaller")
+                        help="do not combine subtools together")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('--mini', action='store_true',
+                        help="make plot smaller")
+    group.add_argument('--squash', action='store_true', help='create a squashed plot')
+    group2 = parser.add_mutually_exclusive_group()
+    group2.add_argument('--max', action='store_true', help='when combining subtools, color by the best performing subtool')
+    group2.add_argument('--min', action='store_true', help='when combining subtools, color by the worst performing subtool')
     args = parser.parse_args()
 
-    sns.set(font_scale=0.6) if args.mini else sns.set(font_scale=2.3)
+    sns.set(font_scale=0.6) if args.mini or args.squash else sns.set(font_scale=2.3)
 
     files = []
     for f in args.results_file:
@@ -97,8 +102,15 @@ if __name__ == '__main__':
     sorting_temp = []
     display_array = []
     for program in programs:
-        heatmap_array.append(
-            [(max_bed_correctness[program][length] + min_bed_correctness[program][length]) / 2 for length in lengths])
+        if args.max:
+            heatmap_array.append(
+                [max_bed_correctness[program][length] for length in lengths])
+        elif args.min:
+            heatmap_array.append(
+                [min_bed_correctness[program][length] for length in lengths])
+        else:
+            heatmap_array.append(
+                [(max_bed_correctness[program][length] + min_bed_correctness[program][length]) / 2 for length in lengths])
         display_array.append(
             [str(round(min_bed_correctness[program][length], 2)) + ' / ' + str(round(max_bed_correctness[program][length], 2)) for length in lengths]
         )
@@ -111,18 +123,22 @@ if __name__ == '__main__':
     annot = True if args.expand else np.array(display_array, dtype=object)
     fmt = '.2g' if args.expand else ''
 
-    plt.figure(figsize=(10.5,13)) if args.mini else plt.figure(figsize=(39, 50))
+    (plt.figure(figsize=(10.5,13)) if args.mini else plt.figure(figsize=(39, 50))) \
+        if not args.squash else plt.figure(figsize=(8.5, 5))
 
-    sizing = {'fontsize': 12} if args.mini else {'fontsize': 48}
-    ax = sns.heatmap(heatmap_array, cmap=plt.get_cmap('bwr'),
-        vmin=0, vmax=1, square=False, linewidths=.5, xticklabels=BED_NAMES,
-        yticklabels=programs, annot=annot, cbar=True, fmt=fmt,
-        cbar_kws={"fraction": 0.03, "pad": 0.01}
-    )
-    # ax = sns.heatmap(heatmap_array, cmap=plt.get_cmap('bwr'),
-    #     vmin=0, vmax=1, linewidths=0.3, xticklabels=BED_NAMES,
-    #     yticklabels=False, cbar=True, cbar_kws={'fraction': 0.03, 'pad': 0.01}
-    # )
+    sizing = {'fontsize': 12} if args.mini or args.squash else {'fontsize': 48}
+    if args.squash:
+        ax = sns.heatmap(heatmap_array, cmap=plt.get_cmap('bwr'),
+        vmin=0, vmax=1, xticklabels=BED_NAMES,
+        yticklabels=False, cbar=True, cbar_kws={'fraction': 0.03, 'pad': 0.01}
+        )
+    else:
+        ax = sns.heatmap(heatmap_array, cmap=plt.get_cmap('bwr'),
+            vmin=0, vmax=1, square=False, linewidths=.5, xticklabels=BED_NAMES,
+            yticklabels=programs, annot=annot, cbar=True, fmt=fmt,
+            cbar_kws={"fraction": 0.03, "pad": 0.01}
+        )
+
     
     ax.set_ylabel('Tools', **sizing)
     ax.set_xlabel('Bed types', **sizing)
