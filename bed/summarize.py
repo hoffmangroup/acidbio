@@ -34,12 +34,18 @@ if __name__ == '__main__':
     group.add_argument('--mini', action='store_true',
                         help="make plot smaller")
     group.add_argument('--squash', action='store_true', help='create a squashed plot')
+    group.add_argument('--long', action='store_true', help='create a longer plot')
     group2 = parser.add_mutually_exclusive_group()
     group2.add_argument('--max', action='store_true', help='when combining subtools, color by the best performing subtool')
     group2.add_argument('--min', action='store_true', help='when combining subtools, color by the worst performing subtool')
     args = parser.parse_args()
 
-    sns.set(font_scale=0.6) if args.mini or args.squash else sns.set(font_scale=2.3)
+    if args.mini or args.squash:
+        sns.set(font_scale=0.6)
+    elif args.long:
+        sns.set(font_scale=0.85)
+    else:
+        sns.set(font_scale=2.3)
 
     files = []
     for f in args.results_file:
@@ -123,10 +129,17 @@ if __name__ == '__main__':
     annot = True if args.expand else np.array(display_array, dtype=object)
     fmt = '.2g' if args.expand else ''
 
-    (plt.figure(figsize=(10.5,13)) if args.mini else plt.figure(figsize=(39, 50))) \
-        if not args.squash else plt.figure(figsize=(8.5, 5))
+    if args.mini:
+        plt.figure(figsize=(10.5, 13))
+    elif args.long:
+        plt.figure(figsize=(10.5, 26))
+    elif args.squash:
+        plt.figure(figsize=(8.5, 5))
+    else:
+        plt.figure(figsize=(39, 50))
 
-    sizing = {'fontsize': 12} if args.mini or args.squash else {'fontsize': 48}
+    
+    sizing = {'fontsize': 12} if args.mini or args.squash or args.long else {'fontsize': 48}
     if args.squash:
         ax = sns.heatmap(heatmap_array, cmap=plt.get_cmap('bwr'),
         vmin=0, vmax=1, xticklabels=BED_NAMES,
