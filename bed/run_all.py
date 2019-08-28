@@ -21,7 +21,7 @@ except ImportError:
     from yaml import Loader
 
 
-def run_all(bed_type, output_file, specific_tool=None, verbose=False,
+def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None, verbose=False,
             failed_good_file="out/failed_good.txt",
             passed_bad_file="out/passed_bad.txt"):
     """
@@ -62,6 +62,9 @@ def run_all(bed_type, output_file, specific_tool=None, verbose=False,
         for program in list(tool.keys()):
             # If <specific_tool> is defined, then skip all other tools
             if specific_tool is not None and program != specific_tool:
+                continue
+
+            if exclude_tool is not None and program == exclude_tool:
                 continue
 
             # Skip the tool if the wrong Python version is present
@@ -125,6 +128,8 @@ if __name__ == '__main__':
     parser.add_argument("-t", "--tool", help="test a specific program. If" + 
                         " not specified, all tools in config.yaml will be" +
                         " tested.")
+    parser.add_argument("-e", "--exclude", help="test all tools except for" +
+                        " this tool. If not specified, all tools will be tested")
     parser.add_argument("--results-array-file", metavar="RESULTS_FILENAME",
                         help="output binary results to file",
                         default="bed_test_results")
@@ -138,5 +143,5 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     run_all(args.bed_version, args.outdir + "/" + args.results_array_file,
-            args.tool, args.verbose, args.outdir + "/" + args.failed_good,
+            args.tool, args.exclude, args.verbose, args.outdir + "/" + args.failed_good,
             args.outdir + "/" + args.passed_bad)
