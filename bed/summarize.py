@@ -43,7 +43,7 @@ if __name__ == '__main__':
     if args.mini or args.squash:
         sns.set(font_scale=0.6)
     elif args.long:
-        sns.set(font_scale=0.85)
+        sns.set(font_scale=0.80)
     else:
         sns.set(font_scale=2.3)
 
@@ -147,7 +147,7 @@ if __name__ == '__main__':
         )
     else:
         ax = sns.heatmap(heatmap_array, cmap=plt.get_cmap('bwr'),
-            vmin=0, vmax=1, square=False, linewidths=.5, xticklabels=BED_NAMES,
+            vmin=0, vmax=1, square=False, linewidths=.4, xticklabels=BED_NAMES,
             yticklabels=programs, annot=annot, cbar=True, fmt=fmt,
             cbar_kws={"fraction": 0.03, "pad": 0.01}
         )
@@ -160,7 +160,7 @@ if __name__ == '__main__':
     plt.xticks(rotation='horizontal')
     # Might need to adjust this if more tools are added/subtracted
     if args.long:
-        plt.subplots_adjust(left=0.15, right=0.90, top=0.99, bottom=0.03)
+        plt.subplots_adjust(left=0.14, right=0.91, top=0.99, bottom=0.03)
     elif args.mini:
         plt.subplots_adjust(left=0.12, right=0.93, top=0.99, bottom=0.04)
     elif args.squash:
