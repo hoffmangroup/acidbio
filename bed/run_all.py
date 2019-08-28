@@ -61,7 +61,7 @@ def run_all(bed_type, output_file, specific_tool=None, verbose=False,
     for tool in tool_list:
         for program in list(tool.keys()):
             # If <specific_tool> is defined, then skip all other tools
-            if specific_tool is not None and program == specific_tool:
+            if specific_tool is not None and program != specific_tool:
                 continue
 
             # Skip the tool if the wrong Python version is present

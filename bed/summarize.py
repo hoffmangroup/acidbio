@@ -158,5 +158,13 @@ if __name__ == '__main__':
 
     # plt.title("Percentage of passing test cases for each BED type")
     plt.xticks(rotation='horizontal')
-    plt.tight_layout()
+    # Might need to adjust this if more tools are added/subtracted
+    if args.long:
+        plt.subplots_adjust(left=0.15, right=0.90, top=0.99, bottom=0.03)
+    elif args.mini:
+        plt.subplots_adjust(left=0.12, right=0.93, top=0.99, bottom=0.04)
+    elif args.squash:
+        plt.subplots_adjust(left=0.05, right=0.88, top=0.99, bottom=0.1)
+    else:
+        plt.subplots_adjust(left=0.10, right=0.93, top=0.99, bottom=0.03)
     plt.savefig(args.outfile_filepath)
