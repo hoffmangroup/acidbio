@@ -1,0 +1,7 @@
+@misc{Picard2019toolkit,
+  title = {Picard toolkit},
+  year = {2019},
+  publisher = {Broad Institute},
+  journal = {Broad Institute, GitHub repository},
+  howpublished = {\url{http://broadinstitute.github.io/picard/}}
+}

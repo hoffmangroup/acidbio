@@ -1,0 +1,26 @@
+Provider: Silverchair
+Database: Oxford University Press
+Content: text/plain; charset="UTF-8"
+
+TY  - JOUR
+AU  - Dale, Ryan K.
+AU  - Pedersen, Brent S.
+AU  - Quinlan, Aaron R.
+T1  - Pybedtools: a flexible Python library for manipulating genomic datasets and annotations
+T2  - Bioinformatics
+PY  - 2011
+Y1  - 2011/09/23/
+DO  - 10.1093/bioinformatics/btr539
+JO  - Bioinformatics
+JA  - bioinformatics
+VL  - 27
+IS  - 24
+SP  - 3423
+EP  - 3424
+SN  - 1367-4803
+AB  - Summary:pybedtools is a flexible Python software library for manipulating and exploring genomic datasets in many common formats. It provides an intuitive Python interface that extends upon the popular BEDTools genome arithmetic tools. The library is well documented and efficient, and allows researchers to quickly develop simple, yet powerful scripts that enable complex genomic analyses.Availability:pybedtools is maintained under the GPL license. Stable versions of pybedtools as well as documentation are available on the Python Package Index at http://pypi.python.org/pypi/pybedtools.Contact:dalerr@niddk.nih.gov; arq5x@virginia.eduSupplementary Information:Supplementary data are available at Bioinformatics online.
+Y2  - 8/29/2019
+UR  - https://doi.org/10.1093/bioinformatics/btr539
+ER  - 
+
+

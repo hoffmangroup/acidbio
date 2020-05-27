@@ -1,0 +1,33 @@
+Provider: Silverchair
+Database: Oxford University Press
+Content: text/plain; charset="UTF-8"
+
+TY  - JOUR
+AU  - Sims, David
+AU  - Ilott, Nicholas E.
+AU  - Sansom, Stephen N.
+AU  - Sudbery, Ian M.
+AU  - Johnson, Jethro S.
+AU  - Fawcett, Katherine A.
+AU  - Berlanga-Taylor, Antonio J.
+AU  - Luna-Valero, Sebastian
+AU  - Ponting, Chris P.
+AU  - Heger, Andreas
+T1  - CGAT: computational genomics analysis toolkit
+T2  - Bioinformatics
+PY  - 2014
+Y1  - 2014/01/05/
+DO  - 10.1093/bioinformatics/btt756
+JO  - Bioinformatics
+JA  - bioinformatics
+VL  - 30
+IS  - 9
+SP  - 1290
+EP  - 1291
+SN  - 1367-4803
+AB  - Summary: Computational genomics seeks to draw biological inferences from genomic datasets, often by integrating and contextualizing next-generation sequencing data. CGAT provides an extensive suite of tools designed to assist in the analysis of genome scale data from a range of standard file formats. The toolkit enables filtering, comparison, conversion, summarization and annotation of genomic intervals, gene sets and sequences. The tools can both be run from the Unix command line and installed into visual workflow builders, such as Galaxy.Availability: The toolkit is freely available from http://github.com/CGATOxford/cgatContact:andreas.heger@dpag.ox.ac.uk
+Y2  - 8/29/2019
+UR  - https://doi.org/10.1093/bioinformatics/btt756
+ER  - 
+
+

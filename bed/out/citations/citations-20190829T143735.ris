@@ -1,0 +1,31 @@
+Provider: Silverchair
+Database: Oxford University Press
+Content: text/plain; charset="UTF-8"
+
+TY  - JOUR
+AU  - Xu, Han
+AU  - Handoko, Lusy
+AU  - Wei, Xueliang
+AU  - Ye, Chaopeng
+AU  - Sheng, Jianpeng
+AU  - Wei, Chia-Lin
+AU  - Lin, Feng
+AU  - Sung, Wing-Kin
+T1  - A signal–noise model for significance analysis of ChIP-seq with negative control
+T2  - Bioinformatics
+PY  - 2010
+Y1  - 2010/04/05/
+DO  - 10.1093/bioinformatics/btq128
+JO  - Bioinformatics
+JA  - bioinformatics
+VL  - 26
+IS  - 9
+SP  - 1199
+EP  - 1204
+SN  - 1367-4803
+AB  - Motivation:ChIP-seq is becoming the main approach to the genome-wide study of protein–DNA interactions and histone modifications. Existing informatics tools perform well to extract strong ChIP-enriched sites. However, two questions remain to be answered: (i) to which extent is a ChIP-seq experiment able to reveal the weak ChIP-enriched sites? (ii) are the weak sites biologically meaningful? To answer these questions, it is necessary to identify the weak ChIP signals from background noise.Results: We propose a linear signal–noise model, in which a noise rate was introduced to represent the fraction of noise in a ChIP library. We developed an iterative algorithm to estimate the noise rate using a control library, and derived a library-swapping strategy for the false discovery rate estimation. These approaches were integrated in a general-purpose framework, named CCAT (Control-based ChIP-seq Analysis Tool), for the significance analysis of ChIP-seq. Applications to H3K4me3 and H3K36me3 datasets showed that CCAT predicted significantly more ChIP-enriched sites that the previous methods did. With the high sensitivity of CCAT prediction, we revealed distinct chromatin features associated to the strong and weak H3K4me3 sites.Availability:http://cmb.gis.a-star.edu.sg/ChIPSeq/tools.htmContact:sungk@gis.a-star.edu.sg; asflin@ntu.edu.sgSupplementary Information:Supplementary data are available at Bioinformatics online.
+Y2  - 8/29/2019
+UR  - https://doi.org/10.1093/bioinformatics/btq128
+ER  - 
+
+

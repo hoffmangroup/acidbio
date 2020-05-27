@@ -1,0 +1,16 @@
+TY  - JOUR
+AU  - Sadedin, Simon P.
+AU  - Oshlack, Alicia
+PY  - 2019
+DA  - 2019/04/18
+TI  - Bazam: a rapid method for read extraction and realignment of high-throughput sequencing data
+JO  - Genome Biology
+SP  - 78
+VL  - 20
+IS  - 1
+AB  - The vast quantities of short-read sequencing data being generated are often exchanged and stored as aligned reads. However, aligned data becomes outdated as new reference genomes and alignment methods become available. Here we describe Bazam, a tool that efficiently extracts the original paired FASTQ from alignment files (BAM or CRAM format) in a format that directly allows efficient realignment. Bazam facilitates up to a 90% reduction in the time for realignment compared to standard methods. Bazam can support selective extraction of read pairs from focused genomic regions for applications such as targeted region analyses, quality control, structural variant calling, and alignment comparisons.
+SN  - 1474-760X
+UR  - https://doi.org/10.1186/s13059-019-1688-1
+DO  - 10.1186/s13059-019-1688-1
+ID  - Sadedin2019
+ER  - 

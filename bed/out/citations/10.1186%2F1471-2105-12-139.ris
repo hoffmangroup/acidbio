@@ -1,0 +1,17 @@
+TY  - JOUR
+AU  - Feng, Xin
+AU  - Grossman, Robert
+AU  - Stein, Lincoln
+PY  - 2011
+DA  - 2011/05/09
+TI  - PeakRanger: A cloud-enabled peak caller for ChIP-seq data
+JO  - BMC Bioinformatics
+SP  - 139
+VL  - 12
+IS  - 1
+AB  - Chromatin immunoprecipitation (ChIP), coupled with massively parallel short-read sequencing (seq) is used to probe chromatin dynamics. Although there are many algorithms to call peaks from ChIP-seq datasets, most are tuned either to handle punctate sites, such as transcriptional factor binding sites, or broad regions, such as histone modification marks; few can do both. Other algorithms are limited in their configurability, performance on large data sets, and ability to distinguish closely-spaced peaks.
+SN  - 1471-2105
+UR  - https://doi.org/10.1186/1471-2105-12-139
+DO  - 10.1186/1471-2105-12-139
+ID  - Feng2011
+ER  - 

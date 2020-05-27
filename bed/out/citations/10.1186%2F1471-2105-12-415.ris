@@ -1,0 +1,19 @@
+TY  - JOUR
+AU  - Buske, Orion J.
+AU  - Hoffman, Michael M.
+AU  - Ponts, Nadia
+AU  - Le Roch, Karine G.
+AU  - Noble, William Stafford
+PY  - 2011
+DA  - 2011/10/26
+TI  - Exploratory analysis of genomic segmentations with Segtools
+JO  - BMC Bioinformatics
+SP  - 415
+VL  - 12
+IS  - 1
+AB  - As genome-wide experiments and annotations become more prevalent, researchers increasingly require tools to help interpret data at this scale. Many functional genomics experiments involve partitioning the genome into labeled segments, such that segments sharing the same label exhibit one or more biochemical or functional traits. For example, a collection of ChlP-seq experiments yields a compendium of peaks, each labeled with one or more associated DNA-binding proteins. Similarly, manually or automatically generated annotations of functional genomic elements, including cis-regulatory modules and protein-coding or RNA genes, can also be summarized as genomic segmentations.
+SN  - 1471-2105
+UR  - https://doi.org/10.1186/1471-2105-12-415
+DO  - 10.1186/1471-2105-12-415
+ID  - Buske2011
+ER  - 

@@ -1,0 +1,32 @@
+Provider: Silverchair
+Database: Oxford University Press
+Content: text/plain; charset="UTF-8"
+
+TY  - JOUR
+AU  - Ramírez, Fidel
+AU  - Ryan, Devon P
+AU  - Grüning, Björn
+AU  - Bhardwaj, Vivek
+AU  - Kilpert, Fabian
+AU  - Richter, Andreas S
+AU  - Heyne, Steffen
+AU  - Dündar, Friederike
+AU  - Manke, Thomas
+T1  - deepTools2: a next generation web server for deep-sequencing data analysis
+T2  - Nucleic Acids Research
+PY  - 2016
+Y1  - 2016/04/13/
+DO  - 10.1093/nar/gkw257
+JO  - Nucleic Acids Research
+JA  - nar
+VL  - 44
+IS  - W1
+SP  - W160
+EP  - W165
+SN  - 0305-1048
+AB  - We present an update to our Galaxy-based web server for processing and visualizing deeply sequenced data. Its core tool set, deepTools, allows users to perform complete bioinformatic workflows ranging from quality controls and normalizations of aligned reads to integrative analyses, including clustering and visualization approaches. Since we first described our deepTools Galaxy server in 2014, we have implemented new solutions for many requests from the community and our users. Here, we introduce significant enhancements and new tools to further improve data visualization and interpretation. deepTools continue to be open to all users and freely available as a web service at deeptools.ie-freiburg.mpg.de. The new deepTools2 suite can be easily deployed within any Galaxy framework via the toolshed repository, and we also provide source code for command line usage under Linux and Mac OS X. A public and documented API for access to deepTools functionality is also available.
+Y2  - 8/29/2019
+UR  - https://doi.org/10.1093/nar/gkw257
+ER  - 
+
+

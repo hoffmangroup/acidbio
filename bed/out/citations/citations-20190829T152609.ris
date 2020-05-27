@@ -1,0 +1,28 @@
+Provider: Silverchair
+Database: Oxford University Press
+Content: text/plain; charset="UTF-8"
+
+TY  - JOUR
+AU  - Zerbino, Daniel R.
+AU  - Johnson, Nathan
+AU  - Juettemann, Thomas
+AU  - Wilder, Steven P.
+AU  - Flicek, Paul
+T1  - WiggleTools: parallel processing of large collections of genome-wide datasets for visualization and statistical analysis
+T2  - Bioinformatics
+PY  - 2013
+Y1  - 2013/12/19/
+DO  - 10.1093/bioinformatics/btt737
+JO  - Bioinformatics
+JA  - bioinformatics
+VL  - 30
+IS  - 7
+SP  - 1008
+EP  - 1009
+SN  - 1367-4803
+AB  - Motivation: Using high-throughput sequencing, researchers are now generating hundreds of whole-genome assays to measure various features such as transcription factor binding, histone marks, DNA methylation or RNA transcription. Displaying so much data generally leads to a confusing accumulation of plots. We describe here a multithreaded library that computes statistics on large numbers of datasets (Wiggle, BigWig, Bed, BigBed and BAM), generating statistical summaries within minutes with limited memory requirements, whether on the whole genome or on selected regions.Availability and Implementation: The code is freely available under Apache 2.0 license at www.github.com/Ensembl/WiggletoolsContact:zerbino@ebi.ac.uk or flicek@ebi.ac.uk
+Y2  - 8/29/2019
+UR  - https://doi.org/10.1093/bioinformatics/btt737
+ER  - 
+
+

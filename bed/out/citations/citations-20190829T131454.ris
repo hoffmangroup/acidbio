@@ -1,0 +1,27 @@
+Provider: Silverchair
+Database: Oxford University Press
+Content: text/plain; charset="UTF-8"
+
+TY  - JOUR
+AU  - Pedersen, Brent S.
+AU  - Schwartz, David A.
+AU  - Yang, Ivana V.
+AU  - Kechris, Katerina J.
+T1  - Comb-p: software for combining, analyzing, grouping and correcting spatially correlated P-values
+T2  - Bioinformatics
+PY  - 2012
+Y1  - 2012/09/05/
+DO  - 10.1093/bioinformatics/bts545
+JO  - Bioinformatics
+JA  - bioinformatics
+VL  - 28
+IS  - 22
+SP  - 2986
+EP  - 2988
+SN  - 1367-4803
+AB  - Summary:comb-p is a command-line tool and a python library that manipulates BED files of possibly irregularly spaced P-values and (1) calculates auto-correlation, (2) combines adjacent P-values, (3) performs false discovery adjustment, (4) finds regions of enrichment (i.e. series of adjacent low P-values) and (5) assigns significance to those regions. In addition, tools are provided for visualization and assessment. We provide validation and example uses on bisulfite-seq with P-values from Fisher’s exact test, tiled methylation probes using a linear model and Dam-ID for chromatin binding using moderated t-statistics. Because the library accepts input in a simple, standardized format and is unaffected by the origin of the P-values, it can be used for a wide variety of applications.Availability:comb-p is maintained under the BSD license. The documentation and implementation are available at https://github.com/brentp/combined-pvalues.Contact:bpederse@gmail.com
+Y2  - 8/29/2019
+UR  - https://doi.org/10.1093/bioinformatics/bts545
+ER  - 
+
+

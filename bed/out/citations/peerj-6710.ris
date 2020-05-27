@@ -1,0 +1,34 @@
+TY  - JOUR
+UR  - https://doi.org/10.7717/peerj.6710
+DO  - 10.7717/peerj.6710
+TI  - Automated analysis of small RNA datasets with RAPID
+AU  - Karunanithi,Sivarajan
+AU  - Simon,Martin
+AU  - Schulz,Marcel H.
+A2  - Peña-Castillo,Lourdes
+DA  - 2019/04/10
+PY  - 2019
+KW  - Comparative analysis
+KW  - sRNA tool
+KW  - Automated sRNA analysis
+KW  - sRNA
+KW  - Small RNA analysis
+KW  - Computational sRNA analysis
+KW  - siRNA analysis
+KW  - siRNA quantification
+KW  - Eukaryotic sRNA
+AB  - 
+            Understanding the role of short-interfering RNA (siRNA) in diverse biological processes is of current interest and often approached through small RNA sequencing. However, analysis of these datasets is difficult due to the complexity of biological RNA processing pathways, which differ between species. Several properties like strand specificity, length distribution, and distribution of soft-clipped bases are few parameters known to guide researchers in understanding the role of siRNAs. We present RAPID, a generic eukaryotic siRNA analysis pipeline, which captures information inherent in the datasets and automatically produces numerous visualizations as user-friendly HTML reports, covering multiple categories required for siRNA analysis. RAPID also facilitates an automated comparison of multiple datasets, with one of the normalization techniques dedicated for siRNA knockdown analysis, and integrates differential expression analysis using DESeq2.
+            
+               Availability and Implementation
+               RAPID is available under MIT license at https://github.com/SchulzLab/RAPID. We recommend using it as a conda environment available from https://anaconda.org/bioconda/rapid
+               
+            
+         
+VL  - 7
+SP  - e6710
+T2  - PeerJ
+JO  - PeerJ
+J2  - PeerJ
+SN  - 2167-8359
+ER  - 

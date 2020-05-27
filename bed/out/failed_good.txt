@@ -1,0 +1,605 @@
+************************** preseq c_curve **************************
+
+%===========================%
+ BED12/good//other-comment_start.bed 
+
+stdout:
+stderr:
+ERROR:	problem opening file: BED12/good//other-comment_start.bed
+%===========================%
+
+%===========================%
+ BED12/good//other-multiple_comments.bed 
+
+stdout:
+stderr:
+ERROR:	problem opening file: BED12/good//other-multiple_comments.bed
+%===========================%
+
+************************** slncky slncky **************************
+
+%===========================%
+ BED12/good//01-unknown_scaffolds.bed 
+
+stdout:
+./data/annotations.config
+Loading annotations for hg38
+Loading ortholog annotations for mm10
+
+Starting with 154 transcripts
+./scratch/trash/.* files already exist! Overwriting...
+
+STEP I. FILTER LNCS
+
+Checking overlap with coding annotations...
+        min_overlap: 0.0%
+        Removing...
+                ... 0 transcripts that overlap coding transcript
+                ... 0 transcripts that fall insde coding transcript (likely UTR or intronic fragments)
+
+Collapsing isoforms into canonical trancsripts...
+        154 transcripts collapsed into 154 canonical transcripts
+
+Searching for gene duplications by aligning to commonly duplicated coding genes...
+        learning null distribution of alignment scores
+             self-aligning 1 / 154 genes              self-aligning 2 / 154 genes              self-aligning 3 / 154 genes              self-aligning 4 / 154 genes              self-aligning 5 / 154 genes              self-aligning 6 / 154 genes              self-aligning 7 / 154 genes              self-aligning 8 / 154 genes              self-aligning 9 / 154 genes              self-aligning 10 / 154 genes              self-aligning 11 / 154 genes              self-aligning 12 / 154 genes              self-aligning 13 / 154 genes              self-aligning 14 / 154 genes              self-aligning 15 / 154 genes              self-aligning 16 / 154 genes              self-aligning 17 / 154 genes              self-aligning 18 / 154 genes              self-aligning 19 / 154 genes              self-aligning 20 / 154 genes              self-aligning 21 / 154 genes              self-aligning 22 / 154 genes              self-aligning 23 / 154 genes              self-aligning 24 / 154 genes              self-aligning 25 / 154 genes              self-aligning 26 / 154 genes              self-aligning 27 / 154 genes              self-aligning 28 / 154 genes              self-aligning 29 / 154 genes              self-aligning 30 / 154 genes              self-aligning 31 / 154 genes              self-aligning 32 / 154 genes              self-aligning 33 / 154 genes              self-aligning 34 / 154 genes              self-aligning 35 / 154 genes              self-aligning 36 / 154 genes              self-aligning 37 / 154 genes              self-aligning 38 / 154 genes              self-aligning 39 / 154 genes              self-aligning 40 / 154 genes              self-aligning 41 / 154 genes              self-aligning 42 / 154 genes              self-aligning 43 / 154 genes              self-aligning 44 / 154 genes              self-aligning 45 / 154 genes              self-aligning 46 / 154 genes              self-aligning 47 / 154 genes              self-aligning 48 / 154 genes              self-aligning 49 / 154 genes              self-aligning 50 / 154 genes              self-aligning 51 / 154 genes              self-aligning 52 / 154 genes              self-aligning 53 / 154 genes              self-aligning 54 / 154 genes              self-aligning 55 / 154 genes              self-aligning 56 / 154 genes              self-aligning 57 / 154 genes              self-aligning 58 / 154 genes              self-aligning 59 / 154 genes              self-aligning 60 / 154 genes              self-aligning 61 / 154 genes              self-aligning 62 / 154 genes              self-aligning 63 / 154 genes              self-aligning 64 / 154 genes              self-aligning 65 / 154 genes              self-aligning 66 / 154 genes              self-aligning 67 / 154 genes              self-aligning 68 / 154 genes              self-aligning 69 / 154 genes              self-aligning 70 / 154 genes              self-aligning 71 / 154 genes              self-aligning 72 / 154 genes              self-aligning 73 / 154 genes              self-aligning 74 / 154 genes              self-aligning 75 / 154 genes              self-aligning 76 / 154 genes              self-aligning 77 / 154 genes              self-aligning 78 / 154 genes              self-aligning 79 / 154 genes              self-aligning 80 / 154 genes              self-aligning 81 / 154 genes              self-aligning 82 / 154 genes              self-aligning 83 / 154 genes              self-aligning 84 / 154 genes              self-aligning 85 / 154 genes              self-aligning 86 / 154 genes              self-aligning 87 / 154 genes              self-aligning 88 / 154 genes              self-aligning 89 / 154 genes              self-aligning 90 / 154 genes              self-aligning 91 / 154 genes              self-aligning 92 / 154 genes              self-aligning 93 / 154 genes              self-aligning 94 / 154 genes              self-aligning 95 / 154 genes              self-aligning 96 / 154 genes              self-aligning 97 / 154 genes              self-aligning 98 / 154 genes              self-aligning 99 / 154 genes              self-aligning 100 / 154 genes              self-aligning 101 / 154 genes              self-aligning 102 / 154 genes              self-aligning 103 / 154 genes              self-aligning 104 / 154 genes              self-aligning 105 / 154 genes              self-aligning 106 / 154 genes              self-aligning 107 / 154 genes              self-aligning 108 / 154 genes              self-aligning 109 / 154 genes              self-aligning 110 / 154 genes              self-aligning 111 / 154 genes              self-aligning 112 / 154 genes              self-aligning 113 / 154 genes              self-aligning 114 / 154 genes              self-aligning 115 / 154 genes              self-aligning 116 / 154 genes              self-aligning 117 / 154 genes              self-aligning 118 / 154 genes              self-aligning 119 / 154 genes              self-aligning 120 / 154 genes              self-aligning 121 / 154 genes              self-aligning 122 / 154 genes              self-aligning 123 / 154 genes              self-aligning 124 / 154 genes              self-aligning 125 / 154 genes              self-aligning 126 / 154 genes              self-aligning 127 / 154 genes              self-aligning 128 / 154 genes              self-aligning 129 / 154 genes              self-aligning 130 / 154 genes              self-aligning 131 / 154 genes              self-aligning 132 / 154 genes              self-aligning 133 / 154 genes              self-aligning 134 / 154 genes              self-aligning 135 / 154 genes              self-aligning 136 / 154 genes              self-aligning 137 / 154 genes              self-aligning 138 / 154 genes              self-aligning 139 / 154 genes              self-aligning 140 / 154 genes              self-aligning 141 / 154 genes              self-aligning 142 / 154 genes              self-aligning 143 / 154 genes              self-aligning 144 / 154 genes              self-aligning 145 / 154 genes              self-aligning 146 / 154 genes              self-aligning 147 / 154 genes              self-aligning 148 / 154 genes              self-aligning 149 / 154 genes              self-aligning 150 / 154 genes              self-aligning 151 / 154 genes              self-aligning 152 / 154 genes              self-aligning 153 / 154 genes              self-aligning 154 / 154 genes 
+
+        aligning transcripts to annotated duplications...
+             self-aligning 1 / 154 genes              self-aligning 2 / 154 genes              self-aligning 3 / 154 genes              self-aligning 4 / 154 genes              self-aligning 5 / 154 genes              self-aligning 6 / 154 genes              self-aligning 7 / 154 genes              self-aligning 8 / 154 genes              self-aligning 9 / 154 genes              self-aligning 10 / 154 genes              self-aligning 11 / 154 genes              self-aligning 12 / 154 genes              self-aligning 13 / 154 genes              self-aligning 14 / 154 genes              self-aligning 15 / 154 genes              self-aligning 16 / 154 genes              self-aligning 17 / 154 genes              self-aligning 18 / 154 genes              self-aligning 19 / 154 genes              self-aligning 20 / 154 genes              self-aligning 21 / 154 genes              self-aligning 22 / 154 genes              self-aligning 23 / 154 genes              self-aligning 24 / 154 genes              self-aligning 25 / 154 genes              self-aligning 26 / 154 genes              self-aligning 27 / 154 genes              self-aligning 28 / 154 genes              self-aligning 29 / 154 genes              self-aligning 30 / 154 genes              self-aligning 31 / 154 genes              self-aligning 32 / 154 genes              self-aligning 33 / 154 genes              self-aligning 34 / 154 genes              self-aligning 35 / 154 genes              self-aligning 36 / 154 genes              self-aligning 37 / 154 genes              self-aligning 38 / 154 genes              self-aligning 39 / 154 genes              self-aligning 40 / 154 genes              self-aligning 41 / 154 genes              self-aligning 42 / 154 genes              self-aligning 43 / 154 genes              self-aligning 44 / 154 genes              self-aligning 45 / 154 genes              self-aligning 46 / 154 genes              self-aligning 47 / 154 genes              self-aligning 48 / 154 genes              self-aligning 49 / 154 genes              self-aligning 50 / 154 genes              self-aligning 51 / 154 genes              self-aligning 52 / 154 genes              self-aligning 53 / 154 genes              self-aligning 54 / 154 genes              self-aligning 55 / 154 genes              self-aligning 56 / 154 genes              self-aligning 57 / 154 genes              self-aligning 58 / 154 genes              self-aligning 59 / 154 genes              self-aligning 60 / 154 genes              self-aligning 61 / 154 genes              self-aligning 62 / 154 genes              self-aligning 63 / 154 genes              self-aligning 64 / 154 genes              self-aligning 65 / 154 genes              self-aligning 66 / 154 genes              self-aligning 67 / 154 genes              self-aligning 68 / 154 genes              self-aligning 69 / 154 genes              self-aligning 70 / 154 genes              self-aligning 71 / 154 genes              self-aligning 72 / 154 genes              self-aligning 73 / 154 genes              self-aligning 74 / 154 genes              self-aligning 75 / 154 genes              self-aligning 76 / 154 genes              self-aligning 77 / 154 genes              self-aligning 78 / 154 genes              self-aligning 79 / 154 genes              self-aligning 80 / 154 genes              self-aligning 81 / 154 genes              self-aligning 82 / 154 genes              self-aligning 83 / 154 genes              self-aligning 84 / 154 genes              self-aligning 85 / 154 genes              self-aligning 86 / 154 genes              self-aligning 87 / 154 genes              self-aligning 88 / 154 genes              self-aligning 89 / 154 genes              self-aligning 90 / 154 genes              self-aligning 91 / 154 genes              self-aligning 92 / 154 genes              self-aligning 93 / 154 genes              self-aligning 94 / 154 genes              self-aligning 95 / 154 genes              self-aligning 96 / 154 genes              self-aligning 97 / 154 genes              self-aligning 98 / 154 genes              self-aligning 99 / 154 genes              self-aligning 100 / 154 genes              self-aligning 101 / 154 genes              self-aligning 102 / 154 genes              self-aligning 103 / 154 genes              self-aligning 104 / 154 genes              self-aligning 105 / 154 genes              self-aligning 106 / 154 genes              self-aligning 107 / 154 genes              self-aligning 108 / 154 genes              self-aligning 109 / 154 genes              self-aligning 110 / 154 genes              self-aligning 111 / 154 genes              self-aligning 112 / 154 genes              self-aligning 113 / 154 genes              self-aligning 114 / 154 genes              self-aligning 115 / 154 genes              self-aligning 116 / 154 genes              self-aligning 117 / 154 genes              self-aligning 118 / 154 genes              self-aligning 119 / 154 genes              self-aligning 120 / 154 genes              self-aligning 121 / 154 genes              self-aligning 122 / 154 genes              self-aligning 123 / 154 genes              self-aligning 124 / 154 genes              self-aligning 125 / 154 genes              self-aligning 126 / 154 genes              self-aligning 127 / 154 genes              self-aligning 128 / 154 genes              self-aligning 129 / 154 genes              self-aligning 130 / 154 genes              self-aligning 131 / 154 genes              self-aligning 132 / 154 genes              self-aligning 133 / 154 genes              self-aligning 134 / 154 genes              self-aligning 135 / 154 genes              self-aligning 136 / 154 genes              self-aligning 137 / 154 genes              self-aligning 138 / 154 genes              self-aligning 139 / 154 genes              self-aligning 140 / 154 genes              self-aligning 141 / 154 genes              self-aligning 142 / 154 genes              self-aligning 143 / 154 genes              self-aligning 144 / 154 genes              self-aligning 145 / 154 genes              self-aligning 146 / 154 genes              self-aligning 147 / 154 genes              self-aligning 148 / 154 genes              self-aligning 149 / 154 genes              self-aligning 150 / 154 genes              self-aligning 151 / 154 genes              self-aligning 152 / 154 genes              self-aligning 153 / 154 genes              self-aligning 154 / 154 genes 
+        0 lncs found that align to commonly duplicated coding gene!
+
+Searching for coding orthologs...
+        cutoff for positive coding alignment set to exonic id = 0.100
+             aligning 1 / 9 genes to ortholog in ./data/annotations/mm10.ucsc.coding.bed              aligning 2 / 9 genes to ortholog in ./data/annotations/mm10.ucsc.coding.bed              aligning 3 / 9 genes to ortholog in ./data/annotations/mm10.ucsc.coding.bed              aligning 4 / 9 genes to ortholog in ./data/annotations/mm10.ucsc.coding.bed              aligning 5 / 9 genes to ortholog in ./data/annotations/mm10.ucsc.coding.bed              aligning 6 / 9 genes to ortholog in ./data/annotations/mm10.ucsc.coding.bed              aligning 7 / 9 genes to ortholog in ./data/annotations/mm10.ucsc.coding.bed              aligning 8 / 9 genes to ortholog in ./data/annotations/mm10.ucsc.coding.bed              aligning 9 / 9 genes to ortholog in ./data/annotations/mm10.ucsc.coding.bed 
+
+             aligning 1 / 9 genes to ortholog in ./data/annotations/mm10.refseq.coding.bed              aligning 2 / 9 genes to ortholog in ./data/annotations/mm10.refseq.coding.bed              aligning 3 / 9 genes to ortholog in ./data/annotations/mm10.refseq.coding.bed              aligning 4 / 9 genes to ortholog in ./data/annotations/mm10.refseq.coding.bed              aligning 5 / 9 genes to ortholog in ./data/annotations/mm10.refseq.coding.bed              aligning 6 / 9 genes to ortholog in ./data/annotations/mm10.refseq.coding.bed              aligning 7 / 9 genes to ortholog in ./data/annotations/mm10.refseq.coding.bed              aligning 8 / 9 genes to ortholog in ./data/annotations/mm10.refseq.coding.bed              aligning 9 / 9 genes to ortholog in ./data/annotations/mm10.refseq.coding.bedstderr:
+Process Process-463:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-464:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-465:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-466:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-467:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-468:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-469:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-470:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-471:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-472:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-473:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-474:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-475:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-476:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-477:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-478:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-479:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Process Process-480:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 267, in _bootstrap
+    self.run()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 304, in alignTranscripts
+    ret = subprocess.check_call(cmd, stdout = null, stderr = null)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+Terminated
+%===========================%
+
+%===========================%
+ BED12/good//03-start_eq_end.bed 
+
+stdout:
+./data/annotations.config
+Loading annotations for hg38
+Loading ortholog annotations for mm10
+
+Starting with 304 transcripts
+./scratch/trash/.* files already exist! Overwriting...
+
+STEP I. FILTER LNCS
+
+Checking overlap with coding annotations...
+        min_overlap: 0.0%
+        Removing...
+stderr:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 1418, in <module>
+    main()
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 1110, in main
+    lncs, OVERLAP_FILTER, numRemoved = removeOverlap(lncs, ANNOTS["CODING"], ['-split', '-s'], minOverlap)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 218, in removeOverlap
+    overlap = overlap*1.0 / lncSize[lnc]
+ZeroDivisionError: float division by zero
+%===========================%
+
+%===========================%
+ BED12/good//04-special_character_name.bed 
+
+stdout:
+./data/annotations.config
+Loading annotations for hg38
+Loading ortholog annotations for mm10
+
+Starting with 305 transcripts
+./scratch/trash/.* files already exist! Overwriting...
+
+STEP I. FILTER LNCS
+
+Checking overlap with coding annotations...
+        min_overlap: 0.0%
+        Removing...
+stderr:
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 1418, in <module>
+    main()
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 1110, in main
+    lncs, OVERLAP_FILTER, numRemoved = removeOverlap(lncs, ANNOTS["CODING"], ['-split', '-s'], minOverlap)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 218, in removeOverlap
+    overlap = overlap*1.0 / lncSize[lnc]
+KeyError: '%^'
+%===========================%
+
+%===========================%
+ BED12/good//other-comment_end.bed 
+
+stdout:
+./data/annotations.config
+Loading annotations for hg38
+stderr:
+ERROR: bed file BED12/good//other-comment_end.bed contains entries on chromosomes not included in genome fa ./data/annotations/hg38.fa. Are you sure you specificed the correct species?
+%===========================%
+
+%===========================%
+ BED12/good//other-comment_middle.bed 
+
+stdout:
+./data/annotations.config
+Loading annotations for hg38
+stderr:
+ERROR: bed file BED12/good//other-comment_middle.bed contains entries on chromosomes not included in genome fa ./data/annotations/hg38.fa. Are you sure you specificed the correct species?
+%===========================%
+
+%===========================%
+ BED12/good//other-comment_start.bed 
+
+stdout:
+./data/annotations.config
+Loading annotations for hg38
+stderr:
+ERROR: bed file BED12/good//other-comment_start.bed contains entries on chromosomes not included in genome fa ./data/annotations/hg38.fa. Are you sure you specificed the correct species?
+%===========================%
+
+%===========================%
+ BED12/good//other-fully_space_delimited.bed 
+
+stdout:
+./data/annotations.config
+Loading annotations for hg38
+stderr:
+ERROR: bed file BED12/good//other-fully_space_delimited.bed contains entries on chromosomes not included in genome fa ./data/annotations/hg38.fa. Are you sure you specificed the correct species?
+%===========================%
+
+%===========================%
+ BED12/good//other-multiple_comments.bed 
+
+stdout:
+./data/annotations.config
+Loading annotations for hg38
+stderr:
+ERROR: bed file BED12/good//other-multiple_comments.bed contains entries on chromosomes not included in genome fa ./data/annotations/hg38.fa. Are you sure you specificed the correct species?
+%===========================%
+
+%===========================%
+ BED12/good//other-not_tab_delimited.bed 
+
+stdout:
+./data/annotations.config
+Loading annotations for hg38
+Loading ortholog annotations for mm10
+
+Starting with 300 transcripts
+./scratch/trash/.* files already exist! Overwriting...
+
+STEP I. FILTER LNCS
+
+Checking overlap with coding annotations...
+        min_overlap: 0.0%
+        Removing...
+                ... 7 transcripts that overlap coding transcript
+                ... 30 transcripts that fall insde coding transcript (likely UTR or intronic fragments)
+
+Collapsing isoforms into canonical trancsripts...
+        263 transcripts collapsed into 263 canonical transcripts
+
+Searching for gene duplications by aligning to commonly duplicated coding genes...
+        learning null distribution of alignment scores
+             self-aligning 1 / 263 genes              self-aligning 2 / 263 genes              self-aligning 3 / 263 genes              self-aligning 4 / 263 genes              self-aligning 5 / 263 genes              self-aligning 6 / 263 genes              self-aligning 7 / 263 genes              self-aligning 8 / 263 genes              self-aligning 9 / 263 genes              self-aligning 10 / 263 genes              self-aligning 11 / 263 genes              self-aligning 12 / 263 genes              self-aligning 13 / 263 genes              self-aligning 14 / 263 genes              self-aligning 15 / 263 genes              self-aligning 16 / 263 genes              self-aligning 17 / 263 genes              self-aligning 18 / 263 genes              self-aligning 19 / 263 genes              self-aligning 20 / 263 genes              self-aligning 21 / 263 genes              self-aligning 22 / 263 genes              self-aligning 23 / 263 genes              self-aligning 24 / 263 genes              self-aligning 25 / 263 genes              self-aligning 26 / 263 genes              self-aligning 27 / 263 genes              self-aligning 28 / 263 genes              self-aligning 29 / 263 genes              self-aligning 30 / 263 genes              self-aligning 31 / 263 genes              self-aligning 32 / 263 genes              self-aligning 33 / 263 genes              self-aligning 34 / 263 genes              self-aligning 35 / 263 genes              self-aligning 36 / 263 genes              self-aligning 37 / 263 genes              self-aligning 38 / 263 genes              self-aligning 39 / 263 genes              self-aligning 40 / 263 genes              self-aligning 41 / 263 genes              self-aligning 42 / 263 genes              self-aligning 43 / 263 genes              self-aligning 44 / 263 genes              self-aligning 45 / 263 genes              self-aligning 46 / 263 genes              self-aligning 47 / 263 genes              self-aligning 48 / 263 genes              self-aligning 49 / 263 genes              self-aligning 50 / 263 genes              self-aligning 51 / 263 genes              self-aligning 52 / 263 genes              self-aligning 53 / 263 genes              self-aligning 54 / 263 genes              self-aligning 55 / 263 genes              self-aligning 56 / 263 genes              self-aligning 57 / 263 genes              self-aligning 58 / 263 genes              self-aligning 59 / 263 genes              self-aligning 60 / 263 genes              self-aligning 61 / 263 genes              self-aligning 62 / 263 genes              self-aligning 63 / 263 genes              self-aligning 64 / 263 genes              self-aligning 65 / 263 genes              self-aligning 66 / 263 genes              self-aligning 67 / 263 genes              self-aligning 68 / 263 genes              self-aligning 69 / 263 genes              self-aligning 70 / 263 genes              self-aligning 71 / 263 genes              self-aligning 72 / 263 genes              self-aligning 73 / 263 genes              self-aligning 74 / 263 genes              self-aligning 75 / 263 genes              self-aligning 76 / 263 genes              self-aligning 77 / 263 genes              self-aligning 78 / 263 genes              self-aligning 79 / 263 genes              self-aligning 80 / 263 genes              self-aligning 81 / 263 genes              self-aligning 82 / 263 genes              self-aligning 83 / 263 genes              self-aligning 84 / 263 genes              self-aligning 85 / 263 genes              self-aligning 86 / 263 genes              self-aligning 87 / 263 genes              self-aligning 88 / 263 genes              self-aligning 89 / 263 genes              self-aligning 90 / 263 genes              self-aligning 91 / 263 genes              self-aligning 92 / 263 genes              self-aligning 93 / 263 genes              self-aligning 94 / 263 genes              self-aligning 95 / 263 genes              self-aligning 96 / 263 genes              self-aligning 97 / 263 genes              self-aligning 98 / 263 genes              self-aligning 99 / 263 genes              self-aligning 100 / 263 genes              self-aligning 101 / 263 genes              self-aligning 102 / 263 genes              self-aligning 103 / 263 genes              self-aligning 104 / 263 genes              self-aligning 105 / 263 genes              self-aligning 106 / 263 genes              self-aligning 107 / 263 genes              self-aligning 108 / 263 genes              self-aligning 109 / 263 genes              self-aligning 110 / 263 genes              self-aligning 111 / 263 genes              self-aligning 112 / 263 genes              self-aligning 113 / 263 genes              self-aligning 114 / 263 genes              self-aligning 115 / 263 genes              self-aligning 116 / 263 genes              self-aligning 117 / 263 genes              self-aligning 118 / 263 genes              self-aligning 119 / 263 genes              self-aligning 120 / 263 genes              self-aligning 121 / 263 genes              self-aligning 122 / 263 genes              self-aligning 123 / 263 genes              self-aligning 124 / 263 genes              self-aligning 125 / 263 genes              self-aligning 126 / 263 genes              self-aligning 127 / 263 genes              self-aligning 128 / 263 genes              self-aligning 129 / 263 genes              self-aligning 130 / 263 genes              self-aligning 131 / 263 genes              self-aligning 132 / 263 genes              self-aligning 133 / 263 genes              self-aligning 134 / 263 genes              self-aligning 135 / 263 genes              self-aligning 136 / 263 genes              self-aligning 137 / 263 genes              self-aligning 138 / 263 genes              self-aligning 139 / 263 genes              self-aligning 140 / 263 genes              self-aligning 141 / 263 genes              self-aligning 142 / 263 genes              self-aligning 143 / 263 genes              self-aligning 144 / 263 genes              self-aligning 145 / 263 genes              self-aligning 146 / 263 genes              self-aligning 147 / 263 genes              self-aligning 148 / 263 genes              self-aligning 149 / 263 genes              self-aligning 150 / 263 genes              self-aligning 151 / 263 genes              self-aligning 152 / 263 genes              self-aligning 153 / 263 genes              self-aligning 154 / 263 genes              self-aligning 155 / 263 genes              self-aligning 156 / 263 genes              self-aligning 157 / 263 genes              self-aligning 158 / 263 genes              self-aligning 159 / 263 genes              self-aligning 160 / 263 genes              self-aligning 161 / 263 genes              self-aligning 162 / 263 genes              self-aligning 163 / 263 genes              self-aligning 164 / 263 genes              self-aligning 165 / 263 genes              self-aligning 166 / 263 genes              self-aligning 167 / 263 genes              self-aligning 168 / 263 genes              self-aligning 169 / 263 genes              self-aligning 170 / 263 genes              self-aligning 171 / 263 genes              self-aligning 172 / 263 genes              self-aligning 173 / 263 genes              self-aligning 174 / 263 genes              self-aligning 175 / 263 genes              self-aligning 176 / 263 genes              self-aligning 177 / 263 genes              self-aligning 178 / 263 genes
+stderr:
+Unexpected file format.  Please use tab-delimited BED, GFF, or VCF. Perhaps you have non-integer starts or ends at line 1?
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 1418, in <module>
+    main()
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 1152, in main
+    lncShuffleScores = selfBlastShuffle(lncs, ANNOTS, args.threads)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 651, in selfBlastShuffle
+    selfBlastShuffleResults = selfBlast(lncs, ANNOTS, "shuffle", threads, False)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 608, in selfBlast
+    subprocess.check_call(cmd)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 190, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['fastaFromBed', '-s', '-fi', './data/annotations/hg38.fa', '-bed', '/tmp/tmpFCWyor', '-fo', '/tmp/tmpFCWyor.fa', '-split', '-name']' returned non-zero exit status 1
+%===========================%
+
+%===========================%
+ BED12/good//other-space_after_tab.bed 
+
+stdout:
+./data/annotations.config
+Loading annotations for hg38
+Loading ortholog annotations for mm10
+
+Starting with 303 transcripts
+./scratch/trash/.* files already exist! Overwriting...
+
+STEP I. FILTER LNCS
+
+Checking overlap with coding annotations...
+        min_overlap: 0.0%
+        Removing...
+                ... 7 transcripts that overlap coding transcript
+                ... 28 transcripts that fall insde coding transcript (likely UTR or intronic fragments)
+
+Collapsing isoforms into canonical trancsripts...
+        268 transcripts collapsed into 268 canonical transcripts
+
+Searching for gene duplications by aligning to commonly duplicated coding genes...
+        learning null distribution of alignment scores
+             self-aligning 1 / 268 genes              self-aligning 2 / 268 genes              self-aligning 3 / 268 genes              self-aligning 4 / 268 genes              self-aligning 5 / 268 genes              self-aligning 6 / 268 genes              self-aligning 7 / 268 genes              self-aligning 8 / 268 genes              self-aligning 9 / 268 genes              self-aligning 10 / 268 genes              self-aligning 11 / 268 genes              self-aligning 12 / 268 genes              self-aligning 13 / 268 genes              self-aligning 14 / 268 genes              self-aligning 15 / 268 genes              self-aligning 16 / 268 genes              self-aligning 17 / 268 genes              self-aligning 18 / 268 genes              self-aligning 19 / 268 genes              self-aligning 20 / 268 genes              self-aligning 21 / 268 genes              self-aligning 22 / 268 genes              self-aligning 23 / 268 genes              self-aligning 24 / 268 genes              self-aligning 25 / 268 genes              self-aligning 26 / 268 genes              self-aligning 27 / 268 genes              self-aligning 28 / 268 genes              self-aligning 29 / 268 genes              self-aligning 30 / 268 genes              self-aligning 31 / 268 genes              self-aligning 32 / 268 genes              self-aligning 33 / 268 genes              self-aligning 34 / 268 genes              self-aligning 35 / 268 genes              self-aligning 36 / 268 genes              self-aligning 37 / 268 genes              self-aligning 38 / 268 genes              self-aligning 39 / 268 genes              self-aligning 40 / 268 genes              self-aligning 41 / 268 genes              self-aligning 42 / 268 genes              self-aligning 43 / 268 genes              self-aligning 44 / 268 genes              self-aligning 45 / 268 genes              self-aligning 46 / 268 genes              self-aligning 47 / 268 genes              self-aligning 48 / 268 genes              self-aligning 49 / 268 genes              self-aligning 50 / 268 genes              self-aligning 51 / 268 genes              self-aligning 52 / 268 genes              self-aligning 53 / 268 genes              self-aligning 54 / 268 genes              self-aligning 55 / 268 genes              self-aligning 56 / 268 genes              self-aligning 57 / 268 genes              self-aligning 58 / 268 genes              self-aligning 59 / 268 genes              self-aligning 60 / 268 genes              self-aligning 61 / 268 genes              self-aligning 62 / 268 genes              self-aligning 63 / 268 genes              self-aligning 64 / 268 genes              self-aligning 65 / 268 genes              self-aligning 66 / 268 genes              self-aligning 67 / 268 genes              self-aligning 68 / 268 genes              self-aligning 69 / 268 genes              self-aligning 70 / 268 genes              self-aligning 71 / 268 genes              self-aligning 72 / 268 genes              self-aligning 73 / 268 genes              self-aligning 74 / 268 genes              self-aligning 75 / 268 genes              self-aligning 76 / 268 genes              self-aligning 77 / 268 genes              self-aligning 78 / 268 genes              self-aligning 79 / 268 genes              self-aligning 80 / 268 genes              self-aligning 81 / 268 genes              self-aligning 82 / 268 genes              self-aligning 83 / 268 genes              self-aligning 84 / 268 genes              self-aligning 85 / 268 genes              self-aligning 86 / 268 genes              self-aligning 87 / 268 genes              self-aligning 88 / 268 genes              self-aligning 89 / 268 genes              self-aligning 90 / 268 genes              self-aligning 91 / 268 genes              self-aligning 92 / 268 genes              self-aligning 93 / 268 genes              self-aligning 94 / 268 genes              self-aligning 95 / 268 genes              self-aligning 96 / 268 genes              self-aligning 97 / 268 genes              self-aligning 98 / 268 genes              self-aligning 99 / 268 genes              self-aligning 100 / 268 genes              self-aligning 101 / 268 genes              self-aligning 102 / 268 genes              self-aligning 103 / 268 genes              self-aligning 104 / 268 genes              self-aligning 105 / 268 genes              self-aligning 106 / 268 genes              self-aligning 107 / 268 genes              self-aligning 108 / 268 genes              self-aligning 109 / 268 genes              self-aligning 110 / 268 genes              self-aligning 111 / 268 genes              self-aligning 112 / 268 genes              self-aligning 113 / 268 genes              self-aligning 114 / 268 genes              self-aligning 115 / 268 genes              self-aligning 116 / 268 genes              self-aligning 117 / 268 genes              self-aligning 118 / 268 genes              self-aligning 119 / 268 genes              self-aligning 120 / 268 genes              self-aligning 121 / 268 genes              self-aligning 122 / 268 genes              self-aligning 123 / 268 genes              self-aligning 124 / 268 genes              self-aligning 125 / 268 genes              self-aligning 126 / 268 genes              self-aligning 127 / 268 genes              self-aligning 128 / 268 genes              self-aligning 129 / 268 genes              self-aligning 130 / 268 genes              self-aligning 131 / 268 genes              self-aligning 132 / 268 genes              self-aligning 133 / 268 genes              self-aligning 134 / 268 genes              self-aligning 135 / 268 genes              self-aligning 136 / 268 genes              self-aligning 137 / 268 genes              self-aligning 138 / 268 genes              self-aligning 139 / 268 genes              self-aligning 140 / 268 genes              self-aligning 141 / 268 genes              self-aligning 142 / 268 genes              self-aligning 143 / 268 genes              self-aligning 144 / 268 genes              self-aligning 145 / 268 genes              self-aligning 146 / 268 genes              self-aligning 147 / 268 genes              self-aligning 148 / 268 genes              self-aligning 149 / 268 genes              self-aligning 150 / 268 genes              self-aligning 151 / 268 genes              self-aligning 152 / 268 genes              self-aligning 153 / 268 genes              self-aligning 154 / 268 genes              self-aligning 155 / 268 genes              self-aligning 156 / 268 genes              self-aligning 157 / 268 genes              self-aligning 158 / 268 genes              self-aligning 159 / 268 genes              self-aligning 160 / 268 genes              self-aligning 161 / 268 genes              self-aligning 162 / 268 genes              self-aligning 163 / 268 genes              self-aligning 164 / 268 genes              self-aligning 165 / 268 genes              self-aligning 166 / 268 genes              self-aligning 167 / 268 genes              self-aligning 168 / 268 genes              self-aligning 169 / 268 genes              self-aligning 170 / 268 genes              self-aligning 171 / 268 genes              self-aligning 172 / 268 genes              self-aligning 173 / 268 genes              self-aligning 174 / 268 genes              self-aligning 175 / 268 genes              self-aligning 176 / 268 genes              self-aligning 177 / 268 genes              self-aligning 178 / 268 genes              self-aligning 179 / 268 genes              self-aligning 180 / 268 genes              self-aligning 181 / 268 genes              self-aligning 182 / 268 genes              self-aligning 183 / 268 genes              self-aligning 184 / 268 genes
+stderr:
+Unexpected file format.  Please use tab-delimited BED, GFF, or VCF. Perhaps you have non-integer starts or ends at line 1?
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 1418, in <module>
+    main()
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 1152, in main
+    lncShuffleScores = selfBlastShuffle(lncs, ANNOTS, args.threads)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 651, in selfBlastShuffle
+    selfBlastShuffleResults = selfBlast(lncs, ANNOTS, "shuffle", threads, False)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 608, in selfBlast
+    subprocess.check_call(cmd)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 190, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['fastaFromBed', '-s', '-fi', './data/annotations/hg38.fa', '-bed', '/tmp/tmpqT7yDM', '-fo', '/tmp/tmpqT7yDM.fa', '-split', '-name']' returned non-zero exit status 1
+%===========================%
+
+%===========================%
+ BED12/good//other-space_before_tab.bed 
+
+stdout:
+./data/annotations.config
+Loading annotations for hg38
+Loading ortholog annotations for mm10
+
+Starting with 304 transcripts
+./scratch/trash/.* files already exist! Overwriting...
+
+STEP I. FILTER LNCS
+
+Checking overlap with coding annotations...
+        min_overlap: 0.0%
+        Removing...
+                ... 12 transcripts that overlap coding transcript
+                ... 24 transcripts that fall insde coding transcript (likely UTR or intronic fragments)
+
+Collapsing isoforms into canonical trancsripts...
+        268 transcripts collapsed into 268 canonical transcripts
+
+Searching for gene duplications by aligning to commonly duplicated coding genes...
+        learning null distribution of alignment scores
+             self-aligning 1 / 268 genes              self-aligning 2 / 268 genes              self-aligning 3 / 268 genes              self-aligning 4 / 268 genes              self-aligning 5 / 268 genes              self-aligning 6 / 268 genes              self-aligning 7 / 268 genes              self-aligning 8 / 268 genes              self-aligning 9 / 268 genes              self-aligning 10 / 268 genes              self-aligning 11 / 268 genes              self-aligning 12 / 268 genes              self-aligning 13 / 268 genes              self-aligning 14 / 268 genes              self-aligning 15 / 268 genes              self-aligning 16 / 268 genes              self-aligning 17 / 268 genes              self-aligning 18 / 268 genes              self-aligning 19 / 268 genes              self-aligning 20 / 268 genes              self-aligning 21 / 268 genes              self-aligning 22 / 268 genes              self-aligning 23 / 268 genes              self-aligning 24 / 268 genes              self-aligning 25 / 268 genes              self-aligning 26 / 268 genes              self-aligning 27 / 268 genes              self-aligning 28 / 268 genes              self-aligning 29 / 268 genes              self-aligning 30 / 268 genes              self-aligning 31 / 268 genes              self-aligning 32 / 268 genes              self-aligning 33 / 268 genes              self-aligning 34 / 268 genes              self-aligning 35 / 268 genes              self-aligning 36 / 268 genes              self-aligning 37 / 268 genes              self-aligning 38 / 268 genes              self-aligning 39 / 268 genes              self-aligning 40 / 268 genes              self-aligning 41 / 268 genes              self-aligning 42 / 268 genes              self-aligning 43 / 268 genes              self-aligning 44 / 268 genes              self-aligning 45 / 268 genes              self-aligning 46 / 268 genes              self-aligning 47 / 268 genes              self-aligning 48 / 268 genes              self-aligning 49 / 268 genes              self-aligning 50 / 268 genes              self-aligning 51 / 268 genes              self-aligning 52 / 268 genes              self-aligning 53 / 268 genes              self-aligning 54 / 268 genes              self-aligning 55 / 268 genes              self-aligning 56 / 268 genes              self-aligning 57 / 268 genes              self-aligning 58 / 268 genes              self-aligning 59 / 268 genes              self-aligning 60 / 268 genes              self-aligning 61 / 268 genes              self-aligning 62 / 268 genes              self-aligning 63 / 268 genes              self-aligning 64 / 268 genes              self-aligning 65 / 268 genes              self-aligning 66 / 268 genes              self-aligning 67 / 268 genes              self-aligning 68 / 268 genes              self-aligning 69 / 268 genes              self-aligning 70 / 268 genes              self-aligning 71 / 268 genes              self-aligning 72 / 268 genes              self-aligning 73 / 268 genes              self-aligning 74 / 268 genes              self-aligning 75 / 268 genes              self-aligning 76 / 268 genes              self-aligning 77 / 268 genes              self-aligning 78 / 268 genes              self-aligning 79 / 268 genes              self-aligning 80 / 268 genes              self-aligning 81 / 268 genes              self-aligning 82 / 268 genes              self-aligning 83 / 268 genes              self-aligning 84 / 268 genes              self-aligning 85 / 268 genes              self-aligning 86 / 268 genes              self-aligning 87 / 268 genes              self-aligning 88 / 268 genes              self-aligning 89 / 268 genes              self-aligning 90 / 268 genes              self-aligning 91 / 268 genes              self-aligning 92 / 268 genes              self-aligning 93 / 268 genes              self-aligning 94 / 268 genes              self-aligning 95 / 268 genes              self-aligning 96 / 268 genes              self-aligning 97 / 268 genes              self-aligning 98 / 268 genes              self-aligning 99 / 268 genes              self-aligning 100 / 268 genes              self-aligning 101 / 268 genes              self-aligning 102 / 268 genes              self-aligning 103 / 268 genes              self-aligning 104 / 268 genes              self-aligning 105 / 268 genes              self-aligning 106 / 268 genes              self-aligning 107 / 268 genes              self-aligning 108 / 268 genes              self-aligning 109 / 268 genes              self-aligning 110 / 268 genes              self-aligning 111 / 268 genes              self-aligning 112 / 268 genes              self-aligning 113 / 268 genes              self-aligning 114 / 268 genes              self-aligning 115 / 268 genes              self-aligning 116 / 268 genes              self-aligning 117 / 268 genes              self-aligning 118 / 268 genes              self-aligning 119 / 268 genes              self-aligning 120 / 268 genes              self-aligning 121 / 268 genes              self-aligning 122 / 268 genes              self-aligning 123 / 268 genes              self-aligning 124 / 268 genes              self-aligning 125 / 268 genes              self-aligning 126 / 268 genes              self-aligning 127 / 268 genes              self-aligning 128 / 268 genes              self-aligning 129 / 268 genes              self-aligning 130 / 268 genes              self-aligning 131 / 268 genes              self-aligning 132 / 268 genes              self-aligning 133 / 268 genes              self-aligning 134 / 268 genes              self-aligning 135 / 268 genes              self-aligning 136 / 268 genes              self-aligning 137 / 268 genes              self-aligning 138 / 268 genes              self-aligning 139 / 268 genes              self-aligning 140 / 268 genes              self-aligning 141 / 268 genes              self-aligning 142 / 268 genes              self-aligning 143 / 268 genes              self-aligning 144 / 268 genes              self-aligning 145 / 268 genes              self-aligning 146 / 268 genes              self-aligning 147 / 268 genes              self-aligning 148 / 268 genes              self-aligning 149 / 268 genes              self-aligning 150 / 268 genes              self-aligning 151 / 268 genes              self-aligning 152 / 268 genes              self-aligning 153 / 268 genes              self-aligning 154 / 268 genes              self-aligning 155 / 268 genes              self-aligning 156 / 268 genes              self-aligning 157 / 268 genes              self-aligning 158 / 268 genes              self-aligning 159 / 268 genes              self-aligning 160 / 268 genes              self-aligning 161 / 268 genes              self-aligning 162 / 268 genes              self-aligning 163 / 268 genes              self-aligning 164 / 268 genes              self-aligning 165 / 268 genes              self-aligning 166 / 268 genes              self-aligning 167 / 268 genes              self-aligning 168 / 268 genes              self-aligning 169 / 268 genes              self-aligning 170 / 268 genes              self-aligning 171 / 268 genes              self-aligning 172 / 268 genes              self-aligning 173 / 268 genes              self-aligning 174 / 268 genes              self-aligning 175 / 268 genes              self-aligning 176 / 268 genes              self-aligning 177 / 268 genes              self-aligning 178 / 268 genes              self-aligning 179 / 268 genes              self-aligning 180 / 268 genes              self-aligning 181 / 268 genes              self-aligning 182 / 268 genes
+stderr:
+Unexpected file format.  Please use tab-delimited BED, GFF, or VCF. Perhaps you have non-integer starts or ends at line 1?
+Traceback (most recent call last):
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 1418, in <module>
+    main()
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 1152, in main
+    lncShuffleScores = selfBlastShuffle(lncs, ANNOTS, args.threads)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 651, in selfBlastShuffle
+    selfBlastShuffleResults = selfBlast(lncs, ANNOTS, "shuffle", threads, False)
+  File "/home/haliupenguin/anaconda3/envs/special1/bin/slncky", line 608, in selfBlast
+    subprocess.check_call(cmd)
+  File "/home/haliupenguin/anaconda3/envs/special1/lib/python2.7/subprocess.py", line 190, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['fastaFromBed', '-s', '-fi', './data/annotations/hg38.fa', '-bed', '/tmp/tmpruLT9y', '-fo', '/tmp/tmpruLT9y.fa', '-split', '-name']' returned non-zero exit status 1
+%===========================%
+
+%===========================%
+ BED12/good//other-space_between_lines.bed 
+
+stdout:
+./data/annotations.config
+Loading annotations for hg38
+Loading ortholog annotations for mm10
+stderr:
+ERROR: The following line in your input file is not in bed12 format
+
+
+Please see https://genome.ucsc.edu/FAQ/FAQformat.html#format1 for correct bed12 format.
+%===========================%
+

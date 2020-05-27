@@ -1,0 +1,22 @@
+TY  - JOUR
+T1  - An Integrated Model of Multiple-Condition ChIP-Seq Data Reveals Predeterminants of Cdx2 Binding
+A1  - Mahony, Shaun
+A1  - Edwards, Matthew D.
+A1  - Mazzoni, Esteban O.
+A1  - Sherwood, Richard I.
+A1  - Kakumanu, Akshay
+A1  - Morrison, Carolyn A.
+A1  - Wichterle, Hynek
+A1  - Gifford, David K.
+Y1  - 2014/03/27
+N2  - Author Summary Many proteins that regulate the activity of other genes do so by attaching to the genome at specific binding sites. The locations that a given regulatory protein will bind, and the strength or frequency of such binding at an individual location, can vary depending on the cell type. We can profile the locations that a protein binds in a particular cell type using an experimental method called ChIP-seq, followed by computational interpretation of the data. However, since the experimental data are typically noisy, it is often difficult to compare the computational analyses of ChIP-seq data across multiple experiments in order to understand any differences in binding that may occur in different cell types. In this paper, we present a new computational method named MultiGPS for simultaneously analyzing multiple related ChIP-seq experiments in an integrated manner. By analyzing all the data together in an appropriate way, we can gain a more accurate picture of where the profiled protein is binding to the genome, and we can more easily and reliably detect differences in protein binding across cell types. We demonstrate the MultiGPS software using a new analysis of the regulatory protein Cdx2 in three different developmental cell types.
+JF  - PLOS Computational Biology
+JA  - PLOS Computational Biology
+VL  - 10
+IS  - 3
+UR  - https://doi.org/10.1371/journal.pcbi.1003501
+SP  - e1003501
+EP  - 
+PB  - Public Library of Science
+M3  - doi:10.1371/journal.pcbi.1003501
+ER  - 

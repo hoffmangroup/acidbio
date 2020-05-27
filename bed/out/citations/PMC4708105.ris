@@ -1,0 +1,35 @@
+TY  - JOUR
+DB  - PubMed
+AU  - Okonechnikov, Konstantin
+AU  - Conesa, Ana
+AU  - García-Alcalde, Fernando
+T1  - Qualimap 2: advanced multi-sample quality control for high-throughput sequencing data
+LA  - eng
+SN  - 1367-4811
+SN  - 1367-4803
+Y1  - 2016/01/15
+ET  - 2015/10/01
+AB  - MOTIVATION: Detection of random errors and systematic biases is a crucial step of a robust pipeline for processing high-throughput sequencing (HTS) data. Bioinformatics software tools capable of performing this task are available, either for general analysis of HTS data or targeted to a specific sequencing technology. However, most of the existing QC instruments only allow processing of one sample at a time. RESULTS: Qualimap 2 represents a next step in the QC analysis of HTS data. Along with comprehensive single-sample analysis of alignment data, it includes new modes that allow simultaneous processing and comparison of multiple samples. As with the first version, the new features are available via both graphical and command line interface. Additionally, it includes a large number of improvements proposed by the user community. AVAILABILITY AND IMPLEMENTATION: The implementation of the software along with documentation is freely available at http://www.qualimap.org. CONTACT: meyer@mpiib-berlin.mpg.de SUPPLEMENTARY INFORMATION: Supplementary data are available at Bioinformatics online.
+SP  - 292
+EP  - 294
+VL  - 32
+IS  - 2
+AN  - 26428292
+UR  - https://www.ncbi.nlm.nih.gov/pubmed/26428292
+DO  - 10.1093/bioinformatics/btv566
+L2  - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4708105/
+U1  - 26428292[pmid]
+U2  - PMC4708105[pmcid]
+U4  - btv566[PII]
+J2  - Bioinformatics
+JF  - Bioinformatics (Oxford, England)
+KW  - Algorithms
+KW  - Genomics/*methods
+KW  - High-Throughput Nucleotide Sequencing/*methods
+KW  - Humans
+KW  - *Quality Control
+KW  - Sequence Alignment/*standards
+KW  - Sequence Analysis, DNA/*methods
+KW  - *Software
+PB  - Oxford University Press
+ER  - 

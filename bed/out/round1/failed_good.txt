@@ -1,0 +1,2841 @@
+************************** alfred annotate **************************
+
+%===========================%
+ BED03/good//01-irrelevant_name.bed 
+
+stdout:
+[2019-Aug-19 10:43:21] alfred annotate -b ./data/hg38_RefSeq.bed.gz BED03/good//01-irrelevant_name.bed -u /dev/null -o /dev/null 
+[2019-Aug-19 10:43:21] BED feature parsing
+stderr:
+Error parsing GTF/GFF3/BED file!
+Please check that the chromosome names agree (chr1 versus 1) between input and annotation file.
+%===========================%
+
+%===========================%
+ BED03/good//01-numeric_chrom.bed 
+
+stdout:
+[2019-Aug-19 10:43:22] alfred annotate -b ./data/hg38_RefSeq.bed.gz BED03/good//01-numeric_chrom.bed -u /dev/null -o /dev/null 
+[2019-Aug-19 10:43:22] BED feature parsing
+stderr:
+Error parsing GTF/GFF3/BED file!
+Please check that the chromosome names agree (chr1 versus 1) between input and annotation file.
+%===========================%
+
+%===========================%
+ BED03/good//other-comment_end.bed 
+
+stdout:
+[2019-Aug-19 10:43:29] alfred annotate -b ./data/hg38_RefSeq.bed.gz BED03/good//other-comment_end.bed -u /dev/null -o /dev/null 
+[2019-Aug-19 10:43:29] BED feature parsing
+[2019-Aug-19 10:43:29] BED file parsing
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+****************stderr:
+terminate called after throwing an instance of 'boost::exception_detail::clone_impl<boost::exception_detail::error_info_injector<boost::bad_lexical_cast> >'
+  what():  bad lexical cast: source type value could not be interpreted as target
+Aborted (core dumped)
+%===========================%
+
+%===========================%
+ BED03/good//other-comment_middle.bed 
+
+stdout:
+[2019-Aug-19 10:43:29] alfred annotate -b ./data/hg38_RefSeq.bed.gz BED03/good//other-comment_middle.bed -u /dev/null -o /dev/null 
+[2019-Aug-19 10:43:29] BED feature parsing
+[2019-Aug-19 10:43:29] BED file parsing
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+****************stderr:
+terminate called after throwing an instance of 'boost::exception_detail::clone_impl<boost::exception_detail::error_info_injector<boost::bad_lexical_cast> >'
+  what():  bad lexical cast: source type value could not be interpreted as target
+Aborted (core dumped)
+%===========================%
+
+%===========================%
+ BED03/good//other-comment_start.bed 
+
+stdout:
+[2019-Aug-19 10:43:29] alfred annotate -b ./data/hg38_RefSeq.bed.gz BED03/good//other-comment_start.bed -u /dev/null -o /dev/null 
+[2019-Aug-19 10:43:29] BED feature parsing
+[2019-Aug-19 10:43:30] BED file parsing
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+****************stderr:
+terminate called after throwing an instance of 'boost::exception_detail::clone_impl<boost::exception_detail::error_info_injector<boost::bad_lexical_cast> >'
+  what():  bad lexical cast: source type value could not be interpreted as target
+Aborted (core dumped)
+%===========================%
+
+%===========================%
+ BED03/good//other-multiple_comments.bed 
+
+stdout:
+[2019-Aug-19 10:43:30] alfred annotate -b ./data/hg38_RefSeq.bed.gz BED03/good//other-multiple_comments.bed -u /dev/null -o /dev/null 
+[2019-Aug-19 10:43:30] BED feature parsing
+[2019-Aug-19 10:43:31] BED file parsing
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+****************stderr:
+terminate called after throwing an instance of 'boost::exception_detail::clone_impl<boost::exception_detail::error_info_injector<boost::bad_lexical_cast> >'
+  what():  bad lexical cast: source type value could not be interpreted as target
+Aborted (core dumped)
+%===========================%
+
+************************** alignstats alignstats **************************
+
+%===========================%
+ BED03/good//01-irrelevant_name.bed 
+
+stdout:
+stderr:
+[AlignStats ERROR] No usable targets in target file.
+%===========================%
+
+%===========================%
+ BED03/good//01-known_scaffolds.bed 
+
+stdout:
+stderr:
+[AlignStats ERROR] No usable targets in target file.
+%===========================%
+
+%===========================%
+ BED03/good//01-numeric_chrom.bed 
+
+stdout:
+stderr:
+[AlignStats ERROR] No usable targets in target file.
+%===========================%
+
+%===========================%
+ BED03/good//01-unknown_scaffolds.bed 
+
+stdout:
+stderr:
+[AlignStats ERROR] No usable targets in target file.
+%===========================%
+
+************************** bamscale scale **************************
+
+%===========================%
+ BED03/good//other-comment_end.bed 
+
+stdout:
+stderr:
+Computing coverage of regions
+	BED: BED03/good//other-comment_end.bed
+	BAMS:
+		./data/bazam.bam
+		./data/toy.bam
+
+	Min. mapping qual: 0
+	Remove duplicates: 1
+	Only proper pairs: 1
+	Strandness: 0
+	Library type: auto
+	Filter based on fragment size: 0
+	Compute fragment coverage: 0
+	No. of threads: 1
+	Outputing files to dir: ./scratch/trash/
+
+Detecting library type
+	Library seems paired-end
+
+Importing sequencing coverages
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+
+Sample: bazam.bam
+	Total no. of reads: 16643
+	Library size scale: 0.00
+
+Sample: toy.bam
+	Total no. of reads: 1
+	Library size scale: 1.00
+
+Processing BAM files
+Segmentation fault (core dumped)
+%===========================%
+
+%===========================%
+ BED03/good//other-comment_middle.bed 
+
+stdout:
+stderr:
+Computing coverage of regions
+	BED: BED03/good//other-comment_middle.bed
+	BAMS:
+		./data/bazam.bam
+		./data/toy.bam
+
+	Min. mapping qual: 0
+	Remove duplicates: 1
+	Only proper pairs: 1
+	Strandness: 0
+	Library type: auto
+	Filter based on fragment size: 0
+	Compute fragment coverage: 0
+	No. of threads: 1
+	Outputing files to dir: ./scratch/trash/
+
+Detecting library type
+	Library seems paired-end
+
+Importing sequencing coverages
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+
+Sample: bazam.bam
+	Total no. of reads: 16643
+	Library size scale: 0.00
+
+Sample: toy.bam
+	Total no. of reads: 1
+	Library size scale: 1.00
+
+Processing BAM files
+Segmentation fault (core dumped)
+%===========================%
+
+%===========================%
+ BED03/good//other-comment_start.bed 
+
+stdout:
+stderr:
+Computing coverage of regions
+	BED: BED03/good//other-comment_start.bed
+	BAMS:
+		./data/bazam.bam
+		./data/toy.bam
+
+	Min. mapping qual: 0
+	Remove duplicates: 1
+	Only proper pairs: 1
+	Strandness: 0
+	Library type: auto
+	Filter based on fragment size: 0
+	Compute fragment coverage: 0
+	No. of threads: 1
+	Outputing files to dir: ./scratch/trash/
+
+Detecting library type
+	Library seems paired-end
+
+Importing sequencing coverages
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+
+Sample: bazam.bam
+	Total no. of reads: 16643
+	Library size scale: 0.00
+
+Sample: toy.bam
+	Total no. of reads: 1
+	Library size scale: 1.00
+
+Processing BAM files
+Segmentation fault (core dumped)
+%===========================%
+
+%===========================%
+ BED03/good//other-fully_space_delimited.bed 
+
+stdout:
+stderr:
+Computing coverage of regions
+	BED: BED03/good//other-fully_space_delimited.bed
+	BAMS:
+		./data/bazam.bam
+		./data/toy.bam
+
+	Min. mapping qual: 0
+	Remove duplicates: 1
+	Only proper pairs: 1
+	Strandness: 0
+	Library type: auto
+	Filter based on fragment size: 0
+	Compute fragment coverage: 0
+	No. of threads: 1
+	Outputing files to dir: ./scratch/trash/
+
+Detecting library type
+	Library seems paired-end
+
+Importing sequencing coverages
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+
+Sample: bazam.bam
+	Total no. of reads: 16643
+	Library size scale: 0.00
+
+Sample: toy.bam
+	Total no. of reads: 1
+	Library size scale: 1.00
+
+Processing BAM files
+Segmentation fault (core dumped)
+%===========================%
+
+%===========================%
+ BED03/good//other-multiple_comments.bed 
+
+stdout:
+stderr:
+Computing coverage of regions
+	BED: BED03/good//other-multiple_comments.bed
+	BAMS:
+		./data/bazam.bam
+		./data/toy.bam
+
+	Min. mapping qual: 0
+	Remove duplicates: 1
+	Only proper pairs: 1
+	Strandness: 0
+	Library type: auto
+	Filter based on fragment size: 0
+	Compute fragment coverage: 0
+	No. of threads: 1
+	Outputing files to dir: ./scratch/trash/
+
+Detecting library type
+	Library seems paired-end
+
+Importing sequencing coverages
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+
+Sample: bazam.bam
+	Total no. of reads: 16643
+	Library size scale: 0.00
+
+Sample: toy.bam
+	Total no. of reads: 1
+	Library size scale: 1.00
+
+Processing BAM files
+Segmentation fault (core dumped)
+%===========================%
+
+%===========================%
+ BED03/good//other-not_tab_delimited.bed 
+
+stdout:
+stderr:
+Computing coverage of regions
+	BED: BED03/good//other-not_tab_delimited.bed
+	BAMS:
+		./data/bazam.bam
+		./data/toy.bam
+
+	Min. mapping qual: 0
+	Remove duplicates: 1
+	Only proper pairs: 1
+	Strandness: 0
+	Library type: auto
+	Filter based on fragment size: 0
+	Compute fragment coverage: 0
+	No. of threads: 1
+	Outputing files to dir: ./scratch/trash/
+
+Detecting library type
+	Library seems paired-end
+
+Importing sequencing coverages
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+
+Sample: bazam.bam
+	Total no. of reads: 16643
+	Library size scale: 0.00
+
+Sample: toy.bam
+	Total no. of reads: 1
+	Library size scale: 1.00
+
+Processing BAM files
+Segmentation fault (core dumped)
+%===========================%
+
+%===========================%
+ BED03/good//other-space_between_lines.bed 
+
+stdout:
+stderr:
+Computing coverage of regions
+	BED: BED03/good//other-space_between_lines.bed
+	BAMS:
+		./data/bazam.bam
+		./data/toy.bam
+
+	Min. mapping qual: 0
+	Remove duplicates: 1
+	Only proper pairs: 1
+	Strandness: 0
+	Library type: auto
+	Filter based on fragment size: 0
+	Compute fragment coverage: 0
+	No. of threads: 1
+	Outputing files to dir: ./scratch/trash/
+
+Detecting library type
+	Library seems paired-end
+
+Importing sequencing coverages
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+		Thread [ 1 ] is processing: chr1
+		Thread [ 1 ] is processing: chr2
+		Thread [ 1 ] is processing: chr3
+		Thread [ 1 ] is processing: chr4
+		Thread [ 1 ] is processing: chr5
+		Thread [ 1 ] is processing: chr6
+		Thread [ 1 ] is processing: chr7
+		Thread [ 1 ] is processing: chr8
+		Thread [ 1 ] is processing: chr9
+		Thread [ 1 ] is processing: chr10
+		Thread [ 1 ] is processing: chr11
+		Thread [ 1 ] is processing: chr12
+		Thread [ 1 ] is processing: chr13
+		Thread [ 1 ] is processing: chr14
+		Thread [ 1 ] is processing: chr15
+		Thread [ 1 ] is processing: chr16
+		Thread [ 1 ] is processing: chr17
+		Thread [ 1 ] is processing: chr18
+		Thread [ 1 ] is processing: chr19
+		Thread [ 1 ] is processing: chr20
+		Thread [ 1 ] is processing: chr21
+		Thread [ 1 ] is processing: chr22
+		Thread [ 1 ] is processing: chrX
+		Thread [ 1 ] is processing: chrY
+		Thread [ 1 ] is processing: hs37d5
+
+Sample: bazam.bam
+	Total no. of reads: 16643
+	Library size scale: 0.00
+
+Sample: toy.bam
+	Total no. of reads: 1
+	Library size scale: 1.00
+
+Processing BAM files
+Segmentation fault (core dumped)
+%===========================%
+
+************************** bazam bazam **************************
+
+%===========================%
+ BED03/good//other-comment_start.bed 
+
+stdout:
+stderr:
+================================================================================
+
+Bazam
+
+================================================================================
+
+bazam.Bazam	[1]	INFO	|2:44:07 Extracting read pairs from ./data/bazam.bam 
+bazam.Bazam	[1]	INFO	|2:44:07 Initialising regions to scan from BED03/good//other-comment_start.bed 
+Unable to parse line 303 : 
+
+
+Exception reported: java.lang.NumberFormatException: null
+Exception in thread "main" java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at gngs.BED$_eachRange_closure1.doCall(BED.groovy:201)
+	at sun.reflect.GeneratedMethodAccessor2.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.callClosureForLine(DefaultGroovyMethods.java:5236)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:487)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:440)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:424)
+	at gngs.BED.eachRange(BED.groovy:171)
+	at gngs.BED.load(BED.groovy:302)
+	at gngs.BED.load(BED.groovy)
+	at gngs.BED$load.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:117)
+	at bazam.Bazam.getRegions(Bazam.groovy:134)
+	at bazam.Bazam.run(Bazam.groovy:81)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:384)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:69)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:52)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:154)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:182)
+	at bazam.Bazam$_run_closure1$_closure4.doCall(Bazam.groovy:73)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.withWriter(IOGroovyMethods.java:1155)
+	at org.codehaus.groovy.runtime.dgm$881.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:274)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at bazam.Bazam$_run_closure1.doCall(Bazam.groovy:72)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.withWriter(IOGroovyMethods.java:1155)
+	at org.codehaus.groovy.runtime.dgm$881.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:274)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at bazam.Bazam.run(Bazam.groovy:71)
+	at bazam.Bazam$run.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:117)
+	at gngs.ToolBase.cli(ToolBase.groovy:89)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeStaticMethod(MetaClassImpl.java:1472)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaClassSite.callStatic(StaticMetaClassSite.java:65)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:56)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:194)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:222)
+	at bazam.Bazam.main(Bazam.groovy:163)
+%===========================%
+
+%===========================%
+ BED03/good//other-fully_space_delimited.bed 
+
+stdout:
+stderr:
+================================================================================
+
+Bazam
+
+================================================================================
+
+bazam.Bazam	[1]	INFO	|2:44:08 Extracting read pairs from ./data/bazam.bam 
+bazam.Bazam	[1]	INFO	|2:44:08 Initialising regions to scan from BED03/good//other-fully_space_delimited.bed 
+Unable to parse line 1 : 
+chr19    250000    250092
+
+Exception reported: java.lang.NumberFormatException: null
+Exception in thread "main" java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at gngs.BED$_eachRange_closure1.doCall(BED.groovy:201)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.callClosureForLine(DefaultGroovyMethods.java:5236)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:487)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:440)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:424)
+	at gngs.BED.eachRange(BED.groovy:171)
+	at gngs.BED.load(BED.groovy:302)
+	at gngs.BED.load(BED.groovy)
+	at gngs.BED$load.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:117)
+	at bazam.Bazam.getRegions(Bazam.groovy:134)
+	at bazam.Bazam.run(Bazam.groovy:81)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:384)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:69)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:52)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:154)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:182)
+	at bazam.Bazam$_run_closure1$_closure4.doCall(Bazam.groovy:73)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.withWriter(IOGroovyMethods.java:1155)
+	at org.codehaus.groovy.runtime.dgm$881.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:274)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at bazam.Bazam$_run_closure1.doCall(Bazam.groovy:72)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.withWriter(IOGroovyMethods.java:1155)
+	at org.codehaus.groovy.runtime.dgm$881.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:274)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at bazam.Bazam.run(Bazam.groovy:71)
+	at bazam.Bazam$run.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:117)
+	at gngs.ToolBase.cli(ToolBase.groovy:89)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeStaticMethod(MetaClassImpl.java:1472)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaClassSite.callStatic(StaticMetaClassSite.java:65)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:56)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:194)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:222)
+	at bazam.Bazam.main(Bazam.groovy:163)
+%===========================%
+
+%===========================%
+ BED03/good//other-not_tab_delimited.bed 
+
+stdout:
+stderr:
+================================================================================
+
+Bazam
+
+================================================================================
+
+bazam.Bazam	[1]	INFO	|2:44:10 Extracting read pairs from ./data/bazam.bam 
+bazam.Bazam	[1]	INFO	|2:44:10 Initialising regions to scan from BED03/good//other-not_tab_delimited.bed 
+Unable to parse line 35 : 
+chr19    252079	252153
+
+Exception reported: java.lang.NumberFormatException: null
+Exception in thread "main" java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at gngs.BED$_eachRange_closure1.doCall(BED.groovy:202)
+	at sun.reflect.GeneratedMethodAccessor2.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.callClosureForLine(DefaultGroovyMethods.java:5236)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:487)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:440)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:424)
+	at gngs.BED.eachRange(BED.groovy:171)
+	at gngs.BED.load(BED.groovy:302)
+	at gngs.BED.load(BED.groovy)
+	at gngs.BED$load.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:117)
+	at bazam.Bazam.getRegions(Bazam.groovy:134)
+	at bazam.Bazam.run(Bazam.groovy:81)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:384)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:69)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:52)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:154)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:182)
+	at bazam.Bazam$_run_closure1$_closure4.doCall(Bazam.groovy:73)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.withWriter(IOGroovyMethods.java:1155)
+	at org.codehaus.groovy.runtime.dgm$881.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:274)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at bazam.Bazam$_run_closure1.doCall(Bazam.groovy:72)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.withWriter(IOGroovyMethods.java:1155)
+	at org.codehaus.groovy.runtime.dgm$881.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:274)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at bazam.Bazam.run(Bazam.groovy:71)
+	at bazam.Bazam$run.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:117)
+	at gngs.ToolBase.cli(ToolBase.groovy:89)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeStaticMethod(MetaClassImpl.java:1472)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaClassSite.callStatic(StaticMetaClassSite.java:65)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:56)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:194)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:222)
+	at bazam.Bazam.main(Bazam.groovy:163)
+%===========================%
+
+%===========================%
+ BED03/good//other-space_after_tab.bed 
+
+stdout:
+stderr:
+================================================================================
+
+Bazam
+
+================================================================================
+
+bazam.Bazam	[1]	INFO	|2:44:11 Extracting read pairs from ./data/bazam.bam 
+bazam.Bazam	[1]	INFO	|2:44:11 Initialising regions to scan from BED03/good//other-space_after_tab.bed 
+Unable to parse line 5 : 
+chr19	250258 	250314
+
+Exception reported: java.lang.NumberFormatException: For input string: "250258 "
+Exception in thread "main" java.lang.NumberFormatException: For input string: "250258 "
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at gngs.BED$_eachRange_closure1.doCall(BED.groovy:201)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.callClosureForLine(DefaultGroovyMethods.java:5236)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:487)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:440)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:424)
+	at gngs.BED.eachRange(BED.groovy:171)
+	at gngs.BED.load(BED.groovy:302)
+	at gngs.BED.load(BED.groovy)
+	at gngs.BED$load.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:117)
+	at bazam.Bazam.getRegions(Bazam.groovy:134)
+	at bazam.Bazam.run(Bazam.groovy:81)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:384)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:69)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:52)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:154)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:182)
+	at bazam.Bazam$_run_closure1$_closure4.doCall(Bazam.groovy:73)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.withWriter(IOGroovyMethods.java:1155)
+	at org.codehaus.groovy.runtime.dgm$881.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:274)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at bazam.Bazam$_run_closure1.doCall(Bazam.groovy:72)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.withWriter(IOGroovyMethods.java:1155)
+	at org.codehaus.groovy.runtime.dgm$881.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:274)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at bazam.Bazam.run(Bazam.groovy:71)
+	at bazam.Bazam$run.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:117)
+	at gngs.ToolBase.cli(ToolBase.groovy:89)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeStaticMethod(MetaClassImpl.java:1472)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaClassSite.callStatic(StaticMetaClassSite.java:65)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:56)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:194)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:222)
+	at bazam.Bazam.main(Bazam.groovy:163)
+%===========================%
+
+%===========================%
+ BED03/good//other-space_before_tab.bed 
+
+stdout:
+stderr:
+================================================================================
+
+Bazam
+
+================================================================================
+
+bazam.Bazam	[1]	INFO	|2:44:12 Extracting read pairs from ./data/bazam.bam 
+bazam.Bazam	[1]	INFO	|2:44:12 Initialising regions to scan from BED03/good//other-space_before_tab.bed 
+Unable to parse line 3 : 
+chr19	 251500	251600
+
+Exception reported: java.lang.NumberFormatException: For input string: " 251500"
+Exception in thread "main" java.lang.NumberFormatException: For input string: " 251500"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:569)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at gngs.BED$_eachRange_closure1.doCall(BED.groovy:201)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.callClosureForLine(DefaultGroovyMethods.java:5236)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:487)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:440)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:424)
+	at gngs.BED.eachRange(BED.groovy:171)
+	at gngs.BED.load(BED.groovy:302)
+	at gngs.BED.load(BED.groovy)
+	at gngs.BED$load.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:117)
+	at bazam.Bazam.getRegions(Bazam.groovy:134)
+	at bazam.Bazam.run(Bazam.groovy:81)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:384)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:69)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:52)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:154)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:182)
+	at bazam.Bazam$_run_closure1$_closure4.doCall(Bazam.groovy:73)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.withWriter(IOGroovyMethods.java:1155)
+	at org.codehaus.groovy.runtime.dgm$881.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:274)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at bazam.Bazam$_run_closure1.doCall(Bazam.groovy:72)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.withWriter(IOGroovyMethods.java:1155)
+	at org.codehaus.groovy.runtime.dgm$881.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:274)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at bazam.Bazam.run(Bazam.groovy:71)
+	at bazam.Bazam$run.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:117)
+	at gngs.ToolBase.cli(ToolBase.groovy:89)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeStaticMethod(MetaClassImpl.java:1472)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaClassSite.callStatic(StaticMetaClassSite.java:65)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:56)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:194)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:222)
+	at bazam.Bazam.main(Bazam.groovy:163)
+%===========================%
+
+%===========================%
+ BED03/good//other-space_between_lines.bed 
+
+stdout:
+stderr:
+================================================================================
+
+Bazam
+
+================================================================================
+
+bazam.Bazam	[1]	INFO	|2:44:13 Extracting read pairs from ./data/bazam.bam 
+bazam.Bazam	[1]	INFO	|2:44:13 Initialising regions to scan from BED03/good//other-space_between_lines.bed 
+Unable to parse line 158 : 
+
+
+Exception reported: java.lang.NumberFormatException: null
+Exception in thread "main" java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at gngs.BED$_eachRange_closure1.doCall(BED.groovy:201)
+	at sun.reflect.GeneratedMethodAccessor2.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.callClosureForLine(DefaultGroovyMethods.java:5236)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:487)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:440)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.eachLine(IOGroovyMethods.java:424)
+	at gngs.BED.eachRange(BED.groovy:171)
+	at gngs.BED.load(BED.groovy:302)
+	at gngs.BED.load(BED.groovy)
+	at gngs.BED$load.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:117)
+	at bazam.Bazam.getRegions(Bazam.groovy:134)
+	at bazam.Bazam.run(Bazam.groovy:81)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:384)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:69)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:52)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:154)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:182)
+	at bazam.Bazam$_run_closure1$_closure4.doCall(Bazam.groovy:73)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.withWriter(IOGroovyMethods.java:1155)
+	at org.codehaus.groovy.runtime.dgm$881.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:274)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at bazam.Bazam$_run_closure1.doCall(Bazam.groovy:72)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+	at groovy.lang.Closure.call(Closure.java:414)
+	at groovy.lang.Closure.call(Closure.java:430)
+	at org.codehaus.groovy.runtime.IOGroovyMethods.withWriter(IOGroovyMethods.java:1155)
+	at org.codehaus.groovy.runtime.dgm$881.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:274)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at bazam.Bazam.run(Bazam.groovy:71)
+	at bazam.Bazam$run.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:117)
+	at gngs.ToolBase.cli(ToolBase.groovy:89)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeStaticMethod(MetaClassImpl.java:1472)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaClassSite.callStatic(StaticMetaClassSite.java:65)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:56)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:194)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:222)
+	at bazam.Bazam.main(Bazam.groovy:163)
+%===========================%
+
+************************** bedops complement **************************
+
+************************** bedops element-of **************************
+
+************************** bedtools intersect **************************
+
+%===========================%
+ BED03/good//01-irrelevant_name.bed 
+
+stdout:
+stderr:
+***** WARNING: File ./data/intersect_file03.bed has inconsistent naming convention for record:
+chr19	240000	240094
+
+***** WARNING: File ./data/intersect_file03.bed has inconsistent naming convention for record:
+chr19	240000	240094
+
+%===========================%
+
+%===========================%
+ BED03/good//01-numeric_chrom.bed 
+
+stdout:
+stderr:
+***** WARNING: File ./data/intersect_file03.bed has inconsistent naming convention for record:
+chr19	240000	240094
+
+***** WARNING: File ./data/intersect_file03.bed has inconsistent naming convention for record:
+chr19	240000	240094
+
+%===========================%
+
+%===========================%
+ BED03/good//other-fully_space_delimited.bed 
+
+stdout:
+stderr:
+Error: unable to open file or unable to determine types for file BED03/good//other-fully_space_delimited.bed
+
+- Please ensure that your file is TAB delimited (e.g., cat -t FILE).
+- Also ensure that your file has integer chromosome coordinates in the 
+  expected columns (e.g., cols 2 and 3 for BED).
+%===========================%
+
+%===========================%
+ BED03/good//other-not_tab_delimited.bed 
+
+stdout:
+stderr:
+Error: line number 35 of file BED03/good//other-not_tab_delimited.bed has 2 fields, but 3 were expected.
+%===========================%
+
+%===========================%
+ BED03/good//other-space_after_tab.bed 
+
+stdout:
+stderr:
+***** ERROR: illegal character ' ' found in integer conversion of string "250258 ". Exiting...
+%===========================%
+
+%===========================%
+ BED03/good//other-space_before_tab.bed 
+
+stdout:
+stderr:
+***** ERROR: illegal character ' ' found in integer conversion of string " 251500". Exiting...
+%===========================%
+
+************************** bedtools merge **************************
+
+%===========================%
+ BED03/good//other-fully_space_delimited.bed 
+
+stdout:
+stderr:
+Error: unable to open file or unable to determine types for file /tmp/tmpcef7xi5v
+
+- Please ensure that your file is TAB delimited (e.g., cat -t FILE).
+- Also ensure that your file has integer chromosome coordinates in the 
+  expected columns (e.g., cols 2 and 3 for BED).
+%===========================%
+
+%===========================%
+ BED03/good//other-not_tab_delimited.bed 
+
+stdout:
+stderr:
+Error: line number 35 of file /tmp/tmpcef7xi5v has 2 fields, but 3 were expected.
+%===========================%
+
+%===========================%
+ BED03/good//other-space_after_tab.bed 
+
+stdout:
+stderr:
+***** ERROR: illegal character ' ' found in integer conversion of string "250258 ". Exiting...
+%===========================%
+
+%===========================%
+ BED03/good//other-space_before_tab.bed 
+
+stdout:
+stderr:
+***** ERROR: illegal character ' ' found in integer conversion of string " 251500". Exiting...
+%===========================%
+
+************************** bedtools coverage **************************
+
+%===========================%
+ BED03/good//01-irrelevant_name.bed 
+
+stdout:
+chr19	240000	240094	0	0	94	0.0000000
+chr19	240095	240127	0	0	32	0.0000000
+chr19	240128	240205	0	0	77	0.0000000
+chr19	240206	240276	0	0	70	0.0000000
+chr19	240277	240367	0	0	90	0.0000000
+chr19	240368	240419	0	0	51	0.0000000
+chr19	240420	240497	0	0	77	0.0000000
+chr19	240498	240578	0	0	80	0.0000000
+chr19	240579	240626	0	0	47	0.0000000
+chr19	240627	240658	0	0	31	0.0000000
+chr19	240659	240724	0	0	65	0.0000000
+chr19	240725	240772	0	0	47	0.0000000
+chr19	240773	240830	0	0	57	0.0000000
+chr19	240831	240916	0	0	85	0.0000000
+chr19	240917	240977	0	0	60	0.0000000
+chr19	240978	241014	0	0	36	0.0000000
+chr19	241015	241105	0	0	90	0.0000000
+chr19	241106	241136	0	0	30	0.0000000
+chr19	241137	241196	0	0	59	0.0000000
+chr19	241197	241240	0	0	43	0.0000000
+chr19	241241	241275	0	0	34	0.0000000
+chr19	241276	241358	0	0	82	0.0000000
+chr19	241359	241442	0	0	83	0.0000000
+chr19	241443	241499	0	0	56	0.0000000
+chr19	241500	241598	0	0	98	0.0000000
+chr19	241599	241676	0	0	77	0.0000000
+chr19	241677	241744	0	0	67	0.0000000
+chr19	241745	241839	0	0	94	0.0000000
+chr19	241840	241938	0	0	98	0.0000000
+chr19	241939	242002	0	0	63	0.0000000
+chr19	242003	242100	0	0	97	0.0000000
+chr19	242101	242131	0	0	30	0.0000000
+chr19	242132	242229	0	0	97	0.0000000
+chr19	242230	242274	0	0	44	0.0000000
+chr19	242275	242365	0	0	90	0.0000000
+chr19	242366	242443	0	0	77	0.0000000
+chr19	242444	242541	0	0	97	0.0000000
+chr19	242542	242632	0	0	90	0.0000000
+chr19	242633	242711	0	0	78	0.0000000
+chr19	242712	242790	0	0	78	0.0000000
+chr19	242791	242858	0	0	67	0.0000000
+chr19	242859	242914	0	0	55	0.0000000
+chr19	242915	242974	0	0	59	0.0000000
+chr19	242975	243038	0	0	63	0.0000000
+chr19	243039	243083	0	0	44	0.0000000
+chr19	243084	243118	0	0	34	0.0000000
+chr19	243119	243172	0	0	53	0.0000000
+chr19	243173	243226	0	0	53	0.0000000
+chr19	243227	243307	0	0	80	0.0000000
+chr19	243308	243385	0	0	77	0.0000000
+chr19	243386	243418	0	0	32	0.0000000
+chr19	243419	243477	0	0	58	0.0000000
+chr19	243478	243513	0	0	35	0.0000000
+chr19	243514	243582	0	0	68	0.0000000
+chr19	243583	243654	0	0	71	0.0000000
+chr19	243655	243735	0	0	80	0.0000000
+chr19	243736	243809	0	0	73	0.0000000
+chr19	243810	243903	0	0	93	0.0000000
+chr19	243904	244002	0	0	98	0.0000000
+chr19	244003	244091	0	0	88	0.0000000
+chr19	244092	244147	0	0	55	0.0000000
+chr19	244148	244183	0	0	35	0.0000000
+chr19	244184	244230	0	0	46	0.0000000
+chr19	244231	244297	0	0	66	0.0000000
+chr19	244298	244372	0	0	74	0.0000000
+chr19	244373	244405	0	0	32	0.0000000
+chr19	244406	244503	0	0	97	0.0000000
+chr19	244504	244552	0	0	48	0.0000000
+chr19	244553	244582	0	0	29	0.0000000
+chr19	244583	244676	0	0	93	0.0000000
+chr19	244677	244736	0	0	59	0.0000000
+chr19	244737	244822	0	0	85	0.0000000
+chr19	244823	244918	0	0	95	0.0000000
+chr19	244919	244980	0	0	61	0.0000000
+chr19	244981	245041	0	0	60	0.0000000
+chr19	245042	245088	0	0	46	0.0000000
+chr19	245089	245178	0	0	89	0.0000000
+chr19	245179	245250	0	0	71	0.0000000
+chr19	245251	245324	0	0	73	0.0000000
+chr19	245325	245376	0	0	51	0.0000000
+chr19	245377	245441	0	0	64	0.0000000
+chr19	245442	245515	0	0	73	0.0000000
+chr19	245516	245592	0	0	76	0.0000000
+chr19	245593	245628	0	0	35	0.0000000
+chr19	245629	245683	0	0	54	0.0000000
+chr19	245684	245781	0	0	97	0.0000000
+chr19	245782	245855	0	0	73	0.0000000
+chr19	245856	245921	0	0	65	0.0000000
+chr19	245922	245995	0	0	73	0.0000000
+chr19	245996	246028	0	0	32	0.0000000
+chr19	246029	246121	0	0	92	0.0000000
+chr19	246122	246180	0	0	58	0.0000000
+chr19	246181	246272	0	0	91	0.0000000
+chr19	246273	246366	0	0	93	0.0000000
+chr19	246367	246437	0	0	70	0.0000000
+chr19	246438	246467	0	0	29	0.0000000
+chr19	246468	246550	0	0	82	0.0000000
+chr19	246551	246636	0	0	85	0.0000000
+chr19	246637	246720	0	0	83	0.0000000
+chr19	246721	246761	0	0	40	0.0000000
+chr19	246762	246834	0	0	72	0.0000000
+chr19	246835	246876	0	0	41	0.0000000
+chr19	246877	246929	0	0	52	0.0000000
+chr19	246930	246976	0	0	46	0.0000000
+chr19	246977	247017	0	0	40	0.0000000
+chr19	247018	247066	0	0	48	0.0000000
+chr19	247067	247108	0	0	41	0.0000000
+chr19	247109	247198	0	0	89	0.0000000
+chr19	247199	247254	0	0	55	0.0000000
+chr19	247255	247308	0	0	53	0.0000000
+chr19	247309	247370	0	0	61	0.0000000
+chr19	247371	247459	0	0	88	0.0000000
+chr19	247460	247499	0	0	39	0.0000000
+chr19	247500	247550	0	0	50	0.0000000
+chr19	247551	247637	0	0	86	0.0000000
+chr19	247638	247717	0	0	79	0.0000000
+chr19	247718	247782	0	0	64	0.0000000
+chr19	247783	247846	0	0	63	0.0000000
+chr19	247847	247902	0	0	55	0.0000000
+chr19	247903	247985	0	0	82	0.0000000
+chr19	247986	248017	0	0	31	0.0000000
+chr19	248018	248069	0	0	51	0.0000000
+chr19	248070	248103	0	0	33	0.0000000
+chr19	248104	248152	0	0	48	0.0000000
+chr19	248153	248251	0	0	98	0.0000000
+chr19	248252	248320	0	0	68	0.0000000
+chr19	248321	248399	0	0	78	0.0000000
+chr19	248400	248432	0	0	32	0.0000000
+chr19	248433	248487	0	0	54	0.0000000
+chr19	248488	248554	0	0	66	0.0000000
+chr19	248555	248650	0	0	95	0.0000000
+chr19	248651	248744	0	0	93	0.0000000
+chr19	248745	248778	0	0	33	0.0000000
+chr19	248779	248853	0	0	74	0.0000000
+chr19	248854	248897	0	0	43	0.0000000
+chr19	248898	248965	0	0	67	0.0000000
+chr19	248966	249003	0	0	37	0.0000000
+chr19	249004	249068	0	0	64	0.0000000
+chr19	249069	249165	0	0	96	0.0000000
+chr19	249166	249246	0	0	80	0.0000000
+chr19	249247	249277	0	0	30	0.0000000
+chr19	249278	249374	0	0	96	0.0000000
+chr19	249375	249405	0	0	30	0.0000000
+chr19	249406	249450	0	0	44	0.0000000
+chr19	249451	249550	0	0	99	0.0000000
+chr19	249551	249637	0	0	86	0.0000000
+chr19	249638	249725	0	0	87	0.0000000
+chr19	249726	249789	0	0	63	0.0000000
+chr19	249790	249865	0	0	75	0.0000000
+chr19	249866	249924	0	0	58	0.0000000
+chr19	249925	249962	0	0	37	0.0000000
+chr19	249963	250037	0	0	74	0.0000000
+chr19	250038	250074	0	0	36	0.0000000
+chr19	250075	250118	0	0	43	0.0000000
+chr19	250119	250148	0	0	29	0.0000000
+chr19	250149	250212	0	0	63	0.0000000
+chr19	250213	250246	0	0	33	0.0000000
+chr19	250247	250326	0	0	79	0.0000000
+chr19	250327	250401	0	0	74	0.0000000
+chr19	250402	250444	0	0	42	0.0000000
+chr19	250445	250478	0	0	33	0.0000000
+chr19	250479	250519	0	0	40	0.0000000
+chr19	250520	250602	0	0	82	0.0000000
+chr19	250603	250671	0	0	68	0.0000000
+chr19	250672	250714	0	0	42	0.0000000
+chr19	250715	250748	0	0	33	0.0000000
+chr19	250749	250829	0	0	80	0.0000000
+chr19	250830	250900	0	0	70	0.0000000
+chr19	250901	250985	0	0	84	0.0000000
+chr19	250986	251071	0	0	85	0.0000000
+chr19	251072	251111	0	0	39	0.0000000
+chr19	251112	251145	0	0	33	0.0000000
+chr19	251146	251235	0	0	89	0.0000000
+chr19	251236	251320	0	0	84	0.0000000
+chr19	251321	251383	0	0	62	0.0000000
+chr19	251384	251435	0	0	51	0.0000000
+chr19	251436	251487	0	0	51	0.0000000
+chr19	251488	251530	0	0	42	0.0000000
+chr19	251531	251618	0	0	87	0.0000000
+chr19	251619	251698	0	0	79	0.0000000
+chr19	251699	251781	0	0	82	0.0000000
+chr19	251782	251877	0	0	95	0.0000000
+chr19	251878	251915	0	0	37	0.0000000
+chr19	251916	251968	0	0	52	0.0000000
+chr19	251969	252017	0	0	48	0.0000000
+chr19	252018	252061	0	0	43	0.0000000
+chr19	252062	252092	0	0	30	0.0000000
+chr19	252093	252171	0	0	78	0.0000000
+chr19	252172	252220	0	0	48	0.0000000
+chr19	252221	252262	0	0	41	0.0000000
+chr19	252263	252333	0	0	70	0.0000000
+chr19	252334	252416	0	0	82	0.0000000
+chr19	252417	252502	0	0	85	0.0000000
+chr19	252503	252575	0	0	72	0.0000000
+chr19	252576	252621	0	0	45	0.0000000
+chr19	252622	252691	0	0	69	0.0000000
+chr19	252692	252733	0	0	41	0.0000000
+chr19	252734	252790	0	0	56	0.0000000
+chr19	252791	252883	0	0	92	0.0000000
+chr19	252884	252944	0	0	60	0.0000000
+chr19	252945	252983	0	0	38	0.0000000
+chr19	252984	253040	0	0	56	0.0000000
+chr19	253041	253077	0	0	36	0.0000000
+chr19	253078	253112	0	0	34	0.0000000
+chr19	253113	253146	0	0	33	0.0000000
+chr19	253147	253213	0	0	66	0.0000000
+chr19	253214	253307	0	0	93	0.0000000
+chr19	253308	253386	0	0	78	0.0000000
+chr19	253387	253465	0	0	78	0.0000000
+chr19	253466	253499	0	0	33	0.0000000
+chr19	253500	253540	0	0	40	0.0000000
+chr19	253541	253573	0	0	32	0.0000000
+chr19	253574	253612	0	0	38	0.0000000
+chr19	253613	253667	0	0	54	0.0000000
+chr19	253668	253717	0	0	49	0.0000000
+chr19	253718	253751	0	0	33	0.0000000
+chr19	253752	253792	0	0	40	0.0000000
+chr19	253793	253856	0	0	63	0.0000000
+chr19	253857	253887	0	0	30	0.0000000
+chr19	253888	253944	0	0	56	0.0000000
+chr19	253945	254033	0	0	88	0.0000000
+chr19	254034	254090	0	0	56	0.0000000
+chr19	254091	254178	0	0	87	0.0000000
+chr19	254179	254253	0	0	74	0.0000000
+chr19	254254	254306	0	0	52	0.0000000
+chr19	254307	254398	0	0	91	0.0000000
+chr19	254399	254445	0	0	46	0.0000000
+chr19	254446	254545	0	0	99	0.0000000
+chr19	254546	254629	0	0	83	0.0000000
+chr19	254630	254728	0	0	98	0.0000000
+chr19	254729	254758	0	0	29	0.0000000
+chr19	254759	254844	0	0	85	0.0000000
+chr19	254845	254919	0	0	74	0.0000000
+chr19	254920	254992	0	0	72	0.0000000
+chr19	254993	255088	0	0	95	0.0000000
+chr19	255089	255127	0	0	38	0.0000000
+chr19	255128	255222	0	0	94	0.0000000
+chr19	255223	255261	0	0	38	0.0000000
+chr19	255262	255306	0	0	44	0.0000000
+chr19	255307	255361	0	0	54	0.0000000
+chr19	255362	255434	0	0	72	0.0000000
+chr19	255435	255525	0	0	90	0.0000000
+chr19	255526	255617	0	0	91	0.0000000
+chr19	255618	255710	0	0	92	0.0000000
+chr19	255711	255751	0	0	40	0.0000000
+chr19	255752	255832	0	0	80	0.0000000
+chr19	255833	255888	0	0	55	0.0000000
+chr19	255889	255953	0	0	64	0.0000000
+chr19	255954	256026	0	0	72	0.0000000
+chr19	256027	256113	0	0	86	0.0000000
+chr19	256114	256171	0	0	57	0.0000000
+chr19	256172	256201	0	0	29	0.0000000
+chr19	256202	256258	0	0	56	0.0000000
+chr19	256259	256289	0	0	30	0.0000000
+chr19	256290	256368	0	0	78	0.0000000
+chr19	256369	256421	0	0	52	0.0000000
+chr19	256422	256462	0	0	40	0.0000000
+chr19	256463	256498	0	0	35	0.0000000
+chr19	256499	256559	0	0	60	0.0000000
+chr19	256560	256610	0	0	50	0.0000000
+chr19	256611	256647	0	0	36	0.0000000
+chr19	256648	256718	0	0	70	0.0000000
+chr19	256719	256796	0	0	77	0.0000000
+chr19	256797	256853	0	0	56	0.0000000
+chr19	256854	256943	0	0	89	0.0000000
+chr19	256944	256993	0	0	49	0.0000000
+chr19	256994	257025	0	0	31	0.0000000
+chr19	257026	257068	0	0	42	0.0000000
+chr19	257069	257106	0	0	37	0.0000000
+chr19	257107	257176	0	0	69	0.0000000
+chr19	257177	257241	0	0	64	0.0000000
+chr19	257242	257339	0	0	97	0.0000000
+chr19	257340	257396	0	0	56	0.0000000
+chr19	257397	257431	0	0	34	0.0000000
+chr19	257432	257484	0	0	52	0.0000000
+chr19	257485	257546	0	0	61	0.0000000
+chr19	257547	257624	0	0	77	0.0000000
+chr19	257625	257679	0	0	54	0.0000000
+chr19	257680	257770	0	0	90	0.0000000
+chr19	257771	257819	0	0	48	0.0000000
+chr19	257820	257897	0	0	77	0.0000000
+chr19	257898	257967	0	0	69	0.0000000
+chr19	257968	258026	0	0	58	0.0000000
+chr19	258027	258067	0	0	40	0.0000000
+chr19	258068	258133	0	0	65	0.0000000
+chr19	258134	258212	0	0	78	0.0000000
+chr19	258213	258304	0	0	91	0.0000000
+chr19	258305	258379	0	0	74	0.0000000
+chr19	258380	258463	0	0	83	0.0000000
+chr19	258464	258518	0	0	54	0.0000000
+chr19	258519	258575	0	0	56	0.0000000
+chr19	258576	258639	0	0	63	0.0000000
+chr19	258640	258715	0	0	75	0.0000000
+chr19	258716	258799	0	0	83	0.0000000
+chr19	258800	258842	0	0	42	0.0000000
+chr19	258843	258931	0	0	88	0.0000000
+chr19	258932	258988	0	0	56	0.0000000
+chr19	258989	259020	0	0	31	0.0000000
+chr19	259021	259055	0	0	34	0.0000000
+chr19	259056	259114	0	0	58	0.0000000
+chr19	259115	259178	0	0	63	0.0000000
+chr19	259179	259221	0	0	42	0.0000000
+chr19	259222	259307	0	0	85	0.0000000
+chr19	259308	259346	0	0	38	0.0000000
+chr19	259347	259395	0	0	48	0.0000000
+chr19	259396	259486	0	0	90	0.0000000
+chr19	259487	259567	0	0	80	0.0000000
+chr19	259568	259648	0	0	80	0.0000000
+chr19	259649	259710	0	0	61	0.0000000
+chr19	259711	259783	0	0	72	0.0000000
+chr19	259784	259821	0	0	37	0.0000000
+chr19	259822	259875	0	0	53	0.0000000
+chr19	259876	259935	0	0	59	0.0000000
+chr19	259936	260011	0	0	75	0.0000000
+chr20	240000	240053	0	0	53	0.0000000
+chr20	240054	240084	0	0	30	0.0000000
+chr20	240085	240162	0	0	77	0.0000000
+chr20	240163	240194	0	0	31	0.0000000
+chr20	240195	240269	0	0	74	0.0000000
+chr20	240270	240317	0	0	47	0.0000000
+chr20	240318	240383	0	0	65	0.0000000
+chr20	240384	240427	0	0	43	0.0000000
+chr20	240428	240485	0	0	57	0.0000000
+chr20	240486	240562	0	0	76	0.0000000
+chr20	240563	240636	0	0	73	0.0000000
+chr20	240637	240707	0	0	70	0.0000000
+chr20	240708	240787	0	0	79	0.0000000
+chr20	240788	240827	0	0	39	0.0000000
+chr20	240828	240906	0	0	78	0.0000000
+chr20	240907	240996	0	0	89	0.0000000
+chr20	240997	241033	0	0	36	0.0000000
+chr20	241034	241097	0	0	63	0.0000000
+chr20	241098	241196	0	0	98	0.0000000
+chr20	241197	241230	0	0	33	0.0000000
+chr20	241231	241320	0	0	89	0.0000000
+chr20	241321	241408	0	0	87	0.0000000
+chr20	241409	241481	0	0	72	0.0000000
+chr20	241482	241578	0	0	96	0.0000000
+chr20	241579	241612	0	0	33	0.0000000
+chr20	241613	241681	0	0	68	0.0000000
+chr20	241682	241723	0	0	41	0.0000000
+chr20	241724	241785	0	0	61	0.0000000
+chr20	241786	241853	0	0	67	0.0000000
+chr20	241854	241901	0	0	47	0.0000000
+chr20	241902	241960	0	0	58	0.0000000
+chr20	241961	242049	0	0	88	0.0000000
+chr20	242050	242102	0	0	52	0.0000000
+chr20	242103	242148	0	0	45	0.0000000
+chr20	242149	242191	0	0	42	0.0000000
+chr20	242192	242230	0	0	38	0.0000000
+chr20	242231	242269	0	0	38	0.0000000
+chr20	242270	242353	0	0	83	0.0000000
+chr20	242354	242385	0	0	31	0.0000000
+chr20	242386	242421	0	0	35	0.0000000
+chr20	242422	242514	0	0	92	0.0000000
+chr20	242515	242566	0	0	51	0.0000000
+chr20	242567	242605	0	0	38	0.0000000
+chr20	242606	242642	0	0	36	0.0000000
+chr20	242643	242701	0	0	58	0.0000000
+chr20	242702	242800	0	0	98	0.0000000
+chr20	242801	242885	0	0	84	0.0000000
+chr20	242886	242975	0	0	89	0.0000000
+chr20	242976	243031	0	0	55	0.0000000
+chr20	243032	243079	0	0	47	0.0000000
+chr20	243080	243149	0	0	69	0.0000000
+chr20	243150	243184	0	0	34	0.0000000
+chr20	243185	243217	0	0	32	0.0000000
+chr20	243218	243256	0	0	38	0.0000000
+chr20	243257	243301	0	0	44	0.0000000
+chr20	243302	243361	0	0	59	0.0000000
+chr20	243362	243400	0	0	38	0.0000000
+chr20	243401	243499	0	0	98	0.0000000
+chr20	243500	243568	0	0	68	0.0000000
+chr20	243569	243632	0	0	63	0.0000000
+chr20	243633	243698	0	0	65	0.0000000
+chr20	243699	243788	0	0	89	0.0000000
+chr20	243789	243828	0	0	39	0.0000000
+chr20	243829	243859	0	0	30	0.0000000
+chr20	243860	243904	0	0	44	0.0000000
+chr20	243905	243996	0	0	91	0.0000000
+chr20	243997	244048	0	0	51	0.0000000
+chr20	244049	244118	0	0	69	0.0000000
+chr20	244119	244213	0	0	94	0.0000000
+chr20	244214	244304	0	0	90	0.0000000
+chr20	244305	244387	0	0	82	0.0000000
+chr20	244388	244455	0	0	67	0.0000000
+chr20	244456	244519	0	0	63	0.0000000
+chr20	244520	244552	0	0	32	0.0000000
+chr20	244553	244615	0	0	62	0.0000000
+chr20	244616	244686	0	0	70	0.0000000
+chr20	244687	244722	0	0	35	0.0000000
+chr20	244723	244788	0	0	65	0.0000000
+chr20	244789	244830	0	0	41	0.0000000
+chr20	244831	244924	0	0	93	0.0000000
+chr20	244925	244991	0	0	66	0.0000000
+chr20	244992	245090	0	0	98	0.0000000
+chr20	245091	245174	0	0	83	0.0000000
+chr20	245175	245269	0	0	94	0.0000000
+chr20	245270	245348	0	0	78	0.0000000
+chr20	245349	245420	0	0	71	0.0000000
+chr20	245421	245511	0	0	90	0.0000000
+chr20	245512	245545	0	0	33	0.0000000
+chr20	245546	245588	0	0	42	0.0000000
+chr20	245589	245654	0	0	65	0.0000000
+chr20	245655	245735	0	0	80	0.0000000
+chr20	245736	245831	0	0	95	0.0000000
+chr20	245832	245907	0	0	75	0.0000000
+chr20	245908	246005	0	0	97	0.0000000
+chr20	246006	246077	0	0	71	0.0000000
+chr20	246078	246133	0	0	55	0.0000000
+chr20	246134	246231	0	0	97	0.0000000
+chr20	246232	246314	0	0	82	0.0000000
+chr20	246315	246393	0	0	78	0.0000000
+chr20	246394	246486	0	0	92	0.0000000
+chr20	246487	246567	0	0	80	0.0000000
+chr20	246568	246654	0	0	86	0.0000000
+chr20	246655	246731	0	0	76	0.0000000
+chr20	246732	246788	0	0	56	0.0000000
+chr20	246789	246869	0	0	80	0.0000000
+chr20	246870	246959	0	0	89	0.0000000
+chr20	246960	247010	0	0	50	0.0000000
+chr20	247011	247058	0	0	47	0.0000000
+chr20	247059	247152	0	0	93	0.0000000
+chr20	247153	247211	0	0	58	0.0000000
+chr20	247212	247258	0	0	46	0.0000000
+chr20	247259	247339	0	0	80	0.0000000
+chr20	247340	247390	0	0	50	0.0000000
+chr20	247391	247439	0	0	48	0.0000000
+chr20	247440	247506	0	0	66	0.0000000
+chr20	247507	247583	0	0	76	0.0000000
+chr20	247584	247643	0	0	59	0.0000000
+chr20	247644	247730	0	0	86	0.0000000
+chr20	247731	247781	0	0	50	0.0000000
+chr20	247782	247819	0	0	37	0.0000000
+chr20	247820	247871	0	0	51	0.0000000
+chr20	247872	247916	0	0	44	0.0000000
+chr20	247917	247999	0	0	82	0.0000000
+chr20	248000	248067	0	0	67	0.0000000
+chr20	248068	248105	0	0	37	0.0000000
+chr20	248106	248201	0	0	95	0.0000000
+chr20	248202	248268	0	0	66	0.0000000
+chr20	248269	248327	0	0	58	0.0000000
+chr20	248328	248414	0	0	86	0.0000000
+chr20	248415	248509	0	0	94	0.0000000
+chr20	248510	248565	0	0	55	0.0000000
+chr20	248566	248630	0	0	64	0.0000000
+chr20	248631	248706	0	0	75	0.0000000
+chr20	248707	248750	0	0	43	0.0000000
+chr20	248751	248785	0	0	34	0.0000000
+chr20	248786	248868	0	0	82	0.0000000
+chr20	248869	248931	0	0	62	0.0000000
+chr20	248932	248982	0	0	50	0.0000000
+chr20	248983	249015	0	0	32	0.0000000
+chr20	249016	249052	0	0	36	0.0000000
+chr20	249053	249118	0	0	65	0.0000000
+chr20	249119	249169	0	0	50	0.0000000
+chr20	249170	249202	0	0	32	0.0000000
+chr20	249203	249284	0	0	81	0.0000000
+chr20	249285	249319	0	0	34	0.0000000
+chr20	249320	249398	0	0	78	0.0000000
+chr20	249399	249437	0	0	38	0.0000000
+chr20	249438	249515	0	0	77	0.0000000
+chr20	249516	249605	0	0	89	0.0000000
+chr20	249606	249697	0	0	91	0.0000000
+chr20	249698	249735	0	0	37	0.0000000
+chr20	249736	249780	0	0	44	0.0000000
+chr20	249781	249839	0	0	58	0.0000000
+chr20	249840	249905	0	0	65	0.0000000
+chr20	249906	249986	0	0	80	0.0000000
+chr20	249987	250026	0	0	39	0.0000000
+chr20	250027	250079	0	0	52	0.0000000
+chr20	250080	250112	0	0	32	0.0000000
+chr20	250113	250157	0	0	44	0.0000000
+chr20	250158	250194	0	0	36	0.0000000
+chr20	250195	250262	0	0	67	0.0000000
+chr20	250263	250303	0	0	40	0.0000000
+chr20	250304	250387	0	0	83	0.0000000
+chr20	250388	250472	0	0	84	0.0000000
+chr20	250473	250515	0	0	42	0.0000000
+chr20	250516	250587	0	0	71	0.0000000
+chr20	250588	250631	0	0	43	0.0000000
+chr20	250632	250731	0	0	99	0.0000000
+chr20	250732	250799	0	0	67	0.0000000
+chr20	250800	250864	0	0	64	0.0000000
+chr20	250865	250905	0	0	40	0.0000000
+chr20	250906	250994	0	0	88	0.0000000
+chr20	250995	251029	0	0	34	0.0000000
+chr20	251030	251107	0	0	77	0.0000000
+chr20	251108	251145	0	0	37	0.0000000
+chr20	251146	251196	0	0	50	0.0000000
+chr20	251197	251280	0	0	83	0.0000000
+chr20	251281	251314	0	0	33	0.0000000
+chr20	251315	251350	0	0	35	0.0000000
+chr20	251351	251385	0	0	34	0.0000000
+chr20	251386	251450	0	0	64	0.0000000
+chr20	251451	251482	0	0	31	0.0000000
+chr20	251483	251554	0	0	71	0.0000000
+chr20	251555	251635	0	0	80	0.0000000
+chr20	251636	251670	0	0	34	0.0000000
+chr20	251671	251764	0	0	93	0.0000000
+chr20	251765	251840	0	0	75	0.0000000
+chr20	251841	251922	0	0	81	0.0000000
+chr20	251923	251955	0	0	32	0.0000000
+chr20	251956	252038	0	0	82	0.0000000
+chr20	252039	252123	0	0	84	0.0000000
+chr20	252124	252218	0	0	94	0.0000000
+chr20	252219	252281	0	0	62	0.0000000
+chr20	252282	252344	0	0	62	0.0000000
+chr20	252345	252429	0	0	84	0.0000000
+chr20	252430	252474	0	0	44	0.0000000
+chr20	252475	252531	0	0	56	0.0000000
+chr20	252532	252594	0	0	62	0.0000000
+chr20	252595	252690	0	0	95	0.0000000
+chr20	252691	252749	0	0	58	0.0000000
+chr20	252750	252789	0	0	39	0.0000000
+chr20	252790	252851	0	0	61	0.0000000
+chr20	252852	252910	0	0	58	0.0000000
+chr20	252911	252940	0	0	29	0.0000000
+chr20	252941	253010	0	0	69	0.0000000
+chr20	253011	253100	0	0	89	0.0000000
+chr20	253101	253160	0	0	59	0.0000000
+chr20	253161	253190	0	0	29	0.0000000
+chr20	253191	253276	0	0	85	0.0000000
+chr20	253277	253370	0	0	93	0.0000000
+chr20	253371	253427	0	0	56	0.0000000
+chr20	253428	253506	0	0	78	0.0000000
+chr20	253507	253570	0	0	63	0.0000000
+chr20	253571	253642	0	0	71	0.0000000
+chr20	253643	253676	0	0	33	0.0000000
+chr20	253677	253713	0	0	36	0.0000000
+chr20	253714	253792	0	0	78	0.0000000
+chr20	253793	253855	0	0	62	0.0000000
+chr20	253856	253887	0	0	31	0.0000000
+chr20	253888	253936	0	0	48	0.0000000
+chr20	253937	254012	0	0	75	0.0000000
+chr20	254013	254094	0	0	81	0.0000000
+chr20	254095	254132	0	0	37	0.0000000
+chr20	254133	254207	0	0	74	0.0000000
+chr20	254208	254287	0	0	79	0.0000000
+chr20	254288	254360	0	0	72	0.0000000
+chr20	254361	254395	0	0	34	0.0000000
+chr20	254396	254457	0	0	61	0.0000000
+chr20	254458	254493	0	0	35	0.0000000
+chr20	254494	254591	0	0	97	0.0000000
+chr20	254592	254678	0	0	86	0.0000000
+chr20	254679	254730	0	0	51	0.0000000
+chr20	254731	254781	0	0	50	0.0000000
+chr20	254782	254843	0	0	61	0.0000000
+chr20	254844	254920	0	0	76	0.0000000
+chr20	254921	254997	0	0	76	0.0000000
+chr20	254998	255059	0	0	61	0.0000000
+chr20	255060	255103	0	0	43	0.0000000
+chr20	255104	255134	0	0	30	0.0000000
+chr20	255135	255196	0	0	61	0.0000000
+chr20	255197	255237	0	0	40	0.0000000
+chr20	255238	255293	0	0	55	0.0000000
+chr20	255294	255353	0	0	59	0.0000000
+chr20	255354	255429	0	0	75	0.0000000
+chr20	255430	255477	0	0	47	0.0000000
+chr20	255478	255577	0	0	99	0.0000000
+chr20	255578	255618	0	0	40	0.0000000
+chr20	255619	255690	0	0	71	0.0000000
+chr20	255691	255764	0	0	73	0.0000000
+chr20	255765	255816	0	0	51	0.0000000
+chr20	255817	255874	0	0	57	0.0000000
+chr20	255875	255969	0	0	94	0.0000000
+chr20	255970	256046	0	0	76	0.0000000
+chr20	256047	256139	0	0	92	0.0000000
+chr20	256140	256224	0	0	84	0.0000000
+chr20	256225	256257	0	0	32	0.0000000
+chr20	256258	256311	0	0	53	0.0000000
+chr20	256312	256378	0	0	66	0.0000000
+chr20	256379	256447	0	0	68	0.0000000
+chr20	256448	256491	0	0	43	0.0000000
+chr20	256492	256542	0	0	50	0.0000000
+chr20	256543	256588	0	0	45	0.0000000
+chr20	256589	256659	0	0	70	0.0000000
+chr20	256660	256719	0	0	59	0.0000000
+chr20	256720	256809	0	0	89	0.0000000
+chr20	256810	256901	0	0	91	0.0000000
+chr20	256902	256992	0	0	90	0.0000000
+chr20	256993	257029	0	0	36	0.0000000
+chr20	257030	257075	0	0	45	0.0000000
+chr20	257076	257148	0	0	72	0.0000000
+chr20	257149	257235	0	0	86	0.0000000
+chr20	257236	257283	0	0	47	0.0000000
+chr20	257284	257339	0	0	55	0.0000000
+chr20	257340	257386	0	0	46	0.0000000
+chr20	257387	257460	0	0	73	0.0000000
+chr20	257461	257517	0	0	56	0.0000000
+chr20	257518	257609	0	0	91	0.0000000
+chr20	257610	257692	0	0	82	0.0000000
+chr20	257693	257727	0	0	34	0.0000000
+chr20	257728	257790	0	0	62	0.0000000
+chr20	257791	257851	0	0	60	0.0000000
+chr20	257852	257920	0	0	68	0.0000000
+chr20	257921	257989	0	0	68	0.0000000
+chr20	257990	258071	0	0	81	0.0000000
+chr20	258072	258146	0	0	74	0.0000000
+chr20	258147	258236	0	0	89	0.0000000
+chr20	258237	258310	0	0	73	0.0000000
+chr20	258311	258356	0	0	45	0.0000000
+chr20	258357	258388	0	0	31	0.0000000
+chr20	258389	258473	0	0	84	0.0000000
+chr20	258474	258571	0	0	97	0.0000000
+chr20	258572	258610	0	0	38	0.0000000
+chr20	258611	258665	0	0	54	0.0000000
+chr20	258666	258757	0	0	91	0.0000000
+chr20	258758	258845	0	0	87	0.0000000
+chr20	258846	258889	0	0	43	0.0000000
+chr20	258890	258953	0	0	63	0.0000000
+chr20	258954	258998	0	0	44	0.0000000
+chr20	258999	259078	0	0	79	0.0000000
+chr20	259079	259129	0	0	50	0.0000000
+chr20	259130	259219	0	0	89	0.0000000
+chr20	259220	259299	0	0	79	0.0000000
+chr20	259300	259396	0	0	96	0.0000000
+chr20	259397	259433	0	0	36	0.0000000
+chr20	259434	259525	0	0	91	0.0000000
+chr20	259526	259600	0	0	74	0.0000000
+chr20	259601	259668	0	0	67	0.0000000
+chr20	259669	259745	0	0	76	0.0000000
+chr20	259746	259815	0	0	69	0.0000000
+chr20	259816	259866	0	0	50	0.0000000
+chr20	259867	259909	0	0	42	0.0000000
+chr20	259910	259948	0	0	38	0.0000000
+chr20	259949	259999	0	0	50	0.0000000
+chr20	260000	260051	0	0	51	0.0000000
+stderr:
+***** WARNING: File ./data/intersect_file03.bed has inconsistent naming convention for record:
+chr19	240000	240094
+
+***** WARNING: File ./data/intersect_file03.bed has inconsistent naming convention for record:
+chr19	240000	240094
+
+%===========================%
+
+%===========================%
+ BED03/good//01-numeric_chrom.bed 
+
+stdout:
+chr19	240000	240094	0	0	94	0.0000000
+chr19	240095	240127	0	0	32	0.0000000
+chr19	240128	240205	0	0	77	0.0000000
+chr19	240206	240276	0	0	70	0.0000000
+chr19	240277	240367	0	0	90	0.0000000
+chr19	240368	240419	0	0	51	0.0000000
+chr19	240420	240497	0	0	77	0.0000000
+chr19	240498	240578	0	0	80	0.0000000
+chr19	240579	240626	0	0	47	0.0000000
+chr19	240627	240658	0	0	31	0.0000000
+chr19	240659	240724	0	0	65	0.0000000
+chr19	240725	240772	0	0	47	0.0000000
+chr19	240773	240830	0	0	57	0.0000000
+chr19	240831	240916	0	0	85	0.0000000
+chr19	240917	240977	0	0	60	0.0000000
+chr19	240978	241014	0	0	36	0.0000000
+chr19	241015	241105	0	0	90	0.0000000
+chr19	241106	241136	0	0	30	0.0000000
+chr19	241137	241196	0	0	59	0.0000000
+chr19	241197	241240	0	0	43	0.0000000
+chr19	241241	241275	0	0	34	0.0000000
+chr19	241276	241358	0	0	82	0.0000000
+chr19	241359	241442	0	0	83	0.0000000
+chr19	241443	241499	0	0	56	0.0000000
+chr19	241500	241598	0	0	98	0.0000000
+chr19	241599	241676	0	0	77	0.0000000
+chr19	241677	241744	0	0	67	0.0000000
+chr19	241745	241839	0	0	94	0.0000000
+chr19	241840	241938	0	0	98	0.0000000
+chr19	241939	242002	0	0	63	0.0000000
+chr19	242003	242100	0	0	97	0.0000000
+chr19	242101	242131	0	0	30	0.0000000
+chr19	242132	242229	0	0	97	0.0000000
+chr19	242230	242274	0	0	44	0.0000000
+chr19	242275	242365	0	0	90	0.0000000
+chr19	242366	242443	0	0	77	0.0000000
+chr19	242444	242541	0	0	97	0.0000000
+chr19	242542	242632	0	0	90	0.0000000
+chr19	242633	242711	0	0	78	0.0000000
+chr19	242712	242790	0	0	78	0.0000000
+chr19	242791	242858	0	0	67	0.0000000
+chr19	242859	242914	0	0	55	0.0000000
+chr19	242915	242974	0	0	59	0.0000000
+chr19	242975	243038	0	0	63	0.0000000
+chr19	243039	243083	0	0	44	0.0000000
+chr19	243084	243118	0	0	34	0.0000000
+chr19	243119	243172	0	0	53	0.0000000
+chr19	243173	243226	0	0	53	0.0000000
+chr19	243227	243307	0	0	80	0.0000000
+chr19	243308	243385	0	0	77	0.0000000
+chr19	243386	243418	0	0	32	0.0000000
+chr19	243419	243477	0	0	58	0.0000000
+chr19	243478	243513	0	0	35	0.0000000
+chr19	243514	243582	0	0	68	0.0000000
+chr19	243583	243654	0	0	71	0.0000000
+chr19	243655	243735	0	0	80	0.0000000
+chr19	243736	243809	0	0	73	0.0000000
+chr19	243810	243903	0	0	93	0.0000000
+chr19	243904	244002	0	0	98	0.0000000
+chr19	244003	244091	0	0	88	0.0000000
+chr19	244092	244147	0	0	55	0.0000000
+chr19	244148	244183	0	0	35	0.0000000
+chr19	244184	244230	0	0	46	0.0000000
+chr19	244231	244297	0	0	66	0.0000000
+chr19	244298	244372	0	0	74	0.0000000
+chr19	244373	244405	0	0	32	0.0000000
+chr19	244406	244503	0	0	97	0.0000000
+chr19	244504	244552	0	0	48	0.0000000
+chr19	244553	244582	0	0	29	0.0000000
+chr19	244583	244676	0	0	93	0.0000000
+chr19	244677	244736	0	0	59	0.0000000
+chr19	244737	244822	0	0	85	0.0000000
+chr19	244823	244918	0	0	95	0.0000000
+chr19	244919	244980	0	0	61	0.0000000
+chr19	244981	245041	0	0	60	0.0000000
+chr19	245042	245088	0	0	46	0.0000000
+chr19	245089	245178	0	0	89	0.0000000
+chr19	245179	245250	0	0	71	0.0000000
+chr19	245251	245324	0	0	73	0.0000000
+chr19	245325	245376	0	0	51	0.0000000
+chr19	245377	245441	0	0	64	0.0000000
+chr19	245442	245515	0	0	73	0.0000000
+chr19	245516	245592	0	0	76	0.0000000
+chr19	245593	245628	0	0	35	0.0000000
+chr19	245629	245683	0	0	54	0.0000000
+chr19	245684	245781	0	0	97	0.0000000
+chr19	245782	245855	0	0	73	0.0000000
+chr19	245856	245921	0	0	65	0.0000000
+chr19	245922	245995	0	0	73	0.0000000
+chr19	245996	246028	0	0	32	0.0000000
+chr19	246029	246121	0	0	92	0.0000000
+chr19	246122	246180	0	0	58	0.0000000
+chr19	246181	246272	0	0	91	0.0000000
+chr19	246273	246366	0	0	93	0.0000000
+chr19	246367	246437	0	0	70	0.0000000
+chr19	246438	246467	0	0	29	0.0000000
+chr19	246468	246550	0	0	82	0.0000000
+chr19	246551	246636	0	0	85	0.0000000
+chr19	246637	246720	0	0	83	0.0000000
+chr19	246721	246761	0	0	40	0.0000000
+chr19	246762	246834	0	0	72	0.0000000
+chr19	246835	246876	0	0	41	0.0000000
+chr19	246877	246929	0	0	52	0.0000000
+chr19	246930	246976	0	0	46	0.0000000
+chr19	246977	247017	0	0	40	0.0000000
+chr19	247018	247066	0	0	48	0.0000000
+chr19	247067	247108	0	0	41	0.0000000
+chr19	247109	247198	0	0	89	0.0000000
+chr19	247199	247254	0	0	55	0.0000000
+chr19	247255	247308	0	0	53	0.0000000
+chr19	247309	247370	0	0	61	0.0000000
+chr19	247371	247459	0	0	88	0.0000000
+chr19	247460	247499	0	0	39	0.0000000
+chr19	247500	247550	0	0	50	0.0000000
+chr19	247551	247637	0	0	86	0.0000000
+chr19	247638	247717	0	0	79	0.0000000
+chr19	247718	247782	0	0	64	0.0000000
+chr19	247783	247846	0	0	63	0.0000000
+chr19	247847	247902	0	0	55	0.0000000
+chr19	247903	247985	0	0	82	0.0000000
+chr19	247986	248017	0	0	31	0.0000000
+chr19	248018	248069	0	0	51	0.0000000
+chr19	248070	248103	0	0	33	0.0000000
+chr19	248104	248152	0	0	48	0.0000000
+chr19	248153	248251	0	0	98	0.0000000
+chr19	248252	248320	0	0	68	0.0000000
+chr19	248321	248399	0	0	78	0.0000000
+chr19	248400	248432	0	0	32	0.0000000
+chr19	248433	248487	0	0	54	0.0000000
+chr19	248488	248554	0	0	66	0.0000000
+chr19	248555	248650	0	0	95	0.0000000
+chr19	248651	248744	0	0	93	0.0000000
+chr19	248745	248778	0	0	33	0.0000000
+chr19	248779	248853	0	0	74	0.0000000
+chr19	248854	248897	0	0	43	0.0000000
+chr19	248898	248965	0	0	67	0.0000000
+chr19	248966	249003	0	0	37	0.0000000
+chr19	249004	249068	0	0	64	0.0000000
+chr19	249069	249165	0	0	96	0.0000000
+chr19	249166	249246	0	0	80	0.0000000
+chr19	249247	249277	0	0	30	0.0000000
+chr19	249278	249374	0	0	96	0.0000000
+chr19	249375	249405	0	0	30	0.0000000
+chr19	249406	249450	0	0	44	0.0000000
+chr19	249451	249550	0	0	99	0.0000000
+chr19	249551	249637	0	0	86	0.0000000
+chr19	249638	249725	0	0	87	0.0000000
+chr19	249726	249789	0	0	63	0.0000000
+chr19	249790	249865	0	0	75	0.0000000
+chr19	249866	249924	0	0	58	0.0000000
+chr19	249925	249962	0	0	37	0.0000000
+chr19	249963	250037	0	0	74	0.0000000
+chr19	250038	250074	0	0	36	0.0000000
+chr19	250075	250118	0	0	43	0.0000000
+chr19	250119	250148	0	0	29	0.0000000
+chr19	250149	250212	0	0	63	0.0000000
+chr19	250213	250246	0	0	33	0.0000000
+chr19	250247	250326	0	0	79	0.0000000
+chr19	250327	250401	0	0	74	0.0000000
+chr19	250402	250444	0	0	42	0.0000000
+chr19	250445	250478	0	0	33	0.0000000
+chr19	250479	250519	0	0	40	0.0000000
+chr19	250520	250602	0	0	82	0.0000000
+chr19	250603	250671	0	0	68	0.0000000
+chr19	250672	250714	0	0	42	0.0000000
+chr19	250715	250748	0	0	33	0.0000000
+chr19	250749	250829	0	0	80	0.0000000
+chr19	250830	250900	0	0	70	0.0000000
+chr19	250901	250985	0	0	84	0.0000000
+chr19	250986	251071	0	0	85	0.0000000
+chr19	251072	251111	0	0	39	0.0000000
+chr19	251112	251145	0	0	33	0.0000000
+chr19	251146	251235	0	0	89	0.0000000
+chr19	251236	251320	0	0	84	0.0000000
+chr19	251321	251383	0	0	62	0.0000000
+chr19	251384	251435	0	0	51	0.0000000
+chr19	251436	251487	0	0	51	0.0000000
+chr19	251488	251530	0	0	42	0.0000000
+chr19	251531	251618	0	0	87	0.0000000
+chr19	251619	251698	0	0	79	0.0000000
+chr19	251699	251781	0	0	82	0.0000000
+chr19	251782	251877	0	0	95	0.0000000
+chr19	251878	251915	0	0	37	0.0000000
+chr19	251916	251968	0	0	52	0.0000000
+chr19	251969	252017	0	0	48	0.0000000
+chr19	252018	252061	0	0	43	0.0000000
+chr19	252062	252092	0	0	30	0.0000000
+chr19	252093	252171	0	0	78	0.0000000
+chr19	252172	252220	0	0	48	0.0000000
+chr19	252221	252262	0	0	41	0.0000000
+chr19	252263	252333	0	0	70	0.0000000
+chr19	252334	252416	0	0	82	0.0000000
+chr19	252417	252502	0	0	85	0.0000000
+chr19	252503	252575	0	0	72	0.0000000
+chr19	252576	252621	0	0	45	0.0000000
+chr19	252622	252691	0	0	69	0.0000000
+chr19	252692	252733	0	0	41	0.0000000
+chr19	252734	252790	0	0	56	0.0000000
+chr19	252791	252883	0	0	92	0.0000000
+chr19	252884	252944	0	0	60	0.0000000
+chr19	252945	252983	0	0	38	0.0000000
+chr19	252984	253040	0	0	56	0.0000000
+chr19	253041	253077	0	0	36	0.0000000
+chr19	253078	253112	0	0	34	0.0000000
+chr19	253113	253146	0	0	33	0.0000000
+chr19	253147	253213	0	0	66	0.0000000
+chr19	253214	253307	0	0	93	0.0000000
+chr19	253308	253386	0	0	78	0.0000000
+chr19	253387	253465	0	0	78	0.0000000
+chr19	253466	253499	0	0	33	0.0000000
+chr19	253500	253540	0	0	40	0.0000000
+chr19	253541	253573	0	0	32	0.0000000
+chr19	253574	253612	0	0	38	0.0000000
+chr19	253613	253667	0	0	54	0.0000000
+chr19	253668	253717	0	0	49	0.0000000
+chr19	253718	253751	0	0	33	0.0000000
+chr19	253752	253792	0	0	40	0.0000000
+chr19	253793	253856	0	0	63	0.0000000
+chr19	253857	253887	0	0	30	0.0000000
+chr19	253888	253944	0	0	56	0.0000000
+chr19	253945	254033	0	0	88	0.0000000
+chr19	254034	254090	0	0	56	0.0000000
+chr19	254091	254178	0	0	87	0.0000000
+chr19	254179	254253	0	0	74	0.0000000
+chr19	254254	254306	0	0	52	0.0000000
+chr19	254307	254398	0	0	91	0.0000000
+chr19	254399	254445	0	0	46	0.0000000
+chr19	254446	254545	0	0	99	0.0000000
+chr19	254546	254629	0	0	83	0.0000000
+chr19	254630	254728	0	0	98	0.0000000
+chr19	254729	254758	0	0	29	0.0000000
+chr19	254759	254844	0	0	85	0.0000000
+chr19	254845	254919	0	0	74	0.0000000
+chr19	254920	254992	0	0	72	0.0000000
+chr19	254993	255088	0	0	95	0.0000000
+chr19	255089	255127	0	0	38	0.0000000
+chr19	255128	255222	0	0	94	0.0000000
+chr19	255223	255261	0	0	38	0.0000000
+chr19	255262	255306	0	0	44	0.0000000
+chr19	255307	255361	0	0	54	0.0000000
+chr19	255362	255434	0	0	72	0.0000000
+chr19	255435	255525	0	0	90	0.0000000
+chr19	255526	255617	0	0	91	0.0000000
+chr19	255618	255710	0	0	92	0.0000000
+chr19	255711	255751	0	0	40	0.0000000
+chr19	255752	255832	0	0	80	0.0000000
+chr19	255833	255888	0	0	55	0.0000000
+chr19	255889	255953	0	0	64	0.0000000
+chr19	255954	256026	0	0	72	0.0000000
+chr19	256027	256113	0	0	86	0.0000000
+chr19	256114	256171	0	0	57	0.0000000
+chr19	256172	256201	0	0	29	0.0000000
+chr19	256202	256258	0	0	56	0.0000000
+chr19	256259	256289	0	0	30	0.0000000
+chr19	256290	256368	0	0	78	0.0000000
+chr19	256369	256421	0	0	52	0.0000000
+chr19	256422	256462	0	0	40	0.0000000
+chr19	256463	256498	0	0	35	0.0000000
+chr19	256499	256559	0	0	60	0.0000000
+chr19	256560	256610	0	0	50	0.0000000
+chr19	256611	256647	0	0	36	0.0000000
+chr19	256648	256718	0	0	70	0.0000000
+chr19	256719	256796	0	0	77	0.0000000
+chr19	256797	256853	0	0	56	0.0000000
+chr19	256854	256943	0	0	89	0.0000000
+chr19	256944	256993	0	0	49	0.0000000
+chr19	256994	257025	0	0	31	0.0000000
+chr19	257026	257068	0	0	42	0.0000000
+chr19	257069	257106	0	0	37	0.0000000
+chr19	257107	257176	0	0	69	0.0000000
+chr19	257177	257241	0	0	64	0.0000000
+chr19	257242	257339	0	0	97	0.0000000
+chr19	257340	257396	0	0	56	0.0000000
+chr19	257397	257431	0	0	34	0.0000000
+chr19	257432	257484	0	0	52	0.0000000
+chr19	257485	257546	0	0	61	0.0000000
+chr19	257547	257624	0	0	77	0.0000000
+chr19	257625	257679	0	0	54	0.0000000
+chr19	257680	257770	0	0	90	0.0000000
+chr19	257771	257819	0	0	48	0.0000000
+chr19	257820	257897	0	0	77	0.0000000
+chr19	257898	257967	0	0	69	0.0000000
+chr19	257968	258026	0	0	58	0.0000000
+chr19	258027	258067	0	0	40	0.0000000
+chr19	258068	258133	0	0	65	0.0000000
+chr19	258134	258212	0	0	78	0.0000000
+chr19	258213	258304	0	0	91	0.0000000
+chr19	258305	258379	0	0	74	0.0000000
+chr19	258380	258463	0	0	83	0.0000000
+chr19	258464	258518	0	0	54	0.0000000
+chr19	258519	258575	0	0	56	0.0000000
+chr19	258576	258639	0	0	63	0.0000000
+chr19	258640	258715	0	0	75	0.0000000
+chr19	258716	258799	0	0	83	0.0000000
+chr19	258800	258842	0	0	42	0.0000000
+chr19	258843	258931	0	0	88	0.0000000
+chr19	258932	258988	0	0	56	0.0000000
+chr19	258989	259020	0	0	31	0.0000000
+chr19	259021	259055	0	0	34	0.0000000
+chr19	259056	259114	0	0	58	0.0000000
+chr19	259115	259178	0	0	63	0.0000000
+chr19	259179	259221	0	0	42	0.0000000
+chr19	259222	259307	0	0	85	0.0000000
+chr19	259308	259346	0	0	38	0.0000000
+chr19	259347	259395	0	0	48	0.0000000
+chr19	259396	259486	0	0	90	0.0000000
+chr19	259487	259567	0	0	80	0.0000000
+chr19	259568	259648	0	0	80	0.0000000
+chr19	259649	259710	0	0	61	0.0000000
+chr19	259711	259783	0	0	72	0.0000000
+chr19	259784	259821	0	0	37	0.0000000
+chr19	259822	259875	0	0	53	0.0000000
+chr19	259876	259935	0	0	59	0.0000000
+chr19	259936	260011	0	0	75	0.0000000
+chr20	240000	240053	0	0	53	0.0000000
+chr20	240054	240084	0	0	30	0.0000000
+chr20	240085	240162	0	0	77	0.0000000
+chr20	240163	240194	0	0	31	0.0000000
+chr20	240195	240269	0	0	74	0.0000000
+chr20	240270	240317	0	0	47	0.0000000
+chr20	240318	240383	0	0	65	0.0000000
+chr20	240384	240427	0	0	43	0.0000000
+chr20	240428	240485	0	0	57	0.0000000
+chr20	240486	240562	0	0	76	0.0000000
+chr20	240563	240636	0	0	73	0.0000000
+chr20	240637	240707	0	0	70	0.0000000
+chr20	240708	240787	0	0	79	0.0000000
+chr20	240788	240827	0	0	39	0.0000000
+chr20	240828	240906	0	0	78	0.0000000
+chr20	240907	240996	0	0	89	0.0000000
+chr20	240997	241033	0	0	36	0.0000000
+chr20	241034	241097	0	0	63	0.0000000
+chr20	241098	241196	0	0	98	0.0000000
+chr20	241197	241230	0	0	33	0.0000000
+chr20	241231	241320	0	0	89	0.0000000
+chr20	241321	241408	0	0	87	0.0000000
+chr20	241409	241481	0	0	72	0.0000000
+chr20	241482	241578	0	0	96	0.0000000
+chr20	241579	241612	0	0	33	0.0000000
+chr20	241613	241681	0	0	68	0.0000000
+chr20	241682	241723	0	0	41	0.0000000
+chr20	241724	241785	0	0	61	0.0000000
+chr20	241786	241853	0	0	67	0.0000000
+chr20	241854	241901	0	0	47	0.0000000
+chr20	241902	241960	0	0	58	0.0000000
+chr20	241961	242049	0	0	88	0.0000000
+chr20	242050	242102	0	0	52	0.0000000
+chr20	242103	242148	0	0	45	0.0000000
+chr20	242149	242191	0	0	42	0.0000000
+chr20	242192	242230	0	0	38	0.0000000
+chr20	242231	242269	0	0	38	0.0000000
+chr20	242270	242353	0	0	83	0.0000000
+chr20	242354	242385	0	0	31	0.0000000
+chr20	242386	242421	0	0	35	0.0000000
+chr20	242422	242514	0	0	92	0.0000000
+chr20	242515	242566	0	0	51	0.0000000
+chr20	242567	242605	0	0	38	0.0000000
+chr20	242606	242642	0	0	36	0.0000000
+chr20	242643	242701	0	0	58	0.0000000
+chr20	242702	242800	0	0	98	0.0000000
+chr20	242801	242885	0	0	84	0.0000000
+chr20	242886	242975	0	0	89	0.0000000
+chr20	242976	243031	0	0	55	0.0000000
+chr20	243032	243079	0	0	47	0.0000000
+chr20	243080	243149	0	0	69	0.0000000
+chr20	243150	243184	0	0	34	0.0000000
+chr20	243185	243217	0	0	32	0.0000000
+chr20	243218	243256	0	0	38	0.0000000
+chr20	243257	243301	0	0	44	0.0000000
+chr20	243302	243361	0	0	59	0.0000000
+chr20	243362	243400	0	0	38	0.0000000
+chr20	243401	243499	0	0	98	0.0000000
+chr20	243500	243568	0	0	68	0.0000000
+chr20	243569	243632	0	0	63	0.0000000
+chr20	243633	243698	0	0	65	0.0000000
+chr20	243699	243788	0	0	89	0.0000000
+chr20	243789	243828	0	0	39	0.0000000
+chr20	243829	243859	0	0	30	0.0000000
+chr20	243860	243904	0	0	44	0.0000000
+chr20	243905	243996	0	0	91	0.0000000
+chr20	243997	244048	0	0	51	0.0000000
+chr20	244049	244118	0	0	69	0.0000000
+chr20	244119	244213	0	0	94	0.0000000
+chr20	244214	244304	0	0	90	0.0000000
+chr20	244305	244387	0	0	82	0.0000000
+chr20	244388	244455	0	0	67	0.0000000
+chr20	244456	244519	0	0	63	0.0000000
+chr20	244520	244552	0	0	32	0.0000000
+chr20	244553	244615	0	0	62	0.0000000
+chr20	244616	244686	0	0	70	0.0000000
+chr20	244687	244722	0	0	35	0.0000000
+chr20	244723	244788	0	0	65	0.0000000
+chr20	244789	244830	0	0	41	0.0000000
+chr20	244831	244924	0	0	93	0.0000000
+chr20	244925	244991	0	0	66	0.0000000
+chr20	244992	245090	0	0	98	0.0000000
+chr20	245091	245174	0	0	83	0.0000000
+chr20	245175	245269	0	0	94	0.0000000
+chr20	245270	245348	0	0	78	0.0000000
+chr20	245349	245420	0	0	71	0.0000000
+chr20	245421	245511	0	0	90	0.0000000
+chr20	245512	245545	0	0	33	0.0000000
+chr20	245546	245588	0	0	42	0.0000000
+chr20	245589	245654	0	0	65	0.0000000
+chr20	245655	245735	0	0	80	0.0000000
+chr20	245736	245831	0	0	95	0.0000000
+chr20	245832	245907	0	0	75	0.0000000
+chr20	245908	246005	0	0	97	0.0000000
+chr20	246006	246077	0	0	71	0.0000000
+chr20	246078	246133	0	0	55	0.0000000
+chr20	246134	246231	0	0	97	0.0000000
+chr20	246232	246314	0	0	82	0.0000000
+chr20	246315	246393	0	0	78	0.0000000
+chr20	246394	246486	0	0	92	0.0000000
+chr20	246487	246567	0	0	80	0.0000000
+chr20	246568	246654	0	0	86	0.0000000
+chr20	246655	246731	0	0	76	0.0000000
+chr20	246732	246788	0	0	56	0.0000000
+chr20	246789	246869	0	0	80	0.0000000
+chr20	246870	246959	0	0	89	0.0000000
+chr20	246960	247010	0	0	50	0.0000000
+chr20	247011	247058	0	0	47	0.0000000
+chr20	247059	247152	0	0	93	0.0000000
+chr20	247153	247211	0	0	58	0.0000000
+chr20	247212	247258	0	0	46	0.0000000
+chr20	247259	247339	0	0	80	0.0000000
+chr20	247340	247390	0	0	50	0.0000000
+chr20	247391	247439	0	0	48	0.0000000
+chr20	247440	247506	0	0	66	0.0000000
+chr20	247507	247583	0	0	76	0.0000000
+chr20	247584	247643	0	0	59	0.0000000
+chr20	247644	247730	0	0	86	0.0000000
+chr20	247731	247781	0	0	50	0.0000000
+chr20	247782	247819	0	0	37	0.0000000
+chr20	247820	247871	0	0	51	0.0000000
+chr20	247872	247916	0	0	44	0.0000000
+chr20	247917	247999	0	0	82	0.0000000
+chr20	248000	248067	0	0	67	0.0000000
+chr20	248068	248105	0	0	37	0.0000000
+chr20	248106	248201	0	0	95	0.0000000
+chr20	248202	248268	0	0	66	0.0000000
+chr20	248269	248327	0	0	58	0.0000000
+chr20	248328	248414	0	0	86	0.0000000
+chr20	248415	248509	0	0	94	0.0000000
+chr20	248510	248565	0	0	55	0.0000000
+chr20	248566	248630	0	0	64	0.0000000
+chr20	248631	248706	0	0	75	0.0000000
+chr20	248707	248750	0	0	43	0.0000000
+chr20	248751	248785	0	0	34	0.0000000
+chr20	248786	248868	0	0	82	0.0000000
+chr20	248869	248931	0	0	62	0.0000000
+chr20	248932	248982	0	0	50	0.0000000
+chr20	248983	249015	0	0	32	0.0000000
+chr20	249016	249052	0	0	36	0.0000000
+chr20	249053	249118	0	0	65	0.0000000
+chr20	249119	249169	0	0	50	0.0000000
+chr20	249170	249202	0	0	32	0.0000000
+chr20	249203	249284	0	0	81	0.0000000
+chr20	249285	249319	0	0	34	0.0000000
+chr20	249320	249398	0	0	78	0.0000000
+chr20	249399	249437	0	0	38	0.0000000
+chr20	249438	249515	0	0	77	0.0000000
+chr20	249516	249605	0	0	89	0.0000000
+chr20	249606	249697	0	0	91	0.0000000
+chr20	249698	249735	0	0	37	0.0000000
+chr20	249736	249780	0	0	44	0.0000000
+chr20	249781	249839	0	0	58	0.0000000
+chr20	249840	249905	0	0	65	0.0000000
+chr20	249906	249986	0	0	80	0.0000000
+chr20	249987	250026	0	0	39	0.0000000
+chr20	250027	250079	0	0	52	0.0000000
+chr20	250080	250112	0	0	32	0.0000000
+chr20	250113	250157	0	0	44	0.0000000
+chr20	250158	250194	0	0	36	0.0000000
+chr20	250195	250262	0	0	67	0.0000000
+chr20	250263	250303	0	0	40	0.0000000
+chr20	250304	250387	0	0	83	0.0000000
+chr20	250388	250472	0	0	84	0.0000000
+chr20	250473	250515	0	0	42	0.0000000
+chr20	250516	250587	0	0	71	0.0000000
+chr20	250588	250631	0	0	43	0.0000000
+chr20	250632	250731	0	0	99	0.0000000
+chr20	250732	250799	0	0	67	0.0000000
+chr20	250800	250864	0	0	64	0.0000000
+chr20	250865	250905	0	0	40	0.0000000
+chr20	250906	250994	0	0	88	0.0000000
+chr20	250995	251029	0	0	34	0.0000000
+chr20	251030	251107	0	0	77	0.0000000
+chr20	251108	251145	0	0	37	0.0000000
+chr20	251146	251196	0	0	50	0.0000000
+chr20	251197	251280	0	0	83	0.0000000
+chr20	251281	251314	0	0	33	0.0000000
+chr20	251315	251350	0	0	35	0.0000000
+chr20	251351	251385	0	0	34	0.0000000
+chr20	251386	251450	0	0	64	0.0000000
+chr20	251451	251482	0	0	31	0.0000000
+chr20	251483	251554	0	0	71	0.0000000
+chr20	251555	251635	0	0	80	0.0000000
+chr20	251636	251670	0	0	34	0.0000000
+chr20	251671	251764	0	0	93	0.0000000
+chr20	251765	251840	0	0	75	0.0000000
+chr20	251841	251922	0	0	81	0.0000000
+chr20	251923	251955	0	0	32	0.0000000
+chr20	251956	252038	0	0	82	0.0000000
+chr20	252039	252123	0	0	84	0.0000000
+chr20	252124	252218	0	0	94	0.0000000
+chr20	252219	252281	0	0	62	0.0000000
+chr20	252282	252344	0	0	62	0.0000000
+chr20	252345	252429	0	0	84	0.0000000
+chr20	252430	252474	0	0	44	0.0000000
+chr20	252475	252531	0	0	56	0.0000000
+chr20	252532	252594	0	0	62	0.0000000
+chr20	252595	252690	0	0	95	0.0000000
+chr20	252691	252749	0	0	58	0.0000000
+chr20	252750	252789	0	0	39	0.0000000
+chr20	252790	252851	0	0	61	0.0000000
+chr20	252852	252910	0	0	58	0.0000000
+chr20	252911	252940	0	0	29	0.0000000
+chr20	252941	253010	0	0	69	0.0000000
+chr20	253011	253100	0	0	89	0.0000000
+chr20	253101	253160	0	0	59	0.0000000
+chr20	253161	253190	0	0	29	0.0000000
+chr20	253191	253276	0	0	85	0.0000000
+chr20	253277	253370	0	0	93	0.0000000
+chr20	253371	253427	0	0	56	0.0000000
+chr20	253428	253506	0	0	78	0.0000000
+chr20	253507	253570	0	0	63	0.0000000
+chr20	253571	253642	0	0	71	0.0000000
+chr20	253643	253676	0	0	33	0.0000000
+chr20	253677	253713	0	0	36	0.0000000
+chr20	253714	253792	0	0	78	0.0000000
+chr20	253793	253855	0	0	62	0.0000000
+chr20	253856	253887	0	0	31	0.0000000
+chr20	253888	253936	0	0	48	0.0000000
+chr20	253937	254012	0	0	75	0.0000000
+chr20	254013	254094	0	0	81	0.0000000
+chr20	254095	254132	0	0	37	0.0000000
+chr20	254133	254207	0	0	74	0.0000000
+chr20	254208	254287	0	0	79	0.0000000
+chr20	254288	254360	0	0	72	0.0000000
+chr20	254361	254395	0	0	34	0.0000000
+chr20	254396	254457	0	0	61	0.0000000
+chr20	254458	254493	0	0	35	0.0000000
+chr20	254494	254591	0	0	97	0.0000000
+chr20	254592	254678	0	0	86	0.0000000
+chr20	254679	254730	0	0	51	0.0000000
+chr20	254731	254781	0	0	50	0.0000000
+chr20	254782	254843	0	0	61	0.0000000
+chr20	254844	254920	0	0	76	0.0000000
+chr20	254921	254997	0	0	76	0.0000000
+chr20	254998	255059	0	0	61	0.0000000
+chr20	255060	255103	0	0	43	0.0000000
+chr20	255104	255134	0	0	30	0.0000000
+chr20	255135	255196	0	0	61	0.0000000
+chr20	255197	255237	0	0	40	0.0000000
+chr20	255238	255293	0	0	55	0.0000000
+chr20	255294	255353	0	0	59	0.0000000
+chr20	255354	255429	0	0	75	0.0000000
+chr20	255430	255477	0	0	47	0.0000000
+chr20	255478	255577	0	0	99	0.0000000
+chr20	255578	255618	0	0	40	0.0000000
+chr20	255619	255690	0	0	71	0.0000000
+chr20	255691	255764	0	0	73	0.0000000
+chr20	255765	255816	0	0	51	0.0000000
+chr20	255817	255874	0	0	57	0.0000000
+chr20	255875	255969	0	0	94	0.0000000
+chr20	255970	256046	0	0	76	0.0000000
+chr20	256047	256139	0	0	92	0.0000000
+chr20	256140	256224	0	0	84	0.0000000
+chr20	256225	256257	0	0	32	0.0000000
+chr20	256258	256311	0	0	53	0.0000000
+chr20	256312	256378	0	0	66	0.0000000
+chr20	256379	256447	0	0	68	0.0000000
+chr20	256448	256491	0	0	43	0.0000000
+chr20	256492	256542	0	0	50	0.0000000
+chr20	256543	256588	0	0	45	0.0000000
+chr20	256589	256659	0	0	70	0.0000000
+chr20	256660	256719	0	0	59	0.0000000
+chr20	256720	256809	0	0	89	0.0000000
+chr20	256810	256901	0	0	91	0.0000000
+chr20	256902	256992	0	0	90	0.0000000
+chr20	256993	257029	0	0	36	0.0000000
+chr20	257030	257075	0	0	45	0.0000000
+chr20	257076	257148	0	0	72	0.0000000
+chr20	257149	257235	0	0	86	0.0000000
+chr20	257236	257283	0	0	47	0.0000000
+chr20	257284	257339	0	0	55	0.0000000
+chr20	257340	257386	0	0	46	0.0000000
+chr20	257387	257460	0	0	73	0.0000000
+chr20	257461	257517	0	0	56	0.0000000
+chr20	257518	257609	0	0	91	0.0000000
+chr20	257610	257692	0	0	82	0.0000000
+chr20	257693	257727	0	0	34	0.0000000
+chr20	257728	257790	0	0	62	0.0000000
+chr20	257791	257851	0	0	60	0.0000000
+chr20	257852	257920	0	0	68	0.0000000
+chr20	257921	257989	0	0	68	0.0000000
+chr20	257990	258071	0	0	81	0.0000000
+chr20	258072	258146	0	0	74	0.0000000
+chr20	258147	258236	0	0	89	0.0000000
+chr20	258237	258310	0	0	73	0.0000000
+chr20	258311	258356	0	0	45	0.0000000
+chr20	258357	258388	0	0	31	0.0000000
+chr20	258389	258473	0	0	84	0.0000000
+chr20	258474	258571	0	0	97	0.0000000
+chr20	258572	258610	0	0	38	0.0000000
+chr20	258611	258665	0	0	54	0.0000000
+chr20	258666	258757	0	0	91	0.0000000
+chr20	258758	258845	0	0	87	0.0000000
+chr20	258846	258889	0	0	43	0.0000000
+chr20	258890	258953	0	0	63	0.0000000
+chr20	258954	258998	0	0	44	0.0000000
+chr20	258999	259078	0	0	79	0.0000000
+chr20	259079	259129	0	0	50	0.0000000
+chr20	259130	259219	0	0	89	0.0000000
+chr20	259220	259299	0	0	79	0.0000000
+chr20	259300	259396	0	0	96	0.0000000
+chr20	259397	259433	0	0	36	0.0000000
+chr20	259434	259525	0	0	91	0.0000000
+chr20	259526	259600	0	0	74	0.0000000
+chr20	259601	259668	0	0	67	0.0000000
+chr20	259669	259745	0	0	76	0.0000000
+chr20	259746	259815	0	0	69	0.0000000
+chr20	259816	259866	0	0	50	0.0000000
+chr20	259867	259909	0	0	42	0.0000000
+chr20	259910	259948	0	0	38	0.0000000
+chr20	259949	259999	0	0	50	0.0000000
+chr20	260000	260051	0	0	51	0.0000000
+stderr:
+***** WARNING: File ./data/intersect_file03.bed has inconsistent naming convention for record:
+chr19	240000	240094
+
+***** WARNING: File ./data/intersect_file03.bed has inconsistent naming convention for record:
+chr19	240000	240094
+
+%===========================%
+
+%===========================%
+ BED03/good//other-fully_space_delimited.bed 
+
+stdout:
+stderr:
+Error: unable to open file or unable to determine types for file BED03/good//other-fully_space_delimited.bed
+
+- Please ensure that your file is TAB delimited (e.g., cat -t FILE).
+- Also ensure that your file has integer chromosome coordinates in the 
+  expected columns (e.g., cols 2 and 3 for BED).
+%===========================%
+
+%===========================%
+ BED03/good//other-not_tab_delimited.bed 
+
+stdout:
+stderr:
+Error: line number 35 of file BED03/good//other-not_tab_delimited.bed has 2 fields, but 3 were expected.
+%===========================%
+
+%===========================%
+ BED03/good//other-space_after_tab.bed 
+
+stdout:
+stderr:
+***** ERROR: illegal character ' ' found in integer conversion of string "250258 ". Exiting...
+%===========================%
+
+%===========================%
+ BED03/good//other-space_before_tab.bed 
+
+stdout:
+stderr:
+***** ERROR: illegal character ' ' found in integer conversion of string " 251500". Exiting...
+%===========================%
+
+************************** biopet WipeReads **************************
+

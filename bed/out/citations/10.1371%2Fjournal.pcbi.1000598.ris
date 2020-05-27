@@ -1,0 +1,18 @@
+TY  - JOUR
+T1  - An Abundance of Ubiquitously Expressed Genes Revealed by Tissue Transcriptome Sequence Data
+A1  - Ramsköld, Daniel
+A1  - Wang, Eric T.
+A1  - Burge, Christopher B.
+A1  - Sandberg, Rickard
+Y1  - 2009/12/11
+N2  - Author Summary A variety of genes are active within the nuclei of our cells. Some are needed for the day-to-day maintenance of cell functions, while others have roles that are more specific to certain tissues or particular cell types; for example, only the pancreas produces insulin. As a result, every tissue has its own profile of gene activity. Since active genes produce RNA, tissue differences in gene activity can be probed by characterizing the RNA they contain. Essentially the entire set of RNAs or ‘transcriptome’ has been sequenced from various tissues, and we used these data to compare the degree of specialization of different tissues and to investigate the set of ‘core’ genes active in every tissue. A central observation was that there are an abundance of such core genes, and that these genes account for the majority of the transcriptome in each tissue. These findings will aid in the understanding of what makes tissues, and cell types, different from each other and what each requires to function.
+JF  - PLOS Computational Biology
+JA  - PLOS Computational Biology
+VL  - 5
+IS  - 12
+UR  - https://doi.org/10.1371/journal.pcbi.1000598
+SP  - e1000598
+EP  - 
+PB  - Public Library of Science
+M3  - doi:10.1371/journal.pcbi.1000598
+ER  - 

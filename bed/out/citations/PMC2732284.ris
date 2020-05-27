@@ -1,0 +1,34 @@
+TY  - JOUR
+DB  - PubMed
+AU  - Boyle, Alan P
+AU  - Guinney, Justin
+AU  - Crawford, Gregory E
+AU  - Furey, Terrence S
+T1  - F-Seq: a feature density estimator for high-throughput sequence tags
+LA  - eng
+SN  - 1367-4811
+SN  - 1367-4803
+Y1  - 2008/11/01
+ET  - 2008/09/10
+AB  - Tag sequencing using high-throughput sequencing technologies are now regularly employed to identify specific sequence features, such as transcription factor binding sites (ChIP-seq) or regions of open chromatin (DNase-seq). To intuitively summarize and display individual sequence data as an accurate and interpretable signal, we developed F-Seq, a software package that generates a continuous tag sequence density estimation allowing identification of biologically meaningful sites whose output can be displayed directly in the UCSC Genome Browser. AVAILABILITY: The software is written in the Java language and is available on all major computing platforms for download at http://www.genome.duke.edu/labs/furey/software/fseq.
+SP  - 2537
+EP  - 2538
+VL  - 24
+IS  - 21
+AN  - 18784119
+UR  - https://www.ncbi.nlm.nih.gov/pubmed/18784119
+DO  - 10.1093/bioinformatics/btn480
+L2  - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2732284/
+U1  - 18784119[pmid]
+U2  - PMC2732284[pmcid]
+U4  - btn480[PII]
+J2  - Bioinformatics
+JF  - Bioinformatics (Oxford, England)
+KW  - Chromatin Immunoprecipitation
+KW  - Deoxyribonuclease I/chemistry/genetics
+KW  - Genome
+KW  - Sequence Analysis, DNA/*methods
+KW  - *Sequence Tagged Sites
+KW  - *Software
+PB  - Oxford University Press
+ER  - 

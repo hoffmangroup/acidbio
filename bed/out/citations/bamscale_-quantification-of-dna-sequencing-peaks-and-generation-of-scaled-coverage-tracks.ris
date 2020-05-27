@@ -1,0 +1,24 @@
+TY  - JOUR
+T1  - BAMscale: quantification of DNA sequencing peaks and generation of scaled coverage tracks
+JF  - bioRxiv
+DO  - 10.1101/669275
+SP  - 669275
+AU  - Pongor, Lorinc S.
+AU  - Gross, Jacob M.
+AU  - Alvarez, Roberto Vera
+AU  - Murai, Junko
+AU  - Jang, Sang-Min
+AU  - Zhang, Hongliang
+AU  - Redon, Christophe
+AU  - Fu, Haiqing
+AU  - Huang, Shar-Yin
+AU  - Thakur, Bhushan
+AU  - Baris, Adrian
+AU  - Marino-Ramirez, Leonardo
+AU  - Landsman, David
+AU  - Aladjem, Mirit I.
+AU  - Pommier, Yves
+Y1  - 2019/01/01
+UR  - http://biorxiv.org/content/early/2019/06/18/669275.abstract
+N2  - BAMscale is a one-step tool that processes DNA sequencing datasets from chromatin binding (ChIP-seq) and chromatin state changes (ATAC-seq, END-seq) experiments to DNA replication data (OK-seq, NS-seq and replication timing). The outputs include normalized peak scores in text format and scaled coverage tracks (BigWig) which are directly accessible to data visualization programs. BAMscale (available at https://github.com/ncbi/BAMscale) effectively processes large sequencing datasets (~100Gb size) in minutes, outperforming currently available tools.
+ER  - 

@@ -1,0 +1,45 @@
+TY  - JOUR
+DB  - PubMed
+AU  - Uren, Philip J
+AU  - Bahrami-Samani, Emad
+AU  - Burns, Suzanne C
+AU  - Qiao, Mei
+AU  - Karginov, Fedor V
+AU  - Hodges, Emily
+AU  - Hannon, Gregory J
+AU  - Sanford, Jeremy R
+AU  - Penalva, Luiz O F
+AU  - Smith, Andrew D
+T1  - Site identification in high-throughput RNA-protein interaction data
+LA  - eng
+SN  - 1367-4811
+SN  - 1367-4803
+Y1  - 2012/12/01
+ET  - 2012/09/28
+AB  - MOTIVATION: Post-transcriptional and co-transcriptional regulation is a crucial link between genotype and phenotype. The central players are the RNA-binding proteins, and experimental technologies [such as cross-linking with immunoprecipitation- (CLIP-) and RIP-seq] for probing their activities have advanced rapidly over the course of the past decade. Statistically robust, flexible computational methods for binding site identification from high-throughput immunoprecipitation assays are largely lacking however. RESULTS: We introduce a method for site identification which provides four key advantages over previous methods: (i) it can be applied on all variations of CLIP and RIP-seq technologies, (ii) it accurately models the underlying read-count distributions, (iii) it allows external covariates, such as transcript abundance (which we demonstrate is highly correlated with read count) to inform the site identification process and (iv) it allows for direct comparison of site usage across cell types or conditions. AVAILABILITY AND IMPLEMENTATION: We have implemented our method in a software tool called Piranha. Source code and binaries, licensed under the GNU General Public License (version 3) are freely available for download from http://smithlab.usc.edu. CONTACT: andrewds@usc.edu SUPPLEMENTARY INFORMATION: Supplementary data available at Bioinformatics online.
+SP  - 3013
+EP  - 3020
+VL  - 28
+IS  - 23
+AN  - 23024010
+UR  - https://www.ncbi.nlm.nih.gov/pubmed/23024010
+DO  - 10.1093/bioinformatics/bts569
+L2  - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3509493/
+U1  - 23024010[pmid]
+U2  - PMC3509493[pmcid]
+U4  - bts569[PII]
+J2  - Bioinformatics
+JF  - Bioinformatics (Oxford, England)
+KW  - Base Sequence
+KW  - Binding Sites
+KW  - Computational Biology/methods
+KW  - HEK293 Cells
+KW  - HeLa Cells
+KW  - High-Throughput Nucleotide Sequencing/methods
+KW  - Humans
+KW  - RNA/genetics
+KW  - RNA-Binding Proteins/genetics
+KW  - Sequence Analysis, RNA/*methods
+KW  - *Software
+PB  - Oxford University Press
+ER  - 

@@ -1,0 +1,34 @@
+TY  - JOUR
+DB  - PubMed
+AU  - Song, Qiang
+AU  - Smith, Andrew D
+T1  - Identifying dispersed epigenomic domains from ChIP-Seq data
+LA  - eng
+SN  - 1367-4811
+SN  - 1367-4803
+Y1  - 2011/03/15
+ET  - 2011/02/16
+AB  - MOTIVATION: Post-translational modifications to histones have several well known associations with regulation of gene expression. While some modifications appear concentrated narrowly, covering promoters or enhancers, others are dispersed as epigenomic domains. These domains mark contiguous regions sharing an epigenomic property, such as actively transcribed or poised genes, or heterochromatically silenced regions. While high-throughput methods like ChIP-Seq have led to a flood of high-quality data about these epigenomic domains, there remain important analysis problems that are not adequately solved by current analysis tools. RESULTS: We present the RSEG method for identifying epigenomic domains from ChIP-Seq data for histone modifications. In contrast with other methods emphasizing the locations of 'peaks' in read density profiles, our method identifies the boundaries of domains. RSEG is also able to incorporate a control sample and find genomic regions with differential histone modifications between two samples. AVAILABILITY: RSEG, including source code and documentation, is freely available at http://smithlab.cmb.usc.edu/histone/rseg/.
+SP  - 870
+EP  - 871
+VL  - 27
+IS  - 6
+AN  - 21325299
+UR  - https://www.ncbi.nlm.nih.gov/pubmed/21325299
+DO  - 10.1093/bioinformatics/btr030
+L2  - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3051331/
+U1  - 21325299[pmid]
+U2  - PMC3051331[pmcid]
+U4  - btr030[PII]
+J2  - Bioinformatics
+JF  - Bioinformatics (Oxford, England)
+KW  - Chromatin Immunoprecipitation
+KW  - Epigenomics/*methods
+KW  - Gene Expression Profiling
+KW  - Histones/genetics/*metabolism
+KW  - Markov Chains
+KW  - Oligonucleotide Array Sequence Analysis
+KW  - *Protein Processing, Post-Translational
+KW  - *Software
+PB  - Oxford University Press
+ER  - 

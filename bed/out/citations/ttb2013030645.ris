@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <title></title>
+    <style>
+        * {
+            font-family: Times, serif;
+        }
+    </style>
+</head>
+<body>
+<pre>TY - JOUR
+TI - GenomeTools: A Comprehensive Software Library for Efficient Processing of Structured Genome Annotations
+T2 - IEEE/ACM Transactions on Computational Biology and Bioinformatics
+SP - 645
+EP - 656
+AU - G. Gremme
+AU - S. Steinbiss
+AU - S. Kurtz
+PY - 2013
+KW - Authoring Languages
+KW - Bioinformatics
+KW - Data Compression
+KW - Genomics
+KW - Graphs
+KW - Object Oriented Languages
+KW - Text Analysis
+KW - Genome Tools
+KW - Comprehensive Software Library
+KW - Efficient Structured Genome Annotation Processing
+KW - Plain Text Files
+KW - Genomic Features
+KW - Implicit Annotation Graph
+KW - Efficient Software Library
+KW - Associated Software Tools
+KW - Bioinformatics Software
+KW - Annotation Graph Conversion
+KW - Annotation Graph Processing
+KW - Annotation Graph Creation
+KW - Annotation Graph Approach
+KW - Unified Graph Based Representation
+KW - Low Memory Overhead
+KW - Efficient Pull Based Approach
+KW - Sequential Processing
+KW - Catalogue
+KW - Human Variations
+KW - Object Oriented C Based Software Library
+KW - Compressed Sequence Data
+KW - Careful C Implementation
+KW - Light Weight Memory Footprint
+KW - Random Access
+KW - Script Programming Languages
+KW - Python
+KW - Ruby
+KW - Bioinformatics
+KW - Genomics
+KW - Software
+KW - Computer Languages
+KW - Ontologies
+KW - Software Libraries
+KW - Scientific Computing Biology And Genetics Software Engineering Reusable Libraries Programming Environments
+DO - 10.1109/TCBB.2013.68
+JO - IEEE/ACM Transactions on Computational Biology and Bioinformatics
+IS - 03
+SN - 1557-9964
+VO - 10
+VL - 10
+JA - IEEE/ACM Transactions on Computational Biology and Bioinformatics
+Y1 - May-June 2013
+UR - http://doi.ieeecomputersociety.org/10.1109/TCBB.2013.68
+ER -
+
+</pre>
+
+
+</body></html>

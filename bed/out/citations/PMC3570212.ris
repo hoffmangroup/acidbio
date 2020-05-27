@@ -1,0 +1,29 @@
+TY  - JOUR
+DB  - PubMed
+AU  - Breese, Marcus R
+AU  - Liu, Yunlong
+T1  - NGSUtils: a software suite for analyzing and manipulating next-generation sequencing datasets
+LA  - eng
+SN  - 1367-4811
+SN  - 1367-4803
+Y1  - 2013/02/15
+ET  - 2013/01/12
+AB  - SUMMARY: NGSUtils is a suite of software tools for manipulating data common to next-generation sequencing experiments, such as FASTQ, BED and BAM format files. These tools provide a stable and modular platform for data management and analysis. AVAILABILITY AND IMPLEMENTATION: NGSUtils is available under a BSD license and works on Mac OS X and Linux systems. Python 2.6+ and virtualenv are required. More information and source code may be obtained from the website: http://ngsutils.org.
+SP  - 494
+EP  - 496
+VL  - 29
+IS  - 4
+AN  - 23314324
+UR  - https://www.ncbi.nlm.nih.gov/pubmed/23314324
+DO  - 10.1093/bioinformatics/bts731
+L2  - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3570212/
+U1  - 23314324[pmid]
+U2  - PMC3570212[pmcid]
+U4  - bts731[PII]
+J2  - Bioinformatics
+JF  - Bioinformatics (Oxford, England)
+KW  - Genomics
+KW  - High-Throughput Nucleotide Sequencing/*methods
+KW  - *Software
+PB  - Oxford University Press
+ER  - 

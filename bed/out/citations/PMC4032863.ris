@@ -1,0 +1,44 @@
+TY  - JOUR
+DB  - PubMed
+AU  - Ay, Ferhat
+AU  - Bailey, Timothy L
+AU  - Noble, William Stafford
+T1  - Statistical confidence estimation for Hi-C data reveals regulatory chromatin contacts
+LA  - eng
+SN  - 1549-5469
+SN  - 1088-9051
+Y1  - 2014/06/
+ET  - 2014/02/05
+AB  - Our current understanding of how DNA is packed in the nucleus is most accurate at the fine scale of individual nucleosomes and at the large scale of chromosome territories. However, accurate modeling of DNA architecture at the intermediate scale of ∼50 kb-10 Mb is crucial for identifying functional interactions among regulatory elements and their target promoters. We describe a method, Fit-Hi-C, that assigns statistical confidence estimates to mid-range intra-chromosomal contacts by jointly modeling the random polymer looping effect and previously observed technical biases in Hi-C data sets. We demonstrate that our proposed approach computes accurate empirical null models of contact probability without any distribution assumption, corrects for binning artifacts, and provides improved statistical power relative to a previously described method. High-confidence contacts identified by Fit-Hi-C preferentially link expressed gene promoters to active enhancers identified by chromatin signatures in human embryonic stem cells (ESCs), capture 77% of RNA polymerase II-mediated enhancer-promoter interactions identified using ChIA-PET in mouse ESCs, and confirm previously validated, cell line-specific interactions in mouse cortex cells. We observe that insulators and heterochromatin regions are hubs for high-confidence contacts, while promoters and strong enhancers are involved in fewer contacts. We also observe that binding peaks of master pluripotency factors such as NANOG and POU5F1 are highly enriched in high-confidence contacts for human ESCs. Furthermore, we show that pairs of loci linked by high-confidence contacts exhibit similar replication timing in human and mouse ESCs and preferentially lie within the boundaries of topological domains for human and mouse cell lines.
+SP  - 999
+EP  - 1011
+VL  - 24
+IS  - 6
+AN  - 24501021
+UR  - https://www.ncbi.nlm.nih.gov/pubmed/24501021
+DO  - 10.1101/gr.160374.113
+L2  - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4032863/
+U1  - 24501021[pmid]
+U2  - PMC4032863[pmcid]
+U4  - gr.160374.113[PII]
+J2  - Genome Res
+JF  - Genome research
+KW  - Animals
+KW  - Chromatin/chemistry/*genetics
+KW  - *Chromatin Assembly and Disassembly
+KW  - Confidence Intervals
+KW  - Embryonic Stem Cells/metabolism
+KW  - Histone Code
+KW  - Homeodomain Proteins/genetics/metabolism
+KW  - Humans
+KW  - Mice
+KW  - *Models, Genetic
+KW  - Nanog Homeobox Protein
+KW  - Neurons/metabolism
+KW  - Octamer Transcription Factor-3/genetics/metabolism
+KW  - Protein Binding
+KW  - *Regulatory Sequences, Nucleic Acid
+KW  - Species Specificity
+KW  - Yeasts/genetics
+PB  - Cold Spring Harbor Laboratory Press
+ER  - 

@@ -1,0 +1,21 @@
+TY  - JOUR
+T1  - RegTools: Integrated analysis of genomic and transcriptomic data for discovery of splicing variants in cancer
+JF  - bioRxiv
+DO  - 10.1101/436634
+SP  - 436634
+AU  - Feng, Yang-Yang
+AU  - Ramu, Avinash
+AU  - Cotto, Kelsy C.
+AU  - Skidmore, Zachary L.
+AU  - Kunisaki, Jason
+AU  - Conrad, Donald F.
+AU  - Lin, Yiing
+AU  - Chapman, William C.
+AU  - Uppaluri, Ravindra
+AU  - Govindan, Ramaswamy
+AU  - Griffith, Obi L.
+AU  - Griffith, Malachi
+Y1  - 2018/01/01
+UR  - http://biorxiv.org/content/early/2018/11/25/436634.abstract
+N2  - Abstract The interpretation of variants in cancer is frequently focused on direct protein coding alterations. However, this analysis strategy excludes somatic mutations in non-coding regions of the genome and even exonic mutations may have unidentified non-coding consequences. Here we present RegTools (www.regtools.org), a free, open-source software package designed to integrate analysis of somatic variant calls from genomic data with splice junctions extracted from transcriptomic data in order to efficiently identify variants that may cause aberrant splicing in tumors.Contributions Y.-Y.F. was involved in all aspects of this study, including designing methodology, developing and testing the tool software, analyzing and interpreting data, and writing the manuscript, with input from A.R., K.C.C, Z.L.S., J.K., D.F.C., O.L.G., and M.G. A.R. designed the tool and led software development efforts. Y.L., W.C.C., R.U., and R.G. provided unpublished tumor datasets and provided critical feedback on the manuscript. O.G. and M.G. supervised the study. All authors read and approved the final manuscript
+ER  - 

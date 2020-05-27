@@ -1,0 +1,25 @@
+Provider: Silverchair
+Database: Oxford University Press
+Content: text/plain; charset="UTF-8"
+
+TY  - JOUR
+AU  - Mapleson, Daniel
+AU  - Venturini, Luca
+AU  - Kaithakottil, Gemy
+AU  - Swarbreck, David
+T1  - Efficient and accurate detection of splice junctions from RNA-seq with Portcullis
+T2  - GigaScience
+PY  - 2018
+Y1  - 2018/12/12/
+DO  - 10.1093/gigascience/giy131
+JO  - GigaScience
+JA  - gigascience
+VL  - 7
+IS  - 12
+SN  - 2047-217X
+AB  - Next-generation sequencing technologies enable rapid and cheap genome-wide transcriptome analysis, providing vital information about gene structure, transcript expression, and alternative splicing. Key to this is the accurate identification of exon-exon junctions from RNA sequenced (RNA-seq) reads. A number of RNA-seq aligners capable of splitting reads across these splice junctions (SJs) have been developed; however, it has been shown that while they correctly identify most genuine SJs available in a given sample, they also often produce large numbers of incorrect SJs. Here, we describe the extent of this problem using popular RNA-seq mapping tools and present a new method, called Portcullis, to rapidly filter false SJs derived from spliced alignments. We show that Portcullis distinguishes between genuine and false-positive junctions to a high degree of accuracy across different species, samples, expression levels, error profiles, and read lengths. Portcullis is portable, efficient, and, to our knowledge, currently the only SJ prediction tool that reliably scales for use with large RNA-seq datasets and large, highly fragmented genomes, while delivering accurate SJs.
+Y2  - 8/29/2019
+UR  - https://doi.org/10.1093/gigascience/giy131
+ER  - 
+
+

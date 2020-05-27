@@ -1,0 +1,12 @@
+TY  - JOUR
+T1  - A unified haplotype-based method for accurate and comprehensive variant calling
+JF  - bioRxiv
+DO  - 10.1101/456103
+SP  - 456103
+AU  - Cooke, Daniel P
+AU  - Wedge, David C
+AU  - Lunter, Gerton
+Y1  - 2018/01/01
+UR  - http://biorxiv.org/content/early/2018/10/29/456103.abstract
+N2  - Haplotype-based variant callers, which consider physical linkage between variant sites, are currently among the best tools for germline variation discovery and genotyping from short-read sequencing data. However, almost all such tools were designed specifically for detecting common germline variation in diploid populations, and give sub-optimal results in other scenarios. Here we present Octopus, a versatile haplotype-based variant caller that uses a polymorphic Bayesian genotyping model capable of modeling sequencing data from a range of experimental designs within a unified haplotype-aware framework. We show that Octopus accurately calls de novo mutations in parent-offspring trios and germline variants in individuals, including SNVs, indels, and small complex replacements such as microinversions. In addition, using a carefully designed synthetic-tumour data set derived from clean sequencing data from a sample with known germline haplotypes, and observed mutations in large cohort of tumour samples, we show that Octopus accurately characterizes germline and somatic variation in tumours, both with and without a paired normal sample. Sequencing reads and prior information are combined to phase called genotypes of arbitrary ploidy, including those with somatic mutations. Octopus also outputs realigned evidence BAMs to aid validation and interpretation.
+ER  - 

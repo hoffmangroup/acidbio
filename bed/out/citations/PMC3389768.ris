@@ -1,0 +1,40 @@
+TY  - JOUR
+DB  - PubMed
+AU  - Neph, Shane
+AU  - Kuehn, M Scott
+AU  - Reynolds, Alex P
+AU  - Haugen, Eric
+AU  - Thurman, Robert E
+AU  - Johnson, Audra K
+AU  - Rynes, Eric
+AU  - Maurano, Matthew T
+AU  - Vierstra, Jeff
+AU  - Thomas, Sean
+AU  - Sandstrom, Richard
+AU  - Humbert, Richard
+AU  - Stamatoyannopoulos, John A
+T1  - BEDOPS: high-performance genomic feature operations
+LA  - eng
+SN  - 1367-4811
+SN  - 1367-4803
+Y1  - 2012/07/15
+ET  - 2012/05/09
+AB  - The large and growing number of genome-wide datasets highlights the need for high-performance feature analysis and data comparison methods, in addition to efficient data storage and retrieval techniques. We introduce BEDOPS, a software suite for common genomic analysis tasks which offers improved flexibility, scalability and execution time characteristics over previously published packages. The suite includes a utility to compress large inputs into a lossless format that can provide greater space savings and faster data extractions than alternatives. AVAILABILITY: http://code.google.com/p/bedops/ includes binaries, source and documentation.
+SP  - 1919
+EP  - 1920
+VL  - 28
+IS  - 14
+AN  - 22576172
+UR  - https://www.ncbi.nlm.nih.gov/pubmed/22576172
+DO  - 10.1093/bioinformatics/bts277
+L2  - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3389768/
+U1  - 22576172[pmid]
+U2  - PMC3389768[pmcid]
+U4  - bts277[PII]
+J2  - Bioinformatics
+JF  - Bioinformatics (Oxford, England)
+KW  - Data Compression/*methods
+KW  - Genomics/*methods
+KW  - *Software
+PB  - Oxford University Press
+ER  - 

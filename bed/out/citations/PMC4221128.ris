@@ -1,0 +1,35 @@
+TY  - JOUR
+DB  - PubMed
+AU  - Daley, Timothy
+AU  - Smith, Andrew D
+T1  - Modeling genome coverage in single-cell sequencing
+LA  - eng
+SN  - 1367-4811
+SN  - 1367-4803
+Y1  - 2014/11/15
+ET  - 2014/08/08
+AB  - MOTIVATION: Single-cell DNA sequencing is necessary for examining genetic variation at the cellular level, which remains hidden in bulk sequencing experiments. But because they begin with such small amounts of starting material, the amount of information that is obtained from single-cell sequencing experiment is highly sensitive to the choice of protocol employed and variability in library preparation. In particular, the fraction of the genome represented in single-cell sequencing libraries exhibits extreme variability due to quantitative biases in amplification and loss of genetic material. RESULTS: We propose a method to predict the genome coverage of a deep sequencing experiment using information from an initial shallow sequencing experiment mapped to a reference genome. The observed coverage statistics are used in a non-parametric empirical Bayes Poisson model to estimate the gain in coverage from deeper sequencing. This approach allows researchers to know statistical features of deep sequencing experiments without actually sequencing deeply, providing a basis for optimizing and comparing single-cell sequencing protocols or screening libraries. AVAILABILITY AND IMPLEMENTATION: The method is available as part of the preseq software package. Source code is available at http://smithlabresearch.org/preseq. CONTACT: andrewds@usc.edu SUPPLEMENTARY INFORMATION: Supplementary material is available at Bioinformatics online.
+SP  - 3159
+EP  - 3165
+VL  - 30
+IS  - 22
+AN  - 25107873
+UR  - https://www.ncbi.nlm.nih.gov/pubmed/25107873
+DO  - 10.1093/bioinformatics/btu540
+L2  - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4221128/
+U1  - 25107873[pmid]
+U2  - PMC4221128[pmcid]
+U4  - btu540[PII]
+J2  - Bioinformatics
+JF  - Bioinformatics (Oxford, England)
+KW  - Bayes Theorem
+KW  - Gene Library
+KW  - Genetic Variation
+KW  - Genome, Human
+KW  - High-Throughput Nucleotide Sequencing/*methods
+KW  - Humans
+KW  - Models, Genetic
+KW  - Sequence Analysis, DNA/*methods
+KW  - Single-Cell Analysis
+PB  - Oxford University Press
+ER  - 
