@@ -1,0 +1,3 @@
+#DataFile	Signal/Control	FileFormat	ConditionName	ReplicateName
+REP1	control	BED	ES	1
+REP2	signal	BED	ES	2
