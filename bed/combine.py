@@ -73,6 +73,7 @@ if __name__ == '__main__':
             num_correct.extend(list(l[0]))
             correct_list.extend(list(l[1]))
             name_list.extend(list(l[2]))
+            print(file, len(list(l[0])))
 
     # Sort the tools by number of correctly passed cases
     num_correct, correct_list, name_list = sort_together(
@@ -106,7 +107,10 @@ if __name__ == '__main__':
 
     new_cmap = plt.get_cmap('viridis')
     new_cmap.set_under('white')
-    plt.figure(figsize=(23, 21))
+    plt.figure(figsize=(29, 27))
+
+    print("Number of tools:", len(name_list))
+    print("Number of test cases:", len(file_list) - 1)
 
     ax = sns.heatmap(correct_list, cmap=new_cmap, vmin=spacing(0.0), vmax=1,
                      linewidths=.5, square=True, cbar=False,

@@ -44,13 +44,13 @@
      inkscape:window-height="1001"
      id="namedview11163"
      showgrid="false"
-     inkscape:zoom="1.6833333"
-     inkscape:cx="473.3218"
-     inkscape:cy="121.18812"
+     inkscape:zoom="2.3805928"
+     inkscape:cx="377.91666"
+     inkscape:cy="105.34549"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg11161" />
+     inkscape:current-layer="figure_1" />
   <defs
      id="defs9309">
     <style
@@ -4596,6 +4596,27 @@
            id="path11148" />
       </g>
     </g>
+<<<<<<< HEAD
+    <rect
+       style="white-space:pre;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:round;fill:#ffffff"
+       id="rect980"
+       width="68.836639"
+       height="17.59901"
+       x="239.25745"
+       y="340.17328" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:round"
+       x="244.49857"
+       y="353.32608"
+       id="text984"><tspan
+         sodipodi:role="line"
+         id="tspan982"
+         style="white-space:pre;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:round"
+         x="244.49857"
+         y="353.32608">BED types</tspan></text>
+=======
+>>>>>>> f40ff49abb88bfd0d02fc723eba3e6781082d013
   </g>
   <defs
      id="defs11159">
@@ -4637,17 +4658,29 @@
   <text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:12px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:round"
+<<<<<<< HEAD
+     x="555.61261"
+=======
      x="544.901"
+>>>>>>> f40ff49abb88bfd0d02fc723eba3e6781082d013
      y="329.70297"
      id="text11181"><tspan
        sodipodi:role="line"
        id="tspan11179"
        style="white-space:pre;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:round"
+<<<<<<< HEAD
+       x="555.61261"
+       y="329.70297">Incorrect</tspan><tspan
+       sodipodi:role="line"
+       style="white-space:pre;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:round"
+       x="555.61261"
+=======
        x="544.901"
        y="329.70297">Incorrect</tspan><tspan
        sodipodi:role="line"
        style="white-space:pre;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:round"
        x="544.901"
+>>>>>>> f40ff49abb88bfd0d02fc723eba3e6781082d013
        y="344.70297"
        id="tspan11183">Parser</tspan></text>
   <text

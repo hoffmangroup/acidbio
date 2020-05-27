@@ -42,6 +42,8 @@ tools:  # Require that the command line sequence to be executed be written on on
     - bedops:
         complement: bedops --complement INTERSECT FILE
         element-of: bedops --element-of 10 INTERSECT FILE
+    - bedparse:
+        validateFormat: bedparse validateFormat FILE
     - bedtools:
         intersect: bedtools intersect -a INTERSECT -b FILE
         merge: sort -k1,1 -k2,2n FILE > TEMP1; bedtools merge -i TEMP1
@@ -61,8 +63,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         shift: cat FILE | cgat bed2bed --method=sanitize-genome -g GENOME
     - chunked-scatter:
         chunked-scatter: chunked-scatter -p OUTPUT_DIR/scatter_ -i FILE -m 10 -c 40
-    - cistrome-beta:
-        minus: BETA minus -p FILE -g hg19 -o OUTPUT_DIR/
+    # - cistrome-beta:
+        # minus: BETA minus -p FILE -g hg19 -o OUTPUT_DIR/
     - cnvkit:
         target: cnvkit.py target FILE
         access: cnvkit.py access GENOME -x FILE
@@ -74,6 +76,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         cpat: cpat.py -r GENOME -g FILE -d LOGIT -x HEXAMER -o OUTPUT_DIR/cpat
     - crossmap:
         CrossMap: CrossMap.py bed CHAIN FILE
+    - cthreepo:
+        cthreepo: cthreepo --infile FILE -if uc -it rs -f bed -m h38 -o OUTPUT_DIR/out.bed
     - dammet:
         DamMet: DamMet -b EXBAM -r GENOME -c chr19 -B FILE -O OUTPUT_DIR/DamMet
     - deeptools:
@@ -103,8 +107,8 @@ tools:  # Require that the command line sequence to be executed be written on on
     - iCount:
         clusters: iCount clusters INTERSECT FILE OUTPUT_DIR/iCount.txt -F 0 -P OUTPUT_DIR/ilog.txt
         annotate: iCount annotate GTF FILE OUTPUT_DIR/iCount.bed -F 0 -P OUTPUT_DIR/ilog.txt
-    # - idr:
-        # idr: idr --samples INTERSECT FILE --input-file-type bed --rank score    
+    - idr:
+        idr: idr --samples FILE FILE --input-file-type bed --rank score -o OUTPUT_DIR/idrValues.txt
     - igvtools:
         count: igvtools count FILE stdout hg18
         sort: igvtools sort FILE stdout
@@ -134,12 +138,12 @@ tools:  # Require that the command line sequence to be executed be written on on
         octopus: octopus -R FASTA -I EXBAM -t FILE -w OUTPUT_DIR/
     - peakranger:
         ccat: peakranger ccat --format bed FILE INTERSECT --output /dev/stdout
-    - Piranha:
-        basic: Piranha FILE
     # - peakzilla:  Don't know why it's not working
         # peakzilla: peakzilla.py FILE INTERSECT -l OUTPUT_DIR/out
     - picard:
         BedToIntervalList: picard BedToIntervalList INPUT=FILE SD=DICTIONARY OUTPUT=/dev/stdout
+    - Piranha:
+        basic: Piranha FILE
     - plastid:
         reformat_transcripts: reformat_transcripts --annotation_files FILE --annotation_format BED /dev/stdout
         findjuncs: findjuncs OUTPUT_DIR/result --annotation_format BED --annotation_files FILE
@@ -175,6 +179,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         subseq: seqkit subseq --bed FILE FASTA
     - seqtk:
         subseq: seqtk subseq FASTA FILE
+    - slamdunk:
+        filter: slamdunk filter -o OUTPUT_DIR/ -b FILE EXBAM
     - slncky:
         slncky: slncky FILE hg38 OUTPUT_DIR/ -c SLNCKY_CONFIG --min_coding 0.1 --overwrite --no_self
     - smoove:
@@ -217,10 +223,9 @@ conda-environment:
     bazam: base
     bcftools: base
     bedops: base
+    bedparse: newtools
     bedtools: base
-    bgt: base
     bioconvert: py36
-    bioFluff: py36
     biopet: base
     blockbuster: base
     cgat: py36
@@ -231,6 +236,7 @@ conda-environment:
     concoct: py36
     cpat: py27
     crossmap: py36
+    cthreepo: newtools
     dammet: base
     deeptools: base
     dsh-bio: base
@@ -245,7 +251,7 @@ conda-environment:
     HipSTR: base 
     homer: py36
     iCount: py36
-    idr: py36
+    idr: newtools
     igvtools: base
     intervene: base
     macs2: py27
@@ -256,7 +262,6 @@ conda-environment:
     ngsutils: py27
     novasplice: py36
     peakranger: py36
-    peakzilla: py27
     picard: py36
     Piranha: py27
     plastid: py27
@@ -277,6 +282,7 @@ conda-environment:
     segtools: py27
     seqkit: base
     seqtk: base
+    slamdunk: newtools
     slncky: special1
     smoove: py27
     snpEff: base
@@ -290,3 +296,6 @@ conda-environment:
     wiggletools: base
     wisestork: base
     xyalign: py27
+# If a tool is not installed on a CONDA environment, then can leave the value
+# blank. This way, when CONDA is not activated, the CONDA_DEFAULT_ENV variable
+# will be the empty string.

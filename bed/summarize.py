@@ -70,13 +70,13 @@ if __name__ == '__main__':
             name_list = l[2]
             for i in range(len(num_correct)):
                 if args.expand:
-                    name = name_list[i]
+                    name = name_list[i].lower()
                     if name not in max_bed_correctness:
                         max_bed_correctness[name] = {}
                     max_bed_correctness[name][len(correct_list[i])] = \
                         num_correct[i] / (len(correct_list[i]) - 1)
                 else:
-                    name = name_list[i][:name_list[i].find(' ')]
+                    name = name_list[i][:name_list[i].find(' ')].lower()
 
                     if name not in max_bed_correctness:
                         max_bed_correctness[name] = {}
@@ -111,23 +111,29 @@ if __name__ == '__main__':
         if args.max:
             heatmap_array.append(
                 [max_bed_correctness[program][length] for length in lengths])
+            display_array.append(
+                [str(round(max_bed_correctness[program][length], 0)) for length in lengths]
+            )
         elif args.min:
             heatmap_array.append(
                 [min_bed_correctness[program][length] for length in lengths])
+            display_array.append(
+                [str(round(min_bed_correctness[program][length], 0)) for length in lengths]
+            )
         else:
             heatmap_array.append(
                 [(max_bed_correctness[program][length] + min_bed_correctness[program][length]) / 2 for length in lengths])
-        display_array.append(
-            [str(round(min_bed_correctness[program][length], 2)) + ' / ' + str(round(max_bed_correctness[program][length], 2)) for length in lengths]
-        )
+            display_array.append(
+                [str(round(min_bed_correctness[program][length], 2)) + '–' + str(round(max_bed_correctness[program][length], 2)) for length in lengths]
+            )
         sorting_temp.append(sum(heatmap_array[-1]))
     
     programs, heatmap_array, display_array, sorting_temp = sort_together(
-        [programs, heatmap_array, display_array, sorting_temp], key_list=[3]
+        [programs, heatmap_array, display_array, sorting_temp], key_list=[0]
     )
 
-    annot = True if args.expand else np.array(display_array, dtype=object)
-    fmt = '.2g' if args.expand else ''
+    annot = True if args.expand or args.max or args.min else np.array(display_array, dtype=object)
+    fmt = '.2g' if args.expand or args.max or args.min else ''
 
     if args.mini:
         plt.figure(figsize=(10.5, 13))
