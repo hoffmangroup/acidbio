@@ -1,0 +1,13 @@
+syntax: glob
+
+.vscode/
+bed/__pycache__/
+bed/scratch/
+bed/ucsc-apps/
+*.pyc
+bed/data/annotations/
+bed/data/hg38.refseq
+bed/out/
+bed/get_badge/node_modules
+bed/get_badge/.git/
+bed/.idea/

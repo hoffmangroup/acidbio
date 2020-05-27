@@ -111,9 +111,7 @@ if __name__ == '__main__':
 
     print("Number of tools:", len(name_list))
     print("Number of test cases:", len(file_list) - 1)
-    # print(len(correct_list), len(correct_list[0]))
-    # print(len(file_list), len(name_list))
-    # for f in file_list: print(f)
+
     ax = sns.heatmap(correct_list, cmap=new_cmap, vmin=spacing(0.0), vmax=1,
                      linewidths=.5, square=True, cbar=False,
                      xticklabels=file_list, yticklabels=name_list)
