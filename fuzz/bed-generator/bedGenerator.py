@@ -18,16 +18,40 @@ class bedGenerator(Generator):
     def line(self, parent=None):
         current = UnparserRule(name='line', parent=parent)
         self.enter_rule(current)
-        self.chrom(parent=current)        
-        UnlexerRule(src='\t', parent=current)        
-        self.coordinate(parent=current)        
-        UnlexerRule(src='\t', parent=current)        
-        self.name(parent=current)        
-        UnlexerRule(src='\t', parent=current)        
-        self.score(parent=current)        
-        UnlexerRule(src='\t', parent=current)        
-        self.strand(parent=current)        
-        UnlexerRule(src='\n', parent=current)        
+        choice = self.model.choice(current, 0, [0 if [2, 2, 2][i] > self.max_depth else w for i, w in enumerate([1, 1, 1])])
+        if choice == 0:
+            if self.max_depth >= 0:
+                for _ in self.model.quantify(current, 0, min=1, max=inf):
+                    self.chrom(parent=current)        
+                    UnlexerRule(src='\t', parent=current)        
+                    self.coordinate(parent=current)        
+                    UnlexerRule(src='\t', parent=current)        
+                    self.name(parent=current)        
+                    UnlexerRule(src='\n', parent=current)
+        elif choice == 1:
+            if self.max_depth >= 0:
+                for _ in self.model.quantify(current, 1, min=1, max=inf):
+                    self.chrom(parent=current)        
+                    UnlexerRule(src='\t', parent=current)        
+                    self.coordinate(parent=current)        
+                    UnlexerRule(src='\t', parent=current)       
+                    self.name(parent=current)       
+                    UnlexerRule(src='\t', parent=current)        
+                    self.score(parent=current)        
+                    UnlexerRule(src='\n', parent=current)
+        elif choice == 2:
+            if self.max_depth >= 0:
+                for _ in self.model.quantify(current, 2, min=1, max=inf):
+                    self.chrom(parent=current)        
+                    UnlexerRule(src='\t', parent=current)        
+                    self.coordinate(parent=current)        
+                    UnlexerRule(src='\t', parent=current)        
+                    self.name(parent=current)        
+                    UnlexerRule(src='\t', parent=current)        
+                    self.score(parent=current)        
+                    UnlexerRule(src='\t', parent=current)       
+                    self.strand(parent=current)        
+                    UnlexerRule(src='\n', parent=current)        
         self.exit_rule(current)
         return current
     line.min_depth = 2
@@ -52,7 +76,7 @@ class bedGenerator(Generator):
         current = UnparserRule(name='coordinate', parent=parent)
         self.enter_rule(current)
         self.NUM(parent=current)        
-        self.NUM(parent=current)        
+        self.NUM(parent=current)       
         self.NUM(parent=current)        
         self.NUM(parent=current)        
         self.NUM(parent=current)        
@@ -152,7 +176,7 @@ class bedGenerator(Generator):
         elif choice == 2:
             UnlexerRule(src='_', parent=current)
         elif choice == 3:
-            self.NUM(parent=current)        
+            self.NUM(parent=current)
         self.exit_rule(current)
         return current
     CHAR.min_depth = 0
