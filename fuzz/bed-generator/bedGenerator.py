@@ -20,9 +20,14 @@ class bedGenerator(Generator):
         self.enter_rule(current)
         self.chrom(parent=current)        
         UnlexerRule(src='\t', parent=current)        
-        self.coordinate(parent=current)
-        UnlexerRule(src='\t', parent=current)
+        self.coordinate(parent=current)        
+        UnlexerRule(src='\t', parent=current)        
         self.name(parent=current)        
+        UnlexerRule(src='\t', parent=current)        
+        self.score(parent=current)        
+        UnlexerRule(src='\t', parent=current)        
+        self.strand(parent=current)        
+        UnlexerRule(src='\n', parent=current)        
         self.exit_rule(current)
         return current
     line.min_depth = 2
@@ -73,6 +78,41 @@ class bedGenerator(Generator):
         self.exit_rule(current)
         return current
     name.min_depth = 1
+
+    @depthcontrol
+    def score(self, parent=None):
+        current = UnparserRule(name='score', parent=parent)
+        self.enter_rule(current)
+        choice = self.model.choice(current, 0, [0 if [1, 1, 1, 0][i] > self.max_depth else w for i, w in enumerate([1, 1, 1, 1])])
+        if choice == 0:
+            self.NUM(parent=current)
+        elif choice == 1:
+            self.NUM(parent=current)
+            self.NUM(parent=current)
+        elif choice == 2:
+            self.NUM(parent=current)
+            self.NUM(parent=current)
+            self.NUM(parent=current)
+        elif choice == 3:
+            UnlexerRule(src='1000', parent=current)        
+        self.exit_rule(current)
+        return current
+    score.min_depth = 0
+
+    @depthcontrol
+    def strand(self, parent=None):
+        current = UnparserRule(name='strand', parent=parent)
+        self.enter_rule(current)
+        choice = self.model.choice(current, 0, [0 if [0, 0, 0][i] > self.max_depth else w for i, w in enumerate([1, 1, 1])])
+        if choice == 0:
+            UnlexerRule(src='+', parent=current)
+        elif choice == 1:
+            UnlexerRule(src='-', parent=current)
+        elif choice == 2:
+            UnlexerRule(src='.', parent=current)        
+        self.exit_rule(current)
+        return current
+    strand.min_depth = 0
 
     @depthcontrol
     def chromName(self, parent=None):
