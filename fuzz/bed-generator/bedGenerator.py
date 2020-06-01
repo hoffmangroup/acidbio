@@ -18,7 +18,8 @@ class bedGenerator(Generator):
     def line(self, parent=None):
         current = UnparserRule(name='line', parent=parent)
         self.enter_rule(current)
-        self.chrom(parent=current)        
+        self.chrom(parent=current)
+        UnlexerRule(src='\t', parent=current) 
         self.coordinate(parent=current)        
         self.exit_rule(current)
         return current
