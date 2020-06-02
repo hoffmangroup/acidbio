@@ -18,7 +18,7 @@ class bedGenerator(Generator):
     def line(self, parent=None):
         current = UnparserRule(name='line', parent=parent)
         self.enter_rule(current)
-        choice = self.model.choice(current, 0, [0 if [2, 2, 2][i] > self.max_depth else w for i, w in enumerate([1, 1, 1])])
+        choice = self.model.choice(current, 0, [0 if [3, 3, 3][i] > self.max_depth else w for i, w in enumerate([1, 1, 1])])
         if choice == 0:
             if self.max_depth >= 0:
                 for _ in self.model.quantify(current, 0, min=1, max=inf):
@@ -54,7 +54,7 @@ class bedGenerator(Generator):
                     UnlexerRule(src='\n', parent=current)        
         self.exit_rule(current)
         return current
-    line.min_depth = 2
+    line.min_depth = 3
 
     @depthcontrol
     def chrom(self, parent=None):
@@ -75,22 +75,13 @@ class bedGenerator(Generator):
     def coordinate(self, parent=None):
         current = UnparserRule(name='coordinate', parent=parent)
         self.enter_rule(current)
-        self.NUM(parent=current)        
-        self.NUM(parent=current)       
-        self.NUM(parent=current)        
-        self.NUM(parent=current)        
-        self.NUM(parent=current)        
-        self.NUM(parent=current)        
+        self.NUMBER(parent=current)        
         UnlexerRule(src='\t', parent=current)        
-        self.NUM(parent=current)        
-        self.NUM(parent=current)        
-        self.NUM(parent=current)        
-        self.NUM(parent=current)        
-        self.NUM(parent=current)        
-        self.NUM(parent=current)        
+        self.NUMBER(parent=current)     
+        self.NUM(parent=current)           
         self.exit_rule(current)
         return current
-    coordinate.min_depth = 1
+    coordinate.min_depth = 2
 
     @depthcontrol
     def name(self, parent=None):

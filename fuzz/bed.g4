@@ -11,7 +11,7 @@ chrom
     ;
 
 coordinate
-    : NUM NUM NUM NUM NUM NUM '\t' NUM NUM NUM NUM NUM NUM
+    : NUMBER '\t' NUMBER NUM
     ;
 
 name
