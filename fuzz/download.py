@@ -139,7 +139,7 @@ if __name__ == '__main__':
         if args.Z:
             zenodo(path)
         if args.U:
-            zenodo(path)
+            ucsc(path)
         if args.N:
-            zenodo(path)
+            ncbi(path)
     
