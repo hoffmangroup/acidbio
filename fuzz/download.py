@@ -1,20 +1,18 @@
 import os
 import sys
 
+import argparse
 import requests
 import subprocess
 from xml.etree import ElementTree
-from ftplib import FTP, FTP_TLS
 import urllib
 import shutil
 from contextlib import closing
 
-
-method = 'zenodo'
-
 # ENCODE
-if method.lower() == 'encode':
-    DIR = './data/encode/'
+def encode(path):
+    DIR = path + 'encode/'
+    subprocess.run(['mkdir', DIR])
 
     for i in range(12, 13):
         r = requests.get(f"https://www.encodeproject.org/report/?type=File&file_format_type=bed{i}&format=json")
@@ -37,8 +35,9 @@ if method.lower() == 'encode':
 
 # UCSC
 
-if method.lower() == 'ucsc':
-    DIR = './data/ucsc/'
+def ucsc(path):
+    DIR = path + 'ucsc/'
+    subprocess.run(['mkdir', DIR])
 
     names = open('list.txt')
     for url in names.readlines():
@@ -57,8 +56,9 @@ if method.lower() == 'ucsc':
         subprocess.call(['rm', '-f', filename])
 
 # NCBI GEO
-if method.lower() == 'ncbi':
-    DIR = './data/ncbi/'
+def ncbi(path):
+    DIR = path + 'ncbi/'
+    subprocess.run(['mkdir', DIR])
 
     r = requests.get('https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=BED[suppFile]&retMax=1000')
     tree = ElementTree.fromstring(r.content)
@@ -95,8 +95,9 @@ if method.lower() == 'ncbi':
                 sys.stderr.write(f'{filename} downloaded\n')
 
 # Zenodo
-if method == 'zenodo':
-    DIR = './data/zenodo/'
+def zenodo(path):
+    DIR = path + '/zenodo/'
+    subprocess.run(['mkdir', DIR])
 
     r = requests.get("https://zenodo.org/api/records/?q=filetype:bed")
     r = r.json()
@@ -109,3 +110,36 @@ if method == 'zenodo':
                 s = requests.get(file['links']['self'])
                 length = int(s.headers.get('content-length', None))
                 if length and length <= 1e5: open(DIR + filename, 'wb').write(s.content)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description="Download BED files from one or more of NCBI GEO Datasets," +
+        " Zenodo, UCSC Track Hubs, and ENCODE. By default, all will be downloaded."
+    )
+    parser.add_argument("-E", action='store_true', help="Download from ENCODE")
+    parser.add_argument("-Z", action='store_true', help="Download from Zenodo")
+    parser.add_argument("-U", action='store_true', help="Download from UCSC")
+    parser.add_argument("-N", action='store_true', help="Download from NCBI GEO")
+    parser.add_argument("-o", "--out", help="Directory to store downloaded files. Default is ./data/")
+
+    args = parser.parse_args()
+    if args.out is None:
+        path = './data/'
+    else:
+        path = args.out
+    if not (args.E or args.Z or args.U or args.N):
+        encode(path)
+        zenodo(path)
+        ucsc(path)
+        ncbi(path)
+    else:
+        if args.E:
+            encode(path)
+        if args.Z:
+            zenodo(path)
+        if args.U:
+            zenodo(path)
+        if args.N:
+            zenodo(path)
+    
