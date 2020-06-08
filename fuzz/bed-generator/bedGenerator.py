@@ -2,13 +2,18 @@
 
 from itertools import chain
 from math import inf
+from random import randint, random
 from grammarinator.runtime import *
 
 
 class bedGenerator(Generator):
+    start: int
+    end: int
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.start = None
+        self.end = None
 
     def EOF(self, *args, **kwargs):
         pass
@@ -75,10 +80,20 @@ class bedGenerator(Generator):
     def coordinate(self, parent=None):
         current = UnparserRule(name='coordinate', parent=parent)
         self.enter_rule(current)
-        self.NUMBER(parent=current)        
-        UnlexerRule(src='\t', parent=current)        
-        self.NUMBER(parent=current)     
-        self.NUM(parent=current)           
+        # ret = self.NUMBER(parent=current)
+        start = randint(0, 1e7)
+        end = randint(0, 1e7)
+        chance = random()
+        while chance < 0.999 and start > end:
+            start = randint(0, 1e7)
+            end = randint(0, 1e7)
+        self.start = start
+        self.end = end
+        UnlexerRule(src=str(start), parent=current)
+        UnlexerRule(src='\t', parent=current)
+        UnlexerRule(src=str(end), parent=current)     
+        # self.NUMBER(parent=current)     
+        # self.NUM(parent=current)           
         self.exit_rule(current)
         return current
     coordinate.min_depth = 2
