@@ -13,14 +13,13 @@ class metabedGenerator(Generator):
     def EOF(self, *args, **kwargs):
         pass
 
-
     @depthcontrol
     def bed(self, parent=None):
         current = UnparserRule(name='bed', parent=parent)
         self.enter_rule(current)
         self.HEADER(parent=current)        
         UnlexerRule(src='\n\n', parent=current)        
-        self.LINE(parent=current)     
+        self.LINE(parent=current)        
         UnlexerRule(src='\n', parent=current)        
         self.chrom(parent=current)        
         UnlexerRule(src='\n', parent=current)        
@@ -32,19 +31,33 @@ class metabedGenerator(Generator):
         UnlexerRule(src='\n', parent=current)        
         self.strand(parent=current)        
         UnlexerRule(src='\n', parent=current)        
-        self.chromName(parent=current)       
+        self.thickStart(parent=current)        
+        UnlexerRule(src='\n', parent=current)        
+        self.thickEnd(parent=current)        
+        UnlexerRule(src='\n', parent=current)        
+        self.itemRgb(parent=current)        
+        UnlexerRule(src='\n', parent=current)        
+        self.blockCount(parent=current)        
+        UnlexerRule(src='\n', parent=current)        
+        self.blockSizes(parent=current)        
+        UnlexerRule(src='\n', parent=current)        
+        self.blockStarts(parent=current)        
+        UnlexerRule(src='\n', parent=current)        
+        self.chromName(parent=current)        
         UnlexerRule(src='\n', parent=current)        
         self.CHAR(parent=current)        
         UnlexerRule(src='\n', parent=current)        
         self.NUMBER(parent=current)        
         UnlexerRule(src='\n', parent=current)        
+        self.NUM255(parent=current)        
+        UnlexerRule(src='\n', parent=current)        
         self.NUM(parent=current)        
         UnlexerRule(src='\n', parent=current)        
-        self.NUM3(parent=current)       
-        UnlexerRule(src='\n', parent=current)        
+        self.NUM3(parent=current)        
+        UnlexerRule(src='\n', parent=current)       
         self.exit_rule(current)
         return current
-    bed.min_depth = 2
+    bed.min_depth = 1
 
     @depthcontrol
     def HEADER(self, parent=None):
@@ -60,10 +73,13 @@ class metabedGenerator(Generator):
         current = UnlexerRule(name='LINE', parent=parent)
         self.enter_rule(current)
         UnlexerRule(src='line\n', parent=current)        
-        UnlexerRule(src='\t: (chrom \'\\t\' coordinate)+\n', parent=current)        
-        UnlexerRule(src='\t| (chrom \'\\t\' coordinate \'\\t\' name \'\\n\')+\n', parent=current)        
-        UnlexerRule(src='\t| (chrom \'\\t\' coordinate \'\\t\' name \'\\t\' score \'\\n\')+\n', parent=current)
-        UnlexerRule(src='\t| (chrom \'\\t\' coordinate \'\\t\' name \'\\t\' score \'\\t\' strand \'\\n\')+\n', parent=current)        
+        UnlexerRule(src='\t: (chrom SEPARATOR coordinate)+\n', parent=current)        
+        UnlexerRule(src='\t| (chrom SEPARATOR coordinate SEPARATOR name \'\\n\')+\n', parent=current)        
+        UnlexerRule(src='\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score \'\\n\')+\n', parent=current)        
+        UnlexerRule(src='\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand \'\\n\')+\n', parent=current)        
+        UnlexerRule(src='\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart \'\\n\')+\n', parent=current)        
+        UnlexerRule(src='\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd \'\\n\')+\n', parent=current)        
+        UnlexerRule(src='\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb \'\\n\')+\n', parent=current)        
         UnlexerRule(src=';', parent=current)        
         self.exit_rule(current)
         return current
@@ -90,6 +106,16 @@ class metabedGenerator(Generator):
     NUMBER.min_depth = 0
 
     @depthcontrol
+    def NUM255(self, parent=None):
+        current = UnlexerRule(name='NUM255', parent=parent)
+        self.enter_rule(current)
+        UnlexerRule(src='NUM255\n', parent=current)        
+        UnlexerRule(src='\t: NUM | NUM NUM | (\'2\' NUM \'0\' .. \'4\' | \'25\' \'0\' .. \'5\');', parent=current)        
+        self.exit_rule(current)
+        return current
+    NUM255.min_depth = 0
+
+    @depthcontrol
     def NUM(self, parent=None):
         current = UnlexerRule(name='NUM', parent=parent)
         self.enter_rule(current)
@@ -108,6 +134,16 @@ class metabedGenerator(Generator):
         self.exit_rule(current)
         return current
     NUM3.min_depth = 0
+
+    @depthcontrol
+    def SEPARATOR(self, parent=None):
+        current = UnlexerRule(name='SEPARATOR', parent=parent)
+        self.enter_rule(current)
+        UnlexerRule(src='SEPARATOR\n', parent=current)        
+        UnlexerRule(src='\t: \'\\t\' | \' \'+; ', parent=current)        
+        self.exit_rule(current)
+        return current
+    SEPARATOR.min_depth = 0
 
     @depthcontrol
     def chrom(self, parent=None):
@@ -132,16 +168,10 @@ class metabedGenerator(Generator):
         current = UnparserRule(name='coordinate', parent=parent)
         self.enter_rule(current)
         UnlexerRule(src='coordinate\n', parent=current)        
-        UnlexerRule(src='\t: ', parent=current)        
-        choice = self.model.choice(current, 0, [0 if [1, 1][i] > self.max_depth else w for i, w in enumerate([1, 1])])
-        if choice == 0:
-            UnlexerRule(src='NUM \'\\t\' NUM NUM', parent=current)
-        elif choice == 1:
-            UnlexerRule(src='NUMBER \'\\t\' NUMBER', parent=current)
-        UnlexerRule(src=';', parent=current)        
+        UnlexerRule(src='\t: NUMBER SEPARATOR NUMBER;', parent=current)        
         self.exit_rule(current)
         return current
-    coordinate.min_depth = 1
+    coordinate.min_depth = 0
 
     @depthcontrol
     def name(self, parent=None):
@@ -184,6 +214,81 @@ class metabedGenerator(Generator):
         self.exit_rule(current)
         return current
     strand.min_depth = 0
+
+    @depthcontrol
+    def thickStart(self, parent=None):
+        current = UnparserRule(name='thickStart', parent=parent)
+        self.enter_rule(current)
+        UnlexerRule(src='thickStart\n', parent=current)        
+        UnlexerRule(src='\t: NUMBER;', parent=current)        
+        self.exit_rule(current)
+        return current
+    thickStart.min_depth = 0
+
+    @depthcontrol
+    def thickEnd(self, parent=None):
+        current = UnparserRule(name='thickEnd', parent=parent)
+        self.enter_rule(current)
+        UnlexerRule(src='thickEnd\n', parent=current)        
+        UnlexerRule(src='\t: NUMBER;', parent=current)        
+        self.exit_rule(current)
+        return current
+    thickEnd.min_depth = 0
+
+    @depthcontrol
+    def itemRgb(self, parent=None):
+        current = UnparserRule(name='itemRgb', parent=parent)
+        self.enter_rule(current)
+        UnlexerRule(src='itemRgb\n', parent=current)        
+        choice = self.model.choice(current, 0, [0 if [0, 0][i] > self.max_depth else w for i, w in enumerate([1, 1])])
+        if choice == 0:
+            UnlexerRule(src='\t: \'0\'\n', parent=current)
+            UnlexerRule(src='\t| NUM255 \',\' NUM255 \',\' NUM255;', parent=current)
+        elif choice == 1:
+            UnlexerRule(src='\t| NUM255 \',\' NUM255 \',\' NUM255;', parent=current)        
+        self.exit_rule(current)
+        return current
+    itemRgb.min_depth = 0
+
+    @depthcontrol
+    def blockCount(self, parent=None):
+        current = UnparserRule(name='blockCount', parent=parent)
+        self.enter_rule(current)
+        UnlexerRule(src='blockCount\n', parent=current)        
+        UnlexerRule(src='\t: NUM;', parent=current)        
+        self.exit_rule(current)
+        return current
+    blockCount.min_depth = 0
+
+    @depthcontrol
+    def blockSizes(self, parent=None):
+        current = UnparserRule(name='blockSizes', parent=parent)
+        self.enter_rule(current)
+        UnlexerRule(src='blockSizes\n', parent=current)        
+        choice = self.model.choice(current, 0, [0 if [0, 0][i] > self.max_depth else w for i, w in enumerate([1, 1])])
+        if choice == 0:
+            UnlexerRule(src='\t: (NUMBER \',\')* NUMBER', parent=current)
+        elif choice == 1:
+            UnlexerRule(src='\t: (NUMBER \',\')+', parent=current)        
+        UnlexerRule(src=';', parent=current)        
+        self.exit_rule(current)
+        return current
+    blockSizes.min_depth = 0
+
+    @depthcontrol
+    def blockStarts(self, parent=None):
+        current = UnparserRule(name='blockStarts', parent=parent)
+        self.enter_rule(current)
+        UnlexerRule(src='blockStarts\n', parent=current)        
+        choice = self.model.choice(current, 0, [0 if [0, 0][i] > self.max_depth else w for i, w in enumerate([1, 1])])
+        if choice == 0:
+            UnlexerRule(src='\t: (NUMBER \',\')* NUMBER', parent=current)
+        elif choice == 1:
+            UnlexerRule(src='\t: (NUMBER \',\')+', parent=current)        
+        UnlexerRule(src=';', parent=current)        
+        self.exit_rule(current)
+        return current
+    blockStarts.min_depth = 0
 
     @depthcontrol
     def chromName(self, parent=None):
