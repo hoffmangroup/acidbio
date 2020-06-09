@@ -87,7 +87,7 @@ name
 
 score
     : 'score\n'
-    '\t: ' (('NUM | NUM NUM | NUM NUM NUM | \'1000\'') | ('NUM | NUM NUM | NUM NUM NUM | \'1000\' | NUM \'.\' NUM+'))
+    '\t: ' (('NUM | NUM NUM | NUM NUM NUM | \'1000\'') | ('NUM | NUM NUM | NUM NUM NUM | \'1000\' | NUM \'.\' NUM+') | 'NUM*')
     ';'
     ;
 

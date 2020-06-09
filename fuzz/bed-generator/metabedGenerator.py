@@ -90,7 +90,7 @@ class metabedGenerator(Generator):
             UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd \'\\n\')+\n', parent=current)
         elif choice == 6:
             UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb \'\\n\')+\n', parent=current)        
-        UnlexerRule(src=';', parent=current)        
+        UnlexerRule(src='\t;', parent=current)        
         self.exit_rule(current)
         return current
     LINE.min_depth = 0

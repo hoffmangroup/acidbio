@@ -80,7 +80,6 @@ class bedGenerator(Generator):
     def coordinate(self, parent=None):
         current = UnparserRule(name='coordinate', parent=parent)
         self.enter_rule(current)
-        # ret = self.NUMBER(parent=current)
         start = randint(0, 1e7)
         end = randint(0, 1e7)
         chance = random()
@@ -91,9 +90,7 @@ class bedGenerator(Generator):
         self.end = end
         UnlexerRule(src=str(start), parent=current)
         UnlexerRule(src='\t', parent=current)
-        UnlexerRule(src=str(end), parent=current)     
-        # self.NUMBER(parent=current)     
-        # self.NUM(parent=current)           
+        UnlexerRule(src=str(end), parent=current)              
         self.exit_rule(current)
         return current
     coordinate.min_depth = 2
