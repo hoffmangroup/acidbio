@@ -20,6 +20,7 @@ bed
     NUM255 '\n'
     NUM '\n'
     NUM3 '\n'
+    SEPARATOR '\n'
     ;
 
 HEADER
@@ -27,14 +28,15 @@ HEADER
     ;
 
 LINE
-    : 'line\n'
+    : 'line\n' (
     '\t: (chrom SEPARATOR coordinate)+\n'
-    '\t| (chrom SEPARATOR coordinate SEPARATOR name \'\\n\')+\n'
-    '\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score \'\\n\')+\n'
-    '\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand \'\\n\')+\n'
-    '\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart \'\\n\')+\n'
-    '\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd \'\\n\')+\n'
-    '\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb \'\\n\')+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name \'\\n\')+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score \'\\n\')+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand \'\\n\')+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart \'\\n\')+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd \'\\n\')+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb \'\\n\')+\n'
+    )
     ';'
     ;
 
@@ -108,7 +110,7 @@ itemRgb
     : 'itemRgb\n'
     ('\t: \'0\'\n'
     '\t| NUM255 \',\' NUM255 \',\' NUM255;'
-    | '\t| NUM255 \',\' NUM255 \',\' NUM255;')
+    | '\t: NUM255 \',\' NUM255 \',\' NUM255;')
     ;
 
 blockCount

@@ -73,13 +73,21 @@ class metabedGenerator(Generator):
         current = UnlexerRule(name='LINE', parent=parent)
         self.enter_rule(current)
         UnlexerRule(src='line\n', parent=current)        
-        UnlexerRule(src='\t: (chrom SEPARATOR coordinate)+\n', parent=current)        
-        UnlexerRule(src='\t| (chrom SEPARATOR coordinate SEPARATOR name \'\\n\')+\n', parent=current)        
-        UnlexerRule(src='\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score \'\\n\')+\n', parent=current)        
-        UnlexerRule(src='\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand \'\\n\')+\n', parent=current)        
-        UnlexerRule(src='\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart \'\\n\')+\n', parent=current)        
-        UnlexerRule(src='\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd \'\\n\')+\n', parent=current)        
-        UnlexerRule(src='\t| (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb \'\\n\')+\n', parent=current)        
+        choice = self.model.choice(current, 0, [0 if [0, 0, 0, 0, 0, 0, 0][i] > self.max_depth else w for i, w in enumerate([1, 1, 1, 1, 1, 1, 1])])
+        if choice == 0:
+            UnlexerRule(src='\t: (chrom SEPARATOR coordinate)+\n', parent=current)
+        elif choice == 1:
+            UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name \'\\n\')+\n', parent=current)
+        elif choice == 2:
+            UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score \'\\n\')+\n', parent=current)
+        elif choice == 3:
+            UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand \'\\n\')+\n', parent=current)
+        elif choice == 4:
+            UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart \'\\n\')+\n', parent=current)
+        elif choice == 5:
+            UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd \'\\n\')+\n', parent=current)
+        elif choice == 6:
+            UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb \'\\n\')+\n', parent=current)        
         UnlexerRule(src=';', parent=current)        
         self.exit_rule(current)
         return current
