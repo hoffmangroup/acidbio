@@ -54,7 +54,9 @@ class metabedGenerator(Generator):
         self.NUM(parent=current)        
         UnlexerRule(src='\n', parent=current)        
         self.NUM3(parent=current)        
-        UnlexerRule(src='\n', parent=current)       
+        UnlexerRule(src='\n', parent=current)    
+        self.SEPARATOR(parent=current)
+        UnlexerRule(src='\n', parent=current)   
         self.exit_rule(current)
         return current
     bed.min_depth = 1
@@ -253,7 +255,7 @@ class metabedGenerator(Generator):
             UnlexerRule(src='\t: \'0\'\n', parent=current)
             UnlexerRule(src='\t| NUM255 \',\' NUM255 \',\' NUM255;', parent=current)
         elif choice == 1:
-            UnlexerRule(src='\t| NUM255 \',\' NUM255 \',\' NUM255;', parent=current)        
+            UnlexerRule(src='\t: NUM255 \',\' NUM255 \',\' NUM255;', parent=current)        
         self.exit_rule(current)
         return current
     itemRgb.min_depth = 0
