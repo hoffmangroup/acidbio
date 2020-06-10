@@ -86,3 +86,4 @@ class bedUnlexer(Grammarinator):
         current += self.create_node(UnlexerRule(src='\t'))
         return current
     SEPARATOR.min_depth = 0
+

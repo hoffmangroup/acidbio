@@ -81,14 +81,42 @@ itemRgb
 
 blockCount
     : NUM
+{
+self.bCount = int(current)
+}
     ;
 
 blockSizes
-    : (NUMBER ',')* NUMBER
+    :
+{
+if self.unlexer.max_depth >= 2:
+    for _ in range(self.bCount - 1):
+        current += self.unlexer.NUMBER()
+        current += self.create_node(UnlexerRule(src=','))
+}
+    NUMBER
+{
+if self.bCount <= 1:
+    self.lastBlock = int(str(current))
+else:
+    self.lastBlock = int(str(current)[str(current).rfind(',') + 1:])
+}
     ;
 
 blockStarts
-    : (NUMBER ',')* NUMBER
+    : 
+{
+if self.unlexer.max_depth >= 2:
+    for _ in range(self.bCount - 1):
+        current += self.unlexer.NUMBER()
+        current += self.create_node(UnlexerRule(src=','))
+
+from random import random
+if random() < 0.999:    
+    current += self.create_node(UnlexerRule(src=str(self.end - self.lastBlock)))
+else:
+    current += self.unlexer.NUM()
+}
     ;
 
 chromName

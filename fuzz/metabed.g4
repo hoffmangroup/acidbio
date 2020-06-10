@@ -29,7 +29,7 @@ HEADER
 
 LINE
     : 'line\n' (
-    '\t: (chrom SEPARATOR coordinate)+\n'
+    '\t: (chrom SEPARATOR coordinate\'\\n\')+\n'
     | '\t: (chrom SEPARATOR coordinate SEPARATOR name \'\\n\')+\n'
     | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score \'\\n\')+\n'
     | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand \'\\n\')+\n'
@@ -67,7 +67,8 @@ NUM3
 
 SEPARATOR
     : 'SEPARATOR\n'
-    '\t: \'\\t\' | \' \'+; '
+    ('\t: \'\\t\' | \' \'+; '
+    | '\t: \'\\t\';')
     ;
 
 chrom
@@ -78,20 +79,20 @@ chrom
 coordinate
     : 'coordinate\n'
     '\t:'
-'{\n'
-'from random import randint, random\n'
-'start, end = randint(0, 1e6), randint(0, 1e6)\n'
-'chance = random()\n'
-'while chance < 0.999 and start > end:\n'
-'    start, end = randint(0, 1e6), randint(0, 1e6)\n'
-'current += self.create_node(UnlexerRule(src=str(start)))\n'
-'}\n'
-'\tSEPARATOR\n'
-'{\n'
-'current += self.create_node(UnlexerRule(src=str(end)))\n'
-'self.start = start\n'
-'self.end = end\n'
-'}\n'
+    '{\n'
+    'from random import randint, random\n'
+    'start, end = randint(0, 1e6), randint(0, 1e6)\n'
+    'chance = random()\n'
+    'while chance < 0.999 and start > end:\n'
+    '    start, end = randint(0, 1e6), randint(0, 1e6)\n'
+    'current += self.create_node(UnlexerRule(src=str(start)))\n'
+    '}\n'
+    '\tSEPARATOR\n'
+    '{\n'
+    'current += self.create_node(UnlexerRule(src=str(end)))\n'
+    'self.start = start\n'
+    'self.end = end\n'
+    '}\n'
     '\t;'
     ;
 
@@ -113,31 +114,31 @@ strand
 
 thickStart
     : 'thickStart:\n'
-'{\n'
-'from random import randint, random\n'
-'chance = random()\n'
-'if chance < 0.999:\n'
-'    start = randint(self.start, self.end)\n'
-'else:\n'
-'    start = randint(0, 1e6)\n'
-'self.tStart = start\n'
-'current += self.create_node(UnlexerRule(src=str(start)))\n'
-'}\n'
+    '{\n'
+    'from random import randint, random\n'
+    'chance = random()\n'
+    'if chance < 0.999:\n'
+    '    start = randint(self.start, self.end)\n'
+    'else:\n'
+    '    start = randint(0, 1e6)\n'
+    'self.tStart = start\n'
+    'current += self.create_node(UnlexerRule(src=str(start)))\n'
+    '}\n'
     '\t;'
     ;
 
 thickEnd
     : 'thickEnd:\n'
-'{'
-'from random import randint, random\n'
-'chance = random()\n'
-'if chance < 0.999:\n'
-'    end = randint(self.tStart, self.end)\n'
-'else:\n'
-'    end = randint(0, 1e6)\n'
-'self.tEnd = end\n'
-'current += self.create_node(UnlexerRule(src=str(end)))\n'
-'}\n'
+    '{'
+    'from random import randint, random\n'
+    'chance = random()\n'
+    'if chance < 0.999:\n'
+    '    end = randint(self.tStart, self.end)\n'
+    'else:\n'
+    '    end = randint(0, 1e6)\n'
+    'self.tEnd = end\n'
+    'current += self.create_node(UnlexerRule(src=str(end)))\n'
+    '}\n'
     '\t;'
     ;
 
@@ -150,24 +151,68 @@ itemRgb
 
 blockCount
     : 'blockCount\n'
-    '\t: NUM;'
+    ('\t: \'1\' .. \'4\'\n' | '\t" NUM\n')
+    '{\n'
+    'self.bCount = int(current)\n'
+    '}\n'
+    '\t;'
     ;
 
 blockSizes
-    : 'blockSizes\n'
-    ('\t: (NUMBER \',\')* NUMBER'
-    | '\t: (NUMBER \',\')+' )
+    : 'blockSizes:\n'
+    (
+    '{\n'
+    'if self.unlexer.max_depth >= 2:\n'
+    '    for _ in range(self.bCount - 1):\n'
+    '        current += self.unlexer.NUMBER()\n'
+    '        current += self.create_node(UnlexerRule(src=\',\'))\n'
+    '}\n'
+    '\tNUMBER\n'
+    '{\n'
+    'if self.bCount <= 1:\n'
+    '    self.lastBlock = int(str(current))\n'
+    'else:\n'
+    '    self.lastBlock = int(str(current)[str(current).rfind(\',\') + 1:])\n'
+    '}\n'
     ';'
+    |
+    '{\n'
+    'if self.unlexer.max_depth >= 2:\n'
+    '    for _ in range(self.bCount):\n'
+    '        current += self.unlexer.NUMBER()\n'
+    '        current += self.create_node(UnlexerRule(src=\',\'))\n'
+    '}\n'
+    '{\n'
+    'if self.bCount == 1:\n'
+    '    self.lastBlock = int(str(current))\n'
+    'elif self.bCount == 0:\n'
+    '    self.lastBlock = 0\n'
+    'else:\n'
+    '    self.lastBlock = int(str(current)[str(current).rfind(\',\') + 1:])\n'
+    '}\n'
+    ';'
+    )
     ;
 
 blockStarts
-    : 'blockStarts\n'
-    ('\t: (NUMBER \',\')* NUMBER'
-    | '\t: (NUMBER \',\')+' )
+    : 'blockStarts:\n'
+    '{\n'
+    'if self.unlexer.max_depth >= 2:\n'
+    '    for _ in range(self.bCount - 1):\n'
+    '        current += self.unlexer.NUMBER()\n'
+    '        current += self.create_node(UnlexerRule(src=\',\'))\n'
+
+    'from random import random\n'
+    'if random() < 0.999:\n'
+    '    current += self.create_node(UnlexerRule(src=str(self.end - self.lastBlock)))\n'
+    'else:\n'
+    '    current += self.unlexer.NUM()\n'
+    '}\n'
     ';'
     ;
 
 chromName
     : 'chromName\n'
-    '\t: \'chr\' (( NUM | \'1\' NUM | \'2\' NUM3) | \'X\' | \'Y\' | \'M\');'
+    ('\t: \'chr\' (( NUM | \'1\' NUM | \'2\' NUM3) | \'X\' | \'Y\' | \'M\');'
+    | '\t: \'chr\' ( NUM | \'1\' NUM | \'2\' NUM3);')
     ;
