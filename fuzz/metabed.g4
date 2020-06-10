@@ -112,13 +112,33 @@ strand
     ;
 
 thickStart
-    : 'thickStart\n'
-    '\t: NUMBER;'
+    : 'thickStart:\n'
+'{\n'
+'from random import randint, random\n'
+'chance = random()\n'
+'if chance < 0.999:\n'
+'    start = randint(self.start, self.end)\n'
+'else:\n'
+'    start = randint(0, 1e6)\n'
+'self.tStart = start\n'
+'current += self.create_node(UnlexerRule(src=str(start)))\n'
+'}\n'
+    '\t;'
     ;
 
 thickEnd
-    : 'thickEnd\n'
-    '\t: NUMBER;'
+    : 'thickEnd:\n'
+'{'
+'from random import randint, random\n'
+'chance = random()\n'
+'if chance < 0.999:\n'
+'    end = randint(self.tStart, self.end)\n'
+'else:\n'
+'    end = randint(0, 1e6)\n'
+'self.tEnd = end\n'
+'current += self.create_node(UnlexerRule(src=str(end)))\n'
+'}\n'
+    '\t;'
     ;
 
 itemRgb

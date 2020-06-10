@@ -47,11 +47,31 @@ strand
     ;
 
 thickStart
-    : NUMBER
+    :
+{
+from random import randint, random
+chance = random()
+if chance < 0.999:
+    start = randint(self.start, self.end)
+else:
+    start = randint(0, 1e6)
+self.tStart = start
+current += self.create_node(UnlexerRule(src=str(start)))
+}
     ;
 
 thickEnd
-    : NUMBER
+    : 
+{
+from random import randint, random
+chance = random()
+if chance < 0.999:
+    end = randint(self.tStart, self.end)
+else:
+    end = randint(0, 1e6)
+self.tEnd = end
+current += self.create_node(UnlexerRule(src=str(end)))
+}
     ;
 
 itemRgb
