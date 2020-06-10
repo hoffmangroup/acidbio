@@ -82,7 +82,7 @@ coordinate
 'from random import randint, random\n'
 'start, end = randint(0, 1e6), randint(0, 1e6)\n'
 'chance = random()\n'
-'while random < 0.999 and start > end:\n'
+'while chance < 0.999 and start > end:\n'
 '    start, end = randint(0, 1e6), randint(0, 1e6)\n'
 'current += self.create_node(UnlexerRule(src=str(start)))\n'
 '}\n'

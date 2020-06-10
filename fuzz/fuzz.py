@@ -15,7 +15,7 @@ def generate_bed_g4(tempdir):
 
 def generate_bed_file(tempdir, outfile_obj, n):
     for i in range(n):
-        length = random.randint(1, 3)
+        length = random.randint(1, 100)
         bed_dir = tempfile.TemporaryDirectory()
         generate_bed_g4(tempdir)
         bedg4 = tempdir.name + '/' + listdir(tempdir.name)[1]
@@ -27,7 +27,7 @@ def generate_bed_file(tempdir, outfile_obj, n):
         for j in range(len(generated_files)):
             generated_files[j] = bed_dir.name + '/' +  generated_files[j]
         subprocess.run(['cat'] + generated_files, stdout=outfile_obj)
-            
+
 
 if __name__ == '__main__':
     metabed_path = './metabed.g4'

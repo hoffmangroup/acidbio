@@ -22,7 +22,7 @@ coordinate
 from random import randint, random
 start, end = randint(0, 1e6), randint(0, 1e6)
 chance = random()
-while random < 0.999 and start > end:
+while chance < 0.999 and start > end:
     start, end = randint(0, 1e6), randint(0, 1e6)
 current += self.create_node(UnlexerRule(src=str(start)))
 } 
