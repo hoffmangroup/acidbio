@@ -77,7 +77,22 @@ chrom
 
 coordinate
     : 'coordinate\n'
-    '\t: NUMBER SEPARATOR NUMBER;'
+    '\t:'
+'{\n'
+'from random import randint, random\n'
+'start, end = randint(0, 1e6), randint(0, 1e6)\n'
+'chance = random()\n'
+'while random < 0.999 and start > end:\n'
+'    start, end = randint(0, 1e6), randint(0, 1e6)\n'
+'current += self.create_node(UnlexerRule(src=str(start)))\n'
+'}\n'
+'\tSEPARATOR\n'
+'{\n'
+'current += self.create_node(UnlexerRule(src=str(end)))\n'
+'self.start = start\n'
+'self.end = end\n'
+'}\n'
+    '\t;'
     ;
 
 name
