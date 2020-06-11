@@ -19,10 +19,9 @@ def generate_bed_file(tempdir, outfile_obj, n):
         bed_dir = tempfile.TemporaryDirectory()
         generate_bed_g4(tempdir)
         bedg4 = tempdir.name + '/' + listdir(tempdir.name)[1]
-        subprocess.run(['grammarinator-process', '-o', tempdir.name, '--no-actions', bedg4])
-        for _ in range(length):
-            subprocess.run(['grammarinator-generate', '-p', tempdir.name + '/bedUnparser.py',
-             '-l', tempdir.name + '/bedUnlexer.py', '-o', bed_dir.name])
+        subprocess.run(['grammarinator-process', '-o', tempdir.name, bedg4])
+        subprocess.run(['grammarinator-generate', '-p', tempdir.name + '/bedUnparser.py',
+            '-l', tempdir.name + '/bedUnlexer.py', '-n', str(length), '-o', bed_dir.name])
         generated_files = listdir(bed_dir.name)
         for j in range(len(generated_files)):
             generated_files[j] = bed_dir.name + '/' +  generated_files[j]

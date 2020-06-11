@@ -16,7 +16,6 @@ class bedUnparser(Grammarinator):
         current = self.create_node(UnparserRule(name='line'))
         choice = self.choice([0 if [2, 2, 2, 2, 2, 2, 2, 3, 3][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_16', i), 1) for i, w in enumerate([1, 1, 1, 1, 1, 1, 1, 1, 1])])
         self.unlexer.weights[('alt_16', choice)] = self.unlexer.weights.get(('alt_16', choice), 1) * self.unlexer.cooldown
-        choice = 8
         if choice == 0:
             if self.unlexer.max_depth >= 0:
                 for _ in self.one_or_more():
