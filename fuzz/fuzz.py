@@ -13,7 +13,7 @@ def generate_bed_g4(tempdir):
      '-l', tempdir.name + '/metabedUnlexer.py', '-o', tempdir.name + '/bedgen.g4'])
 
 
-def generate_bed_file(tempdir, outfile_obj, n):
+def generate_bed_file(tempdir, outdir, n):
     for i in range(n):
         length = random.randint(1, 100)
         bed_dir = tempfile.TemporaryDirectory()
@@ -25,13 +25,24 @@ def generate_bed_file(tempdir, outfile_obj, n):
         generated_files = listdir(bed_dir.name)
         for j in range(len(generated_files)):
             generated_files[j] = bed_dir.name + '/' +  generated_files[j]
-        subprocess.run(['cat'] + generated_files, stdout=outfile_obj)
+        subprocess.run(['cat'] + generated_files, stdout=open(outdir + '/test_' + str(i) + '.bed', 'w'))
 
+
+def main(metabed_path, outdir, n):
+    tempdir = tempfile.TemporaryDirectory()
+    subprocess.run(['grammarinator-process', '-o', tempdir.name, metabed_path])
+    generate_bed_file(tempdir, outdir, n)
+    tempdir.cleanup()
 
 if __name__ == '__main__':
-    metabed_path = './metabed.g4'
-    tempdir = tempfile.TemporaryDirectory()
-    subprocess.run(['grammarinator-process', '-o', tempdir.name, '--no-actions', metabed_path])
-    outfile_obj = open('./test.bed', 'w')
-    generate_bed_file(tempdir, outfile_obj , 1)
-    tempdir.cleanup()
+    parser = argparse.ArgumentParser(
+        description="Generate BED files from the BED grammar."
+    )
+
+    parser.add_argument('-n', help="Number of BED files to generate. Default is 1.")
+    parser.add_argument('metabed_path', help='Location of the metabed.g4 file.')
+    parser.add_argument('outdir', help='Directory to place BED files in.')
+    
+    args = parser.parse_args()
+    n = args.n if args.n else 1
+    main(args.metabed_path, args.outdir, int(n))
