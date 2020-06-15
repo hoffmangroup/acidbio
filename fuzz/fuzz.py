@@ -14,18 +14,19 @@ def generate_bed_g4(tempdir):
 
 
 def generate_bed_file(tempdir, outdir, n):
+    generate_bed_g4(tempdir)
+    bedg4 = tempdir.name + '/' + listdir(tempdir.name)[1]
+    subprocess.run(['grammarinator-process', '-o', tempdir.name, bedg4])
     for i in range(n):
         length = random.randint(1, 100)
         bed_dir = tempfile.TemporaryDirectory()
-        generate_bed_g4(tempdir)
-        bedg4 = tempdir.name + '/' + listdir(tempdir.name)[1]
-        subprocess.run(['grammarinator-process', '-o', tempdir.name, bedg4])
         subprocess.run(['grammarinator-generate', '-p', tempdir.name + '/bedUnparser.py',
             '-l', tempdir.name + '/bedUnlexer.py', '-n', str(length), '-o', bed_dir.name])
         generated_files = listdir(bed_dir.name)
         for j in range(len(generated_files)):
             generated_files[j] = bed_dir.name + '/' +  generated_files[j]
         subprocess.run(['cat'] + generated_files, stdout=open(outdir + '/test_' + str(i) + '.bed', 'w'))
+        bed_dir.cleanup()
 
 
 def main(metabed_path, outdir, n):
@@ -33,6 +34,7 @@ def main(metabed_path, outdir, n):
     subprocess.run(['grammarinator-process', '-o', tempdir.name, metabed_path])
     generate_bed_file(tempdir, outdir, n)
     tempdir.cleanup()
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
