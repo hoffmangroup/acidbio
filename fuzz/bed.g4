@@ -51,7 +51,7 @@ thickStart
 {
 from random import randint, random
 chance = random()
-if chance < 0.999:
+if chance < 0.999 and self.start <= self.end:
     start = randint(self.start, self.end)
 else:
     start = randint(0, 1e6)
@@ -65,7 +65,7 @@ thickEnd
 {
 from random import randint, random
 chance = random()
-if chance < 0.999:
+if chance < 0.999 and self.tStart <= self.end:
     end = randint(self.tStart, self.end)
 else:
     end = randint(0, 1e6)
