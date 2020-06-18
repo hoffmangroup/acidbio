@@ -28,25 +28,58 @@ class metabedUnlexer(Grammarinator):
     def LINE(self):
         current = self.create_node(UnlexerRule(name='LINE'))
         current += self.create_node(UnlexerRule(src='line\n'))
-        choice = self.choice([0 if [0, 0, 0, 0, 0, 0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_2', i), 1) for i, w in enumerate([1, 1, 1, 1, 1, 1, 1])])
+        choice = self.choice([0 if [0, 0, 0, 0, 0, 0, 0, 0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_2', i), 1) for i, w in enumerate([1, 1, 1, 1, 1, 1, 1, 1, 1])])
         self.unlexer.weights[('alt_2', choice)] = self.unlexer.weights.get(('alt_2', choice), 1) * self.unlexer.cooldown
         if choice == 0:
-            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate\'\\n\')+\n'))
+            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate NEWLINE)+\n'))
         elif choice == 1:
-            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name \'\\n\')+\n'))
+            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name NEWLINE)+\n'))
         elif choice == 2:
-            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score \'\\n\')+\n'))
+            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score NEWLINE)+\n'))
         elif choice == 3:
-            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand \'\\n\')+\n'))
+            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand NEWLINE)+\n'))
         elif choice == 4:
-            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart \'\\n\')+\n'))
+            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart NEWLINE)+\n'))
         elif choice == 5:
-            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd \'\\n\')+\n'))
+            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd NEWLINE)+\n'))
         elif choice == 6:
-            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb \'\\n\')+\n'))
+            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb NEWLINE)+\n'))
+        elif choice == 7:
+            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb SEPARATOR blockCount SEPARATOR blockSizes NEWLINE)+\n'))
+        elif choice == 8:
+            current += self.create_node(UnlexerRule(src='\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb SEPARATOR blockCount SEPARATOR blockSizes SEPARATOR blockStarts NEWLINE)+\n'))
         current += self.create_node(UnlexerRule(src=';'))
         return current
     LINE.min_depth = 0
+
+    @depthcontrol
+    def NEWLINE(self):
+        current = self.create_node(UnlexerRule(name='NEWLINE'))
+        current += self.create_node(UnlexerRule(src='NEWLINE\n'))
+        current += self.create_node(UnlexerRule(src='\t: '))
+        choice = self.choice([0 if [0, 0, 0, 0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_24', i), 1) for i, w in enumerate([1, 1, 1, 1, 1])])
+        self.unlexer.weights[('alt_24', choice)] = self.unlexer.weights.get(('alt_24', choice), 1) * self.unlexer.cooldown
+        if choice == 0:
+            current += self.create_node(UnlexerRule(src='\'\\n\''))
+        elif choice == 1:
+            current += self.create_node(UnlexerRule(src='\'\\n\''))
+        elif choice == 2:
+            current += self.create_node(UnlexerRule(src='\'\\n\''))
+        elif choice == 3:
+            current += self.create_node(UnlexerRule(src='\'\\n\'+'))
+        elif choice == 4:
+            current += self.create_node(UnlexerRule(src='\'\\n\' COMMENT*'))
+        current += self.create_node(UnlexerRule(src='\t;'))
+        return current
+    NEWLINE.min_depth = 0
+
+    @depthcontrol
+    def COMMENT(self):
+        current = self.create_node(UnlexerRule(name='COMMENT'))
+        current += self.create_node(UnlexerRule(src='COMMENT\n'))
+        current += self.create_node(UnlexerRule(src='\t: CHAR+ \'\\n\';'))
+        return current
+    COMMENT.min_depth = 0
 
     @depthcontrol
     def CHAR(self):
@@ -81,22 +114,32 @@ class metabedUnlexer(Grammarinator):
     NUM.min_depth = 0
 
     @depthcontrol
-    def NUM3(self):
-        current = self.create_node(UnlexerRule(name='NUM3'))
-        current += self.create_node(UnlexerRule(src='NUM3\n'))
-        current += self.create_node(UnlexerRule(src='\t: \'0\' .. \'3\';'))
+    def NUM2(self):
+        current = self.create_node(UnlexerRule(name='NUM2'))
+        current += self.create_node(UnlexerRule(src='NUM2\n'))
+        current += self.create_node(UnlexerRule(src='\t: \'0\' .. \'2\';'))
         return current
-    NUM3.min_depth = 0
+    NUM2.min_depth = 0
 
     @depthcontrol
     def SEPARATOR(self):
         current = self.create_node(UnlexerRule(name='SEPARATOR'))
         current += self.create_node(UnlexerRule(src='SEPARATOR\n'))
-        choice = self.choice([0 if [0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_29', i), 1) for i, w in enumerate([1, 1])])
-        self.unlexer.weights[('alt_29', choice)] = self.unlexer.weights.get(('alt_29', choice), 1) * self.unlexer.cooldown
+        choice = self.choice([0 if [0, 0, 0, 0, 0, 0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_49', i), 1) for i, w in enumerate([1, 1, 1, 1, 1, 1, 1])])
+        self.unlexer.weights[('alt_49', choice)] = self.unlexer.weights.get(('alt_49', choice), 1) * self.unlexer.cooldown
         if choice == 0:
-            current += self.create_node(UnlexerRule(src='\t: \'\\t\' | \' \'+; '))
+            current += self.create_node(UnlexerRule(src='\t: \'\\t\' | \' \' \' \'+; '))
         elif choice == 1:
+            current += self.create_node(UnlexerRule(src='\' \' \' \'+;'))
+        elif choice == 2:
+            current += UnlexerRule(src='')
+        elif choice == 3:
+            current += self.create_node(UnlexerRule(src='\t: \'\\t\';'))
+        elif choice == 4:
+            current += self.create_node(UnlexerRule(src='\t: \'\\t\';'))
+        elif choice == 5:
+            current += self.create_node(UnlexerRule(src='\t: \'\\t\';'))
+        elif choice == 6:
             current += self.create_node(UnlexerRule(src='\t: \'\\t\';'))
         return current
     SEPARATOR.min_depth = 0

@@ -21,6 +21,8 @@ bed
     NUM '\n'
     NUM2 '\n'
     SEPARATOR '\n'
+    NEWLINE '\n'
+    COMMENT '\n'
     ;
 
 HEADER
@@ -29,15 +31,28 @@ HEADER
 
 LINE
     : 'line\n' (
-    '\t: (chrom SEPARATOR coordinate\'\\n\')+\n'
-    | '\t: (chrom SEPARATOR coordinate SEPARATOR name \'\\n\')+\n'
-    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score \'\\n\')+\n'
-    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand \'\\n\')+\n'
-    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart \'\\n\')+\n'
-    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd \'\\n\')+\n'
-    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb \'\\n\')+\n'
+    '\t: (chrom SEPARATOR coordinate NEWLINE)+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name NEWLINE)+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score NEWLINE)+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand NEWLINE)+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart NEWLINE)+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd NEWLINE)+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb NEWLINE)+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb SEPARATOR blockCount SEPARATOR blockSizes NEWLINE)+\n'
+    | '\t: (chrom SEPARATOR coordinate SEPARATOR name SEPARATOR score SEPARATOR strand SEPARATOR thickStart SEPARATOR thickEnd SEPARATOR itemRgb SEPARATOR blockCount SEPARATOR blockSizes SEPARATOR blockStarts NEWLINE)+\n'
     )
     ';'
+    ;
+
+NEWLINE
+    : 'NEWLINE\n'
+    '\t: ' ('\'\\n\'' | '\'\\n\'' | '\'\\n\'' | '\'\\n\'+' | '\'\\n\' COMMENT*')
+    '\t;'
+    ;
+
+COMMENT
+    : 'COMMENT\n'
+    '\t: CHAR+ \'\\n\';'
     ;
 
 CHAR
@@ -151,9 +166,9 @@ itemRgb
 
 blockCount
     : 'blockCount\n'
-    ('\t: \'1\' .. \'4\'\n' | '\t" NUM\n')
+    ('\t: \'1\' .. \'4\'\n' | '\t: NUM\n')
     '{\n'
-    'self.bCount = int(current)\n'
+    'self.bCount = int(str(current))\n'
     '}\n'
     '\t;'
     ;
@@ -188,7 +203,7 @@ blockSizes
     'elif self.bCount == 0:\n'
     '    self.lastBlock = 0\n'
     'else:\n'
-    '    self.lastBlock = int(str(current)[str(current).rfind(\',\') + 1:])\n'
+    '    self.lastBlock = int(str(current)[str(current).rfind(\',\', 0, -2) + 1: -1])\n'
     '}\n'
     ';'
     )

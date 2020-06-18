@@ -50,9 +50,13 @@ class metabedUnparser(Grammarinator):
         current += self.create_node(UnlexerRule(src='\n'))
         current += self.unlexer.NUM()
         current += self.create_node(UnlexerRule(src='\n'))
-        current += self.unlexer.NUM3()
+        current += self.unlexer.NUM2()
         current += self.create_node(UnlexerRule(src='\n'))
         current += self.unlexer.SEPARATOR()
+        current += self.create_node(UnlexerRule(src='\n'))
+        current += self.unlexer.NEWLINE()
+        current += self.create_node(UnlexerRule(src='\n'))
+        current += self.unlexer.COMMENT()
         current += self.create_node(UnlexerRule(src='\n'))
         return current
     bed.min_depth = 1
@@ -62,8 +66,8 @@ class metabedUnparser(Grammarinator):
         current = self.create_node(UnparserRule(name='chrom'))
         current += self.create_node(UnlexerRule(src='chrom\n'))
         current += self.create_node(UnlexerRule(src='\t: '))
-        choice = self.choice([0 if [0, 0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_56', i), 1) for i, w in enumerate([1, 1, 1])])
-        self.unlexer.weights[('alt_56', choice)] = self.unlexer.weights.get(('alt_56', choice), 1) * self.unlexer.cooldown
+        choice = self.choice([0 if [0, 0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_87', i), 1) for i, w in enumerate([1, 1, 1])])
+        self.unlexer.weights[('alt_87', choice)] = self.unlexer.weights.get(('alt_87', choice), 1) * self.unlexer.cooldown
         if choice == 0:
             current += self.create_node(UnlexerRule(src='CHAR+'))
         elif choice == 1:
@@ -110,8 +114,8 @@ class metabedUnparser(Grammarinator):
         current = self.create_node(UnparserRule(name='score'))
         current += self.create_node(UnlexerRule(src='score\n'))
         current += self.create_node(UnlexerRule(src='\t: '))
-        choice = self.choice([0 if [0, 0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_85', i), 1) for i, w in enumerate([1, 1, 1])])
-        self.unlexer.weights[('alt_85', choice)] = self.unlexer.weights.get(('alt_85', choice), 1) * self.unlexer.cooldown
+        choice = self.choice([0 if [0, 0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_116', i), 1) for i, w in enumerate([1, 1, 1])])
+        self.unlexer.weights[('alt_116', choice)] = self.unlexer.weights.get(('alt_116', choice), 1) * self.unlexer.cooldown
         if choice == 0:
             current += self.create_node(UnlexerRule(src='NUM | NUM NUM | NUM NUM NUM | \'1000\''))
         elif choice == 1:
@@ -127,8 +131,8 @@ class metabedUnparser(Grammarinator):
         current = self.create_node(UnparserRule(name='strand'))
         current += self.create_node(UnlexerRule(src='strand\n'))
         current += self.create_node(UnlexerRule(src='\t: '))
-        choice = self.choice([0 if [0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_95', i), 1) for i, w in enumerate([1, 1])])
-        self.unlexer.weights[('alt_95', choice)] = self.unlexer.weights.get(('alt_95', choice), 1) * self.unlexer.cooldown
+        choice = self.choice([0 if [0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_126', i), 1) for i, w in enumerate([1, 1])])
+        self.unlexer.weights[('alt_126', choice)] = self.unlexer.weights.get(('alt_126', choice), 1) * self.unlexer.cooldown
         if choice == 0:
             current += self.create_node(UnlexerRule(src='\'+\' | \'-\' | \'.\''))
         elif choice == 1:
@@ -144,7 +148,7 @@ class metabedUnparser(Grammarinator):
         current += self.create_node(UnlexerRule(src='{\n'))
         current += self.create_node(UnlexerRule(src='from random import randint, random\n'))
         current += self.create_node(UnlexerRule(src='chance = random()\n'))
-        current += self.create_node(UnlexerRule(src='if chance < 0.999:\n'))
+        current += self.create_node(UnlexerRule(src='if chance < 0.999 and self.start <= self.end:\n'))
         current += self.create_node(UnlexerRule(src='    start = randint(self.start, self.end)\n'))
         current += self.create_node(UnlexerRule(src='else:\n'))
         current += self.create_node(UnlexerRule(src='    start = randint(0, 1e6)\n'))
@@ -162,7 +166,7 @@ class metabedUnparser(Grammarinator):
         current += self.create_node(UnlexerRule(src='{'))
         current += self.create_node(UnlexerRule(src='from random import randint, random\n'))
         current += self.create_node(UnlexerRule(src='chance = random()\n'))
-        current += self.create_node(UnlexerRule(src='if chance < 0.999:\n'))
+        current += self.create_node(UnlexerRule(src='if chance < 0.999 and self.tStart <= self.end:\n'))
         current += self.create_node(UnlexerRule(src='    end = randint(self.tStart, self.end)\n'))
         current += self.create_node(UnlexerRule(src='else:\n'))
         current += self.create_node(UnlexerRule(src='    end = randint(0, 1e6)\n'))
@@ -177,8 +181,8 @@ class metabedUnparser(Grammarinator):
     def itemRgb(self):
         current = self.create_node(UnparserRule(name='itemRgb'))
         current += self.create_node(UnlexerRule(src='itemRgb\n'))
-        choice = self.choice([0 if [0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_126', i), 1) for i, w in enumerate([1, 1])])
-        self.unlexer.weights[('alt_126', choice)] = self.unlexer.weights.get(('alt_126', choice), 1) * self.unlexer.cooldown
+        choice = self.choice([0 if [0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_157', i), 1) for i, w in enumerate([1, 1])])
+        self.unlexer.weights[('alt_157', choice)] = self.unlexer.weights.get(('alt_157', choice), 1) * self.unlexer.cooldown
         if choice == 0:
             current += self.create_node(UnlexerRule(src='\t: \'0\'\n'))
             current += self.create_node(UnlexerRule(src='\t| NUM255 \',\' NUM255 \',\' NUM255;'))
@@ -191,12 +195,12 @@ class metabedUnparser(Grammarinator):
     def blockCount(self):
         current = self.create_node(UnparserRule(name='blockCount'))
         current += self.create_node(UnlexerRule(src='blockCount\n'))
-        choice = self.choice([0 if [0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_133', i), 1) for i, w in enumerate([1, 1])])
-        self.unlexer.weights[('alt_133', choice)] = self.unlexer.weights.get(('alt_133', choice), 1) * self.unlexer.cooldown
+        choice = self.choice([0 if [0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_164', i), 1) for i, w in enumerate([1, 1])])
+        self.unlexer.weights[('alt_164', choice)] = self.unlexer.weights.get(('alt_164', choice), 1) * self.unlexer.cooldown
         if choice == 0:
             current += self.create_node(UnlexerRule(src='\t: \'1\' .. \'4\'\n'))
         elif choice == 1:
-            current += self.create_node(UnlexerRule(src='\t" NUM\n'))
+            current += self.create_node(UnlexerRule(src='\t: NUM\n'))
         current += self.create_node(UnlexerRule(src='{\n'))
         current += self.create_node(UnlexerRule(src='self.bCount = int(current)\n'))
         current += self.create_node(UnlexerRule(src='}\n'))
@@ -208,8 +212,8 @@ class metabedUnparser(Grammarinator):
     def blockSizes(self):
         current = self.create_node(UnparserRule(name='blockSizes'))
         current += self.create_node(UnlexerRule(src='blockSizes:\n'))
-        choice = self.choice([0 if [0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_143', i), 1) for i, w in enumerate([1, 1])])
-        self.unlexer.weights[('alt_143', choice)] = self.unlexer.weights.get(('alt_143', choice), 1) * self.unlexer.cooldown
+        choice = self.choice([0 if [0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_174', i), 1) for i, w in enumerate([1, 1])])
+        self.unlexer.weights[('alt_174', choice)] = self.unlexer.weights.get(('alt_174', choice), 1) * self.unlexer.cooldown
         if choice == 0:
             current += self.create_node(UnlexerRule(src='{\n'))
             current += self.create_node(UnlexerRule(src='if self.unlexer.max_depth >= 2:\n'))
@@ -267,12 +271,12 @@ class metabedUnparser(Grammarinator):
     def chromName(self):
         current = self.create_node(UnparserRule(name='chromName'))
         current += self.create_node(UnlexerRule(src='chromName\n'))
-        choice = self.choice([0 if [0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_189', i), 1) for i, w in enumerate([1, 1])])
-        self.unlexer.weights[('alt_189', choice)] = self.unlexer.weights.get(('alt_189', choice), 1) * self.unlexer.cooldown
+        choice = self.choice([0 if [0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_220', i), 1) for i, w in enumerate([1, 1])])
+        self.unlexer.weights[('alt_220', choice)] = self.unlexer.weights.get(('alt_220', choice), 1) * self.unlexer.cooldown
         if choice == 0:
-            current += self.create_node(UnlexerRule(src='\t: \'chr\' (( NUM | \'1\' NUM | \'2\' NUM3) | \'X\' | \'Y\' | \'M\');'))
+            current += self.create_node(UnlexerRule(src='\t: \'chr\' ( \'1\' .. \'9\' | \'1\' NUM | \'2\' NUM2 | (\'X\' | \'Y\' | \'M\'));'))
         elif choice == 1:
-            current += self.create_node(UnlexerRule(src='\t: \'chr\' ( NUM | \'1\' NUM | \'2\' NUM3);'))
+            current += self.create_node(UnlexerRule(src='\t: \'chr\' ( \'1\' .. \'9\' | \'1\' NUM | \'2\' NUM2);'))
         return current
     chromName.min_depth = 0
 

@@ -25,17 +25,37 @@ class bedUnparser(Grammarinator):
                 current += self.score()
                 current += self.unlexer.SEPARATOR()
                 current += self.strand()
-                current += self.create_node(UnlexerRule(src='\n'))
+                current += self.unlexer.SEPARATOR()
+                current += self.thickStart()
+                current += self.unlexer.SEPARATOR()
+                current += self.thickEnd()
+                current += self.unlexer.SEPARATOR()
+                current += self.itemRgb()
+                current += self.unlexer.SEPARATOR()
+                current += self.blockCount()
+                current += self.unlexer.SEPARATOR()
+                current += self.blockSizes()
+                current += self.unlexer.SEPARATOR()
+                current += self.blockStarts()
+                current += self.unlexer.NEWLINE()
 
         return current
-    line.min_depth = 3
+    line.min_depth = 2
 
     @depthcontrol
     def chrom(self):
         current = self.create_node(UnparserRule(name='chrom'))
-        current += self.chromName()
+        choice = self.choice([0 if [1, 1][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_18', i), 1) for i, w in enumerate([1, 1])])
+        self.unlexer.weights[('alt_18', choice)] = self.unlexer.weights.get(('alt_18', choice), 1) * self.unlexer.cooldown
+        if choice == 0:
+            if self.unlexer.max_depth >= 0:
+                for _ in self.one_or_more():
+                    current += self.unlexer.CHAR()
+
+        elif choice == 1:
+            current += self.chromName()
         return current
-    chrom.min_depth = 2
+    chrom.min_depth = 1
 
     @depthcontrol
     def coordinate(self):
@@ -68,8 +88,8 @@ class bedUnparser(Grammarinator):
     @depthcontrol
     def score(self):
         current = self.create_node(UnparserRule(name='score'))
-        choice = self.choice([0 if [1, 1, 1, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_19', i), 1) for i, w in enumerate([1, 1, 1, 1])])
-        self.unlexer.weights[('alt_19', choice)] = self.unlexer.weights.get(('alt_19', choice), 1) * self.unlexer.cooldown
+        choice = self.choice([0 if [1, 1, 1, 0, 1][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_23', i), 1) for i, w in enumerate([1, 1, 1, 1, 1])])
+        self.unlexer.weights[('alt_23', choice)] = self.unlexer.weights.get(('alt_23', choice), 1) * self.unlexer.cooldown
         if choice == 0:
             current += self.unlexer.NUM()
         elif choice == 1:
@@ -81,14 +101,21 @@ class bedUnparser(Grammarinator):
             current += self.unlexer.NUM()
         elif choice == 3:
             current += self.create_node(UnlexerRule(src='1000'))
+        elif choice == 4:
+            current += self.unlexer.NUM()
+            current += self.create_node(UnlexerRule(src='.'))
+            if self.unlexer.max_depth >= 0:
+                for _ in self.one_or_more():
+                    current += self.unlexer.NUM()
+
         return current
     score.min_depth = 0
 
     @depthcontrol
     def strand(self):
         current = self.create_node(UnparserRule(name='strand'))
-        choice = self.choice([0 if [0, 0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_25', i), 1) for i, w in enumerate([1, 1, 1])])
-        self.unlexer.weights[('alt_25', choice)] = self.unlexer.weights.get(('alt_25', choice), 1) * self.unlexer.cooldown
+        choice = self.choice([0 if [0, 0, 0][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_31', i), 1) for i, w in enumerate([1, 1, 1])])
+        self.unlexer.weights[('alt_31', choice)] = self.unlexer.weights.get(('alt_31', choice), 1) * self.unlexer.cooldown
         if choice == 0:
             current += self.create_node(UnlexerRule(src='+'))
         elif choice == 1:
@@ -104,7 +131,7 @@ class bedUnparser(Grammarinator):
         
         from random import randint, random
         chance = random()
-        if chance < 0.999:
+        if chance < 0.999 and self.start <= self.end:
             start = randint(self.start, self.end)
         else:
             start = randint(0, 1e6)
@@ -118,7 +145,7 @@ class bedUnparser(Grammarinator):
         current = self.create_node(UnparserRule(name='thickEnd'))
         from random import randint, random
         chance = random()
-        if chance < 0.999:
+        if chance < 0.999 and self.tStart <= self.end:
             end = randint(self.tStart, self.end)
         else:
             end = randint(0, 1e6)
@@ -130,8 +157,8 @@ class bedUnparser(Grammarinator):
     @depthcontrol
     def itemRgb(self):
         current = self.create_node(UnparserRule(name='itemRgb'))
-        choice = self.choice([0 if [0, 1][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_34', i), 1) for i, w in enumerate([1, 1])])
-        self.unlexer.weights[('alt_34', choice)] = self.unlexer.weights.get(('alt_34', choice), 1) * self.unlexer.cooldown
+        choice = self.choice([0 if [0, 1][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_40', i), 1) for i, w in enumerate([1, 1])])
+        self.unlexer.weights[('alt_40', choice)] = self.unlexer.weights.get(('alt_40', choice), 1) * self.unlexer.cooldown
         if choice == 0:
             current += self.create_node(UnlexerRule(src='0'))
         elif choice == 1:
@@ -146,29 +173,29 @@ class bedUnparser(Grammarinator):
     @depthcontrol
     def blockCount(self):
         current = self.create_node(UnparserRule(name='blockCount'))
-        current += self.create_node(UnlexerRule(src='1'))
-        current += self.create_node(UnlexerRule(src='4'))
+        current += self.unlexer.NUM()
         
-        self.bCount = int(current)
+        self.bCount = int(str(current))
         return current
-    blockCount.min_depth = 0
+    blockCount.min_depth = 1
 
     @depthcontrol
     def blockSizes(self):
         current = self.create_node(UnparserRule(name='blockSizes'))
         
         if self.unlexer.max_depth >= 2:
-            for _ in range(self.bCount - 1):
+            for _ in range(self.bCount):
                 current += self.unlexer.NUMBER()
                 current += self.create_node(UnlexerRule(src=','))
-        current += self.unlexer.NUMBER()
         
-        if self.bCount <= 1:
+        if self.bCount == 1:
             self.lastBlock = int(str(current))
+        elif self.bCount == 0:
+            self.lastBlock = 0
         else:
-            self.lastBlock = int(str(current)[str(current).rfind(',') + 1:])
+            self.lastBlock = int(str(current)[str(current).rfind(',', 0, -2) + 1: -1])
         return current
-    blockSizes.min_depth = 2
+    blockSizes.min_depth = 0
 
     @depthcontrol
     def blockStarts(self):
@@ -190,18 +217,19 @@ class bedUnparser(Grammarinator):
     def chromName(self):
         current = self.create_node(UnparserRule(name='chromName'))
         current += self.create_node(UnlexerRule(src='chr'))
-        choice = self.choice([0 if [1, 1, 1][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_47', i), 1) for i, w in enumerate([1, 1, 1])])
-        self.unlexer.weights[('alt_47', choice)] = self.unlexer.weights.get(('alt_47', choice), 1) * self.unlexer.cooldown
+        choice = self.choice([0 if [0, 1, 1][i] > self.unlexer.max_depth else w * self.unlexer.weights.get(('alt_51', i), 1) for i, w in enumerate([1, 1, 1])])
+        self.unlexer.weights[('alt_51', choice)] = self.unlexer.weights.get(('alt_51', choice), 1) * self.unlexer.cooldown
         if choice == 0:
-            current += self.unlexer.NUM()
+            current += self.create_node(UnlexerRule(src='1'))
+            current += self.create_node(UnlexerRule(src='9'))
         elif choice == 1:
             current += self.create_node(UnlexerRule(src='1'))
             current += self.unlexer.NUM()
         elif choice == 2:
             current += self.create_node(UnlexerRule(src='2'))
-            current += self.unlexer.NUM3()
+            current += self.unlexer.NUM2()
         return current
-    chromName.min_depth = 1
+    chromName.min_depth = 0
 
     default_rule = line
 

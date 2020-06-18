@@ -74,11 +74,11 @@ class bedUnlexer(Grammarinator):
     NUM.min_depth = 0
 
     @depthcontrol
-    def NUM3(self):
-        current = self.create_node(UnlexerRule(name='NUM3'))
-        current += self.create_node(UnlexerRule(src=self.char_from_list(range(48, 52))))
+    def NUM2(self):
+        current = self.create_node(UnlexerRule(name='NUM2'))
+        current += self.create_node(UnlexerRule(src=self.char_from_list(range(48, 51))))
         return current
-    NUM3.min_depth = 0
+    NUM2.min_depth = 0
 
     @depthcontrol
     def SEPARATOR(self):
@@ -86,4 +86,22 @@ class bedUnlexer(Grammarinator):
         current += self.create_node(UnlexerRule(src='\t'))
         return current
     SEPARATOR.min_depth = 0
+
+    @depthcontrol
+    def NEWLINE(self):
+        current = self.create_node(UnlexerRule(name='NEWLINE'))
+        current += self.create_node(UnlexerRule(src='\n'))
+        return current
+    NEWLINE.min_depth = 0
+
+    @depthcontrol
+    def COMMENT(self):
+        current = self.create_node(UnlexerRule(name='COMMENT'))
+        if self.unlexer.max_depth >= 0:
+            for _ in self.one_or_more():
+                current += self.unlexer.CHAR()
+
+        current += self.create_node(UnlexerRule(src='\n'))
+        return current
+    COMMENT.min_depth = 1
 
