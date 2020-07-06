@@ -47,7 +47,7 @@ def detect_problem(out, err):
             "java.lang.RuntimeException" in err or "WARNING:" in err or \
             "WARNING:" in out or "Command failure" in err
     invalid_bed = "invalid BED" in err or "FileFormatWarning" in err or \
-            "[W::" in err
+                  "[W::" in err
 
     return wrong_file_format or skip_line or error or invalid_bed
 
@@ -70,7 +70,7 @@ def run_bad(tool, path, tool_name=None, verbose=False,
     correct_array = []
     title = tool_name if tool_name is not None else tool
 
-    out_file.write('************************** {} **************************\n\n'.format(title).encode('utf-8'))
+    out_file.write('*' * 26 + title.encode('utf-8') + '*' * 26 + '\n\n')
 
     temp_file_list = \
         [tempfile.NamedTemporaryFile() for _ in range(tool.count("TEMP"))]
@@ -97,12 +97,13 @@ def run_bad(tool, path, tool_name=None, verbose=False,
                 if verbose:
                     print(out)
                     print()
-                out_file.write("%===========================%\n {} \n\n".format(filepath).encode('utf-8'))
+                out_file.write("%===========================%\n" +
+                               " {} \n\n".format(filepath).encode('utf-8'))
                 out_file.write("stdout:\n".encode('utf-8'))
                 out_file.write(out)
                 out_file.write("stderr:\n".encode('utf-8'))
                 out_file.write(err)
-                out_file.write("%===========================%\n\n".encode('utf-8'))
+                out_file.write("%" + "=" * 27 + "%\n\n".encode('utf-8'))
     print()
     print(str(correct_array.count(1)) + " correct out of " +
           str(len(correct_array)))
@@ -130,9 +131,9 @@ def run_good(tool, path, tool_name=None, verbose=False,
     correct_array = []  # Array for holding the results of the tests
     title = tool_name if tool_name is not None else tool
 
-    out_file.write('************************** {} **************************\n\n'.format(title).encode('utf-8'))
+    out_file.write('*' * 26 + title.encode('utf-8') + '*' * 26 + '\n\n')
 
-    # Generate any temporary files that a tool needs for intermediate operations
+    # Generate any temporary files for tools with intermediate operations
     temp_file_list = \
         [tempfile.NamedTemporaryFile() for _ in range(tool.count("TEMP"))]
 
@@ -158,12 +159,13 @@ def run_good(tool, path, tool_name=None, verbose=False,
                 if verbose:
                     print(out)
                     print()
-                out_file.write("%===========================%\n {} \n\n".format(filepath).encode('utf-8'))
+                out_file.write("%===========================%\n" +
+                               " {} \n\n".format(filepath).encode('utf-8'))
                 out_file.write("stdout:\n".encode('utf-8'))
                 out_file.write(out)
                 out_file.write("stderr:\n".encode('utf-8'))
                 out_file.write(err)
-                out_file.write("%===========================%\n\n".encode('utf-8'))
+                out_file.write("%" + "=" * 27 + "%\n\n".encode('utf-8'))
 
     print()
     print(str(correct_array.count(1)) + " correct out of " +

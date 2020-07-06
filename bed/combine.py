@@ -15,7 +15,8 @@ from numpy import spacing
 
 from more_itertools import sort_together
 
-import seaborn as sns; sns.set()
+import seaborn as sns
+sns.set()
 
 
 def get_file_names(version):
@@ -73,16 +74,16 @@ if __name__ == '__main__':
             num_correct.extend(list(l[0]))
             correct_list.extend(list(l[1]))
             name_list.extend(list(l[2]))
-            print(file, len(list(l[0])))
+            # print(file, len(list(l[0])))
 
     # Sort the tools by number of correctly passed cases
     num_correct, correct_list, name_list = sort_together(
         [num_correct, correct_list, name_list], key_list=[0, 2])
-    
+
     if args.csv is not None:
         csv_file = open(args.csv, 'w', newline='')
         writer = csv.writer(csv_file, delimiter=',')
-        
+
         # Write the headers
         writer.writerow(['Tool name'] + file_list)
 
@@ -92,7 +93,6 @@ if __name__ == '__main__':
             row[row.index(0.5)] = ''
             writer.writerow(row)
         csv_file.close()
-
 
     # Redefine the values from the correct arrays to match with colors
     # of the viridis colormap

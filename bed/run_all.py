@@ -21,8 +21,8 @@ except ImportError:
     from yaml import Loader
 
 
-def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None, verbose=False,
-            failed_good_file="out/failed_good.txt",
+def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None,
+            verbose=False, failed_good_file="out/failed_good.txt",
             passed_bad_file="out/passed_bad.txt"):
     """
     Calls run_bad or run_good from run_utils.py to run tools against the
@@ -125,11 +125,11 @@ if __name__ == '__main__':
     parser.add_argument("-V", "--version", action='version', version='0.1')
     parser.add_argument("-v", "--verbose", action='store_true',
                         help="display all results")
-    parser.add_argument("-t", "--tool", help="test a specific program. If" + 
-                        " not specified, all tools in config.yaml will be" +
+    parser.add_argument("-t", "--tool", help="test a specific program. If" +
+                        " unspecified, all tools in config.yaml will be" +
                         " tested.")
     parser.add_argument("-e", "--exclude", help="test all tools except for" +
-                        " this tool. If not specified, all tools will be tested")
+                        " this tool. If unspecified, all tools will be tested")
     parser.add_argument("--results-array-file", metavar="RESULTS_FILENAME",
                         help="output binary results to file",
                         default="bed_test_results")
@@ -143,5 +143,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     run_all(args.bed_version, args.outdir + "/" + args.results_array_file,
-            args.tool, args.exclude, args.verbose, args.outdir + "/" + args.failed_good,
+            args.tool, args.exclude, args.verbose,
+            args.outdir + "/" + args.failed_good,
             args.outdir + "/" + args.passed_bad)
