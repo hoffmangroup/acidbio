@@ -142,7 +142,7 @@ tools:  # Require that the command line sequence to be executed be written on on
         # peakzilla: peakzilla.py FILE INTERSECT -l OUTPUT_DIR/out
     - picard:
         BedToIntervalList: picard BedToIntervalList INPUT=FILE SD=DICTIONARY OUTPUT=/dev/stdout
-    - Piranha:
+    - piranha:
         basic: Piranha FILE
     - plastid:
         reformat_transcripts: reformat_transcripts --annotation_files FILE --annotation_format BED /dev/stdout
@@ -185,9 +185,9 @@ tools:  # Require that the command line sequence to be executed be written on on
         slncky: slncky FILE hg38 OUTPUT_DIR/ -c SLNCKY_CONFIG --min_coding 0.1 --overwrite --no_self
     - smoove:
         call: smoove call -x --name tester --exclude FILE --fasta FASTA BAZAMBAM -o OUTPUT_DIR/
-    - snpEff:
+    - snpeff:
         count: snpEff count hg38 INTERSECT FILE -Xmx4g -t -n OUTPUT_DIR/snpeff
-    - snpSift:
+    - snpsift:
         join: SnpSift join -cols1 bed -cols2 bed INTERSECT FILE -Xmx2g
         intersect: SnpSift intersect INTERSECT FILE -Xmx2g
     - somaticseq:
@@ -213,7 +213,7 @@ tools:  # Require that the command line sequence to be executed be written on on
     - xyalign:
         PREPARE_REFERENCE: xyalign --PREPARE_REFERENCE --ref FA_XY_STA --reference_mask FILE -o OUTPUT_DIR/ --x_chromosome chrX --y_chromosome chrY
 conda-environment:
-    validatebed: base # my program
+    # validatebed: base # my program
     alfred: base
     alignstats: base
     atactk: py27
@@ -221,7 +221,6 @@ conda-environment:
     augur: augur
     bamscale: base
     bazam: base
-    bcftools: base
     bedops: base
     bedparse: newtools
     bedtools: base
@@ -230,7 +229,7 @@ conda-environment:
     blockbuster: base
     cgat: py36
     chunked-scatter: py36
-    cistrome-beta: -1.0 # special program that has to be done separately
+    # cistrome-beta: -1.0 # special program that has to be done separately
     cnvkit: py36
     combined p-values: py27
     concoct: py36
@@ -263,7 +262,7 @@ conda-environment:
     novasplice: py36
     peakranger: py36
     picard: py36
-    Piranha: py27
+    piranha: py27
     plastid: py27
     portcullis: py36
     preseq: special1
@@ -285,8 +284,8 @@ conda-environment:
     slamdunk: newtools
     slncky: special1
     smoove: py27
-    snpEff: base
-    snpSift: py36
+    snpeff: base
+    snpsift: py36
     somaticseq: py36  # Installed from source
     tobias: base
     twobitreader: base
