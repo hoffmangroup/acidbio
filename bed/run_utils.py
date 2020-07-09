@@ -90,7 +90,12 @@ def run(tool, path, pass_fail, extension='bed', tool_name=None, verbose=False,
         print(execute_line)
         p = subprocess.Popen(execute_line, stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE, shell=True)
-        stdout, stderr = p.communicate(timeout=120)
+        try:
+            stdout, stderr = p.communicate(timeout=240)
+        except subprocess.TimeoutExpired as timeout:
+            stdout = ''
+            stderr = str(timeout)
+            p.returncode = 1  # Set the return code to error
         if not detect_pass and \
             (p.returncode != 0 or detect_problem(stdout, stderr)):
             passing_list.append(1)
