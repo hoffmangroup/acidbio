@@ -154,7 +154,7 @@ if __name__ == '__main__':
                 ]
             )
         sorting_temp.append(sum(heatmap_array[-1]))
-
+    print(programs, heatmap_array, display_array, sorting_temp, sep='\n')
     programs, heatmap_array, display_array, sorting_temp = sort_together(
         [programs, heatmap_array, display_array, sorting_temp], key_list=[0]
     )
@@ -164,34 +164,57 @@ if __name__ == '__main__':
     fmt = '.2g' if args.expand or args.max or args.min else ''
 
     if args.mini:
-        plt.figure(figsize=(10.5, 13))
+        fig = plt.figure(figsize=(10.5, 13))
     elif args.long:
-        plt.figure(figsize=(10.5, 26))
+        fig = plt.figure(figsize=(10.5, 26))
     elif args.squash:
-        plt.figure(figsize=(8.5, 5))
+        fig = plt.figure(figsize=(13, 10))
     else:
-        plt.figure(figsize=(39, 50))
+        fig = plt.figure(figsize=(39, 50))
 
-    sizing = {'fontsize': 12} if args.mini or args.squash or args.long \
+    sizing = {'fontsize': 16} if args.mini or args.squash or args.long \
         else {'fontsize': 48}
+
+    custom_color = sns.diverging_palette(240, 130, s=100, as_cmap=True)
     if args.squash:
         ax = sns.heatmap(
-            heatmap_array, cmap=plt.get_cmap('bwr'),
-            vmin=0, vmax=1, xticklabels=BED_NAMES,
+            heatmap_array, cmap=custom_color,
+            vmin=0, vmax=1, # xticklabels=BED_NAMES,
             yticklabels=False, cbar=True,
             cbar_kws={'fraction': 0.03, 'pad': 0.01}
         )
     else:
         ax = sns.heatmap(
-            heatmap_array, cmap=plt.get_cmap('bwr'),
-            vmin=0, vmax=1, square=False, linewidths=.4, xticklabels=BED_NAMES,
+            heatmap_array, cmap=plt.get_cmap('BuGn'),
+            vmin=0, vmax=1, square=False, linewidths=.4, #xticklabels=BED_NAMES,
             yticklabels=programs, annot=annot, cbar=True, fmt=fmt,
             cbar_kws={"fraction": 0.03, "pad": 0.01}
         )
 
-    ax.set_ylabel('Tools', **sizing)
-    ax.set_xlabel('Bed types', **sizing)
+    table_contents = [
+        [18, 22, 25, 27, 28, 30, 33, 0, 40, 41],
+        [13, 16, 21, 23, 27, 32, 36, 77, 45, 49],
+        ["chrom\nchromStart\nchromEnd", "name", "score", "strand",
+         "thickStart", "thickEnd", "itemRgb", "blockCount", "blockSizes",
+         "blockStarts"]
+    ]
+    axis_table = ax.table(
+        cellText=table_contents,
+        rowLabels=["Expected successes", "Expected failures", "Fields"],
+        colLabels=BED_NAMES,
+        loc="bottom"
+    )
+    cellDict = axis_table.get_celld()
+    for i in range(0,len(BED_NAMES)):
+        cellDict[(3,i)].set_height(.05)
+    cellDict[(3, -1)].set_height(.05)
 
+
+    ax.set_xticks([]) 
+
+    ax.set_ylabel('Tools (n=80)', **sizing)
+    # ax.set_xlabel('BED variants', **sizing)
+    fig.text(.5, .02, "BED variants", ha='center', **sizing)
     # plt.title("Percentage of passing test cases for each BED type")
     plt.xticks(rotation='horizontal')
     # Might need to adjust this if more tools are added/subtracted
@@ -200,7 +223,7 @@ if __name__ == '__main__':
     elif args.mini:
         plt.subplots_adjust(left=0.12, right=0.93, top=0.99, bottom=0.04)
     elif args.squash:
-        plt.subplots_adjust(left=0.05, right=0.88, top=0.99, bottom=0.1)
+        plt.subplots_adjust(left=0.14, right=0.94, top=0.99, bottom=0.14)
     else:
         plt.subplots_adjust(left=0.10, right=0.93, top=0.99, bottom=0.03)
     plt.savefig(args.outfile_filepath)

@@ -86,17 +86,22 @@ def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None,
                 print("*"*m + " " + title + " " + "*"*n)
                 print("*"*33 + " good test cases " + "*"*33)
                 current_array.extend(
-                    run_good(execution, bed_type + "/good/", title, verbose,
-                             failed_good_file, command_insertions))
+                    run(execution, bed_type + "/good/", "pass", tool_name=title,
+                       verbose=verbose, output_filename=failed_good_file,
+                       insertions=command_insertions)
+                )
                 print("*"*90)
                 print()
                 # 0.5 is a separator for heatmap purposes
                 current_array.append(0.5)
 
                 print("*"*33 + " bad test cases " + "*"*34)
-                current_array.extend(run_bad(execution, bed_type + "/bad/",
-                                             title, verbose, passed_bad_file,
-                                             command_insertions))
+                current_array.extend(
+                    run(execution, bed_type + "/bad/", "fail",
+                        tool_name=title, verbose=verbose,
+                        output_filename=passed_bad_file,
+                        insertions=command_insertions)
+                )
                 print("*"*90)
                 print()
                 correct_list.append(current_array)
