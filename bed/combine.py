@@ -116,10 +116,13 @@ if __name__ == '__main__':
                      linewidths=.5, square=True, cbar=False,
                      xticklabels=file_list, yticklabels=name_list)
 
-    ax.set_ylabel('TOOLS')
-    ax.set_xlabel('TEST CASES')
+    ax.set_ylabel('Tools (n=99)', **{'fontsize': 28})
+    ax.set_xlabel('Test cases', **{'fontsize': 28})
 
-    plt.title("Good" + " "*70 + "Bad")
+    if args.bed_version != 'BED10':
+        plt.title("Good" + " "*70 + "Bad", **{'fontsize': 20})
+    else:
+        plt.title("Bad", **{'fontsize': 20})
     plt.viridis()
     plt.yticks(rotation=0)
     plt.tight_layout()

@@ -113,7 +113,6 @@ if __name__ == '__main__':
 
     programs = list(max_bed_correctness.keys())
     lengths = sorted(list(max_bed_correctness[programs[0]].keys()))
-
     # heatmap_array is a list of lists where each list is of length 10 with
     # the proportion of passing tests from BED3 to BED12 in order.
     # sorting_temp holds the sum of the proportions to rank tools from
@@ -122,7 +121,7 @@ if __name__ == '__main__':
     sorting_temp = []
     display_array = []
     for program in programs:
-        if args.max:
+        if args.max or args.squash:
             heatmap_array.append(
                 [max_bed_correctness[program][length] for length in lengths]
             )
@@ -153,10 +152,17 @@ if __name__ == '__main__':
                     for length in lengths
                 ]
             )
-        sorting_temp.append(sum(heatmap_array[-1]))
-    print(programs, heatmap_array, display_array, sorting_temp, sep='\n')
+        value = 0
+        for i in range(len(heatmap_array[-1])):
+            j = 10 ** (len(heatmap_array[-1]) - i)
+            value += heatmap_array[-1][i] * j
+        sorting_temp.append(value)
+        # sorting_temp.append(sum(heatmap_array[-1]))
+
+    key_list = [3] if args.squash else [0]
     programs, heatmap_array, display_array, sorting_temp = sort_together(
-        [programs, heatmap_array, display_array, sorting_temp], key_list=[0]
+        [programs, heatmap_array, display_array, sorting_temp],
+        key_list=key_list
     )
 
     annot = True if args.expand or args.max or args.min \
@@ -168,7 +174,7 @@ if __name__ == '__main__':
     elif args.long:
         fig = plt.figure(figsize=(10.5, 26))
     elif args.squash:
-        fig = plt.figure(figsize=(13, 10))
+        fig = plt.figure(figsize=(13, 10.5))
     else:
         fig = plt.figure(figsize=(39, 50))
 
@@ -180,7 +186,7 @@ if __name__ == '__main__':
         ax = sns.heatmap(
             heatmap_array, cmap=custom_color,
             vmin=0, vmax=1, # xticklabels=BED_NAMES,
-            yticklabels=False, cbar=True,
+            yticklabels=[None] * len(programs), cbar=True,
             cbar_kws={'fraction': 0.03, 'pad': 0.01}
         )
     else:
@@ -204,26 +210,49 @@ if __name__ == '__main__':
         colLabels=BED_NAMES,
         loc="bottom"
     )
+    axis_table.set_fontsize(11)
     cellDict = axis_table.get_celld()
     for i in range(0,len(BED_NAMES)):
-        cellDict[(3,i)].set_height(.05)
-    cellDict[(3, -1)].set_height(.05)
-
+        cellDict[(3,i)].set_height(.06)
+    cellDict[(3, -1)].set_height(.06)
 
     ax.set_xticks([]) 
 
     ax.set_ylabel('Tools (n=80)', **sizing)
     # ax.set_xlabel('BED variants', **sizing)
-    fig.text(.5, .02, "BED variants", ha='center', **sizing)
+    fig.text(.5, .01, "BED variants", ha='center', **sizing)
     # plt.title("Percentage of passing test cases for each BED type")
     plt.xticks(rotation='horizontal')
+
+    if args.squash:
+        ticks = ax.get_yticks()
+        xmin, _ = ax.get_xlim()
+        locations = [(xmin, tick) for tick in ticks]
+
+        top_tools = []
+        with open('top_tools.txt') as f:
+            for tool in f.readlines()[:10]:
+                top_tools.append(tool.strip())
+        for i in range(len(programs)):
+            if programs[i] in top_tools:
+                print(i, locations[i], programs[i])
+                if programs[i] == 'rseqc' or programs[i] == 'picard':
+                    xytext = (-120, 20)
+                else:
+                    xytext = (-120, 0)
+                ax.annotate(
+                    programs[i], xy=locations[i], xycoords='data', xytext=xytext,
+                    textcoords='offset points', arrowprops=dict(arrowstyle="simple"),
+                    **{'fontsize': 14}
+                )
+
     # Might need to adjust this if more tools are added/subtracted
     if args.long:
         plt.subplots_adjust(left=0.14, right=0.91, top=0.99, bottom=0.03)
     elif args.mini:
         plt.subplots_adjust(left=0.12, right=0.93, top=0.99, bottom=0.04)
     elif args.squash:
-        plt.subplots_adjust(left=0.14, right=0.94, top=0.99, bottom=0.14)
+        plt.subplots_adjust(left=0.16, right=0.91, top=0.99, bottom=0.14)
     else:
         plt.subplots_adjust(left=0.10, right=0.93, top=0.99, bottom=0.03)
     plt.savefig(args.outfile_filepath)
