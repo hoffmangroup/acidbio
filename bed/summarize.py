@@ -75,7 +75,6 @@ if __name__ == '__main__':
     # since BED3 will have the least tests, BED12 has the most, etc.
     max_bed_correctness = {}
     min_bed_correctness = {}
-    # pdb.set_trace()
     for file in files:
         with open(file, 'rb') as f:  # open each result array file
             l = pickle.load(f)
@@ -157,7 +156,6 @@ if __name__ == '__main__':
             j = 10 ** (len(heatmap_array[-1]) - i)
             value += heatmap_array[-1][i] * j
         sorting_temp.append(value)
-        # sorting_temp.append(sum(heatmap_array[-1]))
 
     key_list = [3] if args.squash else [0]
     programs, heatmap_array, display_array, sorting_temp = sort_together(
@@ -178,50 +176,63 @@ if __name__ == '__main__':
     else:
         fig = plt.figure(figsize=(39, 50))
 
-    sizing = {'fontsize': 16} if args.mini or args.squash or args.long \
-        else {'fontsize': 48}
+    fontsize = 18 if args.mini or args.squash or args.long else 48
+    title_sizing = {'fontsize': fontsize}
+    small_font_size = 14
+    subtitle_sizing = {'fontsize': small_font_size}
 
     custom_color = sns.diverging_palette(240, 130, s=100, as_cmap=True)
     if args.squash:
         ax = sns.heatmap(
             heatmap_array, cmap=custom_color,
-            vmin=0, vmax=1, # xticklabels=BED_NAMES,
-            yticklabels=[None] * len(programs), cbar=True,
-            cbar_kws={'fraction': 0.03, 'pad': 0.01}
+            vmin=0, vmax=1, yticklabels=[None] * len(programs), cbar=True,
+            cbar_kws={'fraction': 0.03, 'pad': 0.05}
         )
+
+        cb = ax.collections[0].colorbar
+        cb.set_label('Proportion of test cases as expected',
+                     labelpad=-80, **title_sizing)
+        cbar_axes = cb.ax
+        cbar_axes.tick_params(labelsize=small_font_size)
+        cbar_axes.annotate(
+            "Worst", (0, -20), xycoords='axes points', **subtitle_sizing)
+        cbar_axes.annotate(
+            "Best", (0, 430), xycoords='axes points', **subtitle_sizing)
     else:
         ax = sns.heatmap(
             heatmap_array, cmap=plt.get_cmap('BuGn'),
-            vmin=0, vmax=1, square=False, linewidths=.4, #xticklabels=BED_NAMES,
+            vmin=0, vmax=1, square=False, linewidths=.4,
             yticklabels=programs, annot=annot, cbar=True, fmt=fmt,
             cbar_kws={"fraction": 0.03, "pad": 0.01}
         )
 
     table_contents = [
+        # BED_NAMES,
         [18, 22, 25, 27, 28, 30, 33, 0, 40, 41],
         [13, 16, 21, 23, 27, 32, 36, 77, 45, 49],
-        ["chrom\nchromStart\nchromEnd", "name", "score", "strand",
-         "thickStart", "thickEnd", "itemRgb", "blockCount", "blockSizes",
-         "blockStarts"]
+        ["chrom\nchromStart\nchromEnd", "name\n\n", "score\n\n", "strand\n\n",
+         "thickStart\n\n", "thickEnd\n\n", "itemRgb\n\n", "blockCount\n\n",
+         "blockSizes\n\n", "blockStarts\n\n"]
     ]
     axis_table = ax.table(
         cellText=table_contents,
-        rowLabels=["Expected successes", "Expected failures", "Fields"],
+        rowLabels=["Expected successes", "Expected failures", "Fields\n\n"],
         colLabels=BED_NAMES,
-        loc="bottom"
+        loc="bottom", edges="open"
     )
-    axis_table.set_fontsize(11)
+    axis_table.auto_set_font_size(False)
+    axis_table.set_fontsize('medium')
     cellDict = axis_table.get_celld()
     for i in range(0,len(BED_NAMES)):
         cellDict[(3,i)].set_height(.06)
+        cellDict[(0,i)].set_height(.03)
+        cellDict[(0,i)].set_text_props(**subtitle_sizing)
     cellDict[(3, -1)].set_height(.06)
 
     ax.set_xticks([]) 
 
-    ax.set_ylabel('Tools (n=80)', **sizing)
-    # ax.set_xlabel('BED variants', **sizing)
-    fig.text(.5, .01, "BED variants", ha='center', **sizing)
-    # plt.title("Percentage of passing test cases for each BED type")
+    ax.set_ylabel('Packages (n=80)', labelpad=100, **title_sizing)
+    fig.text(.5, .01, "BED variants", ha='center', **title_sizing)
     plt.xticks(rotation='horizontal')
 
     if args.squash:
@@ -231,20 +242,27 @@ if __name__ == '__main__':
 
         top_tools = []
         with open('top_tools.txt') as f:
-            for tool in f.readlines()[:10]:
+            for tool in f.readlines()[:20]:
                 top_tools.append(tool.strip())
         for i in range(len(programs)):
             if programs[i] in top_tools:
                 print(i, locations[i], programs[i])
-                if programs[i] == 'rseqc' or programs[i] == 'picard':
-                    xytext = (-120, 20)
+                if programs[i] in ['picard', 'deeptools', 'qualimap', 'snpsift', 'macs2']:
+                    xytext = (-105, 8)
+                elif programs[i] in ['bedtools', 'seqkit', 'rseqc']:
+                    xytext = (-105, -8)
+                elif programs[i] in ['seqtk']:
+                    xytext = (-105, -16)
                 else:
-                    xytext = (-120, 0)
+                    xytext = (-105, 0)
                 ax.annotate(
-                    programs[i], xy=locations[i], xycoords='data', xytext=xytext,
-                    textcoords='offset points', arrowprops=dict(arrowstyle="simple"),
-                    **{'fontsize': 14}
+                    programs[i], xy=locations[i], xycoords='data',
+                    xytext=xytext, textcoords='offset points',
+                    arrowprops=dict(arrowstyle="-", color='black', lw=1.5),
+                    **subtitle_sizing
                 )
+                ax.axhline(locations[i][1] - .5, **{'color': 'lightgrey', 'linestyle': '-'})
+                ax.axhline(locations[i][1] + .5, **{'color': 'lightgrey', 'linestyle': '-'})
 
     # Might need to adjust this if more tools are added/subtracted
     if args.long:

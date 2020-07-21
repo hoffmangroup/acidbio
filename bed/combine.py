@@ -19,6 +19,10 @@ import seaborn as sns
 sns.set()
 
 
+def num_positive(file_list: list):
+    return file_list.index("")
+
+
 def get_file_names(version):
     """
     Returns a list of all the test cases in the order that they were used
@@ -75,10 +79,27 @@ if __name__ == '__main__':
             correct_list.extend(list(l[1]))
             name_list.extend(list(l[2]))
             # print(file, len(list(l[0])))
+    
+    packages = dict()
+    for i in range(len(name_list)):
+        package_name = name_list[i].split()[0]
+        if name_list[i] not in packages:
+            packages[package_name] = [num_correct[i]]
+        else:
+            packages[package_name].append(num_correct[i])
+
+    package_passing_list = []
+    for name in name_list:
+        package_name = name.split()[0]
+        package_passing_list.append(
+            sum(packages[package_name]) / len(packages[package_name])
+        )
 
     # Sort the tools by number of correctly passed cases
-    num_correct, correct_list, name_list = sort_together(
-        [num_correct, correct_list, name_list], key_list=[0, 2])
+    num_correct, correct_list, name_list, package_passing_list = sort_together(
+        [num_correct, correct_list, name_list, package_passing_list],
+        key_list=[3, 0, 2]
+    )
 
     if args.csv is not None:
         csv_file = open(args.csv, 'w', newline='')
@@ -107,7 +128,7 @@ if __name__ == '__main__':
 
     new_cmap = plt.get_cmap('viridis')
     new_cmap.set_under('white')
-    plt.figure(figsize=(29, 27))
+    plt.figure(figsize=(29, 28))
 
     print("Number of tools:", len(name_list))
     print("Number of test cases:", len(file_list) - 1)
@@ -120,9 +141,11 @@ if __name__ == '__main__':
     ax.set_xlabel('Test cases', **{'fontsize': 28})
 
     if args.bed_version != 'BED10':
-        plt.title("Good" + " "*70 + "Bad", **{'fontsize': 20})
+        plt.text(0, -.5, "Expected pass", **{'fontsize': 28})
+        plt.text(num_positive(file_list) + 1, -.5,
+                 "Expected fail", **{'fontsize': 28})
     else:
-        plt.title("Bad", **{'fontsize': 20})
+        plt.text(0, 0, "Expected pass", **{'fontsize': 28})
     plt.viridis()
     plt.yticks(rotation=0)
     plt.tight_layout()
