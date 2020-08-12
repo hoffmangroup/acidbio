@@ -1,27 +1,27 @@
 settings: # some file locations
     file-locations:
-        2BIT: ./data/toy.2bit
-        BAZAMBAM: ./data/bazam.bam
-        BED_SIZE: ./data/hg38.sizes.bed
-        BGT: ./data/1kg11-1M.bgt
-        BIGWIG: ./data/toy.bw
-        CHAIN: ./data/hg38ToHg19.over.chain.gz
-        CONTACT_MATRIX: ./data/contact_frequency_matrix.gz
-        DESIGN: ./data/example.design
+        2BIT: data/toy.2bit
+        BAZAMBAM: data/bazam.bam
+        BED_SIZE: data/hg38.sizes.bed
+        BGT: data/1kg11-1M.bgt
+        BIGWIG: data/toy.bw
+        CHAIN: data/hg38ToHg19.over.chain.gz
+        CONTACT_MATRIX: data/contact_frequency_matrix.gz
+        DESIGN: data/example.design
         DICTIONARY: /home/haliupenguin/.local/share/genomes/hg38/hg38.dict
-        EXBAM: ./data/toy.bam
-        FASTA: ./data/toy.fa
-        FA_XY_STA: ./data/edited_toy.fa
+        EXBAM: data/toy.bam
+        FASTA: data/toy.fa
+        FA_XY_STA: data/edited_toy.fa
         GENOME: /home/haliupenguin/.local/share/genomes/hg38/hg38.fa
-        GTF: ./data/toy.gtf
-        HEXAMER: ./data/hexamer_tab.tsv
-        INTERSECT: ./data/intersect_file.bed
-        LOGIT: ./data/logit.logit.RData
-        REFSEQ: ./data/hg38_RefSeq.bed.gz
-        SIZES: ./data/hg38.chrom.sizes
-        SLNCKY_CONFIG: ./data/annotations.config
-        VCF: ./data/toy.vcf
-        OUTPUT_DIR: ./scratch/trash
+        GTF: data/toy.gtf
+        HEXAMER: data/hexamer_tab.tsv
+        INTERSECT: data/intersect_file.bed
+        LOGIT: data/logit.logit.RData
+        REFSEQ: data/hg38_RefSeq.bed.gz
+        SIZES: data/hg38.chrom.sizes
+        SLNCKY_CONFIG: data/annotations.config
+        VCF: data/toy.vcf
+        # OUTPUT_DIR: scratch/trash
 tools:  # Require that the command line sequence to be executed be written on one line
     # - validatebed: # my program
         # validate: python validate_bed.py SIZES FILE
@@ -36,7 +36,7 @@ tools:  # Require that the command line sequence to be executed be written on on
     - augur:
         mask: augur mask -s VCF --mask FILE -o /dev/stdout
     - bamscale:
-        scale: BAMscale cov --bed FILE --bam BAZAMBAM --bam EXBAM --out OUTPUT_DIR/
+        scale: BAMscale cov --bed FILE --bam BAZAMBAM --bam EXBAM --out TEMPDIR/
     - bazam:
         bazam: bazam -bam BAZAMBAM -L FILE
     - bedops:
@@ -53,35 +53,35 @@ tools:  # Require that the command line sequence to be executed be written on on
     - bioconvert:
         bed2wiggle: bioconvert bed2wiggle FILE /dev/stdout --force
     # - bioFluff:
-        # heatmap: fluff heatmap -f FILE -d EXBAM -o OUTPUT_DIR/
+        # heatmap: fluff heatmap -f FILE -d EXBAM -o TEMPDIR/
     - biopet:
-        WipeReads: biopet tool WipeReads -I EXBAM -r FILE -o OUTPUT_DIR/biopet 2>/dev/null
+        WipeReads: biopet tool WipeReads -I EXBAM -r FILE -o TEMPDIR/biopet 2>/dev/null
     - blockbuster:
         blockbuster: blockbuster.x FILE
     - cgat:
         merge: cat FILE | cgat bed2bed --method=merge
         shift: cat FILE | cgat bed2bed --method=sanitize-genome -g GENOME
     - chunked-scatter:
-        chunked-scatter: chunked-scatter -p OUTPUT_DIR/scatter_ -i FILE -m 10 -c 40
+        chunked-scatter: chunked-scatter -p TEMPDIR/scatter_ -i FILE -m 10 -c 40
     # - cistrome-beta:
-        # minus: BETA minus -p FILE -g hg19 -o OUTPUT_DIR/
+        # minus: BETA minus -p FILE -g hg19 -o TEMPDIR/
     - cnvkit:
         target: cnvkit.py target FILE
         access: cnvkit.py access GENOME -x FILE
     - combined p-values:
-        acf: comb-p FILE
+        acf: comb-p acf FILE
     - concoct:
         coverage_table: coverage_table -p FILE -d EXBAM
     - cpat:
-        cpat: cpat.py -r GENOME -g FILE -d LOGIT -x HEXAMER -o OUTPUT_DIR/cpat
+        cpat: cpat.py -r GENOME -g FILE -d LOGIT -x HEXAMER -o TEMPDIR/cpat
     - crossmap:
         CrossMap: CrossMap.py bed CHAIN FILE
     - cthreepo:
-        cthreepo: cthreepo --infile FILE -if uc -it rs -f bed -m h38 -o OUTPUT_DIR/out.bed
+        cthreepo: cthreepo --infile FILE -if uc -it rs -f bed -m h38 -o TEMPDIR/out.bed
     - dammet:
-        DamMet: DamMet -b EXBAM -r GENOME -c chr19 -B FILE -O OUTPUT_DIR/DamMet
+        DamMet: DamMet -b EXBAM -r GENOME -c chr19 -B FILE -O TEMPDIR/DamMet
     - deeptools:
-        computeMatrix scale-regions: computeMatrix scale-regions -S BIGWIG -R FILE -bs 1 -o OUTPUT_DIR/computeMatrixResult
+        computeMatrix scale-regions: computeMatrix scale-regions -S BIGWIG -R FILE -bs 1 -o TEMPDIR/computeMatrixResult
     - dsh-bio:
         filter-bed: dsh-bio filter-bed -i FILE
     - elprep:
@@ -89,9 +89,9 @@ tools:  # Require that the command line sequence to be executed be written on on
     - epic2:
         epic: epic2 --treatment FILE
     - fithic:
-        HiCPro2FitHiC: scratch/fithic/fithic/utils/HiCPro2FitHiC.py -i CONTACT_MATRIX -b FILE -o OUTPUT_DIR/
+        HiCPro2FitHiC: scratch/fithic/fithic/utils/HiCPro2FitHiC.py -i CONTACT_MATRIX -b FILE -o TEMPDIR/
     - f-seq:
-        f-seq: scratch/F-seq/dist~/fseq/bin/fseq -f 10 -o OUTPUT_DIR -of bed FILE
+        f-seq: scratch/F-seq/dist~/fseq/bin/fseq -f 10 -o TEMPDIR -of bed FILE
     - gat:
         gat: gat-run.py --segment-file=FILE --annotation-file=INTERSECT --workspace-file=BED_SIZE
     - genometools:
@@ -101,26 +101,26 @@ tools:  # Require that the command line sequence to be executed be written on on
     - gimmemotifs:
         scan: gimme scan FILE -g hg38 -c 0 -n 1 -b
     - HipSTR:
-        HipSTR: scratch/HipSTR/HipSTR --bams BAZAMBAM --fasta GENOME --regions FILE --str-vcf OUTPUT_DIR/hipstr.vcf.gz
+        HipSTR: scratch/HipSTR/HipSTR --bams BAZAMBAM --fasta GENOME --regions FILE --str-vcf TEMPDIR/hipstr.vcf.gz
     - homer:
-        findMotifsGenome: findMotifsGenome.pl FILE hg19 OUTPUT_DIR -size 20 -S 1
+        findMotifsGenome: findMotifsGenome.pl FILE hg19 TEMPDIR -size 20 -S 1
     - iCount:
-        clusters: iCount clusters INTERSECT FILE OUTPUT_DIR/iCount.txt -F 0 -P OUTPUT_DIR/ilog.txt
-        annotate: iCount annotate GTF FILE OUTPUT_DIR/iCount.bed -F 0 -P OUTPUT_DIR/ilog.txt
+        clusters: iCount clusters INTERSECT FILE TEMPDIR/iCount.txt -F 0 -P TEMPDIR/ilog.txt
+        annotate: iCount annotate GTF FILE TEMPDIR/iCount.bed -F 0 -P TEMPDIR/ilog.txt
     - idr:
-        idr: idr --samples FILE FILE --input-file-type bed --rank score -o OUTPUT_DIR/idrValues.txt
+        idr: idr --samples FILE FILE --input-file-type bed --rank score -o TEMPDIR/idrValues.txt
     - igvtools:
         count: igvtools count FILE stdout hg18
         sort: igvtools sort FILE stdout
     - intervene:
-        upset: intervene upset -i FILE INTERSECT -o OUTPUT_DIR/
-        venn: intervene venn -i FILE INTERSECT -o OUTPUT_DIR/
+        upset: intervene upset -i FILE INTERSECT -o TEMPDIR/
+        venn: intervene venn -i FILE INTERSECT -o TEMPDIR/
     - macs2:
-        callpeak: macs2 callpeak -t FILE -f BED --nomodel --outdir OUTPUT_DIR/ 
+        callpeak: macs2 callpeak -t FILE -f BED --nomodel --outdir TEMPDIR/ 
     - mosdepth:
-        mosdepth: mosdepth -b FILE OUTPUT_DIR/mos EXBAM
+        mosdepth: mosdepth -b FILE TEMPDIR/mos EXBAM
     - multigps:
-        multigps: sed 's+REP1+INTERSECT+g' DESIGN | sed 's+REP2+FILE+g' > TEMP1; multigps -Xmx4G --geninfo SIZES --design TEMP1 -r 1 --out OUTPUT_DIR/
+        multigps: sed 's+REP1+INTERSECT+g' DESIGN | sed 's+REP2+FILE+g' > TEMP1; multigps -Xmx4G --geninfo SIZES --design TEMP1 -r 1 --out TEMPDIR/
     - nanosv:
         nanosv: NanoSV -b FILE BAZAMBAM
     - ngs-bits:
@@ -133,20 +133,20 @@ tools:  # Require that the command line sequence to be executed be written on on
         stats: bedutils stats FILE
         extend: bedutils extend -5 10 FILE
     - novasplice:
-        novasplice: novasplice -v VCF -r GENOME -b FILE -c SIZES -o OUTPUT_DIR/ -i OUTPUT_DIR/
+        novasplice: novasplice -v VCF -r GENOME -b FILE -c SIZES -o TEMPDIR/ -i TEMPDIR/
     - octopus:
-        octopus: octopus -R FASTA -I EXBAM -t FILE -w OUTPUT_DIR/
+        octopus: octopus -R FASTA -I EXBAM -t FILE -w TEMPDIR/
     - peakranger:
         ccat: peakranger ccat --format bed FILE INTERSECT --output /dev/stdout
     # - peakzilla:  Don't know why it's not working
-        # peakzilla: peakzilla.py FILE INTERSECT -l OUTPUT_DIR/out
+        # peakzilla: peakzilla.py FILE INTERSECT -l TEMPDIR/out
     - picard:
         BedToIntervalList: picard BedToIntervalList INPUT=FILE SD=DICTIONARY OUTPUT=/dev/stdout
     - piranha:
         basic: Piranha FILE
     - plastid:
         reformat_transcripts: reformat_transcripts --annotation_files FILE --annotation_format BED /dev/stdout
-        findjuncs: findjuncs OUTPUT_DIR/result --annotation_format BED --annotation_files FILE
+        findjuncs: findjuncs TEMPDIR/result --annotation_format BED --annotation_files FILE
     - portcullis:
         compare: junctools compare INTERSECT FILE
     - preseq:
@@ -158,49 +158,49 @@ tools:  # Require that the command line sequence to be executed be written on on
     - qualimap:
         comp-counts: qualimap comp-counts -bam EXBAM -gtf FILE
     - quast:
-        quast: quast FASTA --min-contig 5 -g FILE -o OUTPUT_DIR/
+        quast: quast FASTA --min-contig 5 -g FILE -o TEMPDIR/
     - rapid:
-        rapidStats: rapidStats.sh -o=OUTPUT_DIR/ -f=EXBAM -ft=BAM -a=FILE
+        rapidStats: rapidStats.sh -o=TEMPDIR/ -f=EXBAM -ft=BAM -a=FILE
     - regtools:
         junctions annotate: regtools junctions annotate FILE GENOME GTF -S
     - rpkmforgenes:
-        rpkmforgenes: rpkmforgenes.py -o OUTPUT_DIR/rpkm.txt -i INTERSECT -a FILE
+        rpkmforgenes: rpkmforgenes.py -o TEMPDIR/rpkm.txt -i INTERSECT -a FILE
     - rseg:
         rseg: rseg -c BED_SIZE -o /dev/stdout FILE -i 1 -b 10000 -bin-step 100
     - rseqc:
-        geneBody_coverage: geneBody_coverage.py -i EXBAM -r FILE -o OUTPUT_DIR/geneBody
+        geneBody_coverage: geneBody_coverage.py -i EXBAM -r FILE -o TEMPDIR/geneBody
     - samtools:
         bedcov: samtools bedcov FILE EXBAM
     - scalpel:
-        discovery: scalpel-discovery --single --bam EXBAM --bed FILE --ref GENOME --dir OUTPUT_DIR/
+        discovery: scalpel-discovery --single --bam EXBAM --bed FILE --ref GENOME --dir TEMPDIR/
     - segtools:
-        overlap: segtools-overlap INTERSECT FILE -o OUTPUT_DIR/ --clobber --noplot
+        overlap: segtools-overlap INTERSECT FILE -o TEMPDIR/ --clobber --noplot
     - seqkit:
         subseq: seqkit subseq --bed FILE FASTA
     - seqtk:
         subseq: seqtk subseq FASTA FILE
     - slamdunk:
-        filter: slamdunk filter -o OUTPUT_DIR/ -b FILE EXBAM
+        filter: slamdunk filter -o TEMPDIR/ -b FILE EXBAM
     - slncky:
-        slncky: slncky FILE hg38 OUTPUT_DIR/ -c SLNCKY_CONFIG --min_coding 0.1 --overwrite --no_self
+        slncky: slncky FILE hg38 TEMPDIR/ -c SLNCKY_CONFIG --min_coding 0.1 --overwrite --no_self
     - smoove:
-        call: smoove call -x --name tester --exclude FILE --fasta FASTA BAZAMBAM -o OUTPUT_DIR/
+        call: smoove call -x --name tester --exclude FILE --fasta FASTA BAZAMBAM -o TEMPDIR/
     - snpeff:
-        count: snpEff count hg38 INTERSECT FILE -Xmx4g -t -n OUTPUT_DIR/snpeff
+        count: snpEff count hg38 INTERSECT FILE -Xmx4g -t -n TEMPDIR/snpeff
     - snpsift:
         join: SnpSift join -cols1 bed -cols2 bed INTERSECT FILE -Xmx2g
         intersect: SnpSift intersect INTERSECT FILE -Xmx2g
     - somaticseq:
-        single: scratch/somaticseq/somaticseq_parallel.py -out OUTPUT_DIR/ -ref GENOME -include FILE single -bam EXBAM
+        single: scratch/somaticseq/somaticseq_parallel.py -out TEMPDIR/ -ref GENOME -include FILE single -bam EXBAM
     - tobias:
-        ATACorrect: TOBIAS ATACorrect --bam EXBAM --genome FASTA --peaks FILE --outdir OUTPUT_DIR/
+        ATACorrect: TOBIAS ATACorrect --bam EXBAM --genome FASTA --peaks FILE --outdir TEMPDIR/
     - twobitreader:
         twobitreader: python -m twobitreader 2BIT < FILE
     - ucsc:
-        bedSort: ./scratch/ucsc-apps/bedSort FILE /dev/stdout
-        bedClip: ./scratch/ucsc-apps/bedClip FILE SIZES /dev/stdout
-        bedRemoveOverlap: ./scratch/ucsc-apps/bedRemoveOverlap FILE /dev/stdout
-        bedToBigBed: bedToBigBed FILE SIZES OUTPUT_DIR/out.bb
+        bedSort: bedSort FILE /dev/stdout
+        bedClip: bedClip FILE SIZES /dev/stdout
+        bedRemoveOverlap: bedRemoveOverlap FILE /dev/stdout
+        bedToBigBed: bedToBigBed FILE SIZES TEMPDIR/out.bb
     - variantbam:
         variant: variant EXBAM -l FILE
     - vcflib:
@@ -211,7 +211,7 @@ tools:  # Require that the command line sequence to be executed be written on on
     - wisestork:
         gc-correct: wisestork gc-correct -R GENOME -I FILE -O /dev/stdout
     - xyalign:
-        PREPARE_REFERENCE: xyalign --PREPARE_REFERENCE --ref FA_XY_STA --reference_mask FILE -o OUTPUT_DIR/ --x_chromosome chrX --y_chromosome chrY
+        PREPARE_REFERENCE: xyalign --PREPARE_REFERENCE --ref FA_XY_STA --reference_mask FILE -o TEMPDIR/ --x_chromosome chrX --y_chromosome chrY
 conda-environment:
     # validatebed: base # my program
     alfred: base

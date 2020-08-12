@@ -50,7 +50,6 @@ def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None,
     # Replace with the correct intersection file
     command_insertions['INTERSECT'] = command_insertions['INTERSECT'].replace(
         'intersect_file', 'intersect_file' + bed_type[-2:])
-    trash_dir = command_insertions['OUTPUT_DIR']
     # Each tool with its corresponding Python version
     conda_envs = data['conda-environment']
 
@@ -106,7 +105,6 @@ def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None,
                 print()
                 correct_list.append(current_array)
 
-                subprocess.call(["rm", "-rf", trash_dir + "/*"])
 
     # Used for sorting purposes in combine.py
     num_correct = [l.count(1) for l in correct_list]

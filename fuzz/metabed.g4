@@ -52,7 +52,7 @@ NEWLINE
 
 COMMENT
     : 'COMMENT\n'
-    '\t: CHAR+ \'\\n\';'
+    '\t: \'#\' CHAR+ \'\\n\';'
     ;
 
 CHAR
@@ -82,13 +82,13 @@ NUM2
 
 SEPARATOR
     : 'SEPARATOR\n'
-    ('\t: \'\\t\' | \' \' \' \'+; ' | '\' \' \' \'+;' |
-    | '\t: \'\\t\';' | '\t: \'\\t\';' |  '\t: \'\\t\';' |  '\t: \'\\t\';')
+    ('\t: \'\\t\' | \' \' \' \'+; ' | '\t:\' \' \' \'+;' |  '\t: \'\\t\';' | '\t: \'\\t\';' |  '\t: \'\\t\';' |  '\t: \'\\t\';')
     ;
 
 chrom
     : 'chrom\n'
-    '\t: ' ('CHAR+' | 'chromName' | 'CHAR+ | chromName') ';'
+    // '\t: ' ('CHAR+' | 'chromName' | 'CHAR+ | chromName') ';'
+    '\t: chromName;'
     ;
 
 coordinate
@@ -119,7 +119,7 @@ name
 score
     : 'score\n'
     '\t: ' (('NUM | NUM NUM | NUM NUM NUM | \'1000\'') | ('NUM | NUM NUM | NUM NUM NUM | \'1000\' | NUM \'.\' NUM+') | 'NUM*')
-    ';'
+    '\t;'
     ;
 
 strand
@@ -199,7 +199,7 @@ blockSizes
     '}\n'
     '{\n'
     'if self.bCount == 1:\n'
-    '    self.lastBlock = int(str(current))\n'
+    '    self.lastBlock = int(str(current)[:-1])\n'
     'elif self.bCount == 0:\n'
     '    self.lastBlock = 0\n'
     'else:\n'

@@ -9,6 +9,8 @@ import fuzz
 STDOUT_MESSAGES = ['wrong file format', 'Skipping line:', 'ERROR:', 'WARNING:']
 STDERR_MESSAGES = ['Error', 'java.lang.RuntimeException', 'WARNING:',
                    'invalid BED', 'FileFormatWarning', '[W::']
+INVOCATION = 'bedToBigBed ./trash/sorted.bed ../bed/data/hg38.chrom.sizes' + \
+    ' ./trash/out.bb'
 
 
 def detect_problem(out, err):
@@ -39,10 +41,10 @@ def detect_problem(out, err):
 
 def bb_check(tempdir, files):
     for file in files:
-        subprocess.run('sort -k1,1 -k2,2n {} > ./trash/sorted.bed'.format(tempdir.name + '/' + file), shell=True)
+        subprocess.run('sort -k1,1 -k2,2n {} > ./trash/sorted.bed'.format(
+            tempdir.name + '/' + file), shell=True)
 
-        invocation = 'bedToBigBed ./trash/sorted.bed ../bed/data/hg38.chrom.sizes ./trash/out.bb'
-        ret = subprocess.run(invocation, stdout=subprocess.PIPE,
+        ret = subprocess.run(INVOCATION, stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE, shell=True)
         if ret.returncode != 0:
             return False
@@ -74,7 +76,7 @@ def write_to_log(ret, out, tempdir, files, m, i):
             f.write('\n\n')
             f.close()
     with open(out, 'a') as f:
-        f.write('=================================================\n\n')
+        f.write('End of test number ' + str(i+1) + '\n\n')
 
 
 def main(metabed_path: str, command: str, n: int, out: str):
@@ -99,7 +101,8 @@ def main(metabed_path: str, command: str, n: int, out: str):
         ret = subprocess.run(new_command, stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE, shell=True)
         bed_valid = bb_check(tempdir, files)
-        tool_valid = not detect_problem(ret.stdout, ret.stderr) and ret.returncode == 0
+        tool_valid = not detect_problem(ret.stdout, ret.stderr) \
+            and ret.returncode == 0
         print(bed_valid, tool_valid)
         if bed_valid != tool_valid:
             write_to_log(ret, out, tempdir, files, m, i)

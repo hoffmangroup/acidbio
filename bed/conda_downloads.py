@@ -1,5 +1,6 @@
 from condastats.cli import overall
 from yaml import load
+import os
 
 try:
     from yaml import CLoader as Loader
@@ -13,16 +14,18 @@ if __name__ == '__main__':
     names = []
     counts = []
 
-    packages = data['conda-environment']
-    for package in packages.keys():
-        res = overall(package)
+    # packages = data['conda-environment']
+    packages = os.listdir('./bioconda-recipes-master/recipes')
+    res = overall(packages)
+    for package in packages:
         try:
             count = res[package]
             names.append(package)
             counts.append(count)
         except:
             print(package)
-    print(names, counts)
+    # print(names, counts)
     ordered = sorted(zip(counts, names))
-    for i in ordered:
-        print(i)
+    with open('top_tools_overall.txt', 'w') as f:
+        for i in reversed(ordered):
+            print(i, file=f)

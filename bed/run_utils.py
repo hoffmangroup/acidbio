@@ -17,7 +17,7 @@ STDERR_MESSAGES = ['Error', 'java.lang.RuntimeException', 'WARNING:',
                    'invalid BED', 'FileFormatWarning', '[W::']
 
 
-def create_execute_line(tool, filepath, temp_file_list, insertions):
+def create_execute_line(tool, filepath, temp_file_list, temp_dir, insertions):
     """
     Replace the "MACROS" with the actual locations to the files
 
@@ -32,6 +32,7 @@ def create_execute_line(tool, filepath, temp_file_list, insertions):
         tool = tool.replace(to_replace, replacement)
     for i in range(len(temp_file_list)):
         tool = tool.replace("TEMP" + str(i), temp_file_list[i].name)
+    tool = tool.replace("TEMPDIR", temp_dir.name)
     return tool.replace("FILE", filepath)
 
 
@@ -74,11 +75,11 @@ def run(tool, path, pass_fail, extension='bed', tool_name=None, verbose=False,
 
     temp_file_list = \
         [tempfile.NamedTemporaryFile() for _ in range(tool.count("TEMP"))]
+    temp_directory = tempfile.TemporaryDirectory()
 
     for filepath in glob.glob(path + '*.bed'):
         execute_line = create_execute_line(
-            tool, filepath, temp_file_list, insertions
-        )
+            tool, filepath, temp_file_list, temp_directory, insertions)
         print(execute_line)
         p = subprocess.Popen(execute_line, stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE, shell=True)
