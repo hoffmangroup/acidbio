@@ -213,7 +213,6 @@ tools:  # Require that the command line sequence to be executed be written on on
     - xyalign:
         PREPARE_REFERENCE: xyalign --PREPARE_REFERENCE --ref FA_XY_STA --reference_mask FILE -o TEMPDIR/ --x_chromosome chrX --y_chromosome chrY
 conda-environment:
-    # validatebed: base # my program
     alfred: base
     alignstats: base
     atactk: py27

@@ -256,13 +256,11 @@ if __name__ == '__main__':
                 else:
                     xytext = (-105, 0)
                 ax.annotate(
-                    programs[i], xy=locations[i], xycoords='data',
+                    programs[i], xy=(0, locations[i][1]), xycoords='data',
                     xytext=xytext, textcoords='offset points',
                     arrowprops=dict(arrowstyle="-", color='black', lw=1.5),
                     **subtitle_sizing
                 )
-                ax.axhline(locations[i][1] - .5, **{'color': 'lightgrey', 'linestyle': '-'})
-                ax.axhline(locations[i][1] + .5, **{'color': 'lightgrey', 'linestyle': '-'})
 
     # Might need to adjust this if more tools are added/subtracted
     if args.long:
