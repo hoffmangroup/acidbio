@@ -21,6 +21,11 @@ except ImportError:
     from yaml import Loader
 
 
+HEADER = '*' * 90
+PASS_HEADER = "*"*33 + " good test cases " + "*"*34
+FAIL_HEADER = "*"*33 + " bad test cases " + "*"*34
+
+
 def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None,
             verbose=False, failed_good_file="out/failed_good.txt",
             passed_bad_file="out/passed_bad.txt"):
@@ -37,8 +42,12 @@ def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None,
                      where it passed on a bad test case
     """
     # Clear the previous data and reinitalize it
-    subprocess.call(["rm", "-f", failed_good_file, passed_bad_file])
-    subprocess.call(["touch", failed_good_file, passed_bad_file])
+    if os.path.exists(failed_good_file):
+        os.remove(failed_good_file)
+    if os.path.exists(passed_bad_file):
+        os.remove(passed_bad_file)
+    with open(failed_good_file, 'w') as f1, open(passed_bad_file, 'w') as f2:
+        pass  # Creates the two new files
 
     this_env = os.environ['CONDA_DEFAULT_ENV']
 
@@ -53,7 +62,7 @@ def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None,
     # Each tool with its corresponding Python version
     conda_envs = data['conda-environment']
 
-    correct_list = []
+    passing_list = []
     name_list = []
 
     tool_list = data['tools']
@@ -75,7 +84,7 @@ def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None,
             for command, execution in commands.items():
                 # Array of how the program performed on each test case.
                 # 0 = incorrect, 1 = correct
-                current_array = []
+                current_list = []
                 title = program + " " + command
                 name_list.append(title)
 
@@ -83,38 +92,38 @@ def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None,
                 n = m if len(title) % 2 == 0 else m + 1
 
                 print("*"*m + " " + title + " " + "*"*n)
-                print("*"*33 + " good test cases " + "*"*33)
-                current_array.extend(
+                print(PASS_HEADER)
+                current_list.extend(
                     run(execution, bed_type + "/good/", "pass", tool_name=title,
                        verbose=verbose, output_filename=failed_good_file,
                        insertions=command_insertions)
                 )
-                print("*"*90)
+                print(HEADER)
                 print()
                 # 0.5 is a separator for heatmap purposes
-                current_array.append(0.5)
+                current_list.append(0.5)
 
-                print("*"*33 + " bad test cases " + "*"*34)
-                current_array.extend(
+                print(FAIL_HEADER)
+                current_list.extend(
                     run(execution, bed_type + "/bad/", "fail",
                         tool_name=title, verbose=verbose,
                         output_filename=passed_bad_file,
                         insertions=command_insertions)
                 )
-                print("*"*90)
+                print(HEADER)
                 print()
-                correct_list.append(current_array)
+                passing_list.append(current_list)
 
 
     # Used for sorting purposes in combine.py
-    num_correct = [l.count(1) for l in correct_list]
+    num_correct = [l.count(1) for l in passing_list]
 
     # Dump the results of these set of tools into a binary file
     with open(output_file, 'wb') as fp:
-        pickle.dump([num_correct, correct_list, name_list], fp)
+        pickle.dump([num_correct, passing_list, name_list], fp)
 
     stream.close()
-    return num_correct, correct_list, name_list
+    return num_correct, passing_list, name_list
 
 
 if __name__ == '__main__':
