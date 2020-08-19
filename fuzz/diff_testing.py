@@ -9,8 +9,8 @@ import fuzz
 STDOUT_MESSAGES = ['wrong file format', 'Skipping line:', 'ERROR:', 'WARNING:']
 STDERR_MESSAGES = ['Error', 'java.lang.RuntimeException', 'WARNING:',
                    'invalid BED', 'FileFormatWarning', '[W::']
-INVOCATION = 'bedToBigBed ./trash/sorted.bed ../bed/data/hg38.chrom.sizes' + \
-    ' ./trash/out.bb'
+CHROM_SIZES_LOCATION = '../bed/data/hg38.chrom.sizes'
+INVOCATION = 'bedToBigBed {} {} {}'
 
 
 def detect_problem(out, err):
@@ -39,19 +39,23 @@ def detect_problem(out, err):
     return False
 
 
-def bb_check(tempdir, files):
+def bb_check(tmpdir, files):
+    tmpfile = tempfile.NamedTemporaryFile()
+    bb_out = tempfile.NamedTemporaryFile()
     for file in files:
-        subprocess.run('sort -k1,1 -k2,2n {} > ./trash/sorted.bed'.format(
-            tempdir.name + '/' + file), shell=True)
+        subprocess.run('sort -k1,1 -k2,2n {} > {}'.format(
+            tmpdir.name + '/' + file, tmpfile.name), shell=True)
 
-        ret = subprocess.run(INVOCATION, stdout=subprocess.PIPE,
-                             stderr=subprocess.PIPE, shell=True)
+        ret = subprocess.run(
+            INVOCATION.format(tmpfile.name, CHROM_SIZES_LOCATION, bb_out.name),
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True
+        )
         if ret.returncode != 0:
             return False
     return True
 
 
-def write_to_log(ret, out, tempdir, files, m, i):
+def write_to_log(ret, out, tmpdir, files, m, i):
     print(ret.stderr.decode('ascii'))
     with open(out, 'a') as f:
         f.write('Test number ' + str(i+1) + ':\n')
@@ -62,14 +66,14 @@ def write_to_log(ret, out, tempdir, files, m, i):
         f.write('\nBED file(s):\n')
     if m == 1:
         subprocess.run(
-            ['cat', tempdir.name + '/' + files[0]], stdout=open(out, 'a')
+            ['cat', tmpdir.name + '/' + files[0]], stdout=open(out, 'a')
         )
     else:
         for l in range(m):
             f = open(out, 'a')
             f.write('File ' + str(l+1) + ':\n')
             result = subprocess.run(
-                ['cat', tempdir.name + '/' + files[l]],
+                ['cat', tmpdir.name + '/' + files[l]],
                 stdout=subprocess.PIPE
             )
             f.write(result.stdout.decode('ascii'))
@@ -82,31 +86,31 @@ def write_to_log(ret, out, tempdir, files, m, i):
 def main(metabed_path: str, command: str, n: int, out: str):
     m = command.count('BED_FILE')
     for i in range(n):
-        tempdir = tempfile.TemporaryDirectory()
-        fuzz.main(metabed_path, tempdir.name, m)
-        files = os.listdir(tempdir.name)
+        tmpdir = tempfile.TemporaryDirectory()
+        fuzz.main(metabed_path, tmpdir.name, m)
+        files = os.listdir(tmpdir.name)
 
         print('Test number ' + str(i + 1))
         if m == 1:
             new_command = command.replace(
-                'BED_FILE', tempdir.name + '/' + files[0]
+                'BED_FILE', tmpdir.name + '/' + files[0]
             )
         else:
             new_command = command
             for l in range(m):
                 new_command = new_command.replace(
-                    'BED_FILE' + str(l+1), tempdir.name + '/' + files[l]
+                    'BED_FILE' + str(l+1), tmpdir.name + '/' + files[l]
                 )
         print(new_command)
         ret = subprocess.run(new_command, stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE, shell=True)
-        bed_valid = bb_check(tempdir, files)
+        bed_valid = bb_check(tmpdir, files)
         tool_valid = not detect_problem(ret.stdout, ret.stderr) \
             and ret.returncode == 0
         print(bed_valid, tool_valid)
         if bed_valid != tool_valid:
-            write_to_log(ret, out, tempdir, files, m, i)
-        tempdir.cleanup()
+            write_to_log(ret, out, tmpdir, files, m, i)
+        tmpdir.cleanup()
 
 
 if __name__ == '__main__':

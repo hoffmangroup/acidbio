@@ -7,6 +7,8 @@ from os import listdir
 # 1. Use metabed.g4 to generate different bed.g4 files
 # 2. Using the bed.g4, generate a series of BED files and concat together
 
+NUM_ITER = 1
+
 
 def generate_bed_g4(tempdir):
     subprocess.run(['grammarinator-generate',
@@ -20,7 +22,7 @@ def generate_bed_file(tempdir, outdir, n):
     bedg4 = tempdir.name + '/' + listdir(tempdir.name)[1]
     subprocess.run(['grammarinator-process', '-o', tempdir.name, bedg4])
     for i in range(n):
-        length = random.randint(1, 31)
+        length = random.randint(1, NUM_ITER)
         bed_dir = tempfile.TemporaryDirectory()
         subprocess.run(['grammarinator-generate',
                         '-p', tempdir.name + '/bedUnparser.py',
