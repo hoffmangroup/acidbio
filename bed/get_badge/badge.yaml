@@ -1,5 +1,0 @@
-bedtools: "https://img.shields.io/badge/BED Parser-BED4-informational"
-samtools: "https://img.shields.io/badge/BED Parser-BED3-informational"
-ucsc: "https://img.shields.io/badge/BED Parser-BED3 BED4 BED5 BED6-informational"
-
-seed_information: null
