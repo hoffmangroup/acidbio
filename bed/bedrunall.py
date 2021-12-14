@@ -10,10 +10,11 @@ import argparse
 import os
 import pickle
 import subprocess
+import sys
 
 from yaml import load
 
-from run_utils import *
+from bedrunutils import run
 
 try:
     from yaml import CLoader as Loader
@@ -126,7 +127,7 @@ def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None,
     return num_correct, passing_list, name_list
 
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser(
         description="Tests the tools in config.yaml to see if they " +
         "appropriately throw warnings or errors against a suite of BED files")
@@ -158,3 +159,8 @@ if __name__ == '__main__':
             args.tool, args.exclude, args.verbose,
             args.outdir + "/" + args.failed_good,
             args.outdir + "/" + args.passed_bad)
+
+
+if __name__ == '__main__':
+    sys.exit(main())
+    
