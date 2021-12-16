@@ -8,11 +8,11 @@ settings: # some file locations
         CHAIN: data/hg38ToHg19.over.chain.gz
         CONTACT_MATRIX: data/contact_frequency_matrix.gz
         DESIGN: data/example.design
-        DICTIONARY: /home/haliupenguin/.local/share/genomes/hg38/hg38.dict
+        DICTIONARY: data/hg38.dict
         EXBAM: data/toy.bam
         FASTA: data/toy.fa
         FA_XY_STA: data/edited_toy.fa
-        GENOME: /home/haliupenguin/.local/share/genomes/hg38/hg38.fa
+        GENOME: data/hg38.fa
         GTF: data/toy.gtf
         HEXAMER: data/hexamer_tab.tsv
         INTERSECT: data/intersect_file.bed
@@ -21,10 +21,7 @@ settings: # some file locations
         SIZES: data/hg38.chrom.sizes
         SLNCKY_CONFIG: data/annotations.config
         VCF: data/toy.vcf
-        # OUTPUT_DIR: scratch/trash
 tools:  # Require that the command line sequence to be executed be written on one line
-    # - validatebed: # my program
-        # validate: python validate_bed.py SIZES FILE
     - alfred:
         annotate: alfred annotate -b REFSEQ FILE -u /dev/null -o /dev/null
     - alignstats:
@@ -48,12 +45,8 @@ tools:  # Require that the command line sequence to be executed be written on on
         intersect: bedtools intersect -a INTERSECT -b FILE
         merge: sort -k1,1 -k2,2n FILE > TEMP1; bedtools merge -i TEMP1
         coverage: bedtools coverage -a INTERSECT -b FILE
-    # - bgt:
-    #     view: bgt view -B FILE BGT
     - bioconvert:
         bed2wiggle: bioconvert bed2wiggle FILE /dev/stdout --force
-    # - bioFluff:
-        # heatmap: fluff heatmap -f FILE -d EXBAM -o TEMPDIR/
     - biopet:
         WipeReads: biopet tool WipeReads -I EXBAM -r FILE -o TEMPDIR/biopet 2>/dev/null
     - blockbuster:
@@ -63,8 +56,6 @@ tools:  # Require that the command line sequence to be executed be written on on
         shift: cat FILE | cgat bed2bed --method=sanitize-genome -g GENOME
     - chunked-scatter:
         chunked-scatter: chunked-scatter -p TEMPDIR/scatter_ -i FILE -m 10 -c 40
-    # - cistrome-beta:
-        # minus: BETA minus -p FILE -g hg19 -o TEMPDIR/
     - cnvkit:
         target: cnvkit.py target FILE
         access: cnvkit.py access GENOME -x FILE
@@ -138,8 +129,6 @@ tools:  # Require that the command line sequence to be executed be written on on
         octopus: octopus -R FASTA -I EXBAM -t FILE -w TEMPDIR/
     - peakranger:
         ccat: peakranger ccat --format bed FILE INTERSECT --output /dev/stdout
-    # - peakzilla:  Don't know why it's not working
-        # peakzilla: peakzilla.py FILE INTERSECT -l TEMPDIR/out
     - picard:
         BedToIntervalList: picard BedToIntervalList INPUT=FILE SD=DICTIONARY OUTPUT=/dev/stdout
     - piranha:
