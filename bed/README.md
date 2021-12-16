@@ -17,6 +17,8 @@ settings:
         BAM: data/example.bam
 ```
 
+Not all secondary files are uploaded to this repository. Namely, `hg38.fa` is too large but can be obtained on the [UCSC Website](https://hgdownload.cse.ucsc.edu/goldenpath/hg38/bigZips/).
+
 **`tools`**
 
 This section lists the tools for testing with its command-line interface.
@@ -107,9 +109,9 @@ We suggest that performance of $\leq$ 70% be given `red` background color, perfo
 
 
 # License
-Bio-acid-tests is free software: you can redistribute it and/or modify it under the terms of version 2 of the GNU General Public License as published by the Free Software Foundation.
+acidbio is free software: you can redistribute it and/or modify it under the terms of version 2 of the GNU General Public License as published by the Free Software Foundation.
 
-Bio-acid-tests is distributed in the hope that it will be useful, but WITHOUT
+acidbio is distributed in the hope that it will be useful, but WITHOUT
 ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
 FITNESS FOR A PARTICULAR PURPOSE.
 
