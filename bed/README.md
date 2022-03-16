@@ -88,6 +88,9 @@ optional arguments:
                         output incorrect bad test cases to file
 ```
 
+The `failed-good` output file contains the tested tool's output from expected pass test cases that the tool incorrectly failed. The `passed-bad` output file contains the tested tool's output from expected fail test cases that the tool incorrectly passed. The `results-array-file` is used only for collecting results for visualization.
+For just testing a tool against the test suite, this file should be ignored.
+
 ## BED badge
 
 After testing software on the test harness, you may display a GitHub badge to indicate your software's conformance to the BED specification.
