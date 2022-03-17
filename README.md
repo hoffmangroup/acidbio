@@ -112,6 +112,12 @@ conda-environment:
     bazam: test_env
 ```
 
+For a tool not installed in a Conda environment:
+```YAML
+conda-environment:
+    my-tool: 
+```
+
 The configuration file used to test the 80 packages is provided in this repository as a template.
 
 
