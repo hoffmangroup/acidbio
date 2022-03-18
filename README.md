@@ -22,6 +22,7 @@ To test your own software, set up the `config.yaml` file and run the test harnes
 ### `config.yaml`
 
 The `config.yaml` file is required to run the test harness.
+The configuration file must be placed in the `bed` directory.
 The test harness configuration contains three sections:
 
 **`file-locations`**
@@ -35,6 +36,9 @@ settings:
         BAM: data/example.bam
 ```
 
+If you are testing your own software, you do not have to use the files provided in the `bed/data` directory.
+You can replace them with a file that best suites your needs.
+
 Not all secondary files are uploaded to this repository. Namely, `hg38.fa` is too large but can be obtained using
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
@@ -43,7 +47,7 @@ Then, unzip the file using
 ```
 gunzip hg38.fa.gz
 ```
-Finally, place `hg38.fa` into the `data` directory.
+Finally, place `hg38.fa` into the `bed/data` directory.
 
 **`tools`**
 
@@ -75,7 +79,7 @@ conda-environment:
 
 #### Putting it all together
 To run the test harness on Bazam, first create a new Conda environment using `conda create -n test_env`. Then, install Bazam using `conda install -c bioconda bazam`.
-Finally, the use the configuration file below to specify the execution of Bazam from command line and save the file as `config.yaml` in the `bed directory.
+Finally, the use the configuration file below to specify the execution of Bazam from command line and save the file as `config.yaml` in the `bed` directory.
 ```YAML
 settings:
     file-locations:
