@@ -5,7 +5,8 @@ The test suite aims to improve interoperability of software parsing the BED form
 ## Installation
 
 To run the test harness, Python 3.5+ is required. The PyYAML package is required for parsing the configuration file.
-To install PyYAML, run `python3 -m pip install -r bed/requirements.txt`.
+To install PyYAML, run `python3 -m pip install -r bed/requirements.txt`. 
+Alternatively, PyYAML can also be installed using Conda by `conda install -c conda-forge pyyaml`.
 
 For testing your own software, clone the repository. No other installation is needed.
 Conda is not required for testing your own software.
