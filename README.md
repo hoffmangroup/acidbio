@@ -4,69 +4,23 @@ The test suite aims to improve interoperability of software parsing the BED form
 
 ## Installation
 
-To run Acidbio locally, first clone the repository by
-```
-git clone https://github.com/hoffmangroup/acidbio.git
-```
+To run the test harness, Python 3.5+ is required. The PyYAML package is required for parsing the configuration file.
+To install PyYAML, run `python3 -m pip install -r bed/requirements.txt`.
 
-For testing your own software, no further installation is needed.
-For reproducing results from the 80 packages tested in *Assessing and assuring interoperability of a genomics file format*, the Conda environments can be found on [Zenodo](
-https://doi.org/10.5281/zenodo.5784763) as YAML files. To recreate the environment, run `conda env create -f <env.yml>`
-for each environment YAML file.
+For testing your own software, clone the repository. No other installation is needed.
+Conda is not required for testing your own software.
+
+For reproducing results from the 80 packages tested in *Assessing and assuring interoperability of a genomics file format*, download the repository from [Zenodo](
+https://doi.org/10.5281/zenodo.5784763). The Zenodo contains the files in this repository along with the Conda environments used to test the 80 packages.
+For reproducing the results, Conda is required as we tested tools found on Bioconda.
 
 ## Quickstart
 
 To test your own software, set up the `config.yaml` file and run the test harness as described below.
 
-### Running the test harness
-
-The test harness is run against one BED variant (BED03 to BED12).
-You must specify which BED variant to run and directory to output the result files to.
-The basic execution of the test harness is:
-
-```bash
-python3 bedrunall.py BED03 ./
-```
-This will run the test harness on BED3 tests and log the outputs to the current directory.
-
-The full usage of the test harness is:
-```
-usage: bedrunall.py [-h] [-V] [-v] [-t TOOL] [-e EXCLUDE]
-                    [--results-array-file RESULTS_FILENAME]
-                    [--failed-good GOOD_TESTS_FILENAME]
-                    [--passed-bad BAD_TESTS_FILENAME]
-                    bed-version outdir
-
-Tests the tools in config.yaml to see if they appropriately throw warnings or
-errors against a suite of BED files
-
-positional arguments:
-  bed-version           Which BED type to test. Must be one of BED03, BED04,
-                        ..., BED12
-  outdir                location where all output files go
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -V, --version         show program's version number and exit
-  -v, --verbose         display all results
-  -t TOOL, --tool TOOL  test a specific program. If unspecified, all tools in
-                        config.yaml will be tested.
-  -e EXCLUDE, --exclude EXCLUDE
-                        test all tools except for this tool. If unspecified,
-                        all tools will be tested
-  --results-array-file RESULTS_FILENAME
-                        output binary results to file
-  --failed-good GOOD_TESTS_FILENAME
-                        output incorrect good test cases to file
-  --passed-bad BAD_TESTS_FILENAME
-                        output incorrect bad test cases to file
-```
-
-The `failed-good` output file contains the tested tool's output from expected pass test cases that the tool incorrectly failed. The `passed-bad` output file contains the tested tool's output from expected fail test cases that the tool incorrectly passed. The `results-array-file` is used only for collecting results for visualization.
-For just testing a tool against the test suite, this file should be ignored.
-
 ### `config.yaml`
 
+The `config.yaml` file is required to run the test harness.
 The test harness configuration contains three sections:
 
 **`file-locations`**
@@ -118,7 +72,68 @@ conda-environment:
     my-tool: 
 ```
 
-The configuration file used to test the 80 packages is provided in this repository as a template.
+#### Putting it all together
+To run the test harness on Bazam, first create a new Conda environment using `conda create -n test_env`. Then, install Bazam using `conda install -c bioconda bazam`.
+Finally, the use the configuration file below to specify the execution of Bazam from command line and save the file as `config.yaml` in the `bed directory.
+```YAML
+settings:
+    file-locations:
+        BAM: data/example.bam
+tools:
+    - bazam:
+        bazam: bazam -bam BAM -L FILE 
+conda-environment:
+    bazam: test_env
+```
+The configuration file used to test the 80 packages is also provided in this repository as a template.
+
+### Running the test harness
+
+The test harness is run against one BED variant (BED03 to BED12).
+You must specify which BED variant to run and directory to output the result files to.
+First, navigate into the `bed` directory of the repository.
+Within the `bed` directory, to run the test harness, run the following:
+
+```bash
+python3 bedrunall.py BED03 ./
+```
+This will run the test harness on BED3 tests and log the outputs to the current directory.
+
+The full usage of the test harness is:
+```
+usage: bedrunall.py [-h] [-V] [-v] [-t TOOL] [-e EXCLUDE]
+                    [--results-array-file RESULTS_FILENAME]
+                    [--failed-good GOOD_TESTS_FILENAME]
+                    [--passed-bad BAD_TESTS_FILENAME]
+                    bed-version outdir
+
+Tests the tools in config.yaml to see if they appropriately throw warnings or
+errors against a suite of BED files
+
+positional arguments:
+  bed-version           Which BED type to test. Must be one of BED03, BED04,
+                        ..., BED12
+  outdir                location where all output files go
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -V, --version         show program's version number and exit
+  -v, --verbose         display all results
+  -t TOOL, --tool TOOL  test a specific program. If unspecified, all tools in
+                        config.yaml will be tested.
+  -e EXCLUDE, --exclude EXCLUDE
+                        test all tools except for this tool. If unspecified,
+                        all tools will be tested
+  --results-array-file RESULTS_FILENAME
+                        output binary results to file
+  --failed-good GOOD_TESTS_FILENAME
+                        output incorrect good test cases to file
+  --passed-bad BAD_TESTS_FILENAME
+                        output incorrect bad test cases to file
+```
+
+The `failed-good` output file contains the tested tool's output from expected pass test cases that the tool incorrectly failed. The `passed-bad` output file contains the tested tool's output from expected fail test cases that the tool incorrectly passed. The `results-array-file` is used only for collecting results for visualization.
+For just testing a tool against the test suite, this file should be ignored.
 
 
 
