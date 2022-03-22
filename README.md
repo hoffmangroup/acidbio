@@ -8,8 +8,7 @@ To run the test harness, Python 3.5+ is required. The PyYAML package is required
 To install PyYAML, run `python3 -m pip install -r bed/requirements.txt`. 
 Alternatively, PyYAML can also be installed using Conda by `conda install -c conda-forge pyyaml`.
 
-For testing your own software, clone the repository. No other installation is needed.
-Conda is not required for testing your own software.
+For testing your own software, clone the repository.
 
 For reproducing results from the 80 packages tested in *Assessing and assuring interoperability of a genomics file format*, download the repository from [Zenodo](
 https://doi.org/10.5281/zenodo.5784763). The Zenodo contains the files in this repository along with the Conda environments used to test the 80 packages.
@@ -18,11 +17,15 @@ For reproducing the results, Conda is required as we tested tools found on Bioco
 ## Quickstart
 
 To test your own software, set up the `config.yaml` file and run the test harness as described below.
+Conda is not required for testing your own software.
 
 ### `config.yaml`
 
 The `config.yaml` file is required to run the test harness.
 The configuration file must be placed in the `bed` directory.
+
+The configuration file used to test the 80 packages is provided in this repository as a template.
+
 The test harness configuration contains three sections:
 
 **`file-locations`**
@@ -53,6 +56,11 @@ Finally, place `hg38.fa` into the `bed/data` directory.
 
 This section lists the tools for testing with its command-line interface.
 In the command-line interface, replace instances of the input BED file with `FILE` and instances of other file formats with the corresponding macro from `file-locations`.
+For tools that use multiple BED files, you may reuse the BED file by having `FILE` appear multiple times in the command-line interface.
+Alternatively, there are other BED files availabe in the `bed/data` directory called `intersect_file03.bed` to `intersect_file12.bed` for each BED variant that have the same format as the standard BED file test case (`03-standard_chrom.bed`).
+For tools that require an output directory, you should use `TEMPDIR/` as the directory.
+The test harness will replace TEMPDIR with a temporary directory that is deleted after the tool finishes testing.
+
 For example, Bazam, a tool that uses a BAM file and BED file, could be listed as:
 
 ```YAML
@@ -77,7 +85,7 @@ conda-environment:
     my-tool: 
 ```
 
-#### Putting it all together
+### Example
 To run the test harness on Bazam, first create a new Conda environment using `conda create -n test_env`. Then, install Bazam using `conda install -c bioconda bazam`.
 Finally, the use the configuration file below to specify the execution of Bazam from command line and save the file as `config.yaml` in the `bed` directory.
 ```YAML
@@ -86,11 +94,11 @@ settings:
         BAM: data/example.bam
 tools:
     - bazam:
-        bazam: bazam -bam BAM -L FILE 
+        bazam: bazam -bam BAM -L FILE
 conda-environment:
     bazam: test_env
 ```
-The configuration file used to test the 80 packages is also provided in this repository as a template.
+
 
 ### Running the test harness
 
