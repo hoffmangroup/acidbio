@@ -58,8 +58,7 @@ def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None,
     # Locations of "constant" files
     command_insertions = data['settings']['file-locations']
     # Replace with the correct intersection file
-    command_insertions['INTERSECT'] = command_insertions['INTERSECT'].replace(
-        'intersect_file', 'intersect_file' + bed_type[-2:])
+    command_insertions['INTERSECT'] = 'data/intersect_file' + bed_type[-2:] + '.bed'
     # Each tool with its corresponding Python version
     conda_envs = data['conda-environment']
 
