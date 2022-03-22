@@ -1,4 +1,6 @@
-settings: # some file locations
+settings:
+    # file-locations lists the locations of each of the secondary file formats
+    # that tools may use alongside a BED file
     file-locations:
         2BIT: data/toy.2bit
         BAZAMBAM: data/bazam.bam
@@ -15,13 +17,17 @@ settings: # some file locations
         GENOME: data/hg38.fa
         GTF: data/toy.gtf
         HEXAMER: data/hexamer_tab.tsv
-        INTERSECT: data/intersect_file.bed
         LOGIT: data/logit.logit.RData
         REFSEQ: data/hg38_RefSeq.bed.gz
         SIZES: data/hg38.chrom.sizes
         SLNCKY_CONFIG: data/annotations.config
         VCF: data/toy.vcf
-tools:  # Require that the command line sequence to be executed be written on one line
+tools:
+    # List the command line usage of each tool.
+    # Format is:
+    # - tool_name:
+    #     subtool_name_1: command_line_execution
+    #     subtool_name_2: command_line_execution
     - alfred:
         annotate: alfred annotate -b REFSEQ FILE -u /dev/null -o /dev/null
     - alignstats:
@@ -202,6 +208,11 @@ tools:  # Require that the command line sequence to be executed be written on on
     - xyalign:
         PREPARE_REFERENCE: xyalign --PREPARE_REFERENCE --ref FA_XY_STA --reference_mask FILE -o TEMPDIR/ --x_chromosome chrX --y_chromosome chrY
 conda-environment:
+    # List the Conda environment that each tool is installed in.
+
+    # If a tool is not installed on a Conda environment, then can leave the value
+    # blank. This way, when Conda is not activated, the CONDA_DEFAULT_ENV variable
+    # will be the empty string.
     alfred: base
     alignstats: base
     atactk: py27
@@ -217,7 +228,6 @@ conda-environment:
     blockbuster: base
     cgat: py36
     chunked-scatter: py36
-    # cistrome-beta: -1.0 # special program that has to be done separately
     cnvkit: py36
     combined p-values: py27
     concoct: py36
@@ -274,7 +284,7 @@ conda-environment:
     smoove: py27
     snpeff: base
     snpsift: py36
-    somaticseq: py36  # Installed from source
+    somaticseq: py36
     tobias: base
     twobitreader: base
     ucsc: base
@@ -283,6 +293,3 @@ conda-environment:
     wiggletools: base
     wisestork: base
     xyalign: py27
-# If a tool is not installed on a CONDA environment, then can leave the value
-# blank. This way, when CONDA is not activated, the CONDA_DEFAULT_ENV variable
-# will be the empty string.
