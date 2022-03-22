@@ -61,22 +61,22 @@ Alternatively, there are other BED files availabe in the `bed/data` directory ca
 For tools that require an output directory, you should use `TEMPDIR/` as the directory.
 The test harness will replace TEMPDIR with a temporary directory that is deleted after the tool finishes testing.
 
-For example, Bazam, a tool that uses a BAM file and BED file, could be listed as:
+For example, Samtools has a tool called bedcov that uses a BAM file and BED file. It could be listed as:
 
 ```YAML
 tools:
-    - bazam:
-        bazam: bazam -bam BAM -L FILE 
+    - samtools:
+        bedcov: samtools bedcov FILE BAM
 ```
 
 **`conda-environment`**
 
 This section maps each package to the Conda environment that the package is installed in.
 If the tool is not installed in a Conda environment, then leave the value blank.
-For example, if Bazam is installed in the environment "test_env", then it would be listed as:
+For example, if Samtools is installed in the environment "test_env", then it would be listed as:
 ```YAML
 conda-environment:
-    bazam: test_env
+    samtools: test_env
 ```
 
 For a tool not installed in a Conda environment:
@@ -86,17 +86,17 @@ conda-environment:
 ```
 
 ### Example
-To run the test harness on Bazam, first create a new Conda environment using `conda create -n test_env`. Then, install Bazam using `conda install -c bioconda bazam`.
-Finally, the use the configuration file below to specify the execution of Bazam from command line and save the file as `config.yaml` in the `bed` directory.
+To run the test harness on Samtools, first create a new Conda environment using `conda create -n test_env`. Then, install Samtools using `conda install -c bioconda samtools`.
+Finally, the use the configuration file below to specify the execution of Samtools from command line and save the file as `config.yaml` in the `bed` directory.
 ```YAML
 settings:
     file-locations:
         BAM: data/example.bam
 tools:
-    - bazam:
-        bazam: bazam -bam BAM -L FILE
+    - samtools:
+        bedcov: samtools bedcov FILE BAM
 conda-environment:
-    bazam: test_env
+    samtools: test_env
 ```
 
 
