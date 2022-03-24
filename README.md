@@ -36,7 +36,7 @@ For example, if the tool requires a BAM file, then you may specify the location 
 ```YAML
 settings:
     file-locations:
-        BAM: data/example.bam
+        BAM: data/toy.bam
 ```
 
 If you are testing your own software, you do not have to use the files provided in the `bed/data` directory.
