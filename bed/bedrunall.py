@@ -50,7 +50,10 @@ def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None,
     with open(failed_good_file, 'w') as f1, open(passed_bad_file, 'w') as f2:
         pass  # Creates the two new files
 
-    this_env = os.environ['CONDA_DEFAULT_ENV']
+    if 'CONDA_DEFAULT_ENV' in os.environ:
+        this_env = os.environ['CONDA_DEFAULT_ENV']
+    else:
+        this_env = None
 
     stream = open('config.yaml', 'r')
     data = load(stream, Loader=Loader)
