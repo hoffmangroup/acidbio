@@ -86,7 +86,7 @@ conda-environment:
 ```
 
 ### Example
-To run the test harness on Samtools, first create a new Conda environment using `conda create -n test_env`. Then, install Samtools using `conda install -c bioconda samtools`.
+To run the test harness on Samtools, first create a new Conda environment using `conda create -n test_env` and activate it with `conda activate test_env`. Then, install Samtools using `conda install -c bioconda samtools`.
 Finally, the use the configuration file below to specify the execution of Samtools from command line and save the file as `config.yaml` in the `bed` directory.
 ```YAML
 settings:
@@ -150,6 +150,10 @@ The `failed-good` output file contains the tested tool's output from expected pa
 For just testing a tool against the test suite, this option should not be specified.
 
 
+### Troubleshooting
+
+- If the software cannot run correctly, the test harness will always show that the software failed on each test case.
+- If the test harness does not output anything, it could be because the current Conda environment and the Conda environment in `config.yaml` do not match.
 
 ## BED badge
 
