@@ -91,7 +91,7 @@ Finally, the use the configuration file below to specify the execution of Samtoo
 ```YAML
 settings:
     file-locations:
-        BAM: data/example.bam
+        BAM: data/toy.bam
 tools:
     - samtools:
         bedcov: samtools bedcov FILE BAM
