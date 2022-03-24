@@ -119,8 +119,9 @@ def run_all(bed_type, output_file, specific_tool=None, exclude_tool=None,
     num_correct = [l.count(1) for l in passing_list]
 
     # Dump the results of these set of tools into a binary file
-    with open(output_file, 'wb') as fp:
-        pickle.dump([num_correct, passing_list, name_list], fp)
+    if output_file != '':
+        with open(output_file, 'wb') as fp:
+            pickle.dump([num_correct, passing_list, name_list], fp)
 
     stream.close()
     return num_correct, passing_list, name_list
@@ -143,8 +144,8 @@ def main():
     parser.add_argument("-e", "--exclude", help="test all tools except for" +
                         " this tool. If unspecified, all tools will be tested")
     parser.add_argument("--results-array-file", metavar="RESULTS_FILENAME",
-                        help="output binary results to file",
-                        default="bed_test_results")
+                        help="output binary results to file. If unspecified," +
+                        " no binary results will be outputted.")
     parser.add_argument("--failed-good", metavar="GOOD_TESTS_FILENAME",
                         help="output incorrect good test cases to file",
                         default="failed_good.txt")
@@ -154,7 +155,15 @@ def main():
 
     args = parser.parse_args()
 
-    run_all(args.bed_version, args.outdir + "/" + args.results_array_file,
+    # If outdir doesn't exist, create it
+    if not os.path.exists(args.outdir):
+        os.makedirs(args.outdir)
+
+    if args.results_array_file is None:
+        output_file = ''
+    else:
+        output_file = args.outdir + "/" + args.results_array_file
+    run_all(args.bed_version, output_file,
             args.tool, args.exclude, args.verbose,
             args.outdir + "/" + args.failed_good,
             args.outdir + "/" + args.passed_bad)
