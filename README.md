@@ -138,7 +138,8 @@ optional arguments:
                         test all tools except for this tool. If unspecified,
                         all tools will be tested
   --results-array-file RESULTS_FILENAME
-                        output binary results to file
+                        output binary results to file. If unspecified, no
+                        binary results will be outputted.
   --failed-good GOOD_TESTS_FILENAME
                         output incorrect good test cases to file
   --passed-bad BAD_TESTS_FILENAME
