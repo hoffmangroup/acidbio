@@ -162,7 +162,7 @@ For just testing a tool against the test suite, this option should not be specif
 
 After testing software on the test harness, you may display a GitHub badge to indicate your software's conformance to the BED specification.
 
-Using [shields.io](shields.io), you may configure a badge that describes which BED variants your software parses.
+Using [shields.io](https://shields.io/), you may configure a badge that describes which BED variants your software parses.
 For example, the following badge indicates that the software parses BED3, BED4, or BED6 files.
 
 ![BED Parser](https://img.shields.io/badge/BED%20Parser-BED3%20%7C%20BED4%20%7C%20BED6-informational)
