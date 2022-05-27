@@ -1,6 +1,6 @@
 # Acidbio
 
-> Niu YN, Roberts EG, Denisko D, Hoffman MM. 2022. [Assessing and assuring interoperability of a genomics file format](https://doi.org/10.1101/2022.01.07.475366). Preprint: [doi.org/10.1101/2022.01.07.475366](https://doi.org/10.1101/2022.01.07.475366)
+> Niu YN, Roberts EG, Denisko D, Hoffman MM. 2022. [Assessing and assuring interoperability of a genomics file format](https://doi.org/10.1093/bioinformatics/btac327). *Bioinformatics*, btac327. [https://doi.org/10.1093/bioinformatics/btac327](https://doi.org/10.1093/bioinformatics/btac327)
 
 The BED test harness runs tools with a command-line interface against a test suite of expected success and expected fail BED files.
 The test suite aims to improve interoperability of software parsing the BED format as input.
